@@ -1,0 +1,28 @@
+{
+  "version": 1,
+  "rules": [
+    {
+      "domain_suffix": [
+         "mix.1steam.one",
+         "stream1.misakaf.org",
+         "stream2.misakaf.org", 
+         "stream3.misakaf.org",
+         "stream4.misakaf.org",
+         "magpie.cyou",
+         ".bili.rip",
+         ".mius.uk",
+         ".123456.al",
+         ".niceduck.me",
+         ".pilipiliultra.top",
+         ".pilipiliultra.com"
+      ],
+      "domain_keyword": [
+         "magpie",
+         "reddust",
+         "niceduck",
+         "embyplus",
+         "pilipiliultra"
+      ]
+    }
+  ]
+}
