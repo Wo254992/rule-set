@@ -1,0 +1,21 @@
+{
+  "version": 1,
+  "rules": [
+    {
+      "domain_keyword": [
+        "ntp",
+        "wx.qlogo",
+        "wogg",
+        "weixin",
+        "wechat",
+        "wxpay",
+        "wxmp",
+        "miniprogram",
+        "tencent",
+        "tenpay",
+        "netease",
+        "atvcai"
+      ]
+    }
+  ]
+}
