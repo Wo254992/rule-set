@@ -2,8 +2,9 @@
   "version": 1,
   "rules": [
     {
-      "domain_keyword": [
-         "niceduck"
+      "domain_suffix": [
+         ".niceduck.me",
+         ".niceduck.lol"
       ]
     }
   ]
