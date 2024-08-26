@@ -4,8 +4,10 @@
     {
       "domain_suffix": [
          ".niceduck.me",
-         ".niceduck.lol",
-         ".misakaf.org"
+         ".niceduck.lol"
+      ],
+      "domain_keyword": [
+         "magpie"
       ]
     }
   ]
