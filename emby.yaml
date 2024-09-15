@@ -3,7 +3,6 @@ payload:
     - +.cloudfisher.cc
     - +.1steam.one
     - +.misakaf.org
-    - +.mius
     - embyplus.org
     - +.embyplus.org
     - +.as174.com
@@ -14,9 +13,12 @@ payload:
     - +.term.wtf
     - api.lrc.cx
     - +.vban.xyz
-    - sg.886318.xyz
+    - +.886318.xyz
     - emby.bangumi.ca
     - media.nijigem.by
     - embymv.link
     - v.20120714.xyz
     - play.charontv.com
+    - emby-mica-us-v1.mius.uk
+    - emby-micax-ca-v2.mius.uk
+    - ph.16bit.cfd
