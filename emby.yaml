@@ -20,8 +20,6 @@ payload:
     - embymv.link
     - v.20120714.xyz
     - play.charontv.com
-    - emby-mica-us-v1.mius.uk
-    - emby-micax-ca-v2.mius.uk
     - ph.16bit.cfd
     - cf.sfcj.org
     - +.apopcloud.live
@@ -46,4 +44,5 @@ payload:
     - +.tanhuatv.site
     - temby856.285286.xyz
     - vip3.jellyfin.asia
-    - emby.kin
+    - emby.kindo.cc
+    - +.mius.uk
