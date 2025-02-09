@@ -140,6 +140,7 @@ IP-CIDR,202.61.255.248/32,no-resolve
   - DOMAIN-SUFFIX,xmsl.org
   - DOMAIN-SUFFIX,emby.ml
   - DOMAIN-SUFFIX,loseremby.org
+  - DOMAIN-SUFFIX,loacl.emby.moe
 
 # 牢大(Emby餐厅)
   - DOMAIN-SUFFIX,mius.uk
