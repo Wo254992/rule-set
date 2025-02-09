@@ -16,6 +16,10 @@ payload:
 # Aiyowei
   - DOMAIN-SUFFIX,emby.aiyowei.ml
 
+＃ Acemby
+  - DOMAIN-SUFFIX,entry.zox.show
+  - IP-CIDR,38.46.222.98/32,no-resolve
+
 ##### B #####
 
 # BGK
@@ -328,7 +332,7 @@ IP-CIDR,212.90.120.164/32,no-resolve
 
 # 探花TV(Jellyfin Porn)
   - DOMAIN-SUFFIX,tanhuatv.site
-IP-CIDR,152.53.67.239/32,no-resolve
+  - IP-CIDR,152.53.67.239/32,no-resolve
 
 # TreeDiagram(树状图)
   - DOMAIN-SUFFIX,123456.al
