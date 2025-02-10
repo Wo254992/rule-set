@@ -453,3 +453,4 @@ DOMAIN-SUFFIX,stream2.jingzhe.pro
 IP-CIDR,188.172.228.49/32,no-resolve
 IP-CIDR,188.253.112.89/32,no-resolve
 IP-CIDR,107.181.238.190/32,no-resolve
+IP-CIDR,152.53.54.201/32,no-resolve
