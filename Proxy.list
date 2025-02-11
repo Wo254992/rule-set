@@ -57,7 +57,7 @@ DOMAIN-SUFFIX,x.com
 DOMAIN-SUFFIX,nullbr.eu.org
 DOMAIN-KEYWORD,twitter
 DOMAIN-SUFFIX,niceduck.lol
-
+PROCESS-NAME,com.levelinfinite.sgameGlobal
 IP-CIDR,192.133.76.0/22,no-resolve
 IP-CIDR,199.59.148.0/22,no-resolve
 IP-CIDR,199.96.56.0/21,no-resolve
