@@ -56,7 +56,6 @@ DOMAIN-SUFFIX,vine.co
 DOMAIN-SUFFIX,x.com
 DOMAIN-SUFFIX,nullbr.eu.org
 DOMAIN-KEYWORD,twitter
-DOMAIN-SUFFIX,niceduck.lol
 DOMAIN-SUFFIX,shop.xxxh.de
 PROCESS-NAME,com.levelinfinite.sgameGlobal
 IP-CIDR,192.133.76.0/22,no-resolve
