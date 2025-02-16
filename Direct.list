@@ -2,4 +2,4 @@ DOMAIN-SUFFIX,beebi.org
 DOMAIN-SUFFIX,a.hardmoon.net
 DOMAIN-SUFFIX,b.hardmoon.net
 DOMAIN-SUFFIX,c.hardmoon.net
-IP-CIDR,http://101.132.152.113/32,no-resolve
+IP-CIDR,101.132.152.113/32,no-resolve
