@@ -37,5 +37,6 @@ payload:
   - DOMAIN-SUFFIX,thegithubshop.com
   - DOMAIN-KEYWORD,github
   - DOMAIN-KEYWORD,metacubex
+  - DOMAIN-KEYWORD,hdhive
   - IP-CIDR,185.199.108.133/32
   - IP-CIDR,103.224.212.212/32
