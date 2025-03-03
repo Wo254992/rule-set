@@ -448,6 +448,7 @@ DOMAIN-SUFFIX,dpxcf.niceduck.lol
 DOMAIN-SUFFIX,line.xmsl.org
 DOMAIN-SUFFIX,stream2.jingzhe.pro
 DOMAIN-SUFFIX,hxd.as174.de
+DOMAIN-SUFFIX,b.emby.my
 IP-CIDR,188.172.228.49/32,no-resolve
 IP-CIDR,188.253.112.89/32,no-resolve
 IP-CIDR,107.181.238.190/32,no-resolve
