@@ -356,7 +356,7 @@ rule-providers:
     format: text
     type: http
   Telegram:
-    url: https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/Telegram.list
+    url: https://raw.githubusercontent.com/Wo254992/rule-set/refs/heads/main/telegram.list
     path: ./ruleset/Telegram.list
     behavior: classical
     interval: 86400
