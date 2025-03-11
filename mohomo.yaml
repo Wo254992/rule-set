@@ -487,6 +487,13 @@ rule-providers:
     interval: 86400
     format: text
     type: http
+  Proxy:
+    url: https://raw.githubusercontent.com/Wo254992/rule-set/refs/heads/main/Proxy.list
+    path: ./ruleset/Proxy.list
+    behavior: classical
+    interval: 86400
+    format: text
+    type: http
   Proxy0:
     url: https://raw.githubusercontent.com/liandu2024/clash/refs/heads/main/Proxy.list
     path: ./ruleset/Proxy0.list
