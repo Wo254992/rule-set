@@ -532,6 +532,8 @@ rules:
   - "RULE-SET,ChinaMedia,🌏 国内媒体"
   - "RULE-SET,ProxyMedia,🌍 国外媒体"
   - "RULE-SET,ProxyGFWlist,🚀 节点选择"
+  - "RULE-SET,Proxy,🚀 节点选择"
+  - "RULE-SET,Global,🚀 节点选择"
   - "RULE-SET,ChinaDomain,🎯 全球直连"
   - "RULE-SET,ChinaCompanyIp,🎯 全球直连"
   - "RULE-SET,Download,🎯 全球直连"
