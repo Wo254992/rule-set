@@ -250,7 +250,7 @@ proxy-groups:
   - name: 🇨🇳 台湾节点
     include-all: true
     filter: (?i)台|新北|彰化|TW|Taiwan
-    type: url-test
+    type: select
     interval: 300
     tolerance: 50
   - name: 🇸🇬 狮城节点
