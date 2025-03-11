@@ -487,9 +487,9 @@ rule-providers:
     interval: 86400
     format: text
     type: http
-  Proxy:
+  Proxy0:
     url: https://raw.githubusercontent.com/liandu2024/clash/refs/heads/main/Proxy.list
-    path: ./ruleset/ProxyGFWlist.list
+    path: ./ruleset/Proxy0.list
     behavior: classical
     interval: 86400
     format: text
@@ -554,6 +554,7 @@ rules:
   - "RULE-SET,ProxyMedia,🌍 国外媒体"
   - "RULE-SET,ProxyGFWlist,🚀 节点选择"
   - "RULE-SET,Proxy,🚀 节点选择"
+  - "RULE-SET,Proxy0,🚀 节点选择"
   - "RULE-SET,Global,🚀 节点选择"
   - "RULE-SET,ChinaDomain,🎯 全球直连"
   - "RULE-SET,ChinaCompanyIp,🎯 全球直连"
