@@ -527,6 +527,13 @@ rule-providers:
     interval: 86400
     format: text
     type: http
+  Direct0:
+    url: https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/ChinaDomain.list
+    path: ./ruleset/Direct0.list
+    behavior: domain
+    interval: 86400
+    format: text
+    type: http
   ChinaDomain:
     url: https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/ChinaDomain.list
     path: ./ruleset/ChinaDomain.list
@@ -583,6 +590,7 @@ rules:
   - "RULE-SET,Proxy,🚀 节点选择"
   - "RULE-SET,Proxy0,🚀 节点选择"
   - "RULE-SET,Global,🚀 节点选择"
+  - "RULE-SET,Direct0,🎯 全球直连"
   - "RULE-SET,ChinaDomain,🎯 全球直连"
   - "RULE-SET,ChinaCompanyIp,🎯 全球直连"
   - "RULE-SET,Download,🎯 全球直连"
