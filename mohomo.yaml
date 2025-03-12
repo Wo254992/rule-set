@@ -145,6 +145,18 @@ proxy-groups:
       - 🇯🇵 日本节点
       - 🇰🇷 韩国节点
       - 🚀 手动切换
+  - name: 🏔️ Google
+    type: select
+    proxies:
+      - DIRECT
+      - 🚀 节点选择
+      - 🇺🇲 美国节点
+      - 🇭🇰 香港节点
+      - 🇨🇳 台湾节点
+      - 🇸🇬 狮城节点
+      - 🇯🇵 日本节点
+      - 🇰🇷 韩国节点
+      - 🚀 手动切换
   - name: Ⓜ️ 微软Bing
     type: select
     proxies:
@@ -336,6 +348,13 @@ rule-providers:
   GoogleCN:
     url: https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/GoogleCN.list
     path: ./ruleset/GoogleCN.list
+    behavior: classical
+    interval: 86400
+    format: text
+    type: http
+  Google:
+    url: https://raw.githubusercontent.com/Wo254992/rule-set/refs/heads/main/Google.list
+    path: ./ruleset/Google.list
     behavior: classical
     interval: 86400
     format: text
@@ -546,6 +565,7 @@ rules:
   - "RULE-SET,Emby,📺 Emby"
   - "RULE-SET,Github,📚 Github"
   - "RULE-SET,OpenAi,💬 OpenAi"
+  - "RULE-SET,Google,🏔️ Google"
   - "RULE-SET,NetEaseMusic,🎶 网易音乐"
   - "RULE-SET,Epic,🎮 游戏平台"
   - "RULE-SET,Origin,🎮 游戏平台"
