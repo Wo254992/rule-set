@@ -71,6 +71,18 @@ proxy-groups:
       - 🇰🇷 韩国节点
       - 🚀 手动切换
       - DIRECT
+  - name: 🏔️ Google
+    type: select
+    proxies:
+      - DIRECT
+      - 🚀 节点选择
+      - 🇺🇲 美国节点
+      - 🇭🇰 香港节点
+      - 🇨🇳 台湾节点
+      - 🇸🇬 狮城节点
+      - 🇯🇵 日本节点
+      - 🇰🇷 韩国节点
+      - 🚀 手动切换
   - name: 📹 油管视频
     type: select
     proxies:
@@ -134,18 +146,6 @@ proxy-groups:
       - 🇯🇵 日本节点
       - 🚀 手动切换
   - name: 📢 谷歌FCM
-    type: select
-    proxies:
-      - DIRECT
-      - 🚀 节点选择
-      - 🇺🇲 美国节点
-      - 🇭🇰 香港节点
-      - 🇨🇳 台湾节点
-      - 🇸🇬 狮城节点
-      - 🇯🇵 日本节点
-      - 🇰🇷 韩国节点
-      - 🚀 手动切换
-  - name: 🏔️ Google
     type: select
     proxies:
       - DIRECT
