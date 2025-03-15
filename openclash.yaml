@@ -164,7 +164,7 @@ proxy-groups:
       - 狮城节点
       - 日本节点
       - 韩国节点
-    icon: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/icon/color/microsoft.png
+    icon: https://raw.githubusercontent.com/sunfing/iNg/refs/heads/main/Icons/GeneralIcons/OneDrive.png
   - name: 微软服务
     type: select
     proxies:
