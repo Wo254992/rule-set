@@ -9,7 +9,7 @@ proxy-groups:
       - 美国节点
       - 韩国节点
       - DIRECT
-    icon: https://raw.githubusercontent.com/Koolson/Qure/refs/heads/master/IconSet/Color/Proxy.png
+    icon: https://raw.githubusercontent.com/Koolson/Qure/refs/heads/master/IconSet/Color/Global.png
   - name: 电报消息
     type: select
     proxies:
