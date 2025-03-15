@@ -220,7 +220,7 @@ proxy-groups:
     proxies:
       - REJECT
       - DIRECT
-    icon: https://raw.githubusercontent.com/sunfing/iNg/refs/heads/main/Icons/GeneralIcons/Reject.png
+    icon: https://raw.githubusercontent.com/Koolson/Qure/refs/heads/master/IconSet/Color/Advertising.png
   - name: 应用净化
     type: select
     proxies:
