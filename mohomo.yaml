@@ -33,7 +33,7 @@ proxy-groups:
       - 🇺🇲 美国节点
       - 🇰🇷 韩国节点
       - DIRECT
-    icon: https://raw.githubusercontent.com/sunfing/iNg/refs/heads/main/Icons/GeneralIcons/OpenAi.png
+    icon: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/icon/color/emby.png
   - name: 📚 Github
     type: select
     proxies:
@@ -57,7 +57,7 @@ proxy-groups:
       - 🇺🇲 美国节点
       - 🇰🇷 韩国节点
       - DIRECT
-    icon: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/icon/color/emby.png
+    icon: https://raw.githubusercontent.com/sunfing/iNg/refs/heads/main/Icons/GeneralIcons/OpenAi.png
   - name: 🏔️ Google
     type: select
     proxies:
