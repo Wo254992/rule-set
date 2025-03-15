@@ -9,6 +9,7 @@ proxy-groups:
       - 🇺🇲 美国节点
       - 🇰🇷 韩国节点
       - DIRECT
+    icon: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/icon/color/emby.png
   - name: 📲 电报消息
     type: select
     proxies:
@@ -20,6 +21,7 @@ proxy-groups:
       - 🇺🇲 美国节点
       - 🇰🇷 韩国节点
       - DIRECT
+    icon: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/icon/color/emby.png
   - name: 📺 Emby
     type: select
     proxies:
@@ -43,6 +45,7 @@ proxy-groups:
       - 🇺🇲 美国节点
       - 🇰🇷 韩国节点
       - DIRECT
+    icon: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/icon/color/emby.png
   - name: 💬 OpenAi
     type: select
     proxies:
@@ -54,6 +57,7 @@ proxy-groups:
       - 🇺🇲 美国节点
       - 🇰🇷 韩国节点
       - DIRECT
+    icon: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/icon/color/emby.png
   - name: 🏔️ Google
     type: select
     proxies:
@@ -65,6 +69,7 @@ proxy-groups:
       - 🇸🇬 狮城节点
       - 🇯🇵 日本节点
       - 🇰🇷 韩国节点
+    icon: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/icon/color/emby.png
   - name: 📹 油管视频
     type: select
     proxies:
@@ -76,6 +81,7 @@ proxy-groups:
       - 🇺🇲 美国节点
       - 🇰🇷 韩国节点
       - DIRECT
+    icon: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/icon/color/emby.png
   - name: 🎥 奈飞视频
     type: select
     proxies:
@@ -88,18 +94,21 @@ proxy-groups:
       - 🇺🇲 美国节点
       - 🇰🇷 韩国节点
       - DIRECT
+    icon: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/icon/color/emby.png
   - name: 📺 巴哈姆特
     type: select
     proxies:
       - 🇨🇳 台湾节点
       - 🚀 节点选择
       - DIRECT
+    icon: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/icon/color/emby.png
   - name: 📺 哔哩哔哩
     type: select
     proxies:
       - 🎯 全球直连
       - 🇨🇳 台湾节点
       - 🇭🇰 香港节点
+    icon: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/icon/color/emby.png
   - name: 🌍 国外媒体
     type: select
     proxies:
@@ -111,6 +120,7 @@ proxy-groups:
       - 🇺🇲 美国节点
       - 🇰🇷 韩国节点
       - DIRECT
+    icon: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/icon/color/emby.png
   - name: 🌏 国内媒体
     type: select
     proxies:
@@ -119,6 +129,7 @@ proxy-groups:
       - 🇨🇳 台湾节点
       - 🇸🇬 狮城节点
       - 🇯🇵 日本节点
+    icon: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/icon/color/emby.png
   - name: 📢 谷歌FCM
     type: select
     proxies:
@@ -130,6 +141,7 @@ proxy-groups:
       - 🇸🇬 狮城节点
       - 🇯🇵 日本节点
       - 🇰🇷 韩国节点
+    icon: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/icon/color/emby.png
   - name: Ⓜ️ 微软Bing
     type: select
     proxies:
@@ -141,6 +153,7 @@ proxy-groups:
       - 🇸🇬 狮城节点
       - 🇯🇵 日本节点
       - 🇰🇷 韩国节点
+    icon: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/icon/color/emby.png
   - name: Ⓜ️ 微软云盘
     type: select
     proxies:
@@ -152,6 +165,7 @@ proxy-groups:
       - 🇸🇬 狮城节点
       - 🇯🇵 日本节点
       - 🇰🇷 韩国节点
+    icon: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/icon/color/emby.png
   - name: Ⓜ️ 微软服务
     type: select
     proxies:
@@ -163,6 +177,7 @@ proxy-groups:
       - 🇸🇬 狮城节点
       - 🇯🇵 日本节点
       - 🇰🇷 韩国节点
+    icon: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/icon/color/emby.png
   - name: 🍎 苹果服务
     type: select
     proxies:
@@ -174,6 +189,7 @@ proxy-groups:
       - 🇸🇬 狮城节点
       - 🇯🇵 日本节点
       - 🇰🇷 韩国节点
+    icon: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/icon/color/emby.png
   - name: 🎮 游戏平台
     type: select
     proxies:
@@ -185,6 +201,7 @@ proxy-groups:
       - 🇸🇬 狮城节点
       - 🇯🇵 日本节点
       - 🇰🇷 韩国节点
+    icon: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/icon/color/emby.png
   - name: 🎶 网易音乐
     type: select
     include-all: true
@@ -192,21 +209,25 @@ proxy-groups:
     proxies:
       - DIRECT
       - 🚀 节点选择
+    icon: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/icon/color/emby.png
   - name: 🎯 全球直连
     type: select
     proxies:
       - DIRECT
       - 🚀 节点选择
+    icon: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/icon/color/emby.png
   - name: 🛑 广告拦截
     type: select
     proxies:
       - REJECT
       - DIRECT
+    icon: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/icon/color/emby.png
   - name: 🍃 应用净化
     type: select
     proxies:
       - REJECT
       - DIRECT
+    icon: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/icon/color/emby.png
   - name: 🐟 漏网之鱼
     type: select
     proxies:
@@ -218,6 +239,7 @@ proxy-groups:
       - 🇯🇵 日本节点
       - 🇺🇲 美国节点
       - 🇰🇷 韩国节点
+    icon: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/icon/color/emby.png
   - name: 🇭🇰 香港节点
     include-all: true
     filter: (?i)港|HK|hk|Hong Kong|HongKong|hongkong
