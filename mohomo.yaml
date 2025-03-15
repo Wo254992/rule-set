@@ -9,7 +9,7 @@ proxy-groups:
       - 🇺🇲 美国节点
       - 🇰🇷 韩国节点
       - DIRECT
-    icon: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/icon/color/emby.png
+    icon: https://raw.githubusercontent.com/sunfing/iNg/refs/heads/main/Icons/GeneralIcons/Copilot.png
   - name: 📲 电报消息
     type: select
     proxies:
@@ -209,7 +209,7 @@ proxy-groups:
     proxies:
       - DIRECT
       - 🚀 节点选择
-    icon: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/icon/color/emby.png
+    icon: https://raw.githubusercontent.com/sunfing/iNg/refs/heads/main/Icons/GeneralIcons/AppleMusic.png
   - name: 🎯 全球直连
     type: select
     proxies:
