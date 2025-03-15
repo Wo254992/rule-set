@@ -9,7 +9,7 @@ proxy-groups:
       - 美国节点
       - 韩国节点
       - DIRECT
-    icon: https://raw.githubusercontent.com/sunfing/iNg/refs/heads/main/Icons/GeneralIcons/Copilot.png
+    icon: https://raw.githubusercontent.com/Koolson/Qure/refs/heads/master/IconSet/Color/Proxy.png
   - name: 电报消息
     type: select
     proxies:
@@ -128,7 +128,7 @@ proxy-groups:
       - 台湾节点
       - 狮城节点
       - 日本节点
-    icon: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/icon/color/muchang.png
+    icon: https://raw.githubusercontent.com/Koolson/Qure/refs/heads/master/IconSet/Color/DomesticMedia.png
   - name: 谷歌FCM
     type: select
     proxies:
