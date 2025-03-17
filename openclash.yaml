@@ -314,9 +314,9 @@ rule-providers:
     format: text
     type: http
   Github:
-    url: https://raw.githubusercontent.com/Wo254992/rule-set/refs/heads/main/Github.list
+    url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/github.list
     path: ./ruleset/Github.list
-    behavior: classical
+    behavior: domain
     interval: 86400
     format: text
     type: http
