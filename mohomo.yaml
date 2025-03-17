@@ -292,7 +292,7 @@ rule-providers:
     type: http
   Github:
     url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/GitHub/GitHub.list
-    path: ./ruleset/Emby.list
+    path: ./ruleset/Github.list
     behavior: classical
     interval: 86400
     format: text
