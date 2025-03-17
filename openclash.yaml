@@ -8,6 +8,7 @@ proxy-groups:
       - 日本节点
       - 美国节点
       - 韩国节点
+      - 其他节点
       - DIRECT
     icon: https://raw.githubusercontent.com/Koolson/Qure/refs/heads/master/IconSet/Color/Global.png
   - name: 电报消息
@@ -20,6 +21,7 @@ proxy-groups:
       - 日本节点
       - 美国节点
       - 韩国节点
+      - 其他节点
       - DIRECT
     icon: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/icon/color/telegram.png
   - name: Emby
@@ -32,6 +34,7 @@ proxy-groups:
       - 日本节点
       - 美国节点
       - 韩国节点
+      - 其他节点
       - DIRECT
     icon: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/icon/color/emby.png
   - name: Github
@@ -44,6 +47,7 @@ proxy-groups:
       - 日本节点
       - 美国节点
       - 韩国节点
+      - 其他节点
       - DIRECT
     icon: https://raw.githubusercontent.com/sunfing/iNg/refs/heads/main/Icons/GeneralIcons/GitHub.png
   - name: OpenAi
@@ -56,6 +60,7 @@ proxy-groups:
       - 日本节点
       - 美国节点
       - 韩国节点
+      - 其他节点
       - DIRECT
     icon: https://raw.githubusercontent.com/sunfing/iNg/refs/heads/main/Icons/GeneralIcons/OpenAI.png
   - name: Google
@@ -69,6 +74,7 @@ proxy-groups:
       - 狮城节点
       - 日本节点
       - 韩国节点
+      - 其他节点
     icon: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/icon/color/google.png
   - name: 油管视频
     type: select
@@ -80,6 +86,7 @@ proxy-groups:
       - 日本节点
       - 美国节点
       - 韩国节点
+      - 其他节点
       - DIRECT
     icon: https://raw.githubusercontent.com/sunfing/iNg/refs/heads/main/Icons/GeneralIcons/YouTube.png
   - name: 奈飞视频
@@ -92,6 +99,7 @@ proxy-groups:
       - 日本节点
       - 美国节点
       - 韩国节点
+      - 其他节点
       - DIRECT
     icon: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/icon/color/netflix.png
   - name: 巴哈姆特
@@ -118,6 +126,7 @@ proxy-groups:
       - 日本节点
       - 美国节点
       - 韩国节点
+      - 其他节点
       - DIRECT
     icon: https://raw.githubusercontent.com/sunfing/iNg/refs/heads/main/Icons/GeneralIcons/PrimeVideo.png
   - name: 国内媒体
@@ -128,6 +137,7 @@ proxy-groups:
       - 台湾节点
       - 狮城节点
       - 日本节点
+      - 其他节点
     icon: https://raw.githubusercontent.com/Koolson/Qure/refs/heads/master/IconSet/Color/DomesticMedia.png
   - name: 谷歌FCM
     type: select
@@ -140,6 +150,7 @@ proxy-groups:
       - 狮城节点
       - 日本节点
       - 韩国节点
+      - 其他节点
     icon: https://raw.githubusercontent.com/sunfing/iNg/refs/heads/main/Icons/GeneralIcons/GoogleDrive.png
   - name: 微软Bing
     type: select
@@ -152,6 +163,7 @@ proxy-groups:
       - 狮城节点
       - 日本节点
       - 韩国节点
+      - 其他节点
     icon: https://raw.githubusercontent.com/sunfing/iNg/refs/heads/main/Icons/GeneralIcons/Bing.png
   - name: 微软云盘
     type: select
@@ -164,6 +176,7 @@ proxy-groups:
       - 狮城节点
       - 日本节点
       - 韩国节点
+      - 其他节点
     icon: https://raw.githubusercontent.com/sunfing/iNg/refs/heads/main/Icons/GeneralIcons/OneDrive.png
   - name: 微软服务
     type: select
@@ -176,6 +189,7 @@ proxy-groups:
       - 狮城节点
       - 日本节点
       - 韩国节点
+      - 其他节点
     icon: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/icon/color/microsoft.png
   - name: 苹果服务
     type: select
@@ -188,6 +202,7 @@ proxy-groups:
       - 狮城节点
       - 日本节点
       - 韩国节点
+      - 其他节点
     icon: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/icon/color/apple.png
   - name: 游戏平台
     type: select
@@ -200,6 +215,7 @@ proxy-groups:
       - 狮城节点
       - 日本节点
       - 韩国节点
+      - 其他节点
     icon: https://raw.githubusercontent.com/sunfing/iNg/refs/heads/main/Icons/GeneralIcons/Game.png
   - name: 网易音乐
     type: select
