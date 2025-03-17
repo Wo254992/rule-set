@@ -315,7 +315,7 @@ rule-providers:
     type: http
   Github:
     url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/github.list
-    path: ./ruleset/Emby.list
+    path: ./ruleset/Github.list
     behavior: domain
     interval: 86400
     format: text
