@@ -316,7 +316,7 @@ rule-providers:
   Github:
     url: https://raw.githubusercontent.com/Wo254992/rule-set/refs/heads/main/Github.list
     path: ./ruleset/Github.list
-    behavior: domain
+    behavior: classical
     interval: 86400
     format: text
     type: http
