@@ -287,8 +287,7 @@ proxy-groups:
     type: select
     interval: 300
     tolerance: 50
-    icon: https://raw.githubusercontent.com/Koolson/Qure/refs/heads/master/IconSet/Color/KR.png
-
+    icon: https://raw.githubusercontent.com/Koolson/Qure/refs/heads/master/IconSet/Color/LA.png
 rule-providers:
   Emby:
     url: https://raw.githubusercontent.com/Wo254992/rule-set/refs/heads/main/userEmby.list
