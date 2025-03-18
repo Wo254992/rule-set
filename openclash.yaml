@@ -9,7 +9,7 @@ proxy-groups:
       - 美国节点
       - 韩国节点
       - 其他节点
-      - 全球直连
+      - DIRECT
     icon: https://raw.githubusercontent.com/Koolson/Qure/refs/heads/master/IconSet/Color/Global.png
   - name: 电报消息
     type: select
@@ -22,7 +22,7 @@ proxy-groups:
       - 美国节点
       - 韩国节点
       - 其他节点
-      - 全球直连
+      - DIRECT
     icon: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/icon/color/telegram.png
   - name: Emby
     type: select
@@ -35,7 +35,7 @@ proxy-groups:
       - 美国节点
       - 韩国节点
       - 其他节点
-      - 全球直连
+      - DIRECT
     icon: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/icon/color/emby.png
   - name: Github
     type: select
@@ -48,7 +48,7 @@ proxy-groups:
       - 美国节点
       - 韩国节点
       - 其他节点
-      - 全球直连
+      - DIRECT
     icon: https://raw.githubusercontent.com/sunfing/iNg/refs/heads/main/Icons/GeneralIcons/GitHub.png
   - name: OpenAi
     type: select
@@ -61,7 +61,7 @@ proxy-groups:
       - 美国节点
       - 韩国节点
       - 其他节点
-      - 全球直连
+      - DIRECT
     icon: https://raw.githubusercontent.com/sunfing/iNg/refs/heads/main/Icons/GeneralIcons/OpenAI.png
   - name: Google
     type: select
@@ -74,7 +74,7 @@ proxy-groups:
       - 狮城节点
       - 日本节点
       - 韩国节点
-      - 其他节点
+      - DIRECT
     icon: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/icon/color/google.png
   - name: 油管视频
     type: select
@@ -87,7 +87,7 @@ proxy-groups:
       - 美国节点
       - 韩国节点
       - 其他节点
-      - 全球直连
+      - DIRECT
     icon: https://raw.githubusercontent.com/sunfing/iNg/refs/heads/main/Icons/GeneralIcons/YouTube.png
   - name: 奈飞视频
     type: select
@@ -100,14 +100,14 @@ proxy-groups:
       - 美国节点
       - 韩国节点
       - 其他节点
-      - 全球直连
+      - DIRECT
     icon: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/icon/color/netflix.png
   - name: 巴哈姆特
     type: select
     proxies:
       - 台湾节点
       - 节点选择
-      - 全球直连
+      - DIRECT
     icon: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/icon/color/bahamut.png
   - name: 哔哩哔哩
     type: select
@@ -127,12 +127,12 @@ proxy-groups:
       - 美国节点
       - 韩国节点
       - 其他节点
-      - 全球直连
+      - DIRECT
     icon: https://raw.githubusercontent.com/sunfing/iNg/refs/heads/main/Icons/GeneralIcons/PrimeVideo.png
   - name: 国内媒体
     type: select
     proxies:
-      - 全球直连
+      - DIRECT
       - 香港节点
       - 台湾节点
       - 狮城节点
@@ -142,7 +142,7 @@ proxy-groups:
   - name: 谷歌FCM
     type: select
     proxies:
-      - 全球直连
+      - DIRECT
       - 节点选择
       - 美国节点
       - 香港节点
@@ -155,7 +155,7 @@ proxy-groups:
   - name: Bing
     type: select
     proxies:
-      - 全球直连
+      - DIRECT
       - 节点选择
       - 美国节点
       - 香港节点
@@ -168,7 +168,7 @@ proxy-groups:
   - name: 苹果服务
     type: select
     proxies:
-      - 全球直连
+      - DIRECT
       - 节点选择
       - 美国节点
       - 香港节点
@@ -181,7 +181,7 @@ proxy-groups:
   - name: 游戏平台
     type: select
     proxies:
-      - 全球直连
+      - DIRECT
       - 节点选择
       - 美国节点
       - 香港节点
@@ -194,7 +194,7 @@ proxy-groups:
   - name: 检测
     type: select
     proxies:
-      - 全球直连
+      - DIRECT
       - 节点选择
       - 美国节点
       - 香港节点
@@ -214,7 +214,7 @@ proxy-groups:
     type: select
     proxies:
       - 节点选择
-      - 全球直连
+      - DIRECT
       - 香港节点
       - 台湾节点
       - 狮城节点
