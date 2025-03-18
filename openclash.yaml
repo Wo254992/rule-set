@@ -320,6 +320,13 @@ rule-providers:
     interval: 86400
     format: text
     type: http
+  Check:
+    url: https://github.com/liandu2024/clash/blob/main/list/Check.list
+    path: ./ruleset/Check.list
+    behavior: domain
+    interval: 86400
+    format: text
+    type: http
   LocalAreaNetwork:
     url: https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/LocalAreaNetwork.list
     path: ./ruleset/LocalAreaNetwork.list
