@@ -152,7 +152,7 @@ proxy-groups:
       - 韩国节点
       - 其他节点
     icon: https://raw.githubusercontent.com/sunfing/iNg/refs/heads/main/Icons/GeneralIcons/GoogleDrive.png
-  - name: 微软Bing
+  - name: Bing
     type: select
     proxies:
       - 全球直连
@@ -165,32 +165,6 @@ proxy-groups:
       - 韩国节点
       - 其他节点
     icon: https://raw.githubusercontent.com/sunfing/iNg/refs/heads/main/Icons/GeneralIcons/Bing.png
-  - name: 微软云盘
-    type: select
-    proxies:
-      - 全球直连
-      - 节点选择
-      - 美国节点
-      - 香港节点
-      - 台湾节点
-      - 狮城节点
-      - 日本节点
-      - 韩国节点
-      - 其他节点
-    icon: https://raw.githubusercontent.com/sunfing/iNg/refs/heads/main/Icons/GeneralIcons/OneDrive.png
-  - name: 微软服务
-    type: select
-    proxies:
-      - 节点选择
-      - 全球直连
-      - 美国节点
-      - 香港节点
-      - 台湾节点
-      - 狮城节点
-      - 日本节点
-      - 韩国节点
-      - 其他节点
-    icon: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/icon/color/microsoft.png
   - name: 苹果服务
     type: select
     proxies:
@@ -365,20 +339,6 @@ rule-providers:
   Bing:
     url: https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/Bing.list
     path: ./ruleset/Bing.list
-    behavior: classical
-    interval: 86400
-    format: text
-    type: http
-  OneDrive:
-    url: https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/OneDrive.list
-    path: ./ruleset/OneDrive.list
-    behavior: classical
-    interval: 86400
-    format: text
-    type: http
-  Microsoft:
-    url: https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/Microsoft.list
-    path: ./ruleset/Microsoft.list
     behavior: classical
     interval: 86400
     format: text
