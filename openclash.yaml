@@ -9,7 +9,7 @@ proxy-groups:
       - 美国节点
       - 韩国节点
       - 其他节点
-      - DIRECT
+      - 全球直连
     icon: https://raw.githubusercontent.com/Koolson/Qure/refs/heads/master/IconSet/Color/Global.png
   - name: 电报消息
     type: select
@@ -22,7 +22,7 @@ proxy-groups:
       - 美国节点
       - 韩国节点
       - 其他节点
-      - DIRECT
+      - 全球直连
     icon: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/icon/color/telegram.png
   - name: Emby
     type: select
@@ -35,7 +35,7 @@ proxy-groups:
       - 美国节点
       - 韩国节点
       - 其他节点
-      - DIRECT
+      - 全球直连
     icon: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/icon/color/emby.png
   - name: Github
     type: select
@@ -48,7 +48,7 @@ proxy-groups:
       - 美国节点
       - 韩国节点
       - 其他节点
-      - DIRECT
+      - 全球直连
     icon: https://raw.githubusercontent.com/sunfing/iNg/refs/heads/main/Icons/GeneralIcons/GitHub.png
   - name: OpenAi
     type: select
@@ -61,12 +61,12 @@ proxy-groups:
       - 美国节点
       - 韩国节点
       - 其他节点
-      - DIRECT
+      - 全球直连
     icon: https://raw.githubusercontent.com/sunfing/iNg/refs/heads/main/Icons/GeneralIcons/OpenAI.png
   - name: Google
     type: select
     proxies:
-      - DIRECT
+      - 全球直连
       - 节点选择
       - 美国节点
       - 香港节点
@@ -87,7 +87,7 @@ proxy-groups:
       - 美国节点
       - 韩国节点
       - 其他节点
-      - DIRECT
+      - 全球直连
     icon: https://raw.githubusercontent.com/sunfing/iNg/refs/heads/main/Icons/GeneralIcons/YouTube.png
   - name: 奈飞视频
     type: select
@@ -100,14 +100,14 @@ proxy-groups:
       - 美国节点
       - 韩国节点
       - 其他节点
-      - DIRECT
+      - 全球直连
     icon: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/icon/color/netflix.png
   - name: 巴哈姆特
     type: select
     proxies:
       - 台湾节点
       - 节点选择
-      - DIRECT
+      - 全球直连
     icon: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/icon/color/bahamut.png
   - name: 哔哩哔哩
     type: select
@@ -127,12 +127,12 @@ proxy-groups:
       - 美国节点
       - 韩国节点
       - 其他节点
-      - DIRECT
+      - 全球直连
     icon: https://raw.githubusercontent.com/sunfing/iNg/refs/heads/main/Icons/GeneralIcons/PrimeVideo.png
   - name: 国内媒体
     type: select
     proxies:
-      - DIRECT
+      - 全球直连
       - 香港节点
       - 台湾节点
       - 狮城节点
@@ -142,7 +142,7 @@ proxy-groups:
   - name: 谷歌FCM
     type: select
     proxies:
-      - DIRECT
+      - 全球直连
       - 节点选择
       - 美国节点
       - 香港节点
@@ -155,7 +155,7 @@ proxy-groups:
   - name: 微软Bing
     type: select
     proxies:
-      - DIRECT
+      - 全球直连
       - 节点选择
       - 美国节点
       - 香港节点
@@ -168,7 +168,7 @@ proxy-groups:
   - name: 微软云盘
     type: select
     proxies:
-      - DIRECT
+      - 全球直连
       - 节点选择
       - 美国节点
       - 香港节点
@@ -182,7 +182,7 @@ proxy-groups:
     type: select
     proxies:
       - 节点选择
-      - DIRECT
+      - 全球直连
       - 美国节点
       - 香港节点
       - 台湾节点
@@ -194,7 +194,7 @@ proxy-groups:
   - name: 苹果服务
     type: select
     proxies:
-      - DIRECT
+      - 全球直连
       - 节点选择
       - 美国节点
       - 香港节点
@@ -207,7 +207,7 @@ proxy-groups:
   - name: 游戏平台
     type: select
     proxies:
-      - DIRECT
+      - 全球直连
       - 节点选择
       - 美国节点
       - 香港节点
@@ -220,7 +220,7 @@ proxy-groups:
   - name: 检测
     type: select
     proxies:
-      - DIRECT
+      - 全球直连
       - 节点选择
       - 美国节点
       - 香港节点
@@ -230,14 +230,6 @@ proxy-groups:
       - 韩国节点
       - 其他节点
     icon: https://raw.githubusercontent.com/Koolson/Qure/refs/heads/master/IconSet/Color/TestFlight.png
-  - name: 网易音乐
-    type: select
-    include-all: true
-    filter: (?i)网易|音乐|NetEase|Music
-    proxies:
-      - DIRECT
-      - 节点选择
-    icon: https://raw.githubusercontent.com/sunfing/iNg/refs/heads/main/Icons/GeneralIcons/AppleMusic.png
   - name: 全球直连
     type: select
     proxies:
@@ -248,7 +240,7 @@ proxy-groups:
     type: select
     proxies:
       - 节点选择
-      - DIRECT
+      - 全球直连
       - 香港节点
       - 台湾节点
       - 狮城节点
@@ -412,13 +404,6 @@ rule-providers:
     interval: 86400
     format: text
     type: http
-  NetEaseMusic:
-    url: https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/Ruleset/NetEaseMusic.list
-    path: ./ruleset/NetEaseMusic.list
-    behavior: classical
-    interval: 86400
-    format: text
-    type: http
   Epic:
     url: https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/Ruleset/Epic.list
     path: ./ruleset/Epic.list
@@ -566,9 +551,7 @@ rules:
   - "RULE-SET,GoogleCN,全球直连"
   - "RULE-SET,UnBan,全球直连"
   - "RULE-SET,SteamCN,全球直连"
-  - "RULE-SET,Bing,微软Bing"
-  - "RULE-SET,OneDrive,微软云盘"
-  - "RULE-SET,Microsoft,微软服务"
+  - "RULE-SET,Bing,Bing"
   - "RULE-SET,Apple,苹果服务"
   - "RULE-SET,Telegram,电报消息"
   - "RULE-SET,Emby,Emby"
@@ -576,7 +559,6 @@ rules:
   - "RULE-SET,Check,检测"
   - "RULE-SET,OpenAi,OpenAi"
   - "RULE-SET,Google,Google"
-  - "RULE-SET,NetEaseMusic,网易音乐"
   - "RULE-SET,Epic,游戏平台"
   - "RULE-SET,Origin,游戏平台"
   - "RULE-SET,Sony,游戏平台"
