@@ -288,7 +288,7 @@ rule-providers:
     format: text
     type: http
   Check:
-    url: https://github.com/liandu2024/clash/blob/main/list/Check.list
+    url: https://raw.githubusercontent.com/Wo254992/rule-set/refs/heads/main/Check.list
     path: ./ruleset/Check.list
     behavior: domain
     interval: 86400
