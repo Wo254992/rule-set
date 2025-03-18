@@ -271,7 +271,7 @@ proxy-groups:
     type: select
     interval: 300
     tolerance: 50
-    icon: https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Global.png
+    icon: https://raw.githubusercontent.com/Koolson/Qure/refs/heads/master/IconSet/Color/Null_Nation.png
 rule-providers:
   Emby:
     url: https://raw.githubusercontent.com/Wo254992/rule-set/refs/heads/main/userEmby.list
