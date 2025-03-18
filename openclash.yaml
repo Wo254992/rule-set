@@ -229,7 +229,7 @@ proxy-groups:
       - 日本节点
       - 韩国节点
       - 其他节点
-    icon: https://raw.githubusercontent.com/sunfing/iNg/refs/heads/main/Icons/GeneralIcons/Game.png
+    icon: https://raw.githubusercontent.com/Koolson/Qure/refs/heads/master/IconSet/Color/TestFlight.png
   - name: 网易音乐
     type: select
     include-all: true
