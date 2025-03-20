@@ -50,7 +50,7 @@ proxy-groups:
       - 其他节点
       - DIRECT
     icon: https://raw.githubusercontent.com/sunfing/iNg/refs/heads/main/Icons/GeneralIcons/GitHub.png
-  - name: OpenAi
+  - name: Ai
     type: select
     proxies:
       - 节点选择
@@ -524,8 +524,8 @@ rules:
   - "RULE-SET,Emby,Emby"
   - "RULE-SET,Github,Github"
   - "RULE-SET,Check,检测"
-  - "RULE-SET,OpenAi,OpenAi"
-  - "RULE-SET,Gemini,OpenAi"
+  - "RULE-SET,OpenAi,Ai"
+  - "RULE-SET,Gemini,Ai"
   - "RULE-SET,Google,Google"
   - "RULE-SET,Epic,游戏平台"
   - "RULE-SET,Origin,游戏平台"
