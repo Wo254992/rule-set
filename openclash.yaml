@@ -364,6 +364,13 @@ rule-providers:
     interval: 86400
     format: text
     type: http
+  Gemini:
+    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/refs/heads/master/Clash/Ruleset/Gemini.list
+    path: ./ruleset/Gemini.list
+    behavior: classical
+    interval: 86400
+    format: text
+    type: http
   Epic:
     url: https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/Ruleset/Epic.list
     path: ./ruleset/Epic.list
@@ -518,6 +525,7 @@ rules:
   - "RULE-SET,Github,Github"
   - "RULE-SET,Check,检测"
   - "RULE-SET,OpenAi,OpenAi"
+  - "RULE-SET,Gemini,OpenAi"
   - "RULE-SET,Google,Google"
   - "RULE-SET,Epic,游戏平台"
   - "RULE-SET,Origin,游戏平台"
