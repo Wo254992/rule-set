@@ -245,7 +245,7 @@ proxy-groups:
 
   - name: 全球直连
     type: select
-    include-all: true
+    proxies: [默认,香港,台湾,日本,新加坡,美国,DIRECT]
     icon: "https://raw.githubusercontent.com/Centralmatrix3/Matrix-io/master/Gallery/Color/Global.png"
 
   - name: 手动切换
