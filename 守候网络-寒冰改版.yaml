@@ -310,60 +310,6 @@ proxy-groups:
     icon: "https://raw.githubusercontent.com/lige47/QuanX-icon-rule/master/icon/singapore(1).png"
 
 
-
-rules:
-  - IP-CIDR,95.161.76.100/31,REJECT,no-resolve
-  - RULE-SET,LocalAreaNetwork,全球直连
-  - RULE-SET,UnBan,全球直连
-  - RULE-SET,BanAD,广告拦截
-  - RULE-SET,BanProgramAD,应用净化
-  - RULE-SET,Telegram,Telegram
-  - RULE-SET,OpenAi,OpenAi
-  - RULE-SET,Claude,Claude
-  - RULE-SET,Perplexity,Perplexity
-  - RULE-SET,YouTube,YouTube
-  - RULE-SET,NETFLIX,NETFLIX
-  - RULE-SET,HBO,HBO
-  - RULE-SET,Tiktok,Tiktok
-  - RULE-SET,Disney,Disney
-  - RULE-SET,Google FCM,Google FCM
-  - RULE-SET,GoogleCN,全球直连
-  - RULE-SET,SteamCN,游戏平台
-  - RULE-SET,GoogleVoice,GoogleVoice
-  - RULE-SET,Google,Google
-  - RULE-SET,Bing,Bing
-  - RULE-SET,Bahamut,巴哈姆特
-  - RULE-SET,OneDrive,微软云盘
-  - RULE-SET,Microsoft,微软服务
-  - RULE-SET,Apple-TV,Apple-TV
-  - RULE-SET,Apple,Apple
-  - RULE-SET,Discord,Discord
-  - RULE-SET,steamstore,steam商店社区
-  - RULE-SET,Epic,游戏平台
-  - RULE-SET,Origin,游戏平台
-  - RULE-SET,Sony,游戏平台
-  - RULE-SET,Steam,游戏平台
-  - RULE-SET,Nintendo,游戏平台
-  - RULE-SET,Twitter,Twitter
-  - RULE-SET,Bilibili,哔哩哔哩
-  - RULE-SET,Dropbox,Dropbox
-  - RULE-SET,EMBY,EMBY
-  - RULE-SET,EMBY-非日本代理,EMBY-非日本代理
-  - RULE-SET,EMBY-domain,EMBY-direct
-  - RULE-SET,EMBY-喜鹊,EMBY-喜鹊
-  - RULE-SET,EMBY-sntp,EMBY-sntp
-  - RULE-SET,Spotify,Spotify
-  - RULE-SET,Github,Github
-  - RULE-SET,CNN,美国媒体
-  - RULE-SET,ChinaMedia,国内媒体
-  - RULE-SET,ProxyMedia,国外媒体
-  - RULE-SET,ProxyGFWlist,默认
-  - RULE-SET,Directlist,国内
-  - RULE-SET,Download,全球直连
-  - GEOSITE,CN,直连
-  - GEOIP,CN,直连
-  - MATCH,默认
-
 rule-providers:
    LocalAreaNetwork:   
           type: http
@@ -700,3 +646,56 @@ rule-providers:
           url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Providers/Download.yaml"
           path: ./ruleset/Download.yaml
           interval: 1800
+
+rules:
+  - IP-CIDR,95.161.76.100/31,REJECT,no-resolve
+  - RULE-SET,LocalAreaNetwork,全球直连
+  - RULE-SET,UnBan,全球直连
+  - RULE-SET,BanAD,广告拦截
+  - RULE-SET,BanProgramAD,应用净化
+  - RULE-SET,Telegram,Telegram
+  - RULE-SET,OpenAi,OpenAi
+  - RULE-SET,Claude,Claude
+  - RULE-SET,Perplexity,Perplexity
+  - RULE-SET,YouTube,YouTube
+  - RULE-SET,NETFLIX,NETFLIX
+  - RULE-SET,HBO,HBO
+  - RULE-SET,Tiktok,Tiktok
+  - RULE-SET,Disney,Disney
+  - RULE-SET,Google FCM,Google FCM
+  - RULE-SET,GoogleCN,全球直连
+  - RULE-SET,SteamCN,游戏平台
+  - RULE-SET,GoogleVoice,GoogleVoice
+  - RULE-SET,Google,Google
+  - RULE-SET,Bing,Bing
+  - RULE-SET,Bahamut,巴哈姆特
+  - RULE-SET,OneDrive,微软云盘
+  - RULE-SET,Microsoft,微软服务
+  - RULE-SET,Apple-TV,Apple-TV
+  - RULE-SET,Apple,Apple
+  - RULE-SET,Discord,Discord
+  - RULE-SET,steamstore,steam商店社区
+  - RULE-SET,Epic,游戏平台
+  - RULE-SET,Origin,游戏平台
+  - RULE-SET,Sony,游戏平台
+  - RULE-SET,Steam,游戏平台
+  - RULE-SET,Nintendo,游戏平台
+  - RULE-SET,Twitter,Twitter
+  - RULE-SET,Bilibili,哔哩哔哩
+  - RULE-SET,Dropbox,Dropbox
+  - RULE-SET,EMBY,EMBY
+  - RULE-SET,EMBY-非日本代理,EMBY-非日本代理
+  - RULE-SET,EMBY-domain,EMBY-direct
+  - RULE-SET,EMBY-喜鹊,EMBY-喜鹊
+  - RULE-SET,EMBY-sntp,EMBY-sntp
+  - RULE-SET,Spotify,Spotify
+  - RULE-SET,Github,Github
+  - RULE-SET,CNN,美国媒体
+  - RULE-SET,ChinaMedia,国内媒体
+  - RULE-SET,ProxyMedia,国外媒体
+  - RULE-SET,ProxyGFWlist,默认
+  - RULE-SET,Directlist,国内
+  - RULE-SET,Download,全球直连
+  - GEOSITE,CN,直连
+  - GEOIP,CN,直连
+  - MATCH,默认
