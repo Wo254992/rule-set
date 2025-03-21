@@ -1,130 +1,121 @@
-proxies: 
-  - name: "直连"
-    type: direct
-    udp: true
-
-    
-
- 
-
 proxy-groups:
 
   - name: 默认
     type: select
-    proxies: [自动选择,直连,香港,台湾,日本,新加坡,美国,其它地区,全部节点,手动切换,香港自动选择,台湾自动选择,日本自动选择,美国自动选择,新加坡自动选择]
+    proxies: [自动选择,direct,香港,台湾,日本,新加坡,美国,其它地区,全部节点,手动切换,香港自动选择,台湾自动选择,日本自动选择,美国自动选择,新加坡自动选择]
     icon: "https://raw.githubusercontent.com/Centralmatrix3/Matrix-io/master/Gallery/Color/Clash.png"
 
   - name: Telegram
     type: select
-    proxies: [默认,香港,台湾,日本,新加坡,美国,其它地区,全部节点,自动选择,直连,手动切换,香港自动选择,台湾自动选择,日本自动选择,美国自动选择,新加坡自动选择]
+    proxies: [默认,香港,台湾,日本,新加坡,美国,其它地区,全部节点,自动选择,direct,手动切换,香港自动选择,台湾自动选择,日本自动选择,美国自动选择,新加坡自动选择]
     icon: "https://raw.githubusercontent.com/lige47/QuanX-icon-rule/master/icon/telegram(1).png"
 
   - name: Apple
     type: select
-    proxies: [默认,香港,台湾,日本,新加坡,美国,其它地区,全部节点,自动选择,直连,手动切换,香港自动选择,台湾自动选择,日本自动选择,美国自动选择,新加坡自动选择]
+    proxies: [默认,香港,台湾,日本,新加坡,美国,其它地区,全部节点,自动选择,direct,手动切换,香港自动选择,台湾自动选择,日本自动选择,美国自动选择,新加坡自动选择]
     icon: "https://raw.githubusercontent.com/lige47/QuanX-icon-rule/master/icon/apple.png"
 
   - name: Apple-TV
     type: select
-    proxies: [默认,香港,台湾,日本,新加坡,美国,其它地区,全部节点,自动选择,直连,手动切换,香港自动选择,台湾自动选择,日本自动选择,美国自动选择,新加坡自动选择]
+    proxies: [默认,香港,台湾,日本,新加坡,美国,其它地区,全部节点,自动选择,direct,手动切换,香港自动选择,台湾自动选择,日本自动选择,美国自动选择,新加坡自动选择]
     icon: "https://raw.githubusercontent.com/Orz-3/mini/master/Color/AppleTV.png"
 
   - name: Bing
     type: select
-    proxies: [默认,香港,台湾,日本,新加坡,美国,其它地区,全部节点,自动选择,直连,手动切换,香港自动选择,台湾自动选择,日本自动选择,美国自动选择,新加坡自动选择]
+    proxies: [默认,香港,台湾,日本,新加坡,美国,其它地区,全部节点,自动选择,direct,手动切换,香港自动选择,台湾自动选择,日本自动选择,美国自动选择,新加坡自动选择]
     icon: "https://raw.githubusercontent.com/Orz-3/mini/master/Color/Bing.png"
 
 
   - name: Discord
     type: select
-    proxies: [默认,香港,台湾,日本,新加坡,美国,其它地区,全部节点,自动选择,直连,手动切换,香港自动选择,台湾自动选择,日本自动选择,美国自动选择,新加坡自动选择]
+    proxies: [默认,香港,台湾,日本,新加坡,美国,其它地区,全部节点,自动选择,direct,手动切换,香港自动选择,台湾自动选择,日本自动选择,美国自动选择,新加坡自动选择]
     icon: "https://raw.githubusercontent.com/lige47/QuanX-icon-rule/master/icon/discord.png"
 
 
   - name: 微软云盘
     type: select
-    proxies: [默认,香港,台湾,日本,新加坡,美国,其它地区,全部节点,自动选择,直连,手动切换,香港自动选择,台湾自动选择,日本自动选择,美国自动选择,新加坡自动选择]
+    proxies: [默认,香港,台湾,日本,新加坡,美国,其它地区,全部节点,自动选择,direct,手动切换,香港自动选择,台湾自动选择,日本自动选择,美国自动选择,新加坡自动选择]
     icon: "https://raw.githubusercontent.com/lige47/QuanX-icon-rule/master/icon/OneDrive.png"
 
   - name: 微软服务
     type: select
-    proxies: [默认,香港,台湾,日本,新加坡,美国,其它地区,全部节点,自动选择,直连,手动切换,香港自动选择,台湾自动选择,日本自动选择,美国自动选择,新加坡自动选择]
+    proxies: [默认,香港,台湾,日本,新加坡,美国,其它地区,全部节点,自动选择,direct,手动切换,香港自动选择,台湾自动选择,日本自动选择,美国自动选择,新加坡自动选择]
     icon: "https://raw.githubusercontent.com/lige47/QuanX-icon-rule/master/icon/microsoft.png"
 
   - name: steam商店社区
     type: select
-    proxies: [默认,香港,台湾,日本,新加坡,美国,其它地区,全部节点,自动选择,直连,手动切换,香港自动选择,台湾自动选择,日本自动选择,美国自动选择,新加坡自动选择]
+    proxies: [默认,香港,台湾,日本,新加坡,美国,其它地区,全部节点,自动选择,direct,手动切换,香港自动选择,台湾自动选择,日本自动选择,美国自动选择,新加坡自动选择]
     icon: "https://raw.githubusercontent.com/lige47/QuanX-icon-rule/master/icon/steam.png"
 
   - name: 游戏平台
     type: select
-    proxies: [默认,香港,台湾,日本,新加坡,美国,其它地区,全部节点,自动选择,直连,手动切换,香港自动选择,台湾自动选择,日本自动选择,美国自动选择,新加坡自动选择]
+    proxies: [默认,香港,台湾,日本,新加坡,美国,其它地区,全部节点,自动选择,direct,手动切换,香港自动选择,台湾自动选择,日本自动选择,美国自动选择,新加坡自动选择]
     icon: "https://raw.githubusercontent.com/lige47/QuanX-icon-rule/master/icon/game.png"
 
   - name: 广告拦截
     type: select
-    proxies: [默认,香港,台湾,日本,新加坡,美国,其它地区,全部节点,自动选择,直连,手动切换,REJECT]
+    proxies: [默认,香港,台湾,日本,新加坡,美国,其它地区,全部节点,自动选择,direct,手动切换,REJECT]
     icon: "https://raw.githubusercontent.com/lige47/QuanX-icon-rule/master/icon/ad(5).png"
 
   - name: 应用净化
     type: select
-    proxies: [默认,香港,台湾,日本,新加坡,美国,其它地区,全部节点,自动选择,直连,手动切换,REJECT]
+    proxies: [默认,香港,台湾,日本,新加坡,美国,其它地区,全部节点,自动选择,direct,手动切换,REJECT]
     icon: "https://raw.githubusercontent.com/lige47/QuanX-icon-rule/master/icon/ad(3).png"
 
   - name: OpenAi
     type: select
-    proxies: [默认,香港,台湾,日本,新加坡,美国,其它地区,全部节点,自动选择,直连,手动切换,香港自动选择,台湾自动选择,日本自动选择,美国自动选择,新加坡自动选择]
+    proxies: [默认,香港,台湾,日本,新加坡,美国,其它地区,全部节点,自动选择,direct,手动切换,香港自动选择,台湾自动选择,日本自动选择,美国自动选择,新加坡自动选择]
     icon: "https://raw.githubusercontent.com/lige47/QuanX-icon-rule/master/icon/ChatGPT(1).png"
 
 
   - name: Claude
     type: select
-    proxies: [默认,香港,台湾,日本,新加坡,美国,其它地区,全部节点,自动选择,直连,手动切换,香港自动选择,台湾自动选择,日本自动选择,美国自动选择,新加坡自动选择]
+    proxies: [默认,香港,台湾,日本,新加坡,美国,其它地区,全部节点,自动选择,direct,手动切换,香港自动选择,台湾自动选择,日本自动选择,美国自动选择,新加坡自动选择]
     icon: "https://raw.githubusercontent.com/fmz200/wool_scripts/master/icons/apps/Claude_01.png"
 
   - name: Perplexity
     type: select
-    proxies: [默认,香港,台湾,日本,新加坡,美国,其它地区,全部节点,自动选择,直连,手动切换,香港自动选择,台湾自动选择,日本自动选择,美国自动选择,新加坡自动选择]
+    proxies: [默认,香港,台湾,日本,新加坡,美国,其它地区,全部节点,自动选择,direct,手动切换,香港自动选择,台湾自动选择,日本自动选择,美国自动选择,新加坡自动选择]
     icon: "https://raw.githubusercontent.com/caserangle/clash-rule/main/icons/perplexity-ai-icon.png"
 
   - name: Google FCM
     type: select
-    proxies: [默认,香港,台湾,日本,新加坡,美国,其它地区,全部节点,自动选择,直连,手动切换,香港自动选择,台湾自动选择,日本自动选择,美国自动选择,新加坡自动选择]
+    proxies: [默认,香港,台湾,日本,新加坡,美国,其它地区,全部节点,自动选择,direct,手动切换,香港自动选择,台湾自动选择,日本自动选择,美国自动选择,新加坡自动选择]
     icon: "https://raw.githubusercontent.com/lige47/QuanX-icon-rule/master/icon/mail(1).png"
 
   - name: Twitter
     type: select
-    proxies: [默认,香港,台湾,日本,新加坡,美国,其它地区,全部节点,自动选择,直连,手动切换,香港自动选择,台湾自动选择,日本自动选择,美国自动选择,新加坡自动选择]
+    proxies: [默认,香港,台湾,日本,新加坡,美国,其它地区,全部节点,自动选择,direct,手动切换,香港自动选择,台湾自动选择,日本自动选择,美国自动选择,新加坡自动选择]
     icon: "https://raw.githubusercontent.com/fmz200/wool_scripts/master/icons/apps/twitter.png"
 
   - name: 哔哩哔哩
     type: select
-    proxies: [默认,香港,台湾,日本,新加坡,美国,其它地区,全部节点,自动选择,直连,手动切换,香港自动选择,台湾自动选择,日本自动选择,美国自动选择,新加坡自动选择]
+    proxies: [默认,香港,台湾,日本,新加坡,美国,其它地区,全部节点,自动选择,direct,手动切换,香港自动选择,台湾自动选择,日本自动选择,美国自动选择,新加坡自动选择]
     icon: "https://raw.githubusercontent.com/lige47/QuanX-icon-rule/master/icon/bilibili(1).png"
 
   - name: 巴哈姆特
     type: select
-    proxies: [默认,香港,台湾,日本,新加坡,美国,其它地区,全部节点,自动选择,直连,手动切换,香港自动选择,台湾自动选择,日本自动选择,美国自动选择,新加坡自动选择]
+    proxies: [默认,香港,台湾,日本,新加坡,美国,其它地区,全部节点,自动选择,direct,手动切换,香港自动选择,台湾自动选择,日本自动选择,美国自动选择,新加坡自动选择]
     icon: "https://raw.githubusercontent.com/lige47/QuanX-icon-rule/master/icon/bahamute.png"
 
   - name: Dropbox
     type: select
-    proxies: [默认,香港,台湾,日本,新加坡,美国,其它地区,全部节点,自动选择,直连,手动切换,香港自动选择,台湾自动选择,日本自动选择,美国自动选择,新加坡自动选择]
+    proxies: [默认,香港,台湾,日本,新加坡,美国,其它地区,全部节点,自动选择,direct,手动切换,香港自动选择,台湾自动选择,日本自动选择,美国自动选择,新加坡自动选择]
     icon: "https://raw.githubusercontent.com/caserangle/clash-rule/main/icons/dropbox.png"
 
   - name: EMBY
     type: select
-    proxies:  [默认,香港,台湾,日本,新加坡,美国,其它地区,全部节点,自动选择,直连,手动切换,香港自动选择,台湾自动选择,日本自动选择,美国自动选择,新加坡自动选择]
+    proxies:  [默认,香港,台湾,日本,新加坡,美国,其它地区,全部节点,自动选择,direct,手动切换,香港自动选择,台湾自动选择,日本自动选择,美国自动选择,新加坡自动选择]
     icon: "https://raw.githubusercontent.com/lige47/QuanX-icon-rule/master/icon/emby.png"
 
   - name: EMBY-非日本代理
     type: select
-    proxies:  [默认,香港,台湾,日本,新加坡,美国,其它地区,全部节点,自动选择,直连,手动切换,香港自动选择,台湾自动选择,日本自动选择,美国自动选择,新加坡自动选择]
+    proxies:  [默认,香港,台湾,日本,新加坡,美国,其它地区,全部节点,自动选择,direct,手动切换,香港自动选择,台湾自动选择,日本自动选择,美国自动选择,新加坡自动选择]
     icon: "https://raw.githubusercontent.com/cc63/Fileball/master/icons/AI-Animal-Bat.png"
 
   - name: EMBY-direct
     type: select
-    proxies:  [默认,香港,台湾,日本,新加坡,美国,其它地区,全部节点,自动选择,直连,手动切换]
+    proxies:  [默认,香港,台湾,日本,新加坡,美国,其它地区,全部节点,自动选择,direct,手动切换]
     icon: "https://raw.githubusercontent.com/Orz-3/mini/master/Color/Emby.png"
 
   - name: EMBY-喜鹊
@@ -135,79 +126,79 @@ proxy-groups:
 
   - name: EMBY-sntp
     type: select
-    proxies:  [默认,香港,台湾,日本,新加坡,美国,其它地区,全部节点,自动选择,直连,手动切换,emby专属,香港自动选择,台湾自动选择,日本自动选择,美国自动选择,新加坡自动选择]
+    proxies:  [默认,香港,台湾,日本,新加坡,美国,其它地区,全部节点,自动选择,direct,手动切换,emby专属,香港自动选择,台湾自动选择,日本自动选择,美国自动选择,新加坡自动选择]
     icon: "https://raw.githubusercontent.com/lige47/QuanX-icon-rule/master/icon/shouhou(2).png"
 
 
   - name: YouTube
     type: select
-    proxies: [默认,香港,台湾,日本,新加坡,美国,其它地区,全部节点,自动选择,直连,手动切换,香港自动选择,台湾自动选择,日本自动选择,美国自动选择,新加坡自动选择]
+    proxies: [默认,香港,台湾,日本,新加坡,美国,其它地区,全部节点,自动选择,direct,手动切换,香港自动选择,台湾自动选择,日本自动选择,美国自动选择,新加坡自动选择]
     icon: "https://raw.githubusercontent.com/lige47/QuanX-icon-rule/master/icon/youtube(2).png"
 
   - name: GoogleVoice
     type: select
-    proxies: [默认,香港,台湾,日本,新加坡,美国,其它地区,全部节点,自动选择,直连,手动切换,香港自动选择,台湾自动选择,日本自动选择,美国自动选择,新加坡自动选择]
+    proxies: [默认,香港,台湾,日本,新加坡,美国,其它地区,全部节点,自动选择,direct,手动切换,香港自动选择,台湾自动选择,日本自动选择,美国自动选择,新加坡自动选择]
     icon: "https://raw.githubusercontent.com/lige47/QuanX-icon-rule/master/icon/Googlevoice.png"
 
   - name: Google
     type: select
-    proxies: [默认,香港,台湾,日本,新加坡,美国,其它地区,全部节点,自动选择,直连,手动切换,香港自动选择,台湾自动选择,日本自动选择,美国自动选择,新加坡自动选择]
+    proxies: [默认,香港,台湾,日本,新加坡,美国,其它地区,全部节点,自动选择,direct,手动切换,香港自动选择,台湾自动选择,日本自动选择,美国自动选择,新加坡自动选择]
     icon: "https://raw.githubusercontent.com/Orz-3/mini/master/Color/Google.png"
 
   - name: NETFLIX
     type: select
-    proxies: [默认,香港,台湾,日本,新加坡,美国,其它地区,全部节点,自动选择,直连,手动切换,香港自动选择,台湾自动选择,日本自动选择,美国自动选择,新加坡自动选择]
+    proxies: [默认,香港,台湾,日本,新加坡,美国,其它地区,全部节点,自动选择,direct,手动切换,香港自动选择,台湾自动选择,日本自动选择,美国自动选择,新加坡自动选择]
     icon: "https://raw.githubusercontent.com/lige47/QuanX-icon-rule/master/icon/netflix(red).png"
  
   - name: HBO
     type: select
-    proxies: [默认,香港,台湾,日本,新加坡,美国,其它地区,全部节点,自动选择,直连,手动切换,香港自动选择,台湾自动选择,日本自动选择,美国自动选择,新加坡自动选择]
+    proxies: [默认,香港,台湾,日本,新加坡,美国,其它地区,全部节点,自动选择,direct,手动切换,香港自动选择,台湾自动选择,日本自动选择,美国自动选择,新加坡自动选择]
     icon: "https://raw.githubusercontent.com/Orz-3/mini/master/Color/HBO.png"
 
   - name: Disney
     type: select
-    proxies: [默认,香港,台湾,日本,新加坡,美国,其它地区,全部节点,自动选择,直连,手动切换,香港自动选择,台湾自动选择,日本自动选择,美国自动选择,新加坡自动选择]
+    proxies: [默认,香港,台湾,日本,新加坡,美国,其它地区,全部节点,自动选择,direct,手动切换,香港自动选择,台湾自动选择,日本自动选择,美国自动选择,新加坡自动选择]
     icon: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/icon/color/disneyplus.png"
 
   - name: Tiktok
     type: select
-    proxies: [默认,香港,台湾,日本,新加坡,美国,其它地区,全部节点,自动选择,直连,手动切换,香港自动选择,台湾自动选择,日本自动选择,美国自动选择,新加坡自动选择]
+    proxies: [默认,香港,台湾,日本,新加坡,美国,其它地区,全部节点,自动选择,direct,手动切换,香港自动选择,台湾自动选择,日本自动选择,美国自动选择,新加坡自动选择]
     icon: "https://raw.githubusercontent.com/Orz-3/mini/master/Color/TikTok.png"
 
   - name: Spotify
     type: select
-    proxies:  [默认,香港,台湾,日本,新加坡,美国,其它地区,全部节点,自动选择,直连,手动切换,香港自动选择,台湾自动选择,日本自动选择,美国自动选择,新加坡自动选择]
+    proxies:  [默认,香港,台湾,日本,新加坡,美国,其它地区,全部节点,自动选择,direct,手动切换,香港自动选择,台湾自动选择,日本自动选择,美国自动选择,新加坡自动选择]
     icon: "https://raw.githubusercontent.com/lige47/QuanX-icon-rule/master/icon/spotify(green).png"
 
   - name: Github
     type: select
-    proxies:  [默认,香港,台湾,日本,新加坡,美国,其它地区,全部节点,自动选择,直连,手动切换,香港自动选择,台湾自动选择,日本自动选择,美国自动选择,新加坡自动选择]
+    proxies:  [默认,香港,台湾,日本,新加坡,美国,其它地区,全部节点,自动选择,direct,手动切换,香港自动选择,台湾自动选择,日本自动选择,美国自动选择,新加坡自动选择]
     icon: "https://raw.githubusercontent.com/Orz-3/mini/master/Color/github.png"
 
   - name: 美国媒体
     type: select
-    proxies:  [默认,香港,台湾,日本,新加坡,美国,其它地区,全部节点,自动选择,直连,手动切换,香港自动选择,台湾自动选择,日本自动选择,美国自动选择,新加坡自动选择]
+    proxies:  [默认,香港,台湾,日本,新加坡,美国,其它地区,全部节点,自动选择,direct,手动切换,香港自动选择,台湾自动选择,日本自动选择,美国自动选择,新加坡自动选择]
     icon: "https://raw.githubusercontent.com/Centralmatrix3/Matrix-io/master/Gallery/Color/US.png"
 
   - name: 国内媒体
     type: select
-    proxies:  [默认,香港,台湾,日本,新加坡,美国,其它地区,全部节点,自动选择,直连,手动切换]
+    proxies:  [默认,香港,台湾,日本,新加坡,美国,其它地区,全部节点,自动选择,direct,手动切换]
     icon: "https://raw.githubusercontent.com/fmz200/wool_scripts/master/icons/apps/Movist.png"
 
   - name: 国外媒体
     type: select
-    proxies:  [默认,香港,台湾,日本,新加坡,美国,其它地区,全部节点,自动选择,直连,手动切换]
+    proxies:  [默认,香港,台湾,日本,新加坡,美国,其它地区,全部节点,自动选择,direct,手动切换]
     icon: "https://raw.githubusercontent.com/Softlyx/Fileball/main/YUAN/Music.png"
 
 
   - name: 国内
     type: select
-    proxies:  [直连,默认,香港,台湾,日本,新加坡,美国,其它地区,全部节点,自动选择,手动切换]
+    proxies:  [direct,默认,香港,台湾,日本,新加坡,美国,其它地区,全部节点,自动选择,手动切换]
     icon: "https://raw.githubusercontent.com/Centralmatrix3/Matrix-io/master/Gallery/Color/CN.png"
 
   - name: GFWlist
     type: select
-    proxies:  [默认,香港,台湾,日本,新加坡,美国,其它地区,全部节点,自动选择,直连,手动切换]
+    proxies:  [默认,香港,台湾,日本,新加坡,美国,其它地区,全部节点,自动选择,direct,手动切换]
     icon: "https://raw.githubusercontent.com/lige47/QuanX-icon-rule/master/icon/ad.png"
 
   #分隔,下面是地区分组
@@ -252,7 +243,7 @@ proxy-groups:
     include-all: true
     icon: "https://raw.githubusercontent.com/fmz200/wool_scripts/master/icons/apps/select.png"
 
-  - name: 全球直连
+  - name: 全球direct
     type: select
     include-all: true
     icon: "https://raw.githubusercontent.com/Centralmatrix3/Matrix-io/master/Gallery/Color/Global.png"
@@ -270,7 +261,7 @@ proxy-groups:
   - name: 自动选择
     type: url-test
     include-all: true
-    filter: "(?i)^(?!.*(?:直连)).*"
+    filter: "(?i)^(?!.*(?:direct)).*"
     tolerance: 100
     icon: "https://raw.githubusercontent.com/Centralmatrix3/Matrix-io/master/Gallery/Color/Available.png"
 
@@ -649,8 +640,8 @@ rule-providers:
 
 rules:
   - IP-CIDR,95.161.76.100/31,REJECT,no-resolve
-  - RULE-SET,LocalAreaNetwork,全球直连
-  - RULE-SET,UnBan,全球直连
+  - RULE-SET,LocalAreaNetwork,全球direct
+  - RULE-SET,UnBan,全球direct
   - RULE-SET,BanAD,广告拦截
   - RULE-SET,BanProgramAD,应用净化
   - RULE-SET,Telegram,Telegram
@@ -663,7 +654,7 @@ rules:
   - RULE-SET,Tiktok,Tiktok
   - RULE-SET,Disney,Disney
   - RULE-SET,Google FCM,Google FCM
-  - RULE-SET,GoogleCN,全球直连
+  - RULE-SET,GoogleCN,全球direct
   - RULE-SET,SteamCN,游戏平台
   - RULE-SET,GoogleVoice,GoogleVoice
   - RULE-SET,Google,Google
@@ -695,7 +686,7 @@ rules:
   - RULE-SET,ProxyMedia,国外媒体
   - RULE-SET,ProxyGFWlist,默认
   - RULE-SET,Directlist,国内
-  - RULE-SET,Download,全球直连
-  - GEOSITE,CN,直连
-  - GEOIP,CN,直连
+  - RULE-SET,Download,全球direct
+  - GEOSITE,CN,direct
+  - GEOIP,CN,direct
   - MATCH,默认
