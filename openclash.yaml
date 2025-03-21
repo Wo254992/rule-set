@@ -470,7 +470,7 @@ rule-providers:
     format: text
     type: http
   Proxy0:
-    url: https://raw.githubusercontent.com/liandu2024/clash/refs/heads/main/Proxy.list
+    url: https://raw.githubusercontent.com/liandu2024/clash/refs/heads/main/list/Proxy.list
     path: ./ruleset/Proxy0.list
     behavior: classical
     interval: 86400
