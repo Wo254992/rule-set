@@ -268,7 +268,7 @@ proxy-groups:
   - name: 香港自动选择
     type: url-test 
     include-all: true
-    filter: "(?i) 港|hk|hongkong|hong kong"
+    filter: "(?i)港|hk|hongkong|hong kong"
     tolerance: 200
     icon: "https://raw.githubusercontent.com/lige47/QuanX-icon-rule/master/icon/Hongkong(1).png"
 
