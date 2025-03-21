@@ -113,7 +113,7 @@ proxy-groups:
     proxies:  [默认,香港,台湾,日本,新加坡,美国,其它地区,全部节点,自动选择,DIRECT,手动切换,香港自动选择,台湾自动选择,日本自动选择,美国自动选择,新加坡自动选择]
     icon: "https://raw.githubusercontent.com/cc63/Fileball/master/icons/AI-Animal-Bat.png"
 
-  - name: EMBY-DIRECT
+  - name: EMBY-直连
     type: select
     proxies:  [默认,香港,台湾,日本,新加坡,美国,其它地区,全部节点,自动选择,DIRECT,手动切换]
     icon: "https://raw.githubusercontent.com/Orz-3/mini/master/Color/Emby.png"
@@ -149,7 +149,7 @@ proxy-groups:
     type: select
     proxies: [默认,香港,台湾,日本,新加坡,美国,其它地区,全部节点,自动选择,DIRECT,手动切换,香港自动选择,台湾自动选择,日本自动选择,美国自动选择,新加坡自动选择]
     icon: "https://raw.githubusercontent.com/lige47/QuanX-icon-rule/master/icon/netflix(red).png"
- 
+
   - name: HBO
     type: select
     proxies: [默认,香港,台湾,日本,新加坡,美国,其它地区,全部节点,自动选择,DIRECT,手动切换,香港自动选择,台湾自动选择,日本自动选择,美国自动选择,新加坡自动选择]
@@ -243,7 +243,7 @@ proxy-groups:
     include-all: true
     icon: "https://raw.githubusercontent.com/fmz200/wool_scripts/master/icons/apps/select.png"
 
-  - name: 全球DIRECT
+  - name: 全球直连
     type: select
     include-all: true
     icon: "https://raw.githubusercontent.com/Centralmatrix3/Matrix-io/master/Gallery/Color/Global.png"
@@ -389,7 +389,7 @@ rule-providers:
           url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Providers/Ruleset/Netflix.yaml"
           path: ./ruleset/NETFLIX.yaml
           interval: 1800
-          
+
    HBO:   
           type: http
           behavior: classical
@@ -592,14 +592,14 @@ rule-providers:
           url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Providers/Ruleset/Github.yaml"
           path: ./ruleset/,Github.yaml
           interval: 1800
-          
+
    CNN:   
           type: http
           behavior: classical
           url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/CNN/CNN.yaml"
           path: ./ruleset/CNN.yaml
           interval: 1800
-          
+
 
    ChinaMedia:   
           type: http
@@ -607,7 +607,7 @@ rule-providers:
           url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Providers/ChinaMedia.yaml"
           path: ./ruleset/ChinaMedia.yaml
           interval: 1800
-        
+
 
    ProxyMedia:   
           type: http
@@ -640,8 +640,8 @@ rule-providers:
 
 rules:
   - IP-CIDR,95.161.76.100/31,REJECT,no-resolve
-  - RULE-SET,LocalAreaNetwork,全球DIRECT
-  - RULE-SET,UnBan,全球DIRECT
+  - RULE-SET,LocalAreaNetwork,全球直连
+  - RULE-SET,UnBan,全球直连
   - RULE-SET,BanAD,广告拦截
   - RULE-SET,BanProgramAD,应用净化
   - RULE-SET,Telegram,Telegram
@@ -654,7 +654,7 @@ rules:
   - RULE-SET,Tiktok,Tiktok
   - RULE-SET,Disney,Disney
   - RULE-SET,Google FCM,Google FCM
-  - RULE-SET,GoogleCN,全球DIRECT
+  - RULE-SET,GoogleCN,全球直连
   - RULE-SET,SteamCN,游戏平台
   - RULE-SET,GoogleVoice,GoogleVoice
   - RULE-SET,Google,Google
@@ -676,7 +676,7 @@ rules:
   - RULE-SET,Dropbox,Dropbox
   - RULE-SET,EMBY,EMBY
   - RULE-SET,EMBY-非日本代理,EMBY-非日本代理
-  - RULE-SET,EMBY-domain,EMBY-DIRECT
+  - RULE-SET,EMBY-domain,EMBY-直连
   - RULE-SET,EMBY-喜鹊,EMBY-喜鹊
   - RULE-SET,EMBY-sntp,EMBY-sntp
   - RULE-SET,Spotify,Spotify
@@ -686,7 +686,7 @@ rules:
   - RULE-SET,ProxyMedia,国外媒体
   - RULE-SET,ProxyGFWlist,默认
   - RULE-SET,DIRECTlist,国内
-  - RULE-SET,Download,全球DIRECT
+  - RULE-SET,Download,全球直连
   - GEOSITE,CN,DIRECT
   - GEOIP,CN,DIRECT
   - MATCH,默认
