@@ -21,7 +21,7 @@ proxy-groups:
       - 美国节点
       - 其他节点
       - 全部节点
-      - 全球直连
+      - 本机直连
     icon: https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Telegram.png
   - name: Emby
     type: select
@@ -34,7 +34,7 @@ proxy-groups:
       - 美国节点
       - 其他节点
       - 全部节点
-      - 全球直连
+      - 本机直连
     icon: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/icon/color/emby.png
   - name: Github
     type: select
@@ -47,7 +47,7 @@ proxy-groups:
       - 美国节点
       - 其他节点
       - 全部节点
-      - 全球直连
+      - 本机直连
     icon: https://raw.githubusercontent.com/sunfing/iNg/refs/heads/main/Icons/GeneralIcons/GitHub.png
   - name: Ai
     type: select
@@ -60,7 +60,7 @@ proxy-groups:
       - 美国节点
       - 其他节点
       - 全部节点
-      - 全球直连
+      - 本机直连
     icon: https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Bot.png
   - name: Google
     type: select
@@ -73,7 +73,7 @@ proxy-groups:
       - 狮城节点
       - 日本节点
       - 全部节点
-      - 全球直连
+      - 本机直连
     icon: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/icon/color/google.png
   - name: 油管视频
     type: select
@@ -86,7 +86,7 @@ proxy-groups:
       - 美国节点
       - 其他节点
       - 全部节点
-      - 全球直连
+      - 本机直连
     icon: https://raw.githubusercontent.com/sunfing/iNg/refs/heads/main/Icons/GeneralIcons/YouTube.png
   - name: 奈飞视频
     type: select
@@ -99,7 +99,7 @@ proxy-groups:
       - 美国节点
       - 其他节点
       - 全部节点
-      - 全球直连
+      - 本机直连
     icon: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/icon/color/netflix.png
   - name: 巴哈姆特
     type: select
@@ -107,12 +107,12 @@ proxy-groups:
       - 台湾节点
       - 节点选择
       - 全部节点
-      - 全球直连
+      - 本机直连
     icon: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/icon/color/bahamut.png
   - name: 哔哩哔哩
     type: select
     proxies:
-      - 全球直连
+      - 本机直连
       - 台湾节点
       - 香港节点
       - 全部节点
@@ -128,12 +128,12 @@ proxy-groups:
       - 美国节点
       - 其他节点
       - 全部节点
-      - 全球直连
+      - 本机直连
     icon: https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/ForeignMedia.png
   - name: 国内媒体
     type: select
     proxies:
-      - 全球直连
+      - 本机直连
       - 香港节点
       - 台湾节点
       - 狮城节点
@@ -144,7 +144,7 @@ proxy-groups:
   - name: 谷歌FCM
     type: select
     proxies:
-      - 全球直连
+      - 本机直连
       - 节点选择
       - 美国节点
       - 香港节点
@@ -157,7 +157,7 @@ proxy-groups:
   - name: Bing
     type: select
     proxies:
-      - 全球直连
+      - 本机直连
       - 节点选择
       - 美国节点
       - 香港节点
@@ -170,7 +170,7 @@ proxy-groups:
   - name: 苹果服务
     type: select
     proxies:
-      - 全球直连
+      - 本机直连
       - 节点选择
       - 美国节点
       - 香港节点
@@ -183,7 +183,7 @@ proxy-groups:
   - name: 游戏平台
     type: select
     proxies:
-      - 全球直连
+      - 本机直连
       - 节点选择
       - 美国节点
       - 香港节点
@@ -196,7 +196,7 @@ proxy-groups:
   - name: 检测
     type: select
     proxies:
-      - 全球直连
+      - 本机直连
       - 节点选择
       - 美国节点
       - 香港节点
@@ -210,7 +210,7 @@ proxy-groups:
     type: select
     proxies:
       - 节点选择
-      - 全球直连
+      - 本机直连
       - 香港节点
       - 台湾节点
       - 狮城节点
@@ -219,7 +219,7 @@ proxy-groups:
       - 其他节点
       - 全部节点
     icon: https://raw.githubusercontent.com/sunfing/iNg/refs/heads/main/Icons/GeneralIcons/Final.png
-  - name: 全球直连
+  - name: 本机直连
     type: select
     proxies:
       - DIRECT
@@ -520,11 +520,11 @@ rule-providers:
     type: http
 
 rules:
-  - "RULE-SET,LocalAreaNetwork,全球直连"
+  - "RULE-SET,LocalAreaNetwork,本机直连"
   - "RULE-SET,GoogleFCM,谷歌FCM"
-  - "RULE-SET,GoogleCN,全球直连"
-  - "RULE-SET,UnBan,全球直连"
-  - "RULE-SET,SteamCN,全球直连"
+  - "RULE-SET,GoogleCN,本机直连"
+  - "RULE-SET,UnBan,本机直连"
+  - "RULE-SET,SteamCN,本机直连"
   - "RULE-SET,Bing,Bing"
   - "RULE-SET,Apple,苹果服务"
   - "RULE-SET,Telegram,电报消息"
@@ -550,9 +550,9 @@ rules:
   - "RULE-SET,Proxy,节点选择"
   - "RULE-SET,Proxy0,节点选择"
   - "RULE-SET,Global,节点选择"
-  - "RULE-SET,Direct0,全球直连"
-  - "RULE-SET,ChinaDomain,全球直连"
-  - "RULE-SET,ChinaCompanyIp,全球直连"
-  - "RULE-SET,Download,全球直连"
-  - "GEOIP,CN,全球直连"
+  - "RULE-SET,Direct0,本机直连"
+  - "RULE-SET,ChinaDomain,本机直连"
+  - "RULE-SET,ChinaCompanyIp,本机直连"
+  - "RULE-SET,Download,本机直连"
+  - "GEOIP,CN,本机直连"
   - "MATCH,漏网之鱼"
