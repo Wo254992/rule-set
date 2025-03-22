@@ -9,6 +9,7 @@ proxy-groups:
       - 美国节点
       - 韩国节点
       - 其他节点
+      - 全部节点
       - DIRECT
     icon: https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Proxy.png
   - name: 电报消息
@@ -22,6 +23,7 @@ proxy-groups:
       - 美国节点
       - 韩国节点
       - 其他节点
+      - 全部节点
       - DIRECT
     icon: https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Telegram.png
   - name: Emby
@@ -35,6 +37,7 @@ proxy-groups:
       - 美国节点
       - 韩国节点
       - 其他节点
+      - 全部节点
       - DIRECT
     icon: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/icon/color/emby.png
   - name: Github
@@ -48,6 +51,7 @@ proxy-groups:
       - 美国节点
       - 韩国节点
       - 其他节点
+      - 全部节点
       - DIRECT
     icon: https://raw.githubusercontent.com/sunfing/iNg/refs/heads/main/Icons/GeneralIcons/GitHub.png
   - name: Ai
@@ -61,6 +65,7 @@ proxy-groups:
       - 美国节点
       - 韩国节点
       - 其他节点
+      - 全部节点
       - DIRECT
     icon: https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Bot.png
   - name: Google
@@ -74,6 +79,7 @@ proxy-groups:
       - 狮城节点
       - 日本节点
       - 韩国节点
+      - 全部节点
       - DIRECT
     icon: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/icon/color/google.png
   - name: 油管视频
@@ -87,6 +93,7 @@ proxy-groups:
       - 美国节点
       - 韩国节点
       - 其他节点
+      - 全部节点
       - DIRECT
     icon: https://raw.githubusercontent.com/sunfing/iNg/refs/heads/main/Icons/GeneralIcons/YouTube.png
   - name: 奈飞视频
@@ -100,6 +107,7 @@ proxy-groups:
       - 美国节点
       - 韩国节点
       - 其他节点
+      - 全部节点
       - DIRECT
     icon: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/icon/color/netflix.png
   - name: 巴哈姆特
@@ -107,6 +115,7 @@ proxy-groups:
     proxies:
       - 台湾节点
       - 节点选择
+      - 全部节点
       - DIRECT
     icon: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/icon/color/bahamut.png
   - name: 哔哩哔哩
@@ -115,6 +124,7 @@ proxy-groups:
       - 全球直连
       - 台湾节点
       - 香港节点
+      - 全部节点
     icon: https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/bilibili.png
   - name: 国外媒体
     type: select
@@ -127,6 +137,7 @@ proxy-groups:
       - 美国节点
       - 韩国节点
       - 其他节点
+      - 全部节点
       - DIRECT
     icon: https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/ForeignMedia.png
   - name: 国内媒体
@@ -138,6 +149,7 @@ proxy-groups:
       - 狮城节点
       - 日本节点
       - 其他节点
+      - 全部节点
     icon: https://raw.githubusercontent.com/Koolson/Qure/refs/heads/master/IconSet/Color/DomesticMedia.png
   - name: 谷歌FCM
     type: select
@@ -151,6 +163,7 @@ proxy-groups:
       - 日本节点
       - 韩国节点
       - 其他节点
+      - 全部节点
     icon: https://raw.githubusercontent.com/sunfing/iNg/refs/heads/main/Icons/GeneralIcons/GoogleDrive.png
   - name: Bing
     type: select
@@ -164,6 +177,7 @@ proxy-groups:
       - 日本节点
       - 韩国节点
       - 其他节点
+      - 全部节点
     icon: https://raw.githubusercontent.com/sunfing/iNg/refs/heads/main/Icons/GeneralIcons/Bing.png
   - name: 苹果服务
     type: select
@@ -177,6 +191,7 @@ proxy-groups:
       - 日本节点
       - 韩国节点
       - 其他节点
+      - 全部节点
     icon: https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Apple.png
   - name: 游戏平台
     type: select
@@ -190,6 +205,7 @@ proxy-groups:
       - 日本节点
       - 韩国节点
       - 其他节点
+      - 全部节点
     icon: https://raw.githubusercontent.com/sunfing/iNg/refs/heads/main/Icons/GeneralIcons/Game.png
   - name: 检测
     type: select
@@ -203,12 +219,14 @@ proxy-groups:
       - 日本节点
       - 韩国节点
       - 其他节点
+      - 全部节点
     icon: https://raw.githubusercontent.com/Koolson/Qure/refs/heads/master/IconSet/Color/TestFlight.png
   - name: 全球直连
     type: select
     proxies:
       - DIRECT
       - 节点选择
+      - 全部节点
     icon: https://raw.githubusercontent.com/sunfing/iNg/refs/heads/main/Icons/GeneralIcons/Direct.png
   - name: 漏网之鱼
     type: select
@@ -222,32 +240,33 @@ proxy-groups:
       - 美国节点
       - 韩国节点
       - 其他节点
+      - 全部节点
     icon: https://raw.githubusercontent.com/sunfing/iNg/refs/heads/main/Icons/GeneralIcons/Final.png
-  - name: 香港
+  - name: 香港节点
     type: select
     include-all: true
     filter: "(?i)港|hk|hongkong|hong kong"
     icon: "https://raw.githubusercontent.com/lige47/QuanX-icon-rule/master/icon/Hongkong(1).png"
 
-  - name: 台湾
+  - name: 台湾节点
     type: select
     include-all: true
     filter: "(?i)台|tw|taiwan"
     icon: "https://raw.githubusercontent.com/lige47/QuanX-icon-rule/master/icon/taiwan(3).png"
 
-  - name: 日本
+  - name: 日本节点
     type: select
     include-all: true
     filter: "(?i)日|jp|japan"
     icon: "https://raw.githubusercontent.com/lige47/QuanX-icon-rule/master/icon/Japan.png"
 
-  - name: 美国
+  - name: 美国节点
     type: select
     include-all: true
     filter: "(?i)美|us|unitedstates|united states"
     icon: "https://raw.githubusercontent.com/lige47/QuanX-icon-rule/master/icon/US(1).png"
 
-  - name: 新加坡
+  - name: 狮城节点
     type: select
     include-all: true
     filter: "(?i)(新|sg|singapore)"
