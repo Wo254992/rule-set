@@ -65,7 +65,7 @@ proxy-groups:
   - name: Google
     type: select
     proxies:
-      - 全球直连
+      - 其他节点
       - 节点选择
       - 美国节点
       - 香港节点
