@@ -242,6 +242,18 @@ proxy-groups:
       - 节点选择
       - 全部节点
     icon: https://raw.githubusercontent.com/sunfing/iNg/refs/heads/main/Icons/GeneralIcons/Direct.png
+  - name: 自动选择
+    type: url-test
+    include-all: true
+    filter: "(?i)^(?!.*(?:DIRECT)).*"
+    tolerance: 100
+    icon: "https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Auto.png"
+  - name: 全部节点
+    type: select
+    include-all: true
+    interval: 300
+    tolerance: 50
+    icon: "https://raw.githubusercontent.com/Koolson/Qure/refs/heads/master/IconSet/Color/Global.png"
   - name: 香港节点
     type: select
     include-all: true
@@ -280,13 +292,6 @@ proxy-groups:
     interval: 300
     tolerance: 50
     icon: "https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Singapore.png"
-  - name: 自动选择
-    type: url-test
-    include-all: true
-    filter: "(?i)^(?!.*(?:DIRECT)).*"
-    tolerance: 100
-    icon: "https://raw.githubusercontent.com/Centralmatrix3/Matrix-io/master/Gallery/Color/Available.png"
-
   - name: 其他节点
     type: select
     include-all: true
@@ -294,13 +299,6 @@ proxy-groups:
     interval: 300
     tolerance: 50
     icon: "https://raw.githubusercontent.com/Koolson/Qure/refs/heads/master/IconSet/Color/Null_Nation.png"
-
-  - name: 全部节点
-    type: select
-    include-all: true
-    interval: 300
-    tolerance: 50
-    icon: "https://raw.githubusercontent.com/Koolson/Qure/refs/heads/master/IconSet/Color/Global.png"
 rule-providers:
   Emby:
     url: https://raw.githubusercontent.com/Wo254992/rule-set/refs/heads/main/userEmby.list
