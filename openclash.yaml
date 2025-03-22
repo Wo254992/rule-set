@@ -231,41 +231,54 @@ proxy-groups:
     type: select
     include-all: true
     filter: "(?i)港|hk|hongkong|hong kong"
+    interval: 300
+    tolerance: 50
     icon: "https://raw.githubusercontent.com/lige47/QuanX-icon-rule/master/icon/Hongkong(1).png"
-
   - name: 台湾节点
     type: select
     include-all: true
     filter: "(?i)台|tw|taiwan"
+    interval: 300
+    tolerance: 50
     icon: "https://raw.githubusercontent.com/lige47/QuanX-icon-rule/master/icon/taiwan(3).png"
 
   - name: 日本节点
     type: select
     include-all: true
     filter: "(?i)日|jp|japan"
+    interval: 300
+    tolerance: 50
     icon: "https://raw.githubusercontent.com/lige47/QuanX-icon-rule/master/icon/Japan.png"
 
   - name: 美国节点
     type: select
     include-all: true
     filter: "(?i)美|us|unitedstates|united states"
+    interval: 300
+    tolerance: 50
     icon: "https://raw.githubusercontent.com/lige47/QuanX-icon-rule/master/icon/US(1).png"
 
   - name: 狮城节点
     type: select
     include-all: true
     filter: "(?i)(新|sg|singapore)"
+    interval: 300
+    tolerance: 50
     icon: "https://raw.githubusercontent.com/lige47/QuanX-icon-rule/master/icon/singapore(1).png"
 
   - name: 其他节点
     type: select
     include-all: true
     filter: "(?i)^(?!.*(?:🇭🇰|🇯🇵|🇺🇸|🇸🇬|🇨🇳|港|hk|hongkong|台|tw|taiwan|日|jp|japan|新|sg|singapore|美|us|unitedstates)).*"
+    interval: 300
+    tolerance: 50
     icon: "https://raw.githubusercontent.com/Centralmatrix3/Matrix-io/master/Gallery/Color/Rocket.png"
 
   - name: 全部节点
     type: select
     include-all: true
+    interval: 300
+    tolerance: 50
     icon: "https://raw.githubusercontent.com/fmz200/wool_scripts/master/icons/apps/select.png"
 rule-providers:
   Emby:
