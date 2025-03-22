@@ -7,7 +7,6 @@ proxy-groups:
       - 狮城节点
       - 日本节点
       - 美国节点
-      - 韩国节点
       - 其他节点
       - 全部节点
       - DIRECT
@@ -21,7 +20,6 @@ proxy-groups:
       - 台湾节点
       - 日本节点
       - 美国节点
-      - 韩国节点
       - 其他节点
       - 全部节点
       - DIRECT
@@ -35,7 +33,6 @@ proxy-groups:
       - 台湾节点
       - 日本节点
       - 美国节点
-      - 韩国节点
       - 其他节点
       - 全部节点
       - DIRECT
@@ -49,7 +46,6 @@ proxy-groups:
       - 台湾节点
       - 日本节点
       - 美国节点
-      - 韩国节点
       - 其他节点
       - 全部节点
       - DIRECT
@@ -63,7 +59,6 @@ proxy-groups:
       - 台湾节点
       - 日本节点
       - 美国节点
-      - 韩国节点
       - 其他节点
       - 全部节点
       - DIRECT
@@ -78,7 +73,6 @@ proxy-groups:
       - 台湾节点
       - 狮城节点
       - 日本节点
-      - 韩国节点
       - 全部节点
       - DIRECT
     icon: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/icon/color/google.png
@@ -91,7 +85,6 @@ proxy-groups:
       - 台湾节点
       - 日本节点
       - 美国节点
-      - 韩国节点
       - 其他节点
       - 全部节点
       - DIRECT
@@ -105,7 +98,6 @@ proxy-groups:
       - 台湾节点
       - 日本节点
       - 美国节点
-      - 韩国节点
       - 其他节点
       - 全部节点
       - DIRECT
@@ -135,7 +127,6 @@ proxy-groups:
       - 狮城节点
       - 日本节点
       - 美国节点
-      - 韩国节点
       - 其他节点
       - 全部节点
       - DIRECT
@@ -161,7 +152,6 @@ proxy-groups:
       - 台湾节点
       - 狮城节点
       - 日本节点
-      - 韩国节点
       - 其他节点
       - 全部节点
     icon: https://raw.githubusercontent.com/sunfing/iNg/refs/heads/main/Icons/GeneralIcons/GoogleDrive.png
@@ -175,7 +165,6 @@ proxy-groups:
       - 台湾节点
       - 狮城节点
       - 日本节点
-      - 韩国节点
       - 其他节点
       - 全部节点
     icon: https://raw.githubusercontent.com/sunfing/iNg/refs/heads/main/Icons/GeneralIcons/Bing.png
@@ -189,7 +178,6 @@ proxy-groups:
       - 台湾节点
       - 狮城节点
       - 日本节点
-      - 韩国节点
       - 其他节点
       - 全部节点
     icon: https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Apple.png
@@ -203,7 +191,6 @@ proxy-groups:
       - 台湾节点
       - 狮城节点
       - 日本节点
-      - 韩国节点
       - 其他节点
       - 全部节点
     icon: https://raw.githubusercontent.com/sunfing/iNg/refs/heads/main/Icons/GeneralIcons/Game.png
@@ -217,7 +204,6 @@ proxy-groups:
       - 台湾节点
       - 狮城节点
       - 日本节点
-      - 韩国节点
       - 其他节点
       - 全部节点
     icon: https://raw.githubusercontent.com/Koolson/Qure/refs/heads/master/IconSet/Color/TestFlight.png
@@ -238,7 +224,6 @@ proxy-groups:
       - 狮城节点
       - 日本节点
       - 美国节点
-      - 韩国节点
       - 其他节点
       - 全部节点
     icon: https://raw.githubusercontent.com/sunfing/iNg/refs/heads/main/Icons/GeneralIcons/Final.png
