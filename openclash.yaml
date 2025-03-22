@@ -223,55 +223,46 @@ proxy-groups:
       - 韩国节点
       - 其他节点
     icon: https://raw.githubusercontent.com/sunfing/iNg/refs/heads/main/Icons/GeneralIcons/Final.png
-  - name: 香港节点
-    include-all: true
-    filter: (?i)港|HK|hk|Hong Kong|HongKong|hongkong
+  - name: 香港
     type: select
-    interval: 300
-    tolerance: 50
-    icon: https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Hong_Kong.png
-  - name: 日本节点
     include-all: true
-    filter: (?i)日本|川日|东京|大阪|泉日|埼玉|沪日|深日|JP|Japan
+    filter: "(?i)港|hk|hongkong|hong kong"
+    icon: "https://raw.githubusercontent.com/lige47/QuanX-icon-rule/master/icon/Hongkong(1).png"
+
+  - name: 台湾
     type: select
-    interval: 300
-    tolerance: 50
-    icon: https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Japan.png
-  - name: 美国节点
     include-all: true
-    filter: (?i)美|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥|US|United States
+    filter: "(?i)台|tw|taiwan"
+    icon: "https://raw.githubusercontent.com/lige47/QuanX-icon-rule/master/icon/taiwan(3).png"
+
+  - name: 日本
     type: select
-    interval: 300
-    tolerance: 50
-    icon: https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/United_States.png
-  - name: 台湾节点
     include-all: true
-    filter: (?i)台|新北|彰化|TW|Taiwan
+    filter: "(?i)日|jp|japan"
+    icon: "https://raw.githubusercontent.com/lige47/QuanX-icon-rule/master/icon/Japan.png"
+
+  - name: 美国
     type: select
-    interval: 300
-    tolerance: 50
-    icon: https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Taiwan.png
-  - name: 狮城节点
     include-all: true
-    filter: (?i)新加坡|坡|狮城|SG|Singapore
+    filter: "(?i)美|us|unitedstates|united states"
+    icon: "https://raw.githubusercontent.com/lige47/QuanX-icon-rule/master/icon/US(1).png"
+
+  - name: 新加坡
     type: select
-    interval: 300
-    tolerance: 50
-    icon: https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Singapore.png
-  - name: 韩国节点
     include-all: true
-    filter: (?i)KR|Korea|KOR|首尔|韩|韓
+    filter: "(?i)(新|sg|singapore)"
+    icon: "https://raw.githubusercontent.com/lige47/QuanX-icon-rule/master/icon/singapore(1).png"
+
+  - name: 其它地区
     type: select
-    interval: 300
-    tolerance: 50
-    icon: https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Korea.png
-  - name: 其他节点
     include-all: true
-    filter: (?i)波|柬|尼|也|克|比|尔|立|冰|秘|耳|利|埃|希|孟|芬|愛|澳|英|德|南|意|法|拿|墨|印|越|俄|瑞|智|荷|比|巴|沙|班|泰|德|烏|以|Australia|Konghwaguk
+    filter: "(?i)^(?!.*(?:🇭🇰|🇯🇵|🇺🇸|🇸🇬|🇨🇳|港|hk|hongkong|台|tw|taiwan|日|jp|japan|新|sg|singapore|美|us|unitedstates)).*"
+    icon: "https://raw.githubusercontent.com/Centralmatrix3/Matrix-io/master/Gallery/Color/Rocket.png"
+
+  - name: 全部节点
     type: select
-    interval: 300
-    tolerance: 50
-    icon: https://raw.githubusercontent.com/Koolson/Qure/refs/heads/master/IconSet/Color/Null_Nation.png
+    include-all: true
+    icon: "https://raw.githubusercontent.com/fmz200/wool_scripts/master/icons/apps/select.png"
 rule-providers:
   Emby:
     url: https://raw.githubusercontent.com/Wo254992/rule-set/refs/heads/main/userEmby.list
