@@ -9,7 +9,6 @@ proxy-groups:
       - 美国节点
       - 其他节点
       - 全部节点
-      - 全球直连
     icon: https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Proxy.png
   - name: 电报消息
     type: select
