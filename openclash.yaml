@@ -233,14 +233,14 @@ proxy-groups:
     filter: "(?i)港|hk|hongkong|hong kong"
     interval: 300
     tolerance: 50
-    icon: "https://raw.githubusercontent.com/lige47/QuanX-icon-rule/master/icon/Hongkong(1).png"
+    icon: "https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Hong_Kong.png"
   - name: 台湾节点
     type: select
     include-all: true
     filter: "(?i)台|tw|taiwan"
     interval: 300
     tolerance: 50
-    icon: "https://raw.githubusercontent.com/lige47/QuanX-icon-rule/master/icon/taiwan(3).png"
+    icon: "https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Taiwan.png"
 
   - name: 日本节点
     type: select
@@ -248,7 +248,7 @@ proxy-groups:
     filter: "(?i)日|jp|japan"
     interval: 300
     tolerance: 50
-    icon: "https://raw.githubusercontent.com/lige47/QuanX-icon-rule/master/icon/Japan.png"
+    icon: "https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Japan.png"
 
   - name: 美国节点
     type: select
@@ -256,7 +256,7 @@ proxy-groups:
     filter: "(?i)美|us|unitedstates|united states"
     interval: 300
     tolerance: 50
-    icon: "https://raw.githubusercontent.com/lige47/QuanX-icon-rule/master/icon/US(1).png"
+    icon: "https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/United_States.png"
 
   - name: 狮城节点
     type: select
@@ -264,7 +264,7 @@ proxy-groups:
     filter: "(?i)(新|sg|singapore)"
     interval: 300
     tolerance: 50
-    icon: "https://raw.githubusercontent.com/lige47/QuanX-icon-rule/master/icon/singapore(1).png"
+    icon: "https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Singapore.png"
 
   - name: 其他节点
     type: select
