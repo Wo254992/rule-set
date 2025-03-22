@@ -7,6 +7,7 @@ proxy-groups:
       - 狮城节点
       - 日本节点
       - 美国节点
+      - 自动选择
       - 其他节点
       - 全部节点
     icon: https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Proxy.png
@@ -19,6 +20,7 @@ proxy-groups:
       - 台湾节点
       - 日本节点
       - 美国节点
+      - 自动选择
       - 其他节点
       - 全部节点
       - 本机直连
@@ -32,6 +34,7 @@ proxy-groups:
       - 台湾节点
       - 日本节点
       - 美国节点
+      - 自动选择
       - 其他节点
       - 全部节点
       - 本机直连
@@ -45,6 +48,7 @@ proxy-groups:
       - 台湾节点
       - 日本节点
       - 美国节点
+      - 自动选择
       - 其他节点
       - 全部节点
       - 本机直连
@@ -58,6 +62,7 @@ proxy-groups:
       - 台湾节点
       - 日本节点
       - 美国节点
+      - 自动选择
       - 其他节点
       - 全部节点
       - 本机直连
@@ -72,6 +77,7 @@ proxy-groups:
       - 台湾节点
       - 狮城节点
       - 日本节点
+      - 自动选择
       - 全部节点
       - 本机直连
     icon: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/icon/color/google.png
@@ -84,6 +90,7 @@ proxy-groups:
       - 台湾节点
       - 日本节点
       - 美国节点
+      - 自动选择
       - 其他节点
       - 全部节点
       - 本机直连
@@ -97,6 +104,7 @@ proxy-groups:
       - 台湾节点
       - 日本节点
       - 美国节点
+      - 自动选择
       - 其他节点
       - 全部节点
       - 本机直连
@@ -127,6 +135,7 @@ proxy-groups:
       - 日本节点
       - 美国节点
       - 其他节点
+      - 自动选择
       - 全部节点
       - 本机直连
     icon: https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/ForeignMedia.png
@@ -138,6 +147,7 @@ proxy-groups:
       - 台湾节点
       - 狮城节点
       - 日本节点
+      - 自动选择
       - 其他节点
       - 全部节点
     icon: https://raw.githubusercontent.com/Koolson/Qure/refs/heads/master/IconSet/Color/DomesticMedia.png
@@ -151,6 +161,7 @@ proxy-groups:
       - 台湾节点
       - 狮城节点
       - 日本节点
+      - 自动选择
       - 其他节点
       - 全部节点
     icon: https://raw.githubusercontent.com/sunfing/iNg/refs/heads/main/Icons/GeneralIcons/GoogleDrive.png
@@ -164,6 +175,7 @@ proxy-groups:
       - 台湾节点
       - 狮城节点
       - 日本节点
+      - 自动选择
       - 其他节点
       - 全部节点
     icon: https://raw.githubusercontent.com/sunfing/iNg/refs/heads/main/Icons/GeneralIcons/Bing.png
@@ -177,6 +189,7 @@ proxy-groups:
       - 台湾节点
       - 狮城节点
       - 日本节点
+      - 自动选择
       - 其他节点
       - 全部节点
     icon: https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Apple.png
@@ -190,6 +203,7 @@ proxy-groups:
       - 台湾节点
       - 狮城节点
       - 日本节点
+      - 自动选择
       - 其他节点
       - 全部节点
     icon: https://raw.githubusercontent.com/sunfing/iNg/refs/heads/main/Icons/GeneralIcons/Game.png
@@ -203,6 +217,7 @@ proxy-groups:
       - 台湾节点
       - 狮城节点
       - 日本节点
+      - 自动选择
       - 其他节点
       - 全部节点
     icon: https://raw.githubusercontent.com/Koolson/Qure/refs/heads/master/IconSet/Color/TestFlight.png
@@ -216,6 +231,7 @@ proxy-groups:
       - 狮城节点
       - 日本节点
       - 美国节点
+      - 自动选择
       - 其他节点
       - 全部节点
     icon: https://raw.githubusercontent.com/sunfing/iNg/refs/heads/main/Icons/GeneralIcons/Final.png
@@ -264,6 +280,12 @@ proxy-groups:
     interval: 300
     tolerance: 50
     icon: "https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Singapore.png"
+  - name: 自动选择
+    type: url-test
+    include-all: true
+    filter: "(?i)^(?!.*(?:DIRECT)).*"
+    tolerance: 100
+    icon: "https://raw.githubusercontent.com/Centralmatrix3/Matrix-io/master/Gallery/Color/Available.png"
 
   - name: 其他节点
     type: select
