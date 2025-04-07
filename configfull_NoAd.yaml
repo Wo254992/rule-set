@@ -299,6 +299,7 @@ rules:
   - RULE-SET,Cloudflare_domain,节点选择
   - RULE-SET,Wise_domain,Wise
   - RULE-SET,paypal_domain,PayPal
+  - RULE-SET,Global_domain,节点选择
   - RULE-SET,proxy_domain,节点选择
   - RULE-SET,proxy0_domain,节点选择
   - RULE-SET,ai!cn_domain,AI
@@ -396,6 +397,7 @@ rule-anchor:
   class_yaml: &class_yaml {type: http, interval: 86400, behavior: classical, format: yaml}
 rule-providers: 
   private_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/private.mrs" }
+  Global_domain: { <<: *class, url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Global/Global.list" }
   bank_cn_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/category-bank-cn.mrs" }
   xiaomi_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/xiaomi.mrs" }
   biliintl_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/bilibili%40!cn.mrs" }
