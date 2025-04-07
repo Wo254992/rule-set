@@ -299,7 +299,6 @@ rules:
   - RULE-SET,Cloudflare_domain,节点选择
   - RULE-SET,Wise_domain,Wise
   - RULE-SET,paypal_domain,PayPal
-  - RULE-SET,Global_domain,节点选择
   - RULE-SET,proxy_domain,节点选择
   - RULE-SET,proxy0_domain,节点选择
   - RULE-SET,ai!cn_domain,AI
@@ -382,6 +381,7 @@ rules:
   - RULE-SET,Shopify_domain,国外电商
   - RULE-SET,ebay_domain,国外电商
   - RULE-SET,gfw_domain,节点选择
+  - RULE-SET,Global_domain,节点选择
   - RULE-SET,geolocation-!cn,节点选择
   - RULE-SET,cn_domain,全球直连
   - RULE-SET,cn_ip,全球直连,no-resolve
@@ -397,7 +397,6 @@ rule-anchor:
   class_yaml: &class_yaml {type: http, interval: 86400, behavior: classical, format: yaml}
 rule-providers: 
   private_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/private.mrs" }
-  Global_domain: { <<: *class, url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Global/Global.list" }
   bank_cn_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/category-bank-cn.mrs" }
   xiaomi_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/xiaomi.mrs" }
   biliintl_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/bilibili%40!cn.mrs" }
@@ -473,6 +472,7 @@ rule-providers:
   googlevpn_domain: { <<: *domain, url: "https://raw.githubusercontent.com/Lanlan13-14/Rules/refs/heads/main/rules/Domain/googleVPN.mrs" }
   ai_domain: { <<: *domain, url: "https://raw.githubusercontent.com/Lanlan13-14/Rules/refs/heads/main/rules/Domain/ai.mrs" }
   TVB_domain: { <<: *domain, url: "https://raw.githubusercontent.com/Lanlan13-14/Rules/refs/heads/main/rules/Domain/tvb.mrs" }
+  Global_domain: { <<: *class, url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Global/Global.list" }
 
   ai_ip: { <<: *ip, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geoip/ai.mrs" }
   cn_ip: { <<: *ip, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/cn.mrs" }
