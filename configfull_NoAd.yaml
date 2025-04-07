@@ -230,7 +230,7 @@ dns:
 
 proxies: 
   - name: "🟢 直连"
-    type: Direct
+    type: direct
     udp: true        
 
 
