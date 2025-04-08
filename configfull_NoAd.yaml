@@ -293,6 +293,7 @@ proxy-groups:
 rules:   
   - RULE-SET,wechat_domain,全球直连
   - RULE-SET,wechat_asn,全球直连,no-resolve
+  - RULE-SET,github_domain,GitHub
   - RULE-SET,speedtest_domain,Speedtest
   - RULE-SET,Cloudflare_domain,节点选择
   - RULE-SET,Wise_domain,Wise
@@ -312,7 +313,6 @@ rules:
   - RULE-SET,alibaba_domain,全球直连
   - RULE-SET,115_domain,全球直连
   - RULE-SET,aliyun_domain,全球直连
-  - RULE-SET,github_domain,GitHub
   - RULE-SET,gitbook_domain,GitHub
   - RULE-SET,googlevpn_domain,GoogleVPN
   - RULE-SET,youtube_domain,YouTube
@@ -394,6 +394,7 @@ rule-anchor:
   class: &class {type: http, interval: 86400, behavior: classical, format: text}
   class_yaml: &class_yaml {type: http, interval: 86400, behavior: classical, format: yaml}
 rule-providers: 
+  github_domain: { <<: *domain_yaml, url: "https://raw.githubusercontent.com/Wo254992/rule-set/refs/heads/main/Github.yaml" }
   private_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/private.mrs" }
   bank_cn_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/category-bank-cn.mrs" }
   xiaomi_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/xiaomi.mrs" }
@@ -408,7 +409,6 @@ rule-providers:
   openai_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/openai.mrs" }
   youtube_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/youtube.mrs" }
   google_domain: { <<: *domain, url: "https://raw.githubusercontent.com/Lanlan13-14/Rules/refs/heads/main/rules/Domain/google.mrs" }
-  github_domain: { <<: *domain_yaml, url: "https://raw.githubusercontent.com/Wo254992/rule-set/refs/heads/main/Github.yaml" }
   telegram_domain: { <<: *class, url: "https://raw.githubusercontent.com/Wo254992/rule-set/refs/heads/main/telegram.list" }
   netflix_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/netflix.mrs" }
   paypal_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/paypal.mrs" }
