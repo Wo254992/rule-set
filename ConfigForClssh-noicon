@@ -510,7 +510,6 @@
     - IP-CIDR, 198.18.0.1/16, REJECT, no-resolve # 防止 fake-ip 模式下网络回环
     - RULE-SET, Lan, 全球直连
     - RULE-SET, UnBan, 全球直连
-    - RULE-SET, Global, 默认代理
     # - RULE-SET, BanAD, 全球拦截
     # - RULE-SET, BanProgramAD, 全球拦截
     - RULE-SET, Emby, 媒体中心
@@ -567,6 +566,7 @@
     - RULE-SET, Nintendo, 游戏服务
     - RULE-SET, Xbox, 游戏服务
     - RULE-SET, Game, 游戏服务
+    - RULE-SET, Global, 默认代理
     - RULE-SET, Download, 全球直连
     - RULE-SET, PrivateTracker, 全球直连
     - RULE-SET, Proxy0, 默认代理
