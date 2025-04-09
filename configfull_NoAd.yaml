@@ -240,7 +240,7 @@ proxy-groups:
   - {name: 节点选择, type: select, proxies: [香港自动, 新加坡自动, 日本自动, 台湾自动, 美国自动, 故障转移, 香港节点, 新加坡节点, 日本节点, 台湾节点, 美国节点, 其它节点, 全部节点, 自建/家宽节点, 🟢 直连], icon: "https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Proxy.png"}
   - {name: YouTube, <<: *Proxy_first, icon: "https://raw.githubusercontent.com/sunfing/iNg/refs/heads/main/Icons/GeneralIcons/YouTube.png"}
   - {name: FCM, <<: *Proxy_first, icon: "https://raw.githubusercontent.com/sunfing/iNg/refs/heads/main/Icons/GeneralIcons/GoogleDrive.png"}
-  - {name: GoogleVPN, <<: *Proxy_first, icon: "https://raw.githubusercontent.com/Lanlan13-14/Rules/refs/heads/main/icon/googlevpn.png"}
+  - {name: GoogleVPN, <<: *Proxy_first, icon: "https://raw.githubusercontent.com/Wo254992/ko/refs/heads/main/GoogleVPN.png"}
   - {name: Google, <<: *Proxy_first, icon: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/icon/color/google.png"}
   - {name: Meta, <<: *Proxy_first, icon: "https://raw.githubusercontent.com/Lanlan13-14/Rules/refs/heads/main/icon/meta.png"}
   - {name: AI, <<: *Include_all, icon: "https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Bot.png"}
