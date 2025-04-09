@@ -434,12 +434,12 @@
 
       - name:  日本手动
         <<: *anchor_node_groups_selector
-        filter: (?i)(?=.*(|日本|\b(jp)\b|japan))
+        filter: (?i)(?=.*(🇯🇵|日本|\b(jp)\b|japan))
         icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Japan.png
 
       - name:  美国手动
         <<: *anchor_node_groups_selector
-        filter: (?i)(?=.*(|美国|\b(us|u\.s\.)\b|united\ states|unitedstates))
+        filter: (?i)(?=.*(🇺🇸|美国|\b(us|u\.s\.)\b|united\ states|unitedstates))
         icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/United_States.png
 
       # - name: 🇲🇴 澳门手动
