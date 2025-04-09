@@ -328,7 +328,7 @@
 
       - name: 🎓 开源托管
         <<: *anchor_policy_groups_default
-        icon: https://raw.githubusercontent.com/sunfing/iNg/main/Icons/GeneralIcons/GitHub1.png
+        icon: https://raw.githubusercontent.com/sunfing/iNg/refs/heads/main/Icons/GeneralIcons/GitHub.png
 
       - name: 🥟 云端防护
         <<: *anchor_policy_groups_default
