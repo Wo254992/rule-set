@@ -577,15 +577,15 @@
 
 # 远程规则集锚点
   # anchor_rule_providers_classical_mrs: &anchor_rule_providers_classical_mrs {type: http, behavior: classical, interval: 86400, format: mrs}     # 经典规则集配置_mrs
-  # anchor_rule_providers_classical_text: &anchor_rule_providers_classical_text {type: http, behavior: classical, interval: 86400, format: text}  # 经典规则集配置_text，即“.list”
+  anchor_rule_providers_classical_text: &anchor_rule_providers_classical_text {type: http, behavior: classical, interval: 86400, format: text}  # 经典规则集配置_text，即“.list”
   anchor_rule_providers_classical_yaml: &anchor_rule_providers_classical_yaml {type: http, behavior: classical, interval: 86400, format: yaml}  # 经典规则集配置_yaml
 
   # anchor_rule_providers_domain_mrs: &anchor_rule_providers_domain_mrs {type: http, behavior: domain, interval: 86400, format: mrs}              # 域名规则集配置_mrs
-  # anchor_rule_providers_domain_text: &anchor_rule_providers_domain_text {type: http, behavior: domain, interval: 86400, format: text}           # 域名规则集配置_text，即“.list”
+  anchor_rule_providers_domain_text: &anchor_rule_providers_domain_text {type: http, behavior: domain, interval: 86400, format: text}           # 域名规则集配置_text，即“.list”
   # anchor_rule_providers_domain_yaml: &anchor_rule_providers_domain_yaml {type: http, behavior: domain, interval: 86400, format: yaml}           # 域名规则集配置_yaml
 
   # anchor_rule_providers_ipcidr_mrs: &anchor_rule_providers_ipcidr_mrs {type: http, behavior: ipcidr, interval: 86400, format: mrs}              # IP-CIDR 规则集配置_mrs
-  # anchor_rule_providers_ipcidr_text: &anchor_rule_providers_ipcidr_text {type: http, behavior: ipcidr, interval: 86400, format: text}           # IP-CIDR 规则集配置_text，即“.list”
+  anchor_rule_providers_ipcidr_text: &anchor_rule_providers_ipcidr_text {type: http, behavior: ipcidr, interval: 86400, format: text}           # IP-CIDR 规则集配置_text，即“.list”
   # anchor_rule_providers_ipcidr_yaml: &anchor_rule_providers_ipcidr_yaml {type: http, behavior: ipcidr, interval: 86400, format: yaml}           # IP-CIDR 规则集配置_yaml
 
 # 远程规则集
