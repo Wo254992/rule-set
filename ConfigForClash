@@ -22,11 +22,11 @@
   # 要添加更多远程代理集即机场（名字不能重复）自行复制下面的示例模板粘贴添加，注意去掉机场名字前面的“#”且务必注意缩进量
   # 四种模板任挑一种批量复制粘贴即可添加多个机场，建议小白无脑选择使用“无文件路径”的模板，注意去掉机场名字前面的“#”且务必注意缩进量
   proxy-providers:
-    机场一: {<<: *anchor_proxy_providers, url: "订阅链接1", override: {additional-prefix: "机场一"}} 
-    机场二: {<<: *anchor_proxy_providers, url: "订阅链接2", override: {additional-prefix: "机场二"}} 
-    机场三: {<<: *anchor_proxy_providers, url: "订阅链接3", override: {additional-prefix: "机场三"}} 
-    机场四: {<<: *anchor_proxy_providers, url: "订阅链接4", override: {additional-prefix: "机场四"}} 
-    机场五: {<<: *anchor_proxy_providers, url: "订阅链接5", override: {additional-prefix: "机场五"}} 
+    机场一: {<<: *anchor_proxy_providers, url: "订阅链接1", override: {additional-prefix: "机场一 "}} 
+    机场二: {<<: *anchor_proxy_providers, url: "订阅链接2", override: {additional-prefix: "机场二 "}} 
+    机场三: {<<: *anchor_proxy_providers, url: "订阅链接3", override: {additional-prefix: "机场三 "}} 
+    机场四: {<<: *anchor_proxy_providers, url: "订阅链接4", override: {additional-prefix: "机场四 "}} 
+    机场五: {<<: *anchor_proxy_providers, url: "订阅链接5", override: {additional-prefix: "机场五 "}} 
 
   # 本地代理集
   # 该项可用于远程资源首次下载需要挂梯时（例如：订阅链接域名被墙。一般不需要），可自行添加一个本地代理节点利用该节点下载更新订阅和规则，日常使用可删除或注释本项；亦或是在此添加自建的本地代理节点
