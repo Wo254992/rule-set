@@ -237,44 +237,44 @@ proxies:
 
 # 策略组
 proxy-groups:
-  - {name: 节点选择, type: select, proxies: [香港自动, 新加坡自动, 日本自动, 台湾自动, 美国自动, 故障转移, 香港节点, 新加坡节点, 日本节点, 台湾节点, 美国节点, 其它节点, 全部节点, 自建/家宽节点, 🟢 直连], icon: "https://raw.githubusercontent.com/Lanlan13-14/Rules/refs/heads/main/icon/select.png"}
-  - {name: YouTube, <<: *Proxy_first, icon: "https://raw.githubusercontent.com/Lanlan13-14/Rules/refs/heads/main/icon/youtube.png"}
-  - {name: FCM, <<: *Proxy_first, icon: "https://raw.githubusercontent.com/Lanlan13-14/Rules/refs/heads/main/icon/fcm.png"}
+  - {name: 节点选择, type: select, proxies: [香港自动, 新加坡自动, 日本自动, 台湾自动, 美国自动, 故障转移, 香港节点, 新加坡节点, 日本节点, 台湾节点, 美国节点, 其它节点, 全部节点, 自建/家宽节点, 🟢 直连], icon: "https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Proxy.png"}
+  - {name: YouTube, <<: *Proxy_first, icon: "https://raw.githubusercontent.com/sunfing/iNg/refs/heads/main/Icons/GeneralIcons/YouTube.png"}
+  - {name: FCM, <<: *Proxy_first, icon: "https://raw.githubusercontent.com/sunfing/iNg/refs/heads/main/Icons/GeneralIcons/GoogleDrive.png"}
   - {name: GoogleVPN, <<: *Proxy_first, icon: "https://raw.githubusercontent.com/Lanlan13-14/Rules/refs/heads/main/icon/googlevpn.png"}
-  - {name: Google, <<: *Proxy_first, icon: "https://raw.githubusercontent.com/Lanlan13-14/Rules/refs/heads/main/icon/google.png"}
+  - {name: Google, <<: *Proxy_first, icon: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/icon/color/google.png"}
   - {name: Meta, <<: *Proxy_first, icon: "https://raw.githubusercontent.com/Lanlan13-14/Rules/refs/heads/main/icon/meta.png"}
-  - {name: AI, <<: *Include_all, icon: "https://raw.githubusercontent.com/Lanlan13-14/Rules/refs/heads/main/icon/ai.png"}
-  - {name: GitHub, <<: *Proxy_first, icon: "https://raw.githubusercontent.com/Lanlan13-14/Rules/refs/heads/main/icon/github.png"}
+  - {name: AI, <<: *Include_all, icon: "https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Bot.png"}
+  - {name: GitHub, <<: *Proxy_first, icon: "https://raw.githubusercontent.com/sunfing/iNg/refs/heads/main/Icons/GeneralIcons/GitHub.png"}
   - {name: OneDrive, <<: *Proxy_first, icon: "https://raw.githubusercontent.com/Lanlan13-14/Rules/refs/heads/main/icon/onedrive.png"}
   - {name: Microsoft, <<: *Proxy_first, icon: "https://raw.githubusercontent.com/Lanlan13-14/Rules/refs/heads/main/icon/microsoft.png"}
-  - {name: Telegram, <<: *Proxy_first, icon: "https://raw.githubusercontent.com/Lanlan13-14/Rules/refs/heads/main/icon/telegram.png"}
+  - {name: Telegram, <<: *Proxy_first, icon: "https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Telegram.png"}
   - {name: Discord, <<: *Proxy_first, icon: "https://raw.githubusercontent.com/Lanlan13-14/Rules/refs/heads/main/icon/discord.png"}
   - {name: Talkatone, <<: *Proxy_first, icon: "https://raw.githubusercontent.com/Lanlan13-14/Rules/refs/heads/main/icon/talkatone.png"}
   - {name: LINE, <<: *Proxy_first, icon: "https://raw.githubusercontent.com/Lanlan13-14/Rules/refs/heads/main/icon/line.png"}
   - {name: Signal, <<: *Proxy_first, icon: "https://raw.githubusercontent.com/Lanlan13-14/Rules/refs/heads/main/icon/signal.png"}
   - {name: TikTok, <<: *Proxy_first, icon: "https://raw.githubusercontent.com/Lanlan13-14/Rules/refs/heads/main/icon/tiktok.png"}
-  - {name: NETFLIX, <<: *Proxy_first, icon: "https://raw.githubusercontent.com/Lanlan13-14/Rules/refs/heads/main/icon/netfix.png"}
+  - {name: NETFLIX, <<: *Proxy_first, icon: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/icon/color/netflix.png"}
   - {name: DisneyPlus, <<: *Proxy_first, icon: "https://raw.githubusercontent.com/Lanlan13-14/Rules/refs/heads/main/icon/disneyplus.png"}
   - {name: HBO, <<: *Proxy_first, icon: "https://raw.githubusercontent.com/Lanlan13-14/Rules/refs/heads/main/icon/hbo.png"}
   - {name: Primevideo, <<: *Proxy_first, icon: "https://raw.githubusercontent.com/Lanlan13-14/Rules/refs/heads/main/icon/primevideo.png"}
   - {name: AppleTV, <<: *Proxy_first, icon: "https://raw.githubusercontent.com/Lanlan13-14/Rules/refs/heads/main/icon/appletv.png"}
-  - {name: Apple, type: select, <<: *Direct_first, icon: "https://raw.githubusercontent.com/Lanlan13-14/Rules/refs/heads/main/icon/apple.png"}
-  - {name: Emby,type: select, <<: *Include_all, include-all: true, icon: https://raw.githubusercontent.com/Lanlan13-14/Rules/refs/heads/main/icon/emby.png}
-  - {name: 哔哩哔哩, type: select, <<: *Direct_first, icon: "https://raw.githubusercontent.com/Lanlan13-14/Rules/refs/heads/main/icon/bilibili.png"}
+  - {name: Apple, type: select, <<: *Direct_first, icon: "https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Apple.png"}
+  - {name: Emby,type: select, <<: *Include_all, include-all: true, icon: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/icon/color/emby.png}
+  - {name: 哔哩哔哩, type: select, <<: *Direct_first, icon: "https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/bilibili.png"}
   - {name: 哔哩东南亚, type: select, proxies: [节点选择, 新加坡自动, 新加坡节点, 全部节点, 自建/家宽节点, 全球直连], icon: "https://raw.githubusercontent.com/Lanlan13-14/Rules/refs/heads/main/icon/bilibilit.png"}
-  - {name: 巴哈姆特, type: select, proxies: [台湾节点, 台湾自动], icon: "https://raw.githubusercontent.com/Lanlan13-14/Rules/refs/heads/main/icon/bahamut.png"}
+  - {name: 巴哈姆特, type: select, proxies: [台湾节点, 台湾自动], icon: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/icon/color/bahamut.png"}
   - {name: Spotify, <<: *Proxy_first, icon: "https://raw.githubusercontent.com/Lanlan13-14/Rules/refs/heads/main/icon/spotify.png"}
-  - {name: 国内媒体, type: select, <<: *Direct_first, icon: "https://raw.githubusercontent.com/Lanlan13-14/Rules/refs/heads/main/icon/Chinese_media.png"}
+  - {name: 国内媒体, type: select, <<: *Direct_first, icon: "https://raw.githubusercontent.com/Koolson/Qure/refs/heads/master/IconSet/Color/DomesticMedia.png"}
   - {name: Global-TV,type: select, <<: *Include_all, icon: "https://raw.githubusercontent.com/Lanlan13-14/Rules/refs/heads/main/icon/global_tv.png"}
   - {name: Global-Medial,type: select, <<: *Include_all, icon: "https://raw.githubusercontent.com/Lanlan13-14/Rules/refs/heads/main/icon/global_media.png"}
-  - {name: 游戏平台, <<: *Proxy_first, icon: "https://raw.githubusercontent.com/Lanlan13-14/Rules/refs/heads/main/icon/game.png"}
-  - {name: Speedtest,type: select, <<: *Include_all, icon: "https://raw.githubusercontent.com/Lanlan13-14/Rules/refs/heads/main/icon/speedtest.png"}
+  - {name: 游戏平台, <<: *Proxy_first, icon: "https://raw.githubusercontent.com/sunfing/iNg/refs/heads/main/Icons/GeneralIcons/Game.png"}
+  - {name: Speedtest,type: select, <<: *Include_all, icon: "https://raw.githubusercontent.com/Koolson/Qure/refs/heads/master/IconSet/Color/TestFlight.png"}
   - {name: PayPal, <<: *Proxy_first, icon: "https://raw.githubusercontent.com/Lanlan13-14/Rules/refs/heads/main/icon/paypal.png"}
   - {name: Wise, <<: *Proxy_first, icon: "https://raw.githubusercontent.com/Lanlan13-14/Rules/refs/heads/main/icon/wise.png"}
   - {name: 国外电商, <<: *Proxy_first, icon: "https://raw.githubusercontent.com/Lanlan13-14/Rules/refs/heads/main/icon/shopping.png"}
   - {name: STEAM,type: select, <<: *Include_all, icon: "https://raw.githubusercontent.com/Lanlan13-14/Rules/refs/heads/main/icon/steam.png"}
-  - {name: 全球直连, type: select, proxies: [🟢 直连, 节点选择], icon: "https://raw.githubusercontent.com/Lanlan13-14/Rules/refs/heads/main/icon/direct.png"}
-  - {name: Final, type: select, <<: *Include_all,  icon: "https://raw.githubusercontent.com/Lanlan13-14/Rules/refs/heads/main/icon/final.png"}
+  - {name: 全球直连, type: select, proxies: [🟢 直连, 节点选择], icon: "https://raw.githubusercontent.com/sunfing/iNg/refs/heads/main/Icons/GeneralIcons/Direct.png"}
+  - {name: Final, type: select, <<: *Include_all,  icon: "https://raw.githubusercontent.com/sunfing/iNg/refs/heads/main/Icons/GeneralIcons/Final.png"}
   - {name: 自建/家宽节点, type: select, include-all: true, filter: "(?i)(自建|CF|The_house|private)", icon: "https://raw.githubusercontent.com/Lanlan13-14/Rules/refs/heads/main/icon/private_node.png"}
   - {name: 香港节点, type: select, include-all: true, filter: "(?i)(港|hk|hongkong|Hong Kong)", icon: "https://raw.githubusercontent.com/Lanlan13-14/Rules/refs/heads/main/icon/Hongkong.png"}
   - {name: 新加坡节点, type: select, include-all: true, filter: "(?i)(新|🇸🇬|SG|singapore)", icon: "https://raw.githubusercontent.com/Lanlan13-14/Rules/refs/heads/main/icon/Singapore.png"}
