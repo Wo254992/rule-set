@@ -610,7 +610,7 @@
     Emby: # 📀 媒体中心
       <<: *anchor_rule_providers_classical_text
       url: https://raw.githubusercontent.com/Wo254992/rule-set/refs/heads/main/userEmby.list
-      path: ./rule_providers/Emby.yaml
+      path: ./rule_providers/Emby.list
     A_MediaHub: # 📀 媒体中心
       <<: *anchor_rule_providers_classical_yaml
       url: https://raw.githubusercontent.com/sunfing/iNg/main/Rules/MediaHub/A_MediaHub.yaml
@@ -640,9 +640,9 @@
       url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/WeChat/WeChat_No_Resolve.yaml
       path: ./rule_providers/WeChat.yaml
     Telegram: # 📲 电报消息
-      <<: *anchor_rule_providers_classical_yaml
-      url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Telegram/Telegram_No_Resolve.yaml
-      path: ./rule_providers/Telegram.yaml
+      <<: *anchor_rule_providers_classical_text
+      url: https://raw.githubusercontent.com/Wo254992/rule-set/refs/heads/main/telegram.list
+      path: ./rule_providers/Telegram.list
     Discord: # 🎙 语音社群
       <<: *anchor_rule_providers_classical_yaml
       url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Discord/Discord_No_Resolve.yaml
