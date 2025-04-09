@@ -510,6 +510,7 @@
     - IP-CIDR, 198.18.0.1/16, REJECT, no-resolve # 防止 fake-ip 模式下网络回环
     - RULE-SET, Lan, 🎯 全球直连
     - RULE-SET, UnBan, 🎯 全球直连
+    - RULE-SET, GitHub, 🎓 开源托管
     - RULE-SET, Global, 🚀 默认代理
     # - RULE-SET, BanAD, 🚫 全球拦截
     # - RULE-SET, BanProgramAD, 🚫 全球拦截
@@ -549,7 +550,6 @@
     - RULE-SET, GoogleFCM, 🚀 默认代理
     - RULE-SET, Tencent, 🎯 全球直连
     - RULE-SET, TeamViewer, 🎯 全球直连
-    - RULE-SET, GitHub, 🎓 开源托管
     - RULE-SET, Cloudflarecn, 🎯 全球直连
     - RULE-SET, Cloudflare, 🥟 云端防护
     - RULE-SET, Apple, 🍎 苹果服务
@@ -567,6 +567,7 @@
     - RULE-SET, Nintendo, 🎮 游戏服务
     - RULE-SET, Xbox, 🎮 游戏服务
     - RULE-SET, Game, 🎮 游戏服务
+    - RULE-SET, Global, 🚀 默认代理
     - RULE-SET, Download, 🎯 全球直连
     - RULE-SET, PrivateTracker, 🎯 全球直连
     - RULE-SET, Proxy0, 🚀 默认代理
