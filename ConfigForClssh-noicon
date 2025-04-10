@@ -569,7 +569,6 @@
     - RULE-SET, Global, 默认代理
     - RULE-SET, Download, 全球直连
     - RULE-SET, PrivateTracker, 全球直连
-    - RULE-SET, Proxy0, 默认代理
     - RULE-SET, Proxy, 默认代理
     - RULE-SET, China, 全球直连
     - RULE-SET, ChinaIPs, 全球直连
@@ -625,9 +624,9 @@
       url: https://raw.githubusercontent.com/sunfing/iNg/main/Rules/Reject/A_Reject.yaml
       path: ./rule_providers/A_Reject.yaml
     A_Proxy: # 默认代理
-      <<: *anchor_rule_providers_classical_yaml
-      url: https://raw.githubusercontent.com/sunfing/iNg/main/Rules/Proxy/A_Proxy.yaml
-      path: ./rule_providers/A_Proxy.yaml
+      <<: *anchor_rule_providers_classical_text
+      url: https://raw.githubusercontent.com/Wo254992/rule-set/refs/heads/main/Proxy.list
+      path: ./rule_providers/A_Proxy.list
     A_Direct: # 全球直连
       <<: *anchor_rule_providers_classical_yaml
       url: https://raw.githubusercontent.com/sunfing/iNg/main/Rules/Direct/A_Direct.yaml
@@ -836,10 +835,6 @@
       <<: *anchor_rule_providers_classical_yaml
       url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Proxy/Proxy_Classical_No_Resolve.yaml
       path: ./rule_providers/Proxy.yaml
-    Proxy0: # 默认代理
-      <<: *anchor_rule_providers_classical_text
-      url: https://raw.githubusercontent.com/Wo254992/rule-set/refs/heads/main/Proxy.list
-      path: ./rule_providers/Proxy0.list
     Global: # 默认代理
       <<: *anchor_rule_providers_classical_text
       url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Global/Global.list
