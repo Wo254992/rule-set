@@ -519,6 +519,7 @@
     - RULE-SET, A_Proxy, 默认代理              # 自定义代理
     - RULE-SET, A_Direct, 全球直连             # 自定义直连
     - RULE-SET, Speedtest, 速度测试
+    - RULE-SET, GitHub, 开源托管
     - RULE-SET, WeChat, 全球直连
     - RULE-SET, Telegram, 电报消息
     - RULE-SET, Discord, 语音社群
@@ -548,7 +549,6 @@
     - RULE-SET, GoogleFCM, 默认代理
     - RULE-SET, Tencent, 全球直连
     - RULE-SET, TeamViewer, 全球直连
-    - RULE-SET, GitHub, 开源托管
     - RULE-SET, Cloudflarecn, 全球直连
     - RULE-SET, Cloudflare, 云端防护
     - RULE-SET, Apple, 苹果服务
