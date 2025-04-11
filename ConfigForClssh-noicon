@@ -556,6 +556,7 @@
     - RULE-SET, Microsoft, 微软服务
     - RULE-SET, GoogleDrive, 下载服务
     - RULE-SET, Google, 谷歌服务
+    - RULE-SET, Global, 默认代理
     - RULE-SET, SteamCN, 全球直连
     - RULE-SET, GameDownloadCN, 全球直连
     - RULE-SET, GameDownload, 下载服务
@@ -566,7 +567,6 @@
     - RULE-SET, Nintendo, 游戏服务
     - RULE-SET, Xbox, 游戏服务
     - RULE-SET, Game, 游戏服务
-    - RULE-SET, Global, 默认代理
     - RULE-SET, Download, 全球直连
     - RULE-SET, PrivateTracker, 全球直连
     - RULE-SET, Proxy, 默认代理
