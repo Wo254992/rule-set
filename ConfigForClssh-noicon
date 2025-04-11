@@ -520,7 +520,6 @@
     - RULE-SET, A_Direct, 全球直连             # 自定义直连
     - RULE-SET, Speedtest, 速度测试
     - RULE-SET, GitHub, 开源托管
-    - RULE-SET, WeChat, 全球直连
     - RULE-SET, Telegram, 电报消息
     - RULE-SET, Discord, 语音社群
     - RULE-SET, AppleNews, 苹果新闻
@@ -545,11 +544,7 @@
     - RULE-SET, HBO, 麦克斯斯
     - RULE-SET, PrimeVideo, 亚马逊逊
     - RULE-SET, GlobalMedia, 流媒体集
-    - RULE-SET, ChinaMedia, 全球直连
     - RULE-SET, GoogleFCM, 默认代理
-    - RULE-SET, Tencent, 全球直连
-    - RULE-SET, TeamViewer, 全球直连
-    - RULE-SET, Cloudflarecn, 全球直连
     - RULE-SET, Cloudflare, 云端防护
     - RULE-SET, Apple, 苹果服务
     - RULE-SET, OneDrive, 下载服务
@@ -557,8 +552,6 @@
     - RULE-SET, GoogleDrive, 下载服务
     - RULE-SET, Google, 谷歌服务
     - RULE-SET, Global, 默认代理
-    - RULE-SET, SteamCN, 全球直连
-    - RULE-SET, GameDownloadCN, 全球直连
     - RULE-SET, GameDownload, 下载服务
     - RULE-SET, Steam, 游戏服务
     - RULE-SET, Epic, 游戏服务
@@ -567,10 +560,17 @@
     - RULE-SET, Nintendo, 游戏服务
     - RULE-SET, Xbox, 游戏服务
     - RULE-SET, Game, 游戏服务
+    - RULE-SET, TeamViewer, 全球直连
+    - RULE-SET, Tencent, 全球直连
+    - RULE-SET, Cloudflarecn, 全球直连
+    - RULE-SET, WeChat, 全球直连
     - RULE-SET, Download, 全球直连
+    - RULE-SET, GameDownloadCN, 全球直连
     - RULE-SET, PrivateTracker, 全球直连
+    - RULE-SET, SteamCN, 全球直连
     - RULE-SET, Proxy, 默认代理
     - RULE-SET, China, 全球直连
+    - RULE-SET, ChinaMedia, 全球直连
     - RULE-SET, ChinaIPs, 全球直连
     - GEOIP, CN, 全球直连
     # - RULE-SET, geolocation-!cn, 漏网之鱼
