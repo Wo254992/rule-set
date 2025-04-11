@@ -525,7 +525,6 @@
     - RULE-SET, AppleNews, 苹果新闻
     - RULE-SET, Twitter, 推特推特
     - RULE-SET, Instagram, 晒照片墙
-    - RULE-SET, Global, 默认代理
     - RULE-SET, OpenAI, ChatGPT
     - RULE-SET, Claude, Claude
     - RULE-SET, Gemini, Gemini
@@ -546,6 +545,7 @@
     - RULE-SET, PrimeVideo, 亚马逊逊
     - RULE-SET, GlobalMedia, 流媒体集
     - RULE-SET, GoogleFCM, 默认代理
+    - RULE-SET, Global, 默认代理
     - RULE-SET, Cloudflare, 云端防护
     - RULE-SET, Apple, 苹果服务
     - RULE-SET, OneDrive, 下载服务
