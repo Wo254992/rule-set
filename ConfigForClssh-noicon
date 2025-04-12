@@ -545,7 +545,6 @@
     - RULE-SET, PrimeVideo, 亚马逊逊
     - RULE-SET, GlobalMedia, 流媒体集
     - RULE-SET, GoogleFCM, 默认代理
-    - RULE-SET, Global, 默认代理
     - RULE-SET, Cloudflare, 云端防护
     - RULE-SET, Apple, 苹果服务
     - RULE-SET, OneDrive, 下载服务
@@ -560,6 +559,8 @@
     - RULE-SET, Nintendo, 游戏服务
     - RULE-SET, Xbox, 游戏服务
     - RULE-SET, Game, 游戏服务
+    - RULE-SET, Proxy, 默认代理
+    - RULE-SET, Global, 默认代理
     - RULE-SET, TeamViewer, 全球直连
     - RULE-SET, Tencent, 全球直连
     - RULE-SET, Cloudflarecn, 全球直连
@@ -568,7 +569,6 @@
     - RULE-SET, GameDownloadCN, 全球直连
     - RULE-SET, PrivateTracker, 全球直连
     - RULE-SET, SteamCN, 全球直连
-    - RULE-SET, Proxy, 默认代理
     - RULE-SET, China, 全球直连
     - RULE-SET, ChinaMedia, 全球直连
     - RULE-SET, ChinaIPs, 全球直连
