@@ -242,8 +242,8 @@ proxy-groups:
   - {name: FCM, <<: *Proxy_first, icon: "https://raw.githubusercontent.com/sunfing/iNg/refs/heads/main/Icons/GeneralIcons/GoogleDrive.png"}
   - {name: GoogleVPN, <<: *Proxy_first, icon: "https://raw.githubusercontent.com/Wo254992/ko/refs/heads/main/GoogleVPN.png"}
   - {name: Google, <<: *Proxy_first, icon: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/icon/color/google.png"}
-  - {name: Meta, <<: *Proxy_first, icon: "https://raw.githubusercontent.com/Lanlan13-14/Rules/refs/heads/main/icon/meta.png"}
-  - {name: AI, <<: *Include_all, icon: "https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Bot.png"}
+  - {name: Meta, <<: *Proxy_first, icon: "https://raw.githubusercontent.com/Koolson/Qure/refs/heads/master/IconSet/Color/Facebook.png"}
+  - {name: AI, <<: *Proxy_first, icon: "https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Bot.png"}
   - {name: GitHub, <<: *Proxy_first, icon: "https://raw.githubusercontent.com/sunfing/iNg/refs/heads/main/Icons/GeneralIcons/GitHub.png"}
   - {name: OneDrive, <<: *Proxy_first, icon: "https://raw.githubusercontent.com/Koolson/Qure/refs/heads/master/IconSet/Color/OneDrive.png"}
   - {name: Microsoft, <<: *Proxy_first, icon: "https://raw.githubusercontent.com/Koolson/Qure/refs/heads/master/IconSet/Color/Microsoft.png"}
@@ -259,22 +259,22 @@ proxy-groups:
   - {name: Primevideo, <<: *Proxy_first, icon: "https://raw.githubusercontent.com/Koolson/Qure/refs/heads/master/IconSet/Color/Prime_Video.png"}
   - {name: AppleTV, <<: *Proxy_first, icon: "https://raw.githubusercontent.com/Koolson/Qure/refs/heads/master/IconSet/Color/Apple_TV.png"}
   - {name: Apple, type: select, <<: *Direct_first, icon: "https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Apple.png"}
-  - {name: Emby,type: select, <<: *Include_all, include-all: true, icon: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/icon/color/emby.png}
+  - {name: Emby,type: select, <<: *Proxy_first, include-all: true, icon: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/icon/color/emby.png}
   - {name: 哔哩哔哩, type: select, <<: *Direct_first, icon: "https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/bilibili.png"}
   - {name: 哔哩东南亚, type: select, proxies: [节点选择, 新加坡自动, 新加坡节点, 全部节点, 自建/家宽节点, 全球直连], icon: "https://raw.githubusercontent.com/Lanlan13-14/Rules/refs/heads/main/icon/bilibilit.png"}
   - {name: 巴哈姆特, type: select, proxies: [台湾节点, 台湾自动], icon: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/icon/color/bahamut.png"}
   - {name: Spotify, <<: *Proxy_first, icon: "https://raw.githubusercontent.com/Koolson/Qure/refs/heads/master/IconSet/Color/Spotify.png"}
   - {name: 国内媒体, type: select, <<: *Direct_first, icon: "https://raw.githubusercontent.com/Koolson/Qure/refs/heads/master/IconSet/Color/DomesticMedia.png"}
-  - {name: Global-TV,type: select, <<: *Include_all, icon: "https://raw.githubusercontent.com/Lanlan13-14/Rules/refs/heads/main/icon/global_tv.png"}
-  - {name: Global-Medial,type: select, <<: *Include_all, icon: "https://raw.githubusercontent.com/Lanlan13-14/Rules/refs/heads/main/icon/global_media.png"}
+  - {name: Global-TV,type: select, <<: *Proxy_first, icon: "https://raw.githubusercontent.com/Lanlan13-14/Rules/refs/heads/main/icon/global_tv.png"}
+  - {name: Global-Medial,type: select, <<: *Proxy_first, icon: "https://raw.githubusercontent.com/Lanlan13-14/Rules/refs/heads/main/icon/global_media.png"}
   - {name: 游戏平台, <<: *Proxy_first, icon: "https://raw.githubusercontent.com/sunfing/iNg/refs/heads/main/Icons/GeneralIcons/Game.png"}
-  - {name: Speedtest,type: select, <<: *Include_all, icon: "https://raw.githubusercontent.com/Koolson/Qure/refs/heads/master/IconSet/Color/TestFlight.png"}
+  - {name: Speedtest,type: select, <<: *Proxy_first, icon: "https://raw.githubusercontent.com/Koolson/Qure/refs/heads/master/IconSet/Color/TestFlight.png"}
   - {name: PayPal, <<: *Proxy_first, icon: "https://raw.githubusercontent.com/Koolson/Qure/refs/heads/master/IconSet/Color/PayPal.png"}
   - {name: Wise, <<: *Proxy_first, icon: "https://raw.githubusercontent.com/Lanlan13-14/Rules/refs/heads/main/icon/wise.png"}
   - {name: 国外电商, <<: *Proxy_first, icon: "https://raw.githubusercontent.com/Lanlan13-14/Rules/refs/heads/main/icon/shopping.png"}
-  - {name: STEAM,type: select, <<: *Include_all, icon: "https://raw.githubusercontent.com/Koolson/Qure/refs/heads/master/IconSet/Color/Steam.png"}
+  - {name: STEAM,type: select, <<: *Proxy_first, icon: "https://raw.githubusercontent.com/Koolson/Qure/refs/heads/master/IconSet/Color/Steam.png"}
   - {name: 全球直连, type: select, proxies: [🟢 直连, 节点选择], icon: "https://raw.githubusercontent.com/sunfing/iNg/refs/heads/main/Icons/GeneralIcons/Direct.png"}
-  - {name: Final, type: select, <<: *Include_all,  icon: "https://raw.githubusercontent.com/sunfing/iNg/refs/heads/main/Icons/GeneralIcons/Final.png"}
+  - {name: Final, type: select, <<: *Proxy_first,  icon: "https://raw.githubusercontent.com/sunfing/iNg/refs/heads/main/Icons/GeneralIcons/Final.png"}
   - {name: 自建/家宽节点, type: select, include-all: true, filter: "(?i)(自建|CF|The_house|Fam|private)", icon: "https://raw.githubusercontent.com/Lanlan13-14/Rules/refs/heads/main/icon/private_node.png"}
   - {name: 香港节点, type: select, include-all: true, filter: "(?i)(港|hk|hongkong|Hong Kong)", icon: "https://raw.githubusercontent.com/Lanlan13-14/Rules/refs/heads/main/icon/Hongkong.png"}
   - {name: 新加坡节点, type: select, include-all: true, filter: "(?i)(新|🇸🇬|SG|singapore)", icon: "https://raw.githubusercontent.com/Lanlan13-14/Rules/refs/heads/main/icon/Singapore.png"}
