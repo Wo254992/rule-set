@@ -58,7 +58,7 @@ All: &All
   - 3.额外地址
 
 proxy-providers: # ← 此函数位置请勿变动！此为模块更新时备份恢复订阅变量范围 ↓
-  1.主要地址:
+  1.机场1:
     <<: *p
     override:
       additional-prefix: "Main："
@@ -77,6 +77,20 @@ proxy-providers: # ← 此函数位置请勿变动！此为模块更新时备份
     override:
       additional-prefix: "Additi："
     path: ./proxies/3.额外地址.yaml
+    url: "此处引入您的Clash订阅链接地址"
+  
+  4.额外地址:
+    <<: *p
+    override:
+      additional-prefix: "Additi："
+    path: ./proxies/4.额外地址.yaml
+    url: "此处引入您的Clash订阅链接地址"
+   
+  5.额外地址:
+    <<: *p
+    override:
+      additional-prefix: "Additi："
+    path: ./proxies/5.额外地址.yaml
     url: "此处引入您的Clash订阅链接地址"
 
 # —————————
