@@ -519,6 +519,11 @@ rule-providers:
     <<: *Classical
     path: ./rules/Twitter.list
     url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Twitter/Twitter.list"
+  
+  Global_IP/域:
+    <<: *Classical
+    path: ./rules/Global.list
+    url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Global/Global.list"
 
   LAN_IP/域:
     <<: *Classical
@@ -576,6 +581,8 @@ rules:
   - RULE-SET,Microsoft_IP/域,Microsoft
 
   - RULE-SET,Telegram_IP/域,Telegram
+  
+  - RULE-SET,Global_IP/域,主模式
 
   - DOMAIN,browserleaks.com,漏网之鱼
 
