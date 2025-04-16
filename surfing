@@ -582,7 +582,7 @@ rules:
 
   - RULE-SET,Telegram_IP/域,Telegram
   
-  - RULE-SET,Global_IP/域,主模式
+  - RULE-SET,Global_IP/域,总模式
 
   - DOMAIN,browserleaks.com,漏网之鱼
 
