@@ -263,6 +263,10 @@ proxy-groups:
     icon: "https://raw.githubusercontent.com/MoGuangYu/Surfing/refs/heads/rm/Home/icon/Apple.svg"
     <<: *CNproxy_groups
 
+  - name: Emby
+    icon: "https://raw.githubusercontent.com/MoGuangYu/Surfing/refs/heads/rm/Home/icon/Apple.svg"
+    <<: *CNproxy_groups
+
   - name: Microsoft
     icon: "https://raw.githubusercontent.com/MoGuangYu/Surfing/refs/heads/rm/Home/icon/Microsoft.svg"
     <<: *CNproxy_groups
@@ -446,6 +450,11 @@ rule-providers:
     <<: *Classical
     path: ./rules/TikTok.list
     url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/TikTok/TikTok.list"
+   
+  Emby_域:
+    <<: *Classical
+    path: ./rules/Emby.list
+    url: "https://raw.githubusercontent.com/Wo254992/rule-set/refs/heads/main/userEmby.list"
 
   Spotify_IP/域:
     <<: *Classical
@@ -543,6 +552,8 @@ rules:
   - RULE-SET,Discord_域,Discord
 
   - RULE-SET,TikTok_域,TikTok
+
+  - RULE-SET,Emby_域,Emby
 
   - RULE-SET,Twitter_IP/域,Twitter(X)
 
