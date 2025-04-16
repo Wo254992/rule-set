@@ -46,52 +46,56 @@ p: &p
 A: &A
   filter: "^(?!.*(套餐|重置|剩余|到期|订阅|群|账户|流量|有效期|时间|官网|失联|余额)).*$"
   use:
-  - 1.主要地址
-  - 2.备用地址
-  - 3.额外地址
+  - 1.机场1
+  - 2.机场2
+  - 3.机场3
+  - 4.机场4
+  - 5.机场5
 
 All: &All
   type: url-test
   use:
-  - 1.主要地址
-  - 2.备用地址
-  - 3.额外地址
+  - 1.机场1
+  - 2.机场2
+  - 3.机场3
+  - 4.机场4
+  - 5.机场5
 
 proxy-providers: # ← 此函数位置请勿变动！此为模块更新时备份恢复订阅变量范围 ↓
   1.机场1:
     <<: *p
     override:
-      additional-prefix: "Main："
-    path: ./proxies/1.主要地址.yaml
-    url: "此处引入您的Clash订阅链接地址"
+      additional-prefix: "机场名称1："
+    path: ./proxies/1.机场1.yaml
+    url: "订阅链接1"
 
-  2.备用地址:
+  2.机场2:
     <<: *p
     override:
-      additional-prefix: "Minor："
-    path: ./proxies/2.备用地址.yaml
-    url: "此处引入您的Clash订阅链接地址"
+      additional-prefix: "机场名称2："
+    path: ./proxies/2.机场2.yaml
+    url: "订阅链接2"
 
-  3.额外地址:
+  3.机场3:
     <<: *p
     override:
-      additional-prefix: "Additi："
-    path: ./proxies/3.额外地址.yaml
-    url: "此处引入您的Clash订阅链接地址"
+      additional-prefix: "机场名称3："
+    path: ./proxies/3.机场3.yaml
+    url: "订阅链接3"
   
-  4.额外地址:
+  4.机场4:
     <<: *p
     override:
-      additional-prefix: "Additi："
-    path: ./proxies/4.额外地址.yaml
-    url: "此处引入您的Clash订阅链接地址"
+      additional-prefix: "机场名称4："
+    path: ./proxies/4.机场4.yaml
+    url: "订阅链接4"
    
-  5.额外地址:
+  5.机场5:
     <<: *p
     override:
-      additional-prefix: "Additi："
-    path: ./proxies/5.额外地址.yaml
-    url: "此处引入您的Clash订阅链接地址"
+      additional-prefix: "机场名称5："
+    path: ./proxies/5.机场5.yaml
+    url: "订阅链接5"
 
 # —————————
 
