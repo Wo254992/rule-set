@@ -264,7 +264,7 @@ proxy-groups:
     <<: *CNproxy_groups
 
   - name: Emby
-    icon: "https://github.com/softworkz/emby-logo-animations/releases/download/v0.01/Emby_Laser_Anim_Responsive_Size_JS.svg"
+    icon: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/icon/color/emby.png"
     <<: *CNproxy_groups
 
   - name: Microsoft
@@ -369,13 +369,13 @@ proxy-groups:
     type: select
     icon: "https://raw.githubusercontent.com/MoGuangYu/Surfing/refs/heads/rm/Home/icon/HK.svg"
     filter: "^(?=.*(港|HK|hk|Hong Kong|HongKong|hongkong)).*$"
-    <<: *
+    <<: *A
 
   - name: 日本节点
     type: select
     icon: "https://raw.githubusercontent.com/MoGuangYu/Surfing/refs/heads/rm/Home/icon/JP.svg"
     filter: "^(?=.*(日本|川日|东京|大阪|泉日|埼玉|沪日|深日|[^-]日|JP|Japan)).*$"
-    <<: *
+    <<: *A
 
   - name: 美国节点
     type: select
