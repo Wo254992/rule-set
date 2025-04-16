@@ -203,7 +203,6 @@ proxy_groups: &proxy_groups
       - 美国节点
       - 其它地区
       - 🇨🇳 瓦洛兰大陆
-    <<: *A
 CNproxy_groups: &CNproxy_groups
     type: select
     proxies:
@@ -219,7 +218,6 @@ CNproxy_groups: &CNproxy_groups
       - 日本节点
       - 美国节点
       - 其它地区
-    <<: *A
 # —————————
 proxy-groups:
   - name: 总模式
