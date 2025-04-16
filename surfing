@@ -468,7 +468,7 @@ rule-providers:
   Telegram_IP/域:
     <<: *Classical
     path: ./rules/Telegram.list
-    url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Telegram/Telegram.list"
+    url: "https://raw.githubusercontent.com/Wo254992/rule-set/refs/heads/main/telegram.list"
 
   YouTube_IP/域:
     <<: *Classical
