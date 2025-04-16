@@ -165,15 +165,15 @@ dns:
   fake-ip-filter:
     - "RULE-SET:CN_域,LAN_IP/域,GoogleFCM_IP/域"
   direct-nameserver:
-    - https://doh.pub/dns-query#🇨🇳 瓦洛兰大陆
-    - https://dns.alidns.com/dns-query#🇨🇳 瓦洛兰大陆&h3=true
+    - https://doh.pub/dns-query#🇨🇳 中国大陆
+    - https://dns.alidns.com/dns-query#🇨🇳 中国大陆&h3=true
   proxy-server-nameserver:
-    - https://doh.pub/dns-query#🇨🇳 瓦洛兰大陆
-    - https://dns.alidns.com/dns-query#🇨🇳 瓦洛兰大陆&h3=true
+    - https://doh.pub/dns-query#🇨🇳 中国大陆
+    - https://dns.alidns.com/dns-query#🇨🇳 中国大陆&h3=true
   nameserver-policy:
     "RULE-SET:CN_域,Microsoft_IP/域,Apple_IP/域":
-       - https://doh.pub/dns-query#🇨🇳 瓦洛兰大陆
-       - https://dns.alidns.com/dns-query#🇨🇳 瓦洛兰大陆&h3=true
+       - https://doh.pub/dns-query#🇨🇳 中国大陆
+       - https://dns.alidns.com/dns-query#🇨🇳 中国大陆&h3=true
   nameserver:
     - https://1.1.1.1/dns-query#DNS连接&h3=true
     - https://1.0.0.1/dns-query#DNS连接&h3=true
@@ -184,7 +184,7 @@ dns:
 # —————————
 
 proxies:
-  - {name: 🇨🇳 瓦洛兰大陆, type: direct, udp: true}
+  - {name: 🇨🇳 中国大陆, type: direct, udp: true}
   - {name: ⛔️ 拒绝连接, type: reject}
   - {name: 🌐 DNS_Hijack, type: dns}
 
@@ -202,11 +202,11 @@ proxy_groups: &proxy_groups
       - 日本节点
       - 美国节点
       - 其它地区
-      - 🇨🇳 瓦洛兰大陆
+      - 🇨🇳 中国大陆
 CNproxy_groups: &CNproxy_groups
     type: select
     proxies:
-      - 🇨🇳 瓦洛兰大陆
+      - 🇨🇳 中国大陆
       - ⛔️ 拒绝连接
       - 总模式
       - 延迟最低
@@ -233,14 +233,14 @@ proxy-groups:
       - 日本节点
       - 美国节点
       - 其它地区
-      - 🇨🇳 瓦洛兰大陆
+      - 🇨🇳 中国大陆
 # —————————
 
   - name: 订阅更新
     icon: "https://raw.githubusercontent.com/MoGuangYu/Surfing/refs/heads/rm/Home/icon/Update.svg"
     type: select
     proxies:
-      - 🇨🇳 瓦洛兰大陆
+      - 🇨🇳 中国大陆
       - 总模式
 
   - name: 小红书
@@ -563,11 +563,11 @@ rules:
 
   - DOMAIN,browserleaks.com,漏网之鱼
 
-  - RULE-SET,CN_域,🇨🇳 瓦洛兰大陆
+  - RULE-SET,CN_域,🇨🇳 中国大陆
 
-  - RULE-SET,CN_IP,🇨🇳 瓦洛兰大陆
+  - RULE-SET,CN_IP,🇨🇳 中国大陆
 
-  - RULE-SET,LAN_IP/域,🇨🇳 瓦洛兰大陆
+  - RULE-SET,LAN_IP/域,🇨🇳 中国大陆
 
   - MATCH,漏网之鱼
 # —————————
