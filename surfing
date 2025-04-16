@@ -264,7 +264,7 @@ proxy-groups:
     <<: *CNproxy_groups
 
   - name: Emby
-    icon: "https://raw.githubusercontent.com/MoGuangYu/Surfing/refs/heads/rm/Home/icon/Apple.svg"
+    icon: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/icon/color/emby.png"
     <<: *CNproxy_groups
 
   - name: Microsoft
