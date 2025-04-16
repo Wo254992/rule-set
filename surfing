@@ -242,14 +242,6 @@ proxy-groups:
       - 🇨🇳 中国大陆
       - 总模式
 
-  - name: 小红书
-    icon: "https://raw.githubusercontent.com/MoGuangYu/Surfing/refs/heads/rm/Home/icon/XiaoHongShu.svg"
-    <<: *CNproxy_groups
-
-  - name: 抖音
-    icon: "https://raw.githubusercontent.com/MoGuangYu/Surfing/refs/heads/rm/Home/icon/DouYin.svg"
-    <<: *CNproxy_groups
-
   - name: BiliBili
     icon: "https://raw.githubusercontent.com/MoGuangYu/Surfing/refs/heads/rm/Home/icon/BiliBili.svg"
     <<: *CNproxy_groups
@@ -425,15 +417,6 @@ rule-providers:
     path: ./rules/WebRTC.list
     url: "https://raw.githubusercontent.com/MoGuangYu/Surfing/refs/heads/rm/Home/rules/WebRTC.list"
 
-  XiaoHongShu_域:
-    <<: *Classical
-    path: ./rules/XiaoHongShu.list
-    url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/XiaoHongShu/XiaoHongShu.list"
-
-  DouYin_域:
-    <<: *Classical
-    path: ./rules/DouYin.list
-    url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/DouYin/DouYin.list"
 
   BiliBili_IP/域:
     <<: *Classical
@@ -539,12 +522,6 @@ rules:
   - RULE-SET,WebRTC_端/域,WebRTC
 
   - RULE-SET,No-ads-all_域,广告拦截
-
-  - PROCESS-PATH,com.ss.android.ugc.aweme,抖音
-  - RULE-SET,DouYin_域,抖音
-
-  - PROCESS-PATH,com.xingin.xhs,小红书
-  - RULE-SET,XiaoHongShu_域,小红书
 
   - PROCESS-PATH,tv.danmaku.bili,BiliBili
   - RULE-SET,BiliBili_IP/域,BiliBili
