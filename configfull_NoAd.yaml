@@ -76,27 +76,6 @@ proxy-providers:
       skip-cert-verify: true
       udp: true
 
-# 用于下载订阅时指定UA
-global-ua: clash.meta
-
-# 全局配置
-port: 7890
-socks-port: 7891
-redir-port: 7892
-mixed-port: 7893
-tproxy-port: 7894
-ipv6: true
-allow-lan: true
-unified-delay: true
-tcp-concurrent: true
-# interface-name: eth0  （路由器下根据情况指定出站接口）
-authentication:
-#  密码设置选项默认无
-- ""
-skip-auth-prefixes:
-- 127.0.0.1/8
-- ::1/128
-
 
 
 
