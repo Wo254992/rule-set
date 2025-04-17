@@ -294,37 +294,6 @@ proxy-groups:
     interval: 300
     tolerance: 50
     icon: "https://raw.githubusercontent.com/Koolson/Qure/refs/heads/master/IconSet/Color/Null_Nation.png"
-  - name: GLOBAL
-    icon: https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Global.png
-    include-all: true
-    type: select
-    proxies:
-      - 节点选择
-      - 电报消息
-      - Emby
-      - Ai
-      - Google
-      - 油管视频
-      - 奈飞视频
-      - 巴哈姆特
-      - 哔哩哔哩
-      - 国外媒体
-      - 国内媒体
-      - 谷歌FCM
-      - Bing
-      - 苹果服务
-      - 游戏平台
-      - 本机直连
-      - 检测
-      - 漏网之鱼
-      - 自动选择
-      - 香港节点
-      - 日本节点
-      - 美国节点
-      - 台湾节点
-      - 狮城节点
-      - 韩国节点
-      - 其他节点
 rule-providers:
   Emby:
     url: https://raw.githubusercontent.com/Wo254992/rule-set/refs/heads/main/userEmby.list
