@@ -12,3 +12,9 @@ DOMAIN-SUFFIX,formal.api.gp.qq.com
 DOMAIN-SUFFIX,szextshort.weixin.qq.com
 #皮皮搞笑
 DOMAIN-SUFFIX,api.ippzone.com
+#最右
+DOMAIN-SUFFIX,api.izuiyou.com
+#哔哩哔哩改IP+解锁港澳台
+DOMAIN-SUFFIX,api.bilibili.com
+DOMAIN-SUFFIX,biliapi.net
+DOMAIN-SUFFIX,upos-hz-mirrorakam.akamaized.net
