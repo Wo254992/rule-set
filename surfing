@@ -524,10 +524,6 @@ rule-providers:
     <<: *Domain
     path: ./rules/Netflix.mrs
     url: "https://raw.githubusercontent.com/MoGuangYu/rule/refs/heads/master/rule/Clash/Netflix/Netflix_OCD_Domain.mrs"
-  Netflix_域:
-    <<: *Domain
-    path: ./rules/Netflix.mrs
-    url: "https://raw.githubusercontent.com/MoGuangYu/rule/refs/heads/master/rule/Clash/Netflix/Netflix_OCD_Domain.mrs"
   Netflix_IP:
     <<: *IPCIDR
     path: ./rules/Netflix_IP.mrs
