@@ -160,7 +160,7 @@ dns:
     - https://doh.pub/dns-query#🇨🇳 中国大陆
     - https://dns.alidns.com/dns-query#🇨🇳 中国大陆&h3=true
   nameserver-policy:
-    "RULE-SET:CN_域,Microsoft_域,Apple_域":
+    "RULE-SET:CN_域,Microsoft_IP/域,Apple_域":
        - https://doh.pub/dns-query#🇨🇳 中国大陆
        - https://dns.alidns.com/dns-query#🇨🇳 中国大陆&h3=true
   nameserver:
