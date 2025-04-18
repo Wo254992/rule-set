@@ -465,10 +465,14 @@ rule-providers:
     path: ./rules/Facebook_IP.mrs
     url: "https://raw.githubusercontent.com/MoGuangYu/rule/refs/heads/master/rule/Clash/Facebook/Facebook_OCD_IP.mrs"
 
-  Telegram_IP/域:
-    <<: *Classical
-    path: ./rules/Telegram.list
-    url: "https://raw.githubusercontent.com/Wo254992/rule-set/refs/heads/main/telegram.list"
+  Telegram_域:
+    <<: *Domain
+    path: ./rules/Telegram.mrs
+    url: "https://raw.githubusercontent.com/MoGuangYu/rule/refs/heads/master/rule/Clash/Telegram/Telegram_OCD_Domain.mrs"
+  Telegram_IP:
+    <<: *IPCIDR
+    path: ./rules/Telegram_IP.mrs
+    url: "https://raw.githubusercontent.com/MoGuangYu/rule/refs/heads/master/rule/Clash/Telegram/Telegram_OCD_IP.mrs"
 
   YouTube_域:
     <<: *Domain
@@ -588,7 +592,8 @@ rules:
 
   - RULE-SET,Discord_域,Discord
 
-  - RULE-SET,Telegram_IP/域,Telegram
+  - RULE-SET,Telegram_域,Telegram
+  - RULE-SET,Telegram_IP,Telegram
 
   - RULE-SET,TikTok_域,TikTok
 
@@ -597,6 +602,9 @@ rules:
 
   - RULE-SET,YouTube_域,YouTube
   - RULE-SET,YouTube_IP,YouTube
+
+  - DST-PORT,5228,GoogleFCM
+  - DOMAIN-KEYWORD,mtalk.google,GoogleFCM
 
   - RULE-SET,Google_域,Google
   - RULE-SET,Google_IP,Google
@@ -612,9 +620,6 @@ rules:
 
   - RULE-SET,OpenAI_域,OpenAI
   - RULE-SET,OpenAI_IP,OpenAI
-
-  - DST-PORT,5228,GoogleFCM
-  - DOMAIN-KEYWORD,mtalk.google,GoogleFCM
 
   - RULE-SET,Apple_域,Apple
   - RULE-SET,Apple_IP,Apple
