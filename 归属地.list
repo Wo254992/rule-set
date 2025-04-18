@@ -1,0 +1,16 @@
+#抖音
+DOMAIN-SUFFIX,amemv.com
+#快手
+DOMAIN-SUFFIX,apissl.ksapisrv.com
+#微博
+DOMAIN-SUFFIX,api.weibo.cn
+#小红书
+DOMAIN-SUFFIX,edith.xiaohongshu.com
+#和平营地
+DOMAIN-SUFFIX,formal.api.gp.qq.com
+#视频号
+DOMAIN-SUFFIX,szextshort.weixin.qq.com
+#皮皮搞笑
+DOMAIN-SUFFIX,api.ippzone.com
+#虎扑
+DOMAIN-SUFFIX,hupu.com
