@@ -231,10 +231,6 @@ proxy-groups:
     proxies:
       - 🇨🇳 中国大陆
       - 总模式
-  
-  - name: 改归属地
-    icon: "https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/ForeignMedia.png"
-    <<: *CNproxy_groups
 
   - name: BiliBili
     icon: "https://raw.githubusercontent.com/MoGuangYu/Surfing/refs/heads/rm/Home/icon/BiliBili.svg"
@@ -303,6 +299,10 @@ proxy-groups:
   - name: Twitter(X)
     icon: "https://raw.githubusercontent.com/MoGuangYu/Surfing/refs/heads/rm/Home/icon/Twitter.svg"
     <<: *proxy_groups
+ 
+  - name: IP归属
+    icon: "https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/ForeignMedia.png"
+    <<: *CNproxy_groups
 
   - name: DNS连接
     icon: "https://raw.githubusercontent.com/MoGuangYu/Surfing/refs/heads/rm/Home/icon/DNS.svg"
@@ -521,12 +521,12 @@ rules:
 
   - RULE-SET,No-ads-all_域,广告拦截
   
-  - PROCESS-PATH,com.ss.android.ugc.aweme,归属地_域
-  - PROCESS-PATH,com.smile.gifmaker,归属地_域
-  - PROCESS-PATH,com.sina.weibo,归属地_域
-  - PROCESS-PATH,com.xingin.xhs,归属地_域
-  - PROCESS-PATH,com.tencent.gamehelper.pg,归属地_域
-  - RULE-SET,Fake-ip,归属地_域
+  - PROCESS-PATH,com.ss.android.ugc.aweme,IP归属
+  - PROCESS-PATH,com.smile.gifmaker,IP归属
+  - PROCESS-PATH,com.sina.weibo,IP归属
+  - PROCESS-PATH,com.xingin.xhs,IP归属
+  - PROCESS-PATH,com.tencent.gamehelper.pg,IP归属
+  - RULE-SET,归属地_域,IP归属
 
   - PROCESS-PATH,tv.danmaku.bili,BiliBili
   - RULE-SET,BiliBili_IP/域,BiliBili
