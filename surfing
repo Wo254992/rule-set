@@ -414,7 +414,7 @@ rule-providers:
   归属地_域:
     <<: *Classical
     path: ./rules/归属地.list
-    url: "https://raw.githubusercontent.com/KFzZ/rule/refs/heads/main/Fake-ip.yaml"
+    url: "https://raw.githubusercontent.com/Wo254992/rule-set/refs/heads/main/归属地.list"
 
   BiliBili_IP/域:
     <<: *Classical
