@@ -322,7 +322,13 @@ proxy-groups:
     type: select
     proxies:
       - ⛔️ 拒绝连接
+      - 🌐 DNS_Hijack
+      - REJECT-DROP
       - PASS
+
+  - name: 白名单出站
+    icon: "https://raw.githubusercontent.com/MoGuangYu/Surfing/refs/heads/rm/Home/icon/User.svg"
+    <<: *CNproxy_groups
 
   - name: 延迟最低
     icon: "https://raw.githubusercontent.com/MoGuangYu/Surfing/refs/heads/rm/Home/icon/Return.svg"
