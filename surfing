@@ -160,7 +160,7 @@ dns:
     - https://doh.pub/dns-query#🇨🇳 中国大陆
     - https://dns.alidns.com/dns-query#🇨🇳 中国大陆&h3=true
   nameserver-policy:
-    "RULE-SET:CN_域,Microsoft_IP/域,Apple_域":
+    "RULE-SET:CN_域,Microsoft_域,Apple_域":
        - https://doh.pub/dns-query#🇨🇳 中国大陆
        - https://dns.alidns.com/dns-query#🇨🇳 中国大陆&h3=true
   nameserver:
@@ -389,131 +389,194 @@ rule-anchor:
 # —————————
 
 rule-providers:
-  CN_IP:
-    <<: *IPCIDR
-    path: ./rules/CN_IP.mrs
-    url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geoip/cn.mrs"
-
-  CN_域:
-    <<: *Domain
-    path: ./rules/CN_域.mrs
-    url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/cn.mrs"
-
-  No-ads-all_域:
-    <<: *Domain
-    path: ./rules/No-ads-all.mrs
-    url: "https://anti-ad.net/mihomo.mrs"
-
   WebRTC_端/域:
     <<: *Classical
     path: ./rules/WebRTC.list
     url: "https://raw.githubusercontent.com/MoGuangYu/Surfing/refs/heads/rm/Home/rules/WebRTC.list"
+
+  CN_IP:
+    <<: *IPCIDR
+    path: ./rules/CN_IP.mrs
+    url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geoip/cn.mrs"
+  CN_域:
+    <<: *Domain
+    path: ./rules/CN_域.mrs
+    url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/cn.mrs"
 
   归属地_域:
     <<: *Classical
     path: ./rules/归属地.list
     url: "https://raw.githubusercontent.com/Wo254992/rule-set/refs/heads/main/归属地.list"
 
-  BiliBili_IP/域:
-    <<: *Classical
-    path: ./rules/BiliBili.list
-    url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/BiliBili/BiliBili.list"
-
-  Steam_域:
-    <<: *Classical
-    path: ./rules/Steam.list
-    url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Steam/Steam.list"
-
-  TikTok_域:
-    <<: *Classical
-    path: ./rules/TikTok.list
-    url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/TikTok/TikTok.list"
-   
   Emby_域:
     <<: *Classical
     path: ./rules/Emby.list
     url: "https://raw.githubusercontent.com/Wo254992/rule-set/refs/heads/main/userEmby.list"
 
-  Spotify_IP/域:
-    <<: *Classical
-    path: ./rules/Spotify.list
-    url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Spotify/Spotify.list"
+  No-ads-all_域:
+    <<: *Domain
+    path: ./rules/No-ads-all.mrs
+    url: "https://anti-ad.net/mihomo.mrs"
 
-  Facebook_IP/域:
-    <<: *Classical
-    path: ./rules/Facebook.list
-    url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Facebook/Facebook.list"
+  XiaoHongShu_域:
+    <<: *Domain
+    path: ./rules/XiaoHongShu.mrs
+    url: "https://raw.githubusercontent.com/MoGuangYu/rule/refs/heads/master/rule/Clash/XiaoHongShu/XiaoHongShu_OCD_Domain.mrs"
+
+  DouYin_域:
+    <<: *Domain
+    path: ./rules/DouYin.mrs
+    url: "https://raw.githubusercontent.com/MoGuangYu/rule/refs/heads/master/rule/Clash/DouYin/DouYin_OCD_Domain.mrs"
+
+  BiliBili_域:
+    <<: *Domain
+    path: ./rules/BiliBili.mrs
+    url: "https://raw.githubusercontent.com/MoGuangYu/rule/refs/heads/master/rule/Clash/BiliBili/BiliBili_OCD_Domain.mrs"
+  BiliBili_IP:
+    <<: *IPCIDR
+    path: ./rules/BiliBili_IP.mrs
+    url: "https://raw.githubusercontent.com/MoGuangYu/rule/refs/heads/master/rule/Clash/BiliBili/BiliBili_OCD_IP.mrs"
+
+  Steam_域:
+    <<: *Domain
+    path: ./rules/Steam.mrs
+    url: "https://raw.githubusercontent.com/MoGuangYu/rule/refs/heads/master/rule/Clash/Steam/Steam_OCD_Domain.mrs"
+
+  TikTok_域:
+    <<: *Domain
+    path: ./rules/TikTok.mrs
+    url: "https://raw.githubusercontent.com/MoGuangYu/rule/refs/heads/master/rule/Clash/TikTok/TikTok_OCD_Domain.mrs"
+
+  Spotify_域:
+    <<: *Domain
+    path: ./rules/Spotify.mrs
+    url: "https://raw.githubusercontent.com/MoGuangYu/rule/refs/heads/master/rule/Clash/Spotify/Spotify_OCD_Domain.mrs"
+  Spotify_IP:
+    <<: *IPCIDR
+    path: ./rules/Spotify_IP.mrs
+    url: "https://raw.githubusercontent.com/MoGuangYu/rule/refs/heads/master/rule/Clash/Spotify/Spotify_OCD_IP.mrs"
+
+  Facebook_域:
+    <<: *Domain
+    path: ./rules/Facebook.mrs
+    url: "https://raw.githubusercontent.com/MoGuangYu/rule/refs/heads/master/rule/Clash/Facebook/Facebook_OCD_Domain.mrs"
+  Facebook_IP:
+    <<: *IPCIDR
+    path: ./rules/Facebook_IP.mrs
+    url: "https://raw.githubusercontent.com/MoGuangYu/rule/refs/heads/master/rule/Clash/Facebook/Facebook_OCD_IP.mrs"
 
   Telegram_IP/域:
     <<: *Classical
     path: ./rules/Telegram.list
     url: "https://raw.githubusercontent.com/Wo254992/rule-set/refs/heads/main/telegram.list"
 
-  YouTube_IP/域:
-    <<: *Classical
-    path: ./rules/YouTube.list
-    url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/YouTube/YouTube.list"
+  YouTube_域:
+    <<: *Domain
+    path: ./rules/YouTube.mrs
+    url: "https://raw.githubusercontent.com/MoGuangYu/rule/refs/heads/master/rule/Clash/YouTube/YouTube_OCD_Domain.mrs"
+  YouTube_IP:
+    <<: *IPCIDR
+    path: ./rules/YouTube_IP.mrs
+    url: "https://raw.githubusercontent.com/MoGuangYu/rule/refs/heads/master/rule/Clash/YouTube/YouTube_OCD_IP.mrs"
 
-  Google_IP/域:
-    <<: *Classical
-    path: ./rules/Google.list
-    url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Google/Google.list"
+  Google_域:
+    <<: *Domain
+    path: ./rules/Google.mrs
+    url: "https://raw.githubusercontent.com/MoGuangYu/rule/refs/heads/master/rule/Clash/Google/Google_OCD_Domain.mrs"
+  Google_IP:
+    <<: *IPCIDR
+    path: ./rules/Google_IP.mrs
+    url: "https://raw.githubusercontent.com/MoGuangYu/rule/refs/heads/master/rule/Clash/Google/Google_OCD_IP.mrs"
 
-  Microsoft_IP/域:
-    <<: *Classical
-    path: ./rules/Microsoft.list
-    url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Microsoft/Microsoft.list"
+  GoogleFCM_域:
+    <<: *Domain
+    path: ./rules/GoogleFCM.mrs
+    url: "https://raw.githubusercontent.com/MoGuangYu/rule/refs/heads/master/rule/Clash/GoogleFCM/GoogleFCM_OCD_Domain.mrs"
+  GoogleFCM_IP:
+    <<: *IPCIDR
+    path: ./rules/GoogleFCM_IP.mrs
+    url: "https://raw.githubusercontent.com/MoGuangYu/rule/refs/heads/master/rule/Clash/GoogleFCM/GoogleFCM_OCD_IP.mrs"
 
-  Apple_IP/域:
-    <<: *Classical
-    path: ./rules/Apple.list
-    url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Apple/Apple.list"
+  Microsoft_域:
+    <<: *Domain
+    path: ./rules/Microsoft.mrs
+    url: "https://raw.githubusercontent.com/MoGuangYu/rule/refs/heads/master/rule/Clash/Microsoft/Microsoft_OCD_Domain.mrs"
 
-  OpenAI_IP/域:
-    <<: *Classical
-    path: ./rules/OpenAI.list
-    url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/OpenAI/OpenAI.list"
+  Apple_域:
+    <<: *Domain
+    path: ./rules/Apple.mrs
+    url: "https://raw.githubusercontent.com/MoGuangYu/rule/refs/heads/master/rule/Clash/Apple/Apple_OCD_Domain.mrs"
+  Apple_IP:
+    <<: *IPCIDR
+    path: ./rules/Apple_IP.mrs
+    url: "https://raw.githubusercontent.com/MoGuangYu/rule/refs/heads/master/rule/Clash/Apple/Apple_OCD_IP.mrs"
 
-  Netflix_IP/域:
-    <<: *Classical
-    path: ./rules/Netflix.list
-    url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Netflix/Netflix.list"
+  OpenAI_域:
+    <<: *Domain
+    path: ./rules/OpenAI.mrs
+    url: "https://raw.githubusercontent.com/MoGuangYu/rule/refs/heads/master/rule/Clash/OpenAI/OpenAI_OCD_Domain.mrs"
+  OpenAI_IP:
+    <<: *IPCIDR
+    path: ./rules/OpenAI_IP.mrs
+    url: "https://raw.githubusercontent.com/MoGuangYu/rule/refs/heads/master/rule/Clash/OpenAI/OpenAI_OCD_IP.mrs"
+
+  Netflix_域:
+    <<: *Domain
+    path: ./rules/Netflix.mrs
+    url: "https://raw.githubusercontent.com/MoGuangYu/rule/refs/heads/master/rule/Clash/Netflix/Netflix_OCD_Domain.mrs"
+  Netflix_域:
+    <<: *Domain
+    path: ./rules/Netflix.mrs
+    url: "https://raw.githubusercontent.com/MoGuangYu/rule/refs/heads/master/rule/Clash/Netflix/Netflix_OCD_Domain.mrs"
+  Netflix_IP:
+    <<: *IPCIDR
+    path: ./rules/Netflix_IP.mrs
+    url: "https://raw.githubusercontent.com/MoGuangYu/rule/refs/heads/master/rule/Clash/Netflix/Netflix_OCD_IP.mrs"
 
   Discord_域:
-    <<: *Classical
-    path: ./rules/Discord.list
-    url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Discord/Discord.list"
+    <<: *Domain
+    path: ./rules/Discord.mrs
+    url: "https://raw.githubusercontent.com/MoGuangYu/rule/refs/heads/master/rule/Clash/Discord/Discord_OCD_Domain.mrs"
 
   GitHub_域:
-    <<: *Classical
-    path: ./rules/GitHub.list
-    url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/GitHub/GitHub.list"
+    <<: *Domain
+    path: ./rules/GitHub.mrs
+    url: "https://raw.githubusercontent.com/MoGuangYu/rule/refs/heads/master/rule/Clash/GitHub/GitHub_OCD_Domain.mrs"
 
-  Twitter_IP/域:
-    <<: *Classical
-    path: ./rules/Twitter.list
-    url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Twitter/Twitter.list"
-  
+  Twitter_域:
+    <<: *Domain
+    path: ./rules/Twitter.mrs
+    url: "https://raw.githubusercontent.com/MoGuangYu/rule/refs/heads/master/rule/Clash/Twitter/Twitter_OCD_Domain.mrs"
+  Twitter_IP:
+    <<: *IPCIDR
+    path: ./rules/Twitter_IP.mrs
+    url: "https://raw.githubusercontent.com/MoGuangYu/rule/refs/heads/master/rule/Clash/Twitter/Twitter_OCD_IP.mrs"
+
   Global_IP/域:
     <<: *Classical
     path: ./rules/Global.list
     url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Global/Global.list"
 
-  LAN_IP/域:
-    <<: *Classical
-    path: ./rules/LAN.list
-    url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Lan/Lan.list"
+  LAN_域:
+    <<: *Domain
+    path: ./rules/LAN.mrs
+    url: "https://raw.githubusercontent.com/MoGuangYu/rule/refs/heads/master/rule/Clash/Lan/Lan_OCD_Domain.mrs"
+  LAN_IP:
+    <<: *IPCIDR
+    path: ./rules/LAN_IP.mrs
+    url: "https://raw.githubusercontent.com/MoGuangYu/rule/refs/heads/master/rule/Clash/Lan/Lan_OCD_IP.mrs"
 # —————————
-
 rules:
   - DST-PORT,53,🌐 DNS_Hijack
-
   - DST-PORT,853,DNS连接
 
-  - RULE-SET,WebRTC_端/域,WebRTC
+  - RULE-SET,自定义出站,白名单出站
 
+  - RULE-SET,WebRTC_端/域,WebRTC
   - RULE-SET,No-ads-all_域,广告拦截
-  
+
+  - RULE-SET,Emby_域,Emby
+
   - PROCESS-PATH,com.ss.android.ugc.aweme,IP归属
   - PROCESS-PATH,com.smile.gifmaker,IP归属
   - PROCESS-PATH,com.sina.weibo,IP归属
@@ -522,7 +585,8 @@ rules:
   - RULE-SET,归属地_域,IP归属
 
   - PROCESS-PATH,tv.danmaku.bili,BiliBili
-  - RULE-SET,BiliBili_IP/域,BiliBili
+  - RULE-SET,BiliBili_域,BiliBili
+  - RULE-SET,BiliBili_IP,BiliBili
 
   - RULE-SET,Steam_域,Steam
 
@@ -530,42 +594,47 @@ rules:
 
   - RULE-SET,Discord_域,Discord
 
+  - RULE-SET,Telegram_IP/域,Telegram
+
   - RULE-SET,TikTok_域,TikTok
 
-  - RULE-SET,Emby_域,Emby
+  - RULE-SET,Twitter_域,Twitter(X)
+  - RULE-SET,Twitter_IP,Twitter(X)
 
-  - RULE-SET,Twitter_IP/域,Twitter(X)
+  - RULE-SET,YouTube_域,YouTube
+  - RULE-SET,YouTube_IP,YouTube
 
-  - RULE-SET,YouTube_IP/域,YouTube
+  - RULE-SET,Google_域,Google
+  - RULE-SET,Google_IP,Google
 
-  - RULE-SET,Netflix_IP/域,Netflix
+  - RULE-SET,Netflix_域,Netflix
+  - RULE-SET,Netflix_IP,Netflix
 
-  - RULE-SET,Spotify_IP/域,Spotify
+  - RULE-SET,Spotify_域,Spotify
+  - RULE-SET,Spotify_IP,Spotify
 
-  - RULE-SET,Facebook_IP/域,Facebook
+  - RULE-SET,Facebook_域,Facebook
+  - RULE-SET,Facebook_IP,Facebook
 
-  - RULE-SET,OpenAI_IP/域,OpenAI
+  - RULE-SET,OpenAI_域,OpenAI
+  - RULE-SET,OpenAI_IP,OpenAI
 
   - DST-PORT,5228,GoogleFCM
   - DOMAIN-KEYWORD,mtalk.google,GoogleFCM
 
-  - RULE-SET,Google_IP/域,Google
+  - RULE-SET,Apple_域,Apple
+  - RULE-SET,Apple_IP,Apple
 
-  - RULE-SET,Apple_IP/域,Apple
-
-  - RULE-SET,Microsoft_IP/域,Microsoft
-
-  - RULE-SET,Telegram_IP/域,Telegram
-  
-  - RULE-SET,Global_IP/域,总模式
+  - RULE-SET,Microsoft_域,Microsoft
 
   - DOMAIN,browserleaks.com,漏网之鱼
 
-  - RULE-SET,CN_域,🇨🇳 中国大陆
+  - RULE-SET,Global_IP/域,总模式
 
-  - RULE-SET,CN_IP,🇨🇳 中国大陆
-
-  - RULE-SET,LAN_IP/域,🇨🇳 中国大陆
+  - RULE-SET,CN_域,🇨🇳 瓦洛兰大陆
+  - RULE-SET,CN_IP,🇨🇳 瓦洛兰大陆
+  - RULE-SET,LAN_域,🇨🇳 瓦洛兰大陆
+  - RULE-SET,LAN_IP,🇨🇳 瓦洛兰大陆
 
   - MATCH,漏网之鱼
 # —————————
