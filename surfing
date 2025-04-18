@@ -326,10 +326,6 @@ proxy-groups:
       - REJECT-DROP
       - PASS
 
-  - name: 白名单出站
-    icon: "https://raw.githubusercontent.com/MoGuangYu/Surfing/refs/heads/rm/Home/icon/User.svg"
-    <<: *CNproxy_groups
-
   - name: 延迟最低
     icon: "https://raw.githubusercontent.com/MoGuangYu/Surfing/refs/heads/rm/Home/icon/Return.svg"
     type: url-test
@@ -463,11 +459,6 @@ rule-providers:
     path: ./rules/Google.list
     url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Google/Google.list"
 
-  GoogleFCM_IP/域:
-    <<: *Classical
-    path: ./rules/GoogleFCM.list
-    url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/GoogleFCM/GoogleFCM.list"
-
   Microsoft_IP/域:
     <<: *Classical
     path: ./rules/Microsoft.list
@@ -556,7 +547,7 @@ rules:
   - RULE-SET,OpenAI_IP/域,OpenAI
 
   - DST-PORT,5228,GoogleFCM
-  - RULE-SET,GoogleFCM_IP/域,GoogleFCM
+  - DOMAIN-KEYWORD,mtalk.google,GoogleFCM
 
   - RULE-SET,Google_IP/域,Google
 
