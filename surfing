@@ -552,11 +552,6 @@ rule-providers:
     path: ./rules/Twitter_IP.mrs
     url: "https://raw.githubusercontent.com/MoGuangYu/rule/refs/heads/master/rule/Clash/Twitter/Twitter_OCD_IP.mrs"
 
-  Global_IP/域:
-    <<: *Classical
-    path: ./rules/Global.list
-    url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Global/Global.list"
-
   LAN_域:
     <<: *Domain
     path: ./rules/LAN.mrs
@@ -574,6 +569,8 @@ rules:
   - RULE-SET,No-ads-all_域,广告拦截
 
   - RULE-SET,Emby_域,Emby
+
+  - PROCESS-PATH,com.levelinfinite.sgameGlobal,总模式
 
   - PROCESS-PATH,com.ss.android.ugc.aweme,IP归属
   - PROCESS-PATH,com.smile.gifmaker,IP归属
@@ -627,8 +624,6 @@ rules:
   - RULE-SET,Microsoft_域,Microsoft
 
   - DOMAIN,browserleaks.com,漏网之鱼
-
-  - RULE-SET,Global_IP/域,总模式
 
   - RULE-SET,CN_域,🇨🇳 中国大陆
   - RULE-SET,CN_IP,🇨🇳 中国大陆
