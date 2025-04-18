@@ -631,10 +631,10 @@ rules:
 
   - RULE-SET,Global_IP/域,总模式
 
-  - RULE-SET,CN_域,🇨🇳 瓦洛兰大陆
-  - RULE-SET,CN_IP,🇨🇳 瓦洛兰大陆
-  - RULE-SET,LAN_域,🇨🇳 瓦洛兰大陆
-  - RULE-SET,LAN_IP,🇨🇳 瓦洛兰大陆
+  - RULE-SET,CN_域,🇨🇳 中国大陆
+  - RULE-SET,CN_IP,🇨🇳 中国大陆
+  - RULE-SET,LAN_域,🇨🇳 中国大陆
+  - RULE-SET,LAN_IP,🇨🇳 中国大陆
 
   - MATCH,漏网之鱼
 # —————————
