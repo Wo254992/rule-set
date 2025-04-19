@@ -86,6 +86,11 @@ proxy-providers: # ← 此函数位置请勿变动！此为模块更新时备份
     path: ./proxies/5.机场五.yaml
     url: "订阅链接5"
 
+  6.机场六:
+    <<: *p
+    path: ./proxies/6.机场六.yaml
+    url: "订阅链接6"
+
 # —————————
 
 # 节点记忆
