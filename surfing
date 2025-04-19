@@ -232,7 +232,7 @@ proxy-groups:
     icon: "https://raw.githubusercontent.com/MoGuangYu/Surfing/refs/heads/rm/Home/icon/BiliBili.svg"
     <<: *CNproxy_groups
 
-  - name: Steam
+  - name: 游戏平台
     icon: "https://raw.githubusercontent.com/MoGuangYu/Surfing/refs/heads/rm/Home/icon/Steam.svg"
     <<: *CNproxy_groups
 
@@ -431,6 +431,11 @@ rule-providers:
     path: ./rules/BiliBili_IP.mrs
     url: "https://raw.githubusercontent.com/MoGuangYu/rule/refs/heads/master/rule/Clash/BiliBili/BiliBili_OCD_IP.mrs"
 
+  游戏平台_域:
+    <<: *Domain
+    path: ./rules/游戏平台.mrs
+    url: "https://raw.githubusercontent.com/Wo254992/rule-set/refs/heads/main/游戏平台.mrs"
+
   Steam_域:
     <<: *Domain
     path: ./rules/Steam.mrs
@@ -578,7 +583,8 @@ rules:
   - RULE-SET,BiliBili_域,BiliBili
   - RULE-SET,BiliBili_IP,BiliBili
 
-  - RULE-SET,Steam_域,Steam
+  - RULE-SET,游戏平台_域,游戏平台
+  - RULE-SET,Steam_域,游戏平台
 
   - RULE-SET,GitHub_域,GitHub
 
