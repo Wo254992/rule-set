@@ -409,24 +409,18 @@ rule-providers:
     url: "https://raw.githubusercontent.com/Wo254992/rule-set/refs/heads/main/归属地.list"
 
   Emby_域:
-    <<: *Classical
-    path: ./rules/Emby.list
-    url: "https://raw.githubusercontent.com/Wo254992/rule-set/refs/heads/main/userEmby.list"
+    <<: *Domain
+    path: ./rules/Emby.mrs
+    url: "https://raw.githubusercontent.com/Wo254992/rule-set/refs/heads/main/emby.mrs"
+  Emby_IP:
+    <<: *IPCIDR
+    path: ./rules/Emby_IP.mrs
+    url: "https://raw.githubusercontent.com/Wo254992/rule-set/refs/heads/main/embyip_ip.mrs"
 
   No-ads-all_域:
     <<: *Domain
     path: ./rules/No-ads-all.mrs
     url: "https://anti-ad.net/mihomo.mrs"
-
-  XiaoHongShu_域:
-    <<: *Domain
-    path: ./rules/XiaoHongShu.mrs
-    url: "https://raw.githubusercontent.com/MoGuangYu/rule/refs/heads/master/rule/Clash/XiaoHongShu/XiaoHongShu_OCD_Domain.mrs"
-
-  DouYin_域:
-    <<: *Domain
-    path: ./rules/DouYin.mrs
-    url: "https://raw.githubusercontent.com/MoGuangYu/rule/refs/heads/master/rule/Clash/DouYin/DouYin_OCD_Domain.mrs"
 
   BiliBili_域:
     <<: *Domain
@@ -569,6 +563,7 @@ rules:
   - RULE-SET,No-ads-all_域,广告拦截
 
   - RULE-SET,Emby_域,Emby
+  - RULE-SET,Emby_IP,Emby
 
   - PROCESS-PATH,com.levelinfinite.sgameGlobal,总模式
 
