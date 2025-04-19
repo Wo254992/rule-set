@@ -232,7 +232,7 @@ proxy-groups:
     icon: "https://raw.githubusercontent.com/MoGuangYu/Surfing/refs/heads/rm/Home/icon/BiliBili.svg"
     <<: *CNproxy_groups
 
-  - name: 游戏平台
+  - name: Steam
     icon: "https://raw.githubusercontent.com/MoGuangYu/Surfing/refs/heads/rm/Home/icon/Steam.svg"
     <<: *CNproxy_groups
 
@@ -295,6 +295,10 @@ proxy-groups:
   - name: Twitter(X)
     icon: "https://raw.githubusercontent.com/MoGuangYu/Surfing/refs/heads/rm/Home/icon/Twitter.svg"
     <<: *proxy_groups
+
+  - name: 游戏平台
+    icon: "https://raw.githubusercontent.com/sunfing/iNg/refs/heads/main/Icons/GeneralIcons/Game.png"
+    <<: *CNproxy_groups
  
   - name: IP归属
     icon: "https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/ForeignMedia.png"
@@ -583,8 +587,9 @@ rules:
   - RULE-SET,BiliBili_域,BiliBili
   - RULE-SET,BiliBili_IP,BiliBili
 
+  - RULE-SET,Steam_域,Steam
+
   - RULE-SET,游戏平台_域,游戏平台
-  - RULE-SET,Steam_域,游戏平台
 
   - RULE-SET,GitHub_域,GitHub
 
