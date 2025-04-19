@@ -551,7 +551,7 @@ rule-providers:
   GitHub_域:
     <<: *Domain
     path: ./rules/GitHub.mrs
-    url: "https://raw.githubusercontent.com/MoGuangYu/rule/refs/heads/master/rule/Clash/GitHub/GitHub_OCD_Domain.mrs"
+    url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/github.mrs"
 
   Global_域:
     <<: *Domain
