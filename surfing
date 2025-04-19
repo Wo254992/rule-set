@@ -404,14 +404,14 @@ rule-providers:
     url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/cn.mrs"
 
   归属地_域:
-    <<: *Classical
-    path: ./rules/归属地.list
-    url: "https://raw.githubusercontent.com/Wo254992/rule-set/refs/heads/main/归属地.list"
+    <<: *Domain
+    path: ./rules/归属地.mrs
+    url: "https://raw.githubusercontent.com/Wo254992/rule-set/refs/heads/main/归属地.mrs"
 
   Emby_域:
     <<: *Domain
     path: ./rules/Emby.mrs
-    url: "https://raw.githubusercontent.com/Wo254992/rule-set/refs/heads/main/emby.mrs"
+    url: "https://raw.githubusercontent.com/Wo254992/rule-set/refs/heads/main/Emby_域名.mrs"
   Emby_IP:
     <<: *IPCIDR
     path: ./rules/Emby_IP.mrs
