@@ -557,6 +557,10 @@ rule-providers:
     <<: *Domain
     path: ./rules/Global.mrs
     url: "https://raw.githubusercontent.com/Wo254992/rule-set/refs/heads/main/Global.mrs"
+  Global_IP:
+    <<: *IPCIDR
+    path: ./rules/Global_IP.mrs
+    url: "https://raw.githubusercontent.com/Wo254992/rule-set/refs/heads/main/Global_IP_ip.mrs"
 
   Twitter_域:
     <<: *Domain
@@ -649,6 +653,7 @@ rules:
   - RULE-SET,LAN_IP,🇨🇳 中国大陆
 
   - RULE-SET,Global_域,总模式
+  - RULE-SET,Global_IP,总模式
 
   - MATCH,漏网之鱼
 # —————————
