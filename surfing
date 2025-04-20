@@ -292,7 +292,7 @@ proxy-groups:
     <<: *proxy_groups
 
   - name: OpenAI
-    icon: "https://raw.githubusercontent.com/MoGuangYu/Surfing/refs/heads/rm/Home/icon/OpenAI.svg"
+    icon: "https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Bot.png"
     <<: *proxy_groups
 
   - name: GitHub
