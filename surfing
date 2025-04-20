@@ -525,10 +525,10 @@ rule-providers:
     path: ./rules/Apple_IP.mrs
     url: "https://raw.githubusercontent.com/MoGuangYu/rule/refs/heads/master/rule/Clash/Apple/Apple_OCD_IP.mrs"
 
-  OpenAI_域:
+  AI_域:
     <<: *Domain
-    path: ./rules/OpenAI.mrs
-    url: "https://raw.githubusercontent.com/MoGuangYu/rule/refs/heads/master/rule/Clash/OpenAI/OpenAI_OCD_Domain.mrs"
+    path: ./rules/AI.mrs
+    url: "https://github.com/DustinWin/ruleset_geodata/releases/download/mihomo-ruleset/ai.mrs"
   OpenAI_IP:
     <<: *IPCIDR
     path: ./rules/OpenAI_IP.mrs
@@ -637,8 +637,8 @@ rules:
   - RULE-SET,Facebook_域,Facebook
   - RULE-SET,Facebook_IP,Facebook
 
-  - RULE-SET,OpenAI_域,OpenAI
-  - RULE-SET,OpenAI_IP,OpenAI
+  - RULE-SET,AI_域,AI
+  - RULE-SET,OpenAI_IP,AI
 
   - RULE-SET,Apple_域,Apple
   - RULE-SET,Apple_IP,Apple
