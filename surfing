@@ -419,6 +419,11 @@ rule-providers:
     path: ./rules/归属地.mrs
     url: "https://raw.githubusercontent.com/Wo254992/rule-set/refs/heads/main/归属地.mrs"
 
+  Proxy_域:
+    <<: *Domain
+    path: ./rules/Proxy.mrs
+    url: "https://raw.githubusercontent.com/Wo254992/rule-set/refs/heads/main/Proxy.mrs"
+
   Emby_域:
     <<: *Domain
     path: ./rules/Emby.mrs
@@ -583,6 +588,8 @@ rule-providers:
 rules:
   - DST-PORT,53,🌐 DNS_Hijack
   - DST-PORT,853,DNS连接
+
+  - RULE-SET,Proxy_域,总模式
 
   - RULE-SET,WebRTC_端/域,WebRTC
   - RULE-SET,No-ads-all_域,广告拦截
