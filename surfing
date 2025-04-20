@@ -422,7 +422,7 @@ rule-providers:
   Proxy_域:
     <<: *Domain
     path: ./rules/Proxy.mrs
-    url: "https://raw.githubusercontent.com/Wo254992/rule-set/refs/heads/main/Proxy.mrs"
+    url: "https://raw.githubusercontent.com/Wo254992/rule-set/refs/heads/main/Proxy_域.mrs"
 
   Emby_域:
     <<: *Domain
