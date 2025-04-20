@@ -291,7 +291,7 @@ proxy-groups:
     icon: "https://raw.githubusercontent.com/MoGuangYu/Surfing/refs/heads/rm/Home/icon/Facebook.svg"
     <<: *proxy_groups
 
-  - name: OpenAI
+  - name: AI
     icon: "https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Bot.png"
     <<: *proxy_groups
 
