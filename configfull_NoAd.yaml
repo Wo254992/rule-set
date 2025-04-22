@@ -77,8 +77,6 @@ proxy-providers:
       (?i)^(?!.*(email|expire|test|total|traffic|use|used|版本|备用|不推荐|测试|到期|订阅|工单|官方|官网|官址|过期|获取|机场|客服|联系|流量|群|剩余|失联|套餐|网站|网址|下次|学术|已用|邮箱|有效))
     url: 订阅链接6
 
-# 用于下载订阅时指定UA
-global-ua: clash.meta
 
 # 全局配置
 port: 7890
