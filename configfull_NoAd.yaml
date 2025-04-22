@@ -167,25 +167,53 @@ tun:
 # 请勿随意变动！
 dns:
   enable: true
+  listen: '0.0.0.0:1053'
   ipv6: true
-  listen: 0.0.0.0:1053
+  prefer-h3: true
+  respect-rules: true
   enhanced-mode: fake-ip
   fake-ip-range: 172.20.0.1/16
+  fake-ip-filter-mode: blacklist
   fake-ip-filter:
-    - "RULE-SET:China,Lan,GoogleFCM"
-  direct-nameserver:
-    - https://doh.pub/dns-query#🇨🇳 中国大陆
-    - https://dns.alidns.com/dns-query#🇨🇳 中国大陆&h3=true
+    - '*.lan'
+    - '*.local'
+    - time.*.com
+    - time.*.gov
+    - time.*.edu.cn
+    - time.*.apple.com
+    - time-ios.apple.com
+    - time1.*.com
+    - time2.*.com
+    - time3.*.com
+    - time4.*.com
+    - time5.*.com
+    - time6.*.com
+    - time7.*.com
+    - ntp.*.com
+    - ntp1.*.com
+    - ntp2.*.com
+    - ntp3.*.com
+    - ntp4.*.com
+    - ntp5.*.com
+    - ntp6.*.com
+    - ntp7.*.com
+    - '*.time.edu.cn'
+    - '*.ntp.org.cn'
+    - '*.pool.ntp.org'
+    - +.services.googleapis.cn
+    - +.xn--ngstr-lra8j.com
+    - +.push.apple.com
+    - 5ddd.com
+    - time1.cloud.tencent.com
+  default-nameserver:
+    - 223.5.5.5
+    - 119.29.29.29
   proxy-server-nameserver:
-    - https://doh.pub/dns-query#🇨🇳 中国大陆
-    - https://dns.alidns.com/dns-query#🇨🇳 中国大陆&h3=true
-  nameserver-policy:
-    "RULE-SET:China,Microsoft,Apple":
-       - https://doh.pub/dns-query#🇨🇳 中国大陆
-       - https://dns.alidns.com/dns-query#🇨🇳 中国大陆&h3=true
+    - 'quic://dns.alidns.com/dns-query'
+    - 'https://sm2.doh.pub/dns-query'
   nameserver:
-    - https://dns.google/dns-query#DNS连接&h3=true
-    - https://cloudflare-dns.com/dns-query#DNS连接&h3=true
+    - 'quic://dns.alidns.com/dns-query'
+    - 'https://sm2.doh.pub/dns-query'
 # —————————
 anchor_policy_groups_all:
   type: select
