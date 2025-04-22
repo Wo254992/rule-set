@@ -70,48 +70,59 @@
     store-selected: true # 储存策略组选择，以供下次启动时使用
     store-fake-ip: true  # 储存 fake-ip 映射表，域名再次发生连接时使用原有映射地址
 
-  dns:
-    enable: true
-    ipv6: false
-    listen: 0.0.0.0:1053            # DNS 服务监听
-    enhanced-mode: fake-ip          # DNS 处理模式 fake-ip/redir-host
-    fake-ip-range: 198.18.0.1/16    # fake-ip/tun 模式下的 IP 段
-    fake-ip-filter-mode: blacklist  # 匹配模式 blacklist/whitelist，默认 blacklist 匹配成功则不返回 fake-ip，whitelist 匹配成功返回 fake-ip
-    fake-ip-filter:                 # fake-ip 过滤，blacklist 模式下以下地址不会下发 fake-ip 映射用于连接即使用真实 IP 连接
-      ["geosite:cn", "+.lan", "+.local", "+.localhost", "+.direct", "+.example", "+.invalid", "+.test", "+.home.arpa", "time.*.com", "time.*.gov", "time.*.edu.cn", "time.*.apple.com", "time-ios.apple.com", "time1.*.com", "time2.*.com", "time3.*.com", "time4.*.com", "time5.*.com", "time6.*.com", "time7.*.com", "ntp.*.com", "ntp1.*.com", "ntp2.*.com", "ntp3.*.com", "ntp4.*.com", "ntp5.*.com", "ntp6.*.com", "ntp7.*.com", "+.time.edu.cn", "+.ntp.org.cn", "+.pool.ntp.org", "time1.cloud.tencent.com", "+.msftconnecttest.com", "+.msftncsi.com", "stun.*.*", "stun.*.*.*", "+.stun.*.*", "+.stun.*.*.*", "+.stun.*.*.*.*", "+.stun.*.*.*.*.*"]
-    default-nameserver:       # 只用于解析 nameserver 中域名格式的 DNS 服务器，可使用 UDP/DoT/DoH，只能使用纯 IP 地址
-      - 223.5.5.5
-      - 114.114.114.114
-    # direct-nameserver:        # 用于 direct 出口域名解析的 DNS 服务器，如果不填则遵循 nameserver-policy、nameserver 和 fallback 的配置
-      # - system
-    # nameserver-policy:        # 指定域名查询的解析服务器，可使用 geosite，优先于 nameserver/fallback 查询
-      # geosite:cn, private:     # 一般只开启该项
-        # - https://223.5.5.5/dns-query
-        # - https://120.53.53.53/dns-query
-      # geosite:gfw, geolocation-!cn:
-        # - https://1.1.1.1/dns-query
-        # - https://8.8.8.8/dns-query
-    nameserver:               # 默认域名解析服务器，除 nameserver-policy 指定规则外的所有域名都由 nameserver 解析，默认走代理
-      - 223.5.5.5
-      - 114.114.114.114
-    # respect-rules: true       # DNS 连接遵守路由规则，需配置 proxy-server-nameserver
-    # proxy-server-nameserver:  # 节点域名解析服务器，仅用于解析代理节点的域名，不填则遵循 nameserver-policy、nameserver 和 fallback 的配置
-      # - https://223.5.5.5/dns-query
-      # - https://120.53.53.53/dns-query
-    # fallback:                 # 后备域名解析服务器，一般情况下使用境外 DNS，保证结果可信，配置 fallback 后默认启用 fallback-filter，geoip-code 为 cn
-      # - tls://8.8.4.4
-      # - tls://1.1.1.1
-    # fallback-filter:          # 后备域名解析服务器筛选，满足条件的将使用 fallback 结果或只使用 fallback 解析
-      # geoip: true
-      # geoip-code:cn
-      # geosite:
-        # - gfw
-      # ipcidr:
-        # - 240.0.0.0/4
-      # domain:
-        # - "+.google.com"
-        # - "+.facebook.com"
-        # - "+.youtube.com"
+# DNS模块
+dns:
+  enable: true
+  listen: 0.0.0.0:1053
+  ipv6: true
+  prefer-h3: true # 是否开启 DoH 支持 HTTP/3，将并发尝试
+  respect-rules: true
+  # 模式切换 redir-host / fake-ip
+  enhanced-mode: fake-ip
+  fake-ip-range: 172.20.0.1/16
+  # 模式切换 whitelist/blacklist 
+  # 黑名单模式表示如果匹配成功则不返回 Fake-IP, 白名单模式时只有匹配成功才返回 Fake-IP
+  fake-ip-filter-mode: blacklist
+  fake-ip-filter:
+    - "*.lan"
+    - "*.local"
+    - time.*.com
+    - time.*.gov
+    - time.*.edu.cn
+    - time.*.apple.com
+    - time-ios.apple.com
+    - time1.*.com
+    - time2.*.com
+    - time3.*.com
+    - time4.*.com
+    - time5.*.com
+    - time6.*.com
+    - time7.*.com
+    - ntp.*.com
+    - ntp1.*.com
+    - ntp2.*.com
+    - ntp3.*.com
+    - ntp4.*.com
+    - ntp5.*.com
+    - ntp6.*.com
+    - ntp7.*.com
+    - "*.time.edu.cn"
+    - "*.ntp.org.cn"
+    - "*.pool.ntp.org"
+    - "+.services.googleapis.cn"
+    - "+.xn--ngstr-lra8j.com"
+    - "+.push.apple.com"
+    - 5ddd.com
+    - time1.cloud.tencent.com
+  default-nameserver:
+    - 223.5.5.5
+    - 119.29.29.29
+  proxy-server-nameserver:
+    - quic://dns.alidns.com/dns-query
+    - https://sm2.doh.pub/dns-query 
+  nameserver:
+    - quic://dns.alidns.com/dns-query
+    - https://sm2.doh.pub/dns-query
 
   sniffer:
     enable: true
