@@ -223,265 +223,667 @@ dns:
 
 
 
-proxies: 
-  - name: "🟢 直连"
-    type: direct
-    udp: true        
+# 代理组
+  proxy-groups:
+    # 策略组
+      # 大类速选策略组
+      - name: 默认代理
+        type: select
+        proxies: [全球直连, 全球拦截, 省流节点, 省流自动, 香港手动, 台湾手动, 狮城手动,  日本手动,  美国手动, 香港自动, 台湾自动, 狮城自动,  日本自动,  美国自动, 家宽自选, 常用自选, 冷门自选, 节点集合]
+        icon: https://raw.githubusercontent.com/sunfing/iNg/main/Icons/GeneralIcons/ClashMeta.png
 
+      - name: 即时通讯
+        <<: *anchor_policy_groups_default
+        icon: https://raw.githubusercontent.com/sunfing/iNg/main/Icons/GeneralIcons/Speaker.png
 
+      - name: 新闻社交
+        <<: *anchor_policy_groups_default
+        icon: https://raw.githubusercontent.com/sunfing/iNg/main/Icons/GeneralIcons/News.png
 
+      - name: 语言模型
+        <<: *anchor_policy_groups_default
+        icon: https://raw.githubusercontent.com/sunfing/iNg/main/Icons/GeneralIcons/AIGC.png
 
+      - name: 流媒体集
+        type: select
+        proxies: [全球直连, 默认代理, 省流节点, 省流自动, 流媒自动, 港流媒体, 台流媒体, 狮流媒体,  日流媒体,  美流媒体, 香港自动, 台湾自动, 狮城自动,  日本自动,  美国自动, 家宽自选, 常用自选, 冷门自选, 节点集合]
+        icon: https://raw.githubusercontent.com/sunfing/iNg/main/Icons/GeneralIcons/Clapper.png
 
-# 策略组
-proxy-groups:
-  - {name: 节点选择, type: select, proxies: [香港自动, 新加坡自动, 日本自动, 台湾自动, 美国自动, 故障转移, 香港节点, 新加坡节点, 日本节点, 台湾节点, 美国节点, 其它节点, 全部节点, 自建/家宽节点, 🟢 直连], icon: "https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Proxy.png"}
-  - {name: YouTube, <<: *Proxy_first, icon: "https://raw.githubusercontent.com/sunfing/iNg/refs/heads/main/Icons/GeneralIcons/YouTube.png"}
-  - {name: FCM, <<: *Proxy_first, icon: "https://raw.githubusercontent.com/sunfing/iNg/refs/heads/main/Icons/GeneralIcons/GoogleDrive.png"}
-  - {name: GoogleVPN, <<: *Proxy_first, icon: "https://raw.githubusercontent.com/Wo254992/ko/refs/heads/main/GoogleVPN.png"}
-  - {name: Google, <<: *Proxy_first, icon: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/icon/color/google.png"}
-  - {name: Meta, <<: *Proxy_first, icon: "https://raw.githubusercontent.com/Koolson/Qure/refs/heads/master/IconSet/Color/Facebook.png"}
-  - {name: AI, <<: *Proxy_first, icon: "https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Bot.png"}
-  - {name: GitHub, <<: *Proxy_first, icon: "https://raw.githubusercontent.com/sunfing/iNg/refs/heads/main/Icons/GeneralIcons/GitHub.png"}
-  - {name: OneDrive, <<: *Proxy_first, icon: "https://raw.githubusercontent.com/Koolson/Qure/refs/heads/master/IconSet/Color/OneDrive.png"}
-  - {name: Microsoft, <<: *Proxy_first, icon: "https://raw.githubusercontent.com/Koolson/Qure/refs/heads/master/IconSet/Color/Microsoft.png"}
-  - {name: Telegram, <<: *Proxy_first, icon: "https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Telegram.png"}
-  - {name: Discord, <<: *Proxy_first, icon: "https://raw.githubusercontent.com/Koolson/Qure/refs/heads/master/IconSet/Color/Discord.png"}
-  - {name: Talkatone, <<: *Proxy_first, icon: "https://raw.githubusercontent.com/Lanlan13-14/Rules/refs/heads/main/icon/talkatone.png"}
-  - {name: LINE, <<: *Proxy_first, icon: "https://raw.githubusercontent.com/Koolson/Qure/refs/heads/master/IconSet/Color/Line.png"}
-  - {name: Signal, <<: *Proxy_first, icon: "https://raw.githubusercontent.com/Lanlan13-14/Rules/refs/heads/main/icon/signal.png"}
-  - {name: TikTok, <<: *Proxy_first, icon: "https://raw.githubusercontent.com/Koolson/Qure/refs/heads/master/IconSet/Color/TikTok.png"}
-  - {name: NETFLIX, <<: *Proxy_first, icon: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/icon/color/netflix.png"}
-  - {name: DisneyPlus, <<: *Proxy_first, icon: "https://raw.githubusercontent.com/Koolson/Qure/refs/heads/master/IconSet/Color/Disney+.png"}
-  - {name: HBO, <<: *Proxy_first, icon: "https://raw.githubusercontent.com/Koolson/Qure/refs/heads/master/IconSet/Color/HBO.png"}
-  - {name: Primevideo, <<: *Proxy_first, icon: "https://raw.githubusercontent.com/Koolson/Qure/refs/heads/master/IconSet/Color/Prime_Video.png"}
-  - {name: AppleTV, <<: *Proxy_first, icon: "https://raw.githubusercontent.com/Koolson/Qure/refs/heads/master/IconSet/Color/Apple_TV.png"}
-  - {name: Apple, type: select, <<: *Direct_first, icon: "https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Apple.png"}
-  - {name: Emby,type: select, <<: *Proxy_first, icon: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/icon/color/emby.png}
-  - {name: 哔哩哔哩, type: select, <<: *Direct_first, icon: "https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/bilibili.png"}
-  - {name: 哔哩东南亚, type: select, proxies: [节点选择, 新加坡自动, 新加坡节点, 全部节点, 自建/家宽节点, 全球直连], icon: "https://raw.githubusercontent.com/Lanlan13-14/Rules/refs/heads/main/icon/bilibilit.png"}
-  - {name: 巴哈姆特, type: select, proxies: [台湾节点, 台湾自动], icon: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/icon/color/bahamut.png"}
-  - {name: Spotify, <<: *Proxy_first, icon: "https://raw.githubusercontent.com/Koolson/Qure/refs/heads/master/IconSet/Color/Spotify.png"}
-  - {name: 国内媒体, type: select, <<: *Direct_first, icon: "https://raw.githubusercontent.com/Koolson/Qure/refs/heads/master/IconSet/Color/DomesticMedia.png"}
-  - {name: Global-TV,type: select, <<: *Proxy_first, icon: "https://raw.githubusercontent.com/Lanlan13-14/Rules/refs/heads/main/icon/global_tv.png"}
-  - {name: Global-Medial,type: select, <<: *Proxy_first, icon: "https://raw.githubusercontent.com/Lanlan13-14/Rules/refs/heads/main/icon/global_media.png"}
-  - {name: 游戏平台, <<: *Proxy_first, icon: "https://raw.githubusercontent.com/sunfing/iNg/refs/heads/main/Icons/GeneralIcons/Game.png"}
-  - {name: Speedtest,type: select, <<: *Proxy_first, icon: "https://raw.githubusercontent.com/Koolson/Qure/refs/heads/master/IconSet/Color/TestFlight.png"}
-  - {name: PayPal, <<: *Proxy_first, icon: "https://raw.githubusercontent.com/Koolson/Qure/refs/heads/master/IconSet/Color/PayPal.png"}
-  - {name: Wise, <<: *Proxy_first, icon: "https://raw.githubusercontent.com/Lanlan13-14/Rules/refs/heads/main/icon/wise.png"}
-  - {name: 国外电商, <<: *Proxy_first, icon: "https://raw.githubusercontent.com/Lanlan13-14/Rules/refs/heads/main/icon/shopping.png"}
-  - {name: STEAM,type: select, <<: *Proxy_first, icon: "https://raw.githubusercontent.com/Koolson/Qure/refs/heads/master/IconSet/Color/Steam.png"}
-  - {name: 全球直连, type: select, proxies: [🟢 直连, 节点选择], icon: "https://raw.githubusercontent.com/sunfing/iNg/refs/heads/main/Icons/GeneralIcons/Direct.png"}
-  - {name: Final, type: select, <<: *Proxy_first,  icon: "https://raw.githubusercontent.com/sunfing/iNg/refs/heads/main/Icons/GeneralIcons/Final.png"}
-  - {name: 自建/家宽节点, type: select, include-all: true, filter: "(?i)(自建|CF|The_house|Fam|private)", icon: "https://raw.githubusercontent.com/Lanlan13-14/Rules/refs/heads/main/icon/private_node.png"}
-  - {name: 香港节点, type: select, include-all: true, filter: "(?i)(港|hk|hongkong|Hong Kong)", icon: "https://raw.githubusercontent.com/Lanlan13-14/Rules/refs/heads/main/icon/Hongkong.png"}
-  - {name: 新加坡节点, type: select, include-all: true, filter: "(?i)(新|🇸🇬|SG|singapore)", icon: "https://raw.githubusercontent.com/Lanlan13-14/Rules/refs/heads/main/icon/Singapore.png"}
-  - {name: 日本节点, type: select, include-all: true, filter: "(?i)(日本|🇯🇵|JP|Japan)", icon: "https://raw.githubusercontent.com/Lanlan13-14/Rules/refs/heads/main/icon/Japan.png"}
-  - {name: 台湾节点, type: select, include-all: true, filter: "(?i)(台|🇹🇼|TW|Taiwan)", icon: "https://raw.githubusercontent.com/Lanlan13-14/Rules/refs/heads/main/icon/Taiwan_China.png"}
-  - {name: 美国节点, type: select, include-all: true, filter: "(?i)(美|🇺🇲|US|America|United States)" ,exclude-filter: "(?i)(Australia|Russia)", icon: "https://raw.githubusercontent.com/Lanlan13-14/Rules/refs/heads/main/icon/America.png"}
-  - {name: 其它节点, type: select, include-all: true, filter: "^(?!.*(🇭🇰|🇯🇵|🇺🇸|🇸🇬|🇨🇳|🇰🇷|港|KR|Korea|KOR|首尔|韩|韓|hk|hongkong|台|tw|taiwan|日|jp|japan|新|sg|singapore|美|us|unitedstates)).*$", icon: "https://raw.githubusercontent.com/Lanlan13-14/Icon-for-webui/refs/heads/main/global.png"}
-  - {name: 香港自动, type: url-test, include-all: true, tolerance: 20, interval: 300, filter: "(?i)(香港|hk|hongkong|Hong Kong)" ,exclude-filter: "(?i)(The_HK_automation|wcloud|0倍|0\\.1倍|0\\.01倍|0\\.3X|0\\.2x|0\\.5x|3X|2x|1\\.5x|traffic|plus)", icon: "https://raw.githubusercontent.com/Lanlan13-14/Rules/refs/heads/main/icon/automation2.png"}
-  - {name: 新加坡自动, type: url-test, include-all: true, tolerance: 20, interval: 300, filter: "(?i)(新|🇸🇬|SG|Singapore)" ,exclude-filter: "(?i)(The_SG_automation|wcloud|0倍|0\\.1倍|0\\.01倍|0\\.3X|0\\.2x|0\\.5x|3X|2x|1\\.5x|traffic|plus)", icon: "https://raw.githubusercontent.com/Lanlan13-14/Rules/refs/heads/main/icon/automation2.png"}
-  - {name: 日本自动, type: url-test, include-all: true, tolerance: 20, interval: 300, filter: "(?i)(日本|🇯🇵|JP|Japan)" ,exclude-filter: "(?i)(The_JP_automation|wcloud|0倍|0\\.1倍|0\\.01倍|0\\.3X|0\\.2x|0\\.5x|3X|2x|1\\.5x|traffic|plus)", icon: "https://raw.githubusercontent.com/Lanlan13-14/Rules/refs/heads/main/icon/automation2.png"}
-  - {name: 台湾自动, type: url-test, include-all: true, tolerance: 20, interval: 300, filter: "(?i)(台|🇹🇼|TW|Taiwan)" ,exclude-filter: "(?i)(The_TW_automation|wcloud|0倍|0\\.1倍|0\\.01倍|0\\.3X|0\\.2x|0\\.5x|3X|2x|1\\.5x|traffic|plus)", icon: "https://raw.githubusercontent.com/Lanlan13-14/Rules/refs/heads/main/icon/automation2.png"}
-  - {name: 美国自动, type: url-test, include-all: true, tolerance: 20, interval: 300, filter: "(?i)(美|🇺🇲|US|America|united States)" ,exclude-filter: "(?i)(The_US_automation|wcloud|0倍|0\\.1倍|0\\.01倍|0\\.3X|0\\.2x|0\\.5x|3X|2x|1\\.5x|russia|austria|plus|traffic|Australia|rus|aus)", icon: "https://raw.githubusercontent.com/Lanlan13-14/Rules/refs/heads/main/icon/automation2.png"}
-  - {name: 故障转移, type: fallback, include-all: true, interval: 300, exclude-filter: "(?i)(🟢 直连)", icon: "https://raw.githubusercontent.com/Lanlan13-14/Rules/refs/heads/main/icon/fallback.png"}
-  - {name: 全部节点, type: select, include-all: true, tolerance: 20, interval: 300, exclude-filter: "(?i)(🟢 直连)", icon: "https://raw.githubusercontent.com/Lanlan13-14/Rules/refs/heads/main/icon/all.png"}
-  - {name: GLOBAL, type: select, include-all: true , proxies: [节点选择, YouTube, GoogleVPN, FCM, Google, Meta, AI, GitHub, OneDrive, Microsoft, Telegram, Discord, Talkatone, LINE, Signal, TikTok, NETFLIX, DisneyPlus, HBO, Primevideo, AppleTV, Apple, Emby, 哔哩哔哩, 哔哩东南亚, 巴哈姆特, Spotify, 国内媒体, Global-TV, Global-Medial, 游戏平台, Speedtest, PayPal, Wise, 国外电商, STEAM, 全球直连, Final, 自建/家宽节点, 香港节点, 新加坡节点, 日本节点, 台湾节点, 美国节点, 其它节点, 香港自动, 新加坡自动, 日本自动, 台湾自动, 美国自动, 故障转移, 全部节点], exclude-filter: "(?i)(🟢 直连)", icon: "https://raw.githubusercontent.com/Lanlan13-14/Rules/refs/heads/main/icon/global.png"}
-rules:   
-  - RULE-SET,wechat_domain,全球直连
-  - RULE-SET,wechat_asn,全球直连,no-resolve
-  - RULE-SET,github_domain,GitHub
-  - RULE-SET,gitbook_domain,GitHub
-  - RULE-SET,speedtest_domain,Speedtest
-  - RULE-SET,Cloudflare_domain,节点选择
-  - RULE-SET,Wise_domain,Wise
-  - RULE-SET,paypal_domain,PayPal
-  - RULE-SET,proxy_domain,节点选择
-  - RULE-SET,proxy0_domain,节点选择
-  - RULE-SET,ai!cn_domain,AI
-  - RULE-SET,ai_domain,AI
-  - RULE-SET,openai_domain,AI
-  - RULE-SET,ai_ip,AI,no-resolve
-  - RULE-SET,biliintl_domain,哔哩东南亚
-  - RULE-SET,bilibili_domain,哔哩哔哩
-  - RULE-SET,bahamut_domain,巴哈姆特
-  - RULE-SET,bank_cn_domain,全球直连
-  - RULE-SET,ai_cn_domain,全球直连
-  - RULE-SET,direct_domain,全球直连
-  - RULE-SET,alibaba_domain,全球直连
-  - RULE-SET,115_domain,全球直连
-  - RULE-SET,aliyun_domain,全球直连
-  - RULE-SET,googlevpn_domain,GoogleVPN
-  - RULE-SET,youtube_domain,YouTube
-  - RULE-SET,fcm_domain,FCM
-  - RULE-SET,google_domain,Google
-  - RULE-SET,google_asn_cn,Google,no-resolve
-  - RULE-SET,google_ip,Google,no-resolve
-  - RULE-SET,onedrive_domain,OneDrive
-  - RULE-SET,microsoft_domain,Microsoft
-  - RULE-SET,telegram_domain,Telegram
-  - RULE-SET,telegram_ip,Telegram,no-resolve
-  - RULE-SET,line_domain,LINE
-  - RULE-SET,talkatone_domain,Talkatone
-  - RULE-SET,talkatone_ip,Talkatone,no-resolve
-  - RULE-SET,discord_domain,Discord
-  - RULE-SET,discord_asn,Discord,no-resolve
-  - RULE-SET,signal_domain,Signal
-  - RULE-SET,iptv_domain,全球直连
-  - RULE-SET,private_domain,全球直连
-  - RULE-SET,xiaomi_domain,全球直连
-  - RULE-SET,steam_cn_domain,全球直连
-  - RULE-SET,steamcdn_domain,全球直连
-  - RULE-SET,steamcdn_ip,全球直连,no-resolve
-  - RULE-SET,NetEaseMusic_domain,全球直连
-  - RULE-SET,NetEaseMusic_ip,全球直连,no-resolve
-  - RULE-SET,pt_cn_domain,全球直连
-  - RULE-SET,public-tracker_domain,全球直连
-  - RULE-SET,media_cn_domain,国内媒体
-  - RULE-SET,appleTV_domain,AppleTV
-  - RULE-SET,apple_cn_domain,全球直连
-  - RULE-SET,apple_firmware_domain,Apple
-  - RULE-SET,apple_domain,Apple
-  - RULE-SET,tiktok_domain,TikTok
-  - RULE-SET,netflix_domain,NETFLIX
-  - RULE-SET,netflix_ip,NETFLIX,no-resolve
-  - RULE-SET,disney_domain,DisneyPlus
-  - RULE-SET,hbo_domain,HBO
-  - RULE-SET,primevideo_domain,Primevideo
-  - RULE-SET,emby_domain,Emby
-  - RULE-SET,emby_ip,Emby,no-resolve
-  - RULE-SET,spotify_domain,Spotify
-  - RULE-SET,facebook_domain,Meta
-  - RULE-SET,whatsapp_domain,Meta
-  - RULE-SET,instagram_domain,Meta
-  - RULE-SET,threads_domain,Meta
-  - RULE-SET,meta_domain,Meta
-  - RULE-SET,facebook_ip,Meta,no-resolve
-  - RULE-SET,twitch_domain,Global-TV
-  - RULE-SET,porn_domain,Global-TV
-  - RULE-SET,TVB_domain,Global-TV
-  - RULE-SET,media!cn_domain,Global-Medial
-  - RULE-SET,twitter_ip,节点选择,no-resolve
-  - RULE-SET,steam_domain,STEAM
-  - RULE-SET,Epic_domain,游戏平台
-  - RULE-SET,EA_domain,游戏平台
-  - RULE-SET,Blizzard_domain,游戏平台
-  - RULE-SET,UBI_domain,游戏平台
-  - RULE-SET,Sony_domain,游戏平台
-  - RULE-SET,Nintendo_domain,游戏平台
-  - RULE-SET,ifast_domain,全球直连
-  - RULE-SET,Amazon_domain,国外电商
-  - RULE-SET,Amazon_ip,国外电商,no-resolve
-  - RULE-SET,Shopee_domain,国外电商
-  - RULE-SET,Shopify_domain,国外电商
-  - RULE-SET,ebay_domain,国外电商
-  - RULE-SET,gfw_domain,节点选择
-  - RULE-SET,Global_domain,节点选择
-  - RULE-SET,geolocation-!cn,节点选择
-  - RULE-SET,cn_domain,全球直连
-  - RULE-SET,cn_ip,全球直连,no-resolve
-  - MATCH,Final
-rule-anchor:
-  ip: &ip {type: http, interval: 86400, behavior: ipcidr, format: mrs}
-  ip_text: &ip_text {type: http, interval: 86400, behavior: ipcidr, format: text}
-  ip_yaml: &ip_yaml {type: http, interval: 86400, behavior: ipcidr, format: yaml}
-  domain: &domain {type: http, interval: 86400, behavior: domain, format: mrs}
-  domain_text: &domain_text {type: http, interval: 86400, behavior: domain, format: text}
-  domain_yaml: &domain_yaml {type: http, interval: 86400, behavior: domain, format: yaml}
-  class: &class {type: http, interval: 86400, behavior: classical, format: text}
-  class_yaml: &class_yaml {type: http, interval: 86400, behavior: classical, format: yaml}
-rule-providers: 
-  github_domain: { <<: *class_yaml, url: "https://raw.githubusercontent.com/Wo254992/rule-set/refs/heads/main/Github.yaml" }
-  private_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/private.mrs" }
-  bank_cn_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/category-bank-cn.mrs" }
-  xiaomi_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/xiaomi.mrs" }
-  biliintl_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/bilibili%40!cn.mrs" }
-  bilibili_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/bilibili.mrs" }
-  bahamut_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/bahamut.mrs" }
-  spotify_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/spotify.mrs" }
-  steam_cn_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/steam%40cn.mrs" }
-  steamcdn_domain: { <<: *domain, url: "https://raw.githubusercontent.com/Lanlan13-14/Rules/refs/heads/main/rules/Domain/Steam-domain.mrs" }
-  steam_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/steam.mrs" }
-  ai!cn_domain: { <<: *domain, url: "https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/meta/geo/geosite/category-ai-!cn.mrs" }
-  openai_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/openai.mrs" }
-  youtube_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/youtube.mrs" }
-  google_domain: { <<: *domain, url: "https://raw.githubusercontent.com/Lanlan13-14/Rules/refs/heads/main/rules/Domain/google.mrs" }
-  telegram_domain: { <<: *class, url: "https://raw.githubusercontent.com/Wo254992/rule-set/refs/heads/main/telegram.list" }
-  netflix_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/netflix.mrs" }
-  paypal_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/paypal.mrs" }
-  onedrive_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/onedrive.mrs" }
-  microsoft_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/microsoft.mrs" }
-  apple_firmware_domain: { <<: *domain, url: "https://raw.githubusercontent.com/Lanlan13-14/Rules/refs/heads/main/rules/Domain/applefirmware.mrs" }
-  apple_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/apple.mrs" }
-  speedtest_domain: { <<: *class, url: "https://raw.githubusercontent.com/Wo254992/rule-set/refs/heads/main/Check.list" }
-  tiktok_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/tiktok.mrs" }
-  gfw_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/gfw.mrs" }
-  geolocation-!cn: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/geolocation-!cn.mrs" }
-  cn_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/cn.mrs" }
-  media_cn_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/category-media-cn.mrs" }
-  media!cn_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/category-social-media-!cn.mrs" }
-  Cloudflare_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/cloudflare.mrs" }
-  gitbook_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/gitbook.mrs" }
-  disney_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/disney.mrs" }
-  hbo_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/hbo.mrs" }
-  primevideo_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/primevideo.mrs" }
-  NetEaseMusic_domain: { <<: *domain, url: "https://raw.githubusercontent.com/Lanlan13-14/Rules/refs/heads/main/rules/Domain/NetEaseMusic-domain.mrs" }
-  Amazon_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/amazon.mrs" }
-  Shopee_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/shopee.mrs" }
-  ebay_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/ebay.mrs" }
-  appleTV_domain: { <<: *domain, url: "https://raw.githubusercontent.com/Lanlan13-14/Rules/refs/heads/main/rules/Domain/appletv.mrs" }
-  Epic_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/epicgames.mrs" }
-  EA_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/ea.mrs" }
-  Blizzard_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/blizzard.mrs" }
-  UBI_domain: { <<: *domain, url: "https://raw.githubusercontent.com/Lanlan13-14/Rules/refs/heads/main/rules/Domain/ubi.mrs" }
-  Sony_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/sony.mrs" }
-  Nintendo_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/nintendo.mrs" }
-  facebook_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/facebook.mrs" }
-  whatsapp_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/whatsapp.mrs" }
-  instagram_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/instagram.mrs" }       
-  threads_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/threads.mrs" }
-  meta_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/meta.mrs" }
-  Wise_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/wise.mrs" }
-  ifast_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/ifast.mrs" }
-  line_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/line.mrs" }
-  talkatone_domain: { <<: *domain, url: "https://raw.githubusercontent.com/Lanlan13-14/Rules/refs/heads/main/rules/Domain/Talkatone-domain.mrs" }
-  Shopify_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/shopify.mrs" }
-  signal_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/signal.mrs" }
-  wechat_domain: { <<: *domain, url: "https://raw.githubusercontent.com/Lanlan13-14/Rules/refs/heads/main/rules/Domain/WeChat.mrs" }
-  proxy_domain: { <<: *domain, url: "https://raw.githubusercontent.com/Lanlan13-14/Rules/refs/heads/main/rules/Domain/proxy.mrs" }
-  proxy0_domain: { <<: *class, url: "https://raw.githubusercontent.com/Wo254992/rule-set/refs/heads/main/Proxy.list" }
-  direct_domain: { <<: *domain, url: "https://raw.githubusercontent.com/Lanlan13-14/Rules/refs/heads/main/rules/Domain/direct.mrs" }
-  apple_cn_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/apple%40cn.mrs" }
-  alibaba_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/alibaba.mrs" }
-  ai_cn_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/category-ai-cn.mrs" }
-  discord_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/discord.mrs" }
-  fcm_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/googlefcm.mrs" }
-  emby_domain: { <<: *class, url: "https://raw.githubusercontent.com/Wo254992/rule-set/refs/heads/main/userEmby.list" }
-  pt_cn_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/category-pt.mrs" }
-  public-tracker_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/category-public-tracker.mrs" }
-  115_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/115.mrs" }
-  aliyun_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/aliyun.mrs" }
-  twitch_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/twitch.mrs" }
-  porn_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/category-porn.mrs" }
-  iptv_domain: { <<: *domain, url: "https://raw.githubusercontent.com/Lanlan13-14/Rules/refs/heads/main/rules/Domain/iptv.mrs" }
-  googlevpn_domain: { <<: *domain, url: "https://raw.githubusercontent.com/Lanlan13-14/Rules/refs/heads/main/rules/Domain/googleVPN.mrs" }
-  ai_domain: { <<: *domain, url: "https://raw.githubusercontent.com/Lanlan13-14/Rules/refs/heads/main/rules/Domain/ai.mrs" }
-  TVB_domain: { <<: *domain, url: "https://raw.githubusercontent.com/Lanlan13-14/Rules/refs/heads/main/rules/Domain/tvb.mrs" }
-  Global_domain: { <<: *class, url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Global/Global.list" }
+      - name: 流媒自动
+        type: url-test
+        url: http://www.gstatic.com/generate_204
+        interval: 300
+        tolerance: 20
+        timeout: 3000
+        max-failed-times: 3
+        lazy: true
+        disable-udp: false
+        proxies: [港流媒体, 台流媒体, 狮流媒体,  日流媒体,  美流媒体]
+        icon: https://raw.githubusercontent.com/sunfing/iNg/main/Icons/GeneralIcons/Star.png
+        # hidden: true
 
-  ai_ip: { <<: *ip, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geoip/ai.mrs" }
-  cn_ip: { <<: *ip, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/cn.mrs" }
-  google_ip: { <<: *ip, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/google.mrs" }
-  telegram_ip: { <<: *ip, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/telegram.mrs" }
-  netflix_ip: { <<: *ip, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/netflix.mrs" }
-  Amazon_ip: { <<: *ip, url: "https://raw.githubusercontent.com/Lanlan13-14/Rules/refs/heads/main/rules/IP/amazon-ip.mrs" }
-  facebook_ip: { <<: *ip, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geoip/facebook.mrs" }
-  twitter_ip: { <<: *ip, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geoip/twitter.mrs" }
-  talkatone_ip: { <<: *ip, url: "https://raw.githubusercontent.com/Lanlan13-14/Rules/refs/heads/main/rules/IP/Talkatone-ip.mrs" }
-  steamcdn_ip: { <<: *ip, url: "https://raw.githubusercontent.com/Lanlan13-14/Rules/refs/heads/main/rules/IP/steamCDN-ip.mrs" }
-  NetEaseMusic_ip: { <<: *ip, url: "https://raw.githubusercontent.com/Lanlan13-14/Rules/refs/heads/main/rules/IP/NetEaseMusic-ip.mrs" }
-  emby_ip: { <<: *ip, url: "https://raw.githubusercontent.com/Lanlan13-14/Rules/refs/heads/main/rules/IP/emby-ip.mrs" }
+      # 节点测速策略组
+      - name: 速度测试
+        type: select
+        proxies: [全球直连, 默认代理, 节点集合]
+        icon: https://raw.githubusercontent.com/sunfing/iNg/main/Icons/GeneralIcons/Speedtest.png
 
-  google_asn_cn: { <<: *ip, url: "https://raw.githubusercontent.com/Lanlan13-14/Rules/refs/heads/main/rules/IP/AS24424.mrs" }
-  discord_asn: { <<: *ip, url: "https://raw.githubusercontent.com/Lanlan13-14/Rules/refs/heads/main/rules/IP/AS49544.mrs" }
-  wechat_asn: { <<: *ip, url: "https://raw.githubusercontent.com/Lanlan13-14/Rules/refs/heads/main/rules/IP/AS132203.mrs" }
+      # 细分套娃策略组
+      - name: 电报消息
+        <<: *anchor_policy_groups_message
+        icon: https://raw.githubusercontent.com/sunfing/iNg/main/Icons/GeneralIcons/Telegram.png
+
+      - name: 语音社群
+        <<: *anchor_policy_groups_message
+        icon: https://raw.githubusercontent.com/sunfing/iNg/main/Icons/GeneralIcons/Discord.png
+
+      - name: 苹果新闻
+        <<: *anchor_policy_groups_newssocialize
+        icon: https://raw.githubusercontent.com/sunfing/iNg/main/Icons/GeneralIcons/AppleNews.png
+
+      - name: 推特推特
+        <<: *anchor_policy_groups_newssocialize
+        icon: https://raw.githubusercontent.com/sunfing/iNg/main/Icons/GeneralIcons/Twitter.png
+
+      - name: 晒照片墙
+        <<: *anchor_policy_groups_newssocialize
+        icon: https://raw.githubusercontent.com/sunfing/iNg/main/Icons/GeneralIcons/Instagram.png
+
+      - name: ChatGPT
+        <<: *anchor_policy_groups_aigc
+        icon: https://raw.githubusercontent.com/sunfing/iNg/main/Icons/GeneralIcons/OpenAI1.png
+
+      - name: Claude
+        <<: *anchor_policy_groups_aigc
+        icon: https://raw.githubusercontent.com/sunfing/iNg/main/Icons/GeneralIcons/ClaudeAI.png
+
+      - name: Gemini
+        <<: *anchor_policy_groups_aigc
+        icon: https://raw.githubusercontent.com/sunfing/iNg/main/Icons/GeneralIcons/Gemini.png
+
+      - name: Copilot
+        <<: *anchor_policy_groups_aigc
+        icon: https://raw.githubusercontent.com/sunfing/iNg/main/Icons/GeneralIcons/Copilot.png
+
+      - name: 媒体中心
+        <<: *anchor_policy_groups_mediahub
+        icon: https://raw.githubusercontent.com/sunfing/iNg/main/Icons/GeneralIcons/Emby.png
+
+      # - name: 媒体中心*
+        # <<: *anchor_policy_groups_mediahub
+        # icon: https://raw.githubusercontent.com/sunfing/iNg/main/Icons/GeneralIcons/Emby.png
+
+      - name: 声田音乐
+        <<: *anchor_policy_groups_streammedia
+        icon: https://raw.githubusercontent.com/sunfing/iNg/main/Icons/GeneralIcons/Spotify.png
+
+      - name: 油管音乐
+        <<: *anchor_policy_groups_streammedia
+        icon: https://raw.githubusercontent.com/sunfing/iNg/main/Icons/GeneralIcons/YouTubeMusic.png
+
+      - name: 抖音国际
+        <<: *anchor_policy_groups_streammedia
+        icon: https://raw.githubusercontent.com/sunfing/iNg/main/Icons/GeneralIcons/TikTok.png
+
+      - name: 推趣直播
+        <<: *anchor_policy_groups_streammedia
+        icon: https://raw.githubusercontent.com/sunfing/iNg/main/Icons/GeneralIcons/Twitch.png
+
+      - name: 哔哩哔哩
+        <<: *anchor_policy_groups_streammedia
+        icon: https://raw.githubusercontent.com/sunfing/iNg/main/Icons/GeneralIcons/Bilibili.png
+
+      - name: 油管视频
+        <<: *anchor_policy_groups_streammedia
+        icon: https://raw.githubusercontent.com/sunfing/iNg/main/Icons/GeneralIcons/YouTube.png
+
+      - name: 苹果电视
+        <<: *anchor_policy_groups_streammedia
+        icon: https://raw.githubusercontent.com/sunfing/iNg/main/Icons/GeneralIcons/AppleTV.png
+
+      - name: 奈飞视频
+        <<: *anchor_policy_groups_streammedia
+        icon: https://raw.githubusercontent.com/sunfing/iNg/main/Icons/GeneralIcons/Netflix.png
+
+      - name: 迪士尼加
+        <<: *anchor_policy_groups_streammedia
+        icon: https://raw.githubusercontent.com/sunfing/iNg/main/Icons/GeneralIcons/Disney+.png
+
+      - name: 麦克斯斯
+        <<: *anchor_policy_groups_streammedia
+        icon: https://raw.githubusercontent.com/sunfing/iNg/main/Icons/GeneralIcons/HBO.png
+
+      - name: 亚马逊逊
+        <<: *anchor_policy_groups_streammedia
+        icon: https://raw.githubusercontent.com/sunfing/iNg/main/Icons/GeneralIcons/PrimeVideo.png
+
+      # 细分默认策略组
+      - name: 下载服务
+        <<: *anchor_policy_groups_default
+        icon: https://raw.githubusercontent.com/sunfing/iNg/main/Icons/GeneralIcons/iCloud.png
+
+      - name: 开源托管
+        <<: *anchor_policy_groups_default
+        icon: https://raw.githubusercontent.com/sunfing/iNg/refs/heads/main/Icons/GeneralIcons/GitHub.png
+
+      - name: 云端防护
+        <<: *anchor_policy_groups_default
+        icon: https://raw.githubusercontent.com/sunfing/iNg/main/Icons/GeneralIcons/Cloudflare.png
+
+      - name: 苹果服务
+        <<: *anchor_policy_groups_default
+        icon: https://raw.githubusercontent.com/sunfing/iNg/main/Icons/GeneralIcons/Apple.png
+
+      - name: 微软服务
+        <<: *anchor_policy_groups_default
+        icon: https://raw.githubusercontent.com/sunfing/iNg/main/Icons/GeneralIcons/Microsoft.png
+
+      - name: 谷歌服务
+        <<: *anchor_policy_groups_default
+        icon: https://raw.githubusercontent.com/sunfing/iNg/main/Icons/GeneralIcons/Google.png
+
+      - name: 游戏服务
+        <<: *anchor_policy_groups_default
+        icon: https://raw.githubusercontent.com/sunfing/iNg/main/Icons/GeneralIcons/Game.png
+
+      # 流量兜底策略组
+      - name: 漏网之鱼
+        <<: *anchor_policy_groups_default
+        icon: https://raw.githubusercontent.com/sunfing/iNg/main/Icons/GeneralIcons/Final.png
+
+      # 直连与拦截策略组
+      - name: 全球直连
+        type: select
+        proxies: [DIRECT, REJECT]
+        icon: https://raw.githubusercontent.com/sunfing/iNg/main/Icons/GeneralIcons/Direct.png
+        # hidden: true
+
+      - name: 全球拦截
+        type: select
+        proxies: [REJECT, DIRECT]
+        icon: https://raw.githubusercontent.com/sunfing/iNg/main/Icons/GeneralIcons/Reject.png
+        # hidden: true
+
+    # 节点组
+      # 自定义节点组
+      - name: 观影节点
+        <<: *anchor_node_groups_selector
+        filter: (?i)(?=.*(emby))          # 不区分大小写匹配关键字
+        icon: https://raw.githubusercontent.com/sunfing/iNg/main/Icons/GeneralIcons/CD.png
+
+      - name: 观影自动
+        <<: *anchor_node_groups_urltest
+        filter: (?i)(?=.*(emby))
+        icon: https://raw.githubusercontent.com/sunfing/iNg/main/Icons/GeneralIcons/CD.png
+
+      - name: 省流节点
+        <<: *anchor_node_groups_selector
+        filter: (?i)^(?!.*(emby)).*(0\.)  # 不区分大小写过滤前者并匹配后者
+        icon: https://raw.githubusercontent.com/sunfing/iNg/main/Icons/GeneralIcons/Heart.png
+
+      - name: 省流自动
+        <<: *anchor_node_groups_urltest
+        filter: (?i)^(?!.*(emby)).*(0\.)
+        icon: https://raw.githubusercontent.com/sunfing/iNg/main/Icons/GeneralIcons/Heart.png
+
+      # 国家或地区流媒体手动切换节点组
+      - name: 港流媒体
+        <<: *anchor_node_groups_selector
+        filter: (?i)(?=.*(🇭🇰|香港|\b(hk|h\.k\.)\b|hong\ kong|hongkong))
+        icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Hong_Kong.png
+
+      - name: 台流媒体
+        <<: *anchor_node_groups_selector
+        filter: (?i)(?=.*(🇨🇳|🇹🇼|台湾|\b(tw)\b|taiwan))
+        icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/China.png
+
+      - name: 狮流媒体
+        <<: *anchor_node_groups_selector
+        filter: (?i)(?=.*(🇸🇬|狮城|新加坡|\b(sg)\b|singapore))
+        icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Singapore.png
+
+      - name:  日流媒体
+        <<: *anchor_node_groups_selector
+        filter: (?i)(?=.*(🇯🇵|日本|\b(jp)\b|japan))
+        icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Japan.png
+
+      - name:  美流媒体
+        <<: *anchor_node_groups_selector
+        filter: (?i)(?=.*(🇺🇸|美国|\b(us|u\.s\.)\b|united\ states|unitedstates))
+        icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/United_States.png
+
+      # 国家或地区手动切换节点组
+      - name: 香港手动
+        <<: *anchor_node_groups_selector
+        filter: (?i)(?=.*(🇭🇰|香港|\b(hk|h\.k\.)\b|hong\ kong|hongkong))
+        icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Hong_Kong.png
+
+      - name: 台湾手动
+        <<: *anchor_node_groups_selector
+        filter: (?i)(?=.*(🇨🇳|🇹🇼|台湾|\b(tw)\b|taiwan))
+        icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/China.png
+
+      - name: 狮城手动
+        <<: *anchor_node_groups_selector
+        filter: (?i)(?=.*(🇸🇬|狮城|新加坡|\b(sg)\b|singapore))
+        icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Singapore.png
+
+      - name:  日本手动
+        <<: *anchor_node_groups_selector
+        filter: (?i)(?=.*(🇯🇵|日本|\b(jp)\b|japan))
+        icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Japan.png
+
+      - name:  美国手动
+        <<: *anchor_node_groups_selector
+        filter: (?i)(?=.*(🇺🇸|美国|\b(us|u\.s\.)\b|united\ states|unitedstates))
+        icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/United_States.png
+
+      # - name: 🇲🇴 澳门手动
+        # <<: *anchor_node_groups_selector
+        # filter: (?i)(?=.*(🇲🇴|澳门|\b(mo)\b|macao))
+        # icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Macao.png
+
+      # - name: 🇷🇺 俄国手动
+        # <<: *anchor_node_groups_selector
+        # filter: (?i)(?=.*(🇷🇺|俄罗斯|\b(ru)\b|russia))
+        # icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Russia.png
+
+      # 国家或地区自动选择节点组
+      - name: 香港自动
+        <<: *anchor_node_groups_urltest
+        filter: (?i)^(?!.*(emby|\b(fam)\b|家宽)).*(🇭🇰|香港|\b(hk|h\.k\.)\b|hong\ kong|hongkong)
+        icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Hong_Kong.png
+
+      - name: 台湾自动
+        <<: *anchor_node_groups_urltest
+        filter: (?i)^(?!.*(emby|\b(fam)\b|家宽)).*(🇨🇳|🇹🇼|台湾|\b(tw)\b|taiwan)
+        icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/China.png
+
+      - name: 狮城自动
+        <<: *anchor_node_groups_urltest
+        filter: (?i)^(?!.*(emby|\b(fam)\b|家宽)).*(🇸🇬|狮城|新加坡|\b(sg)\b|singapore)
+        icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Singapore.png
+
+      - name:  日本自动
+        <<: *anchor_node_groups_urltest
+        filter: (?i)^(?!.*(emby|\b(fam)\b|家宽)).*(🇯🇵|日本|\b(jp)\b|japan)
+        icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Japan.png
+
+      - name:  美国自动
+        <<: *anchor_node_groups_urltest
+        filter: (?i)^(?!.*(emby|\b(fam)\b|家宽|starlink)).*(🇺🇸|美国|\b(us|u\.s\.)\b|united\ states|unitedstates)
+        icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/United_States.png
+
+      # 家宽自选节点组
+      - name: 家宽自选
+        <<: *anchor_node_groups_selector
+        filter: (?i)(?=.*(\b(fam)\b|家宽))
+        icon: https://raw.githubusercontent.com/sunfing/iNg/main/Icons/GeneralIcons/Fam.png
+
+      # 常用自选节点组
+      - name: 常用自选
+        <<: *anchor_node_groups_selector
+        filter: (?i)(?=.*(🇭🇰|香港|\b(hk|h\.k\.)\b|hong\ kong|hongkong|🇨🇳|🇹🇼|台湾|\b(tw)\b|taiwan|🇸🇬|狮城|新加坡|\b(sg)\b|singapore||日本|\b(jp)\b|japan||美国|\b(us|u\.s\.)\b|united\ states|unitedstates))
+        icon: https://raw.githubusercontent.com/sunfing/iNg/main/Icons/GeneralIcons/Hot.png
+
+      # 冷门自选节点组
+      - name: 冷门自选
+        <<: *anchor_node_groups_selector
+        filter: (?i)^(?!.*(🇭🇰|香港|\b(hk|h\.k\.)\b|hong\ kong|hongkong|🇨🇳|🇹🇼|台湾|\b(tw)\b|taiwan|🇸🇬|狮城|新加坡|\b(sg)\b|singapore|🇯🇵|日本|\b(jp)\b|japan|🇺🇸|美国|\b(us|u\.s\.)\b|united\ states|unitedstates))
+        icon: https://raw.githubusercontent.com/sunfing/iNg/main/Icons/GeneralIcons/Cold.png
+
+      # 节点集合节点组
+      - name: 节点集合
+        <<: *anchor_node_groups_selector
+        icon: https://raw.githubusercontent.com/sunfing/iNg/main/Icons/GeneralIcons/Available.png
+
+# 规则
+  # 有需要自行开启下列注释项，注释只为照顾性能及误杀情况
+  # 去广告相关规则较多，相关 规则及提供者 已被注释
+  # “geolocation-!cn”规则较多，相关 规则及提供者 已被注释
+  # “A_”开头的规则个性化较强，请按照自身需求更改/删除，如果使用这些规则时发现不满足个人需求可加入频道关联群组提出需求
+  rules:
+    - IP-CIDR, 198.18.0.1/16, REJECT, no-resolve # 防止 fake-ip 模式下网络回环
+    - RULE-SET, Lan, 全球直连
+    - RULE-SET, UnBan, 全球直连
+    # - RULE-SET, BanAD, 全球拦截
+    # - RULE-SET, BanProgramAD, 全球拦截
+    - RULE-SET, Emby, 媒体中心
+    - RULE-SET, A_MediaHub, 媒体中心           # Emby/Jellyfin
+    # - RULE-SET, A_MediaHub*, 媒体中心*         # Emby/Jellyfin
+    - RULE-SET, A_Reject, 全球拦截             # 自定义拦截
+    - RULE-SET, A_Proxy, 默认代理              # 自定义代理
+    - RULE-SET, A_Direct, 全球直连             # 自定义直连
+    - RULE-SET, Speedtest, 速度测试
+    - RULE-SET, GitHub, 开源托管
+    - RULE-SET, Telegram, 电报消息
+    - RULE-SET, Discord, 语音社群
+    - RULE-SET, AppleNews, 苹果新闻
+    - RULE-SET, Twitter, 推特推特
+    - RULE-SET, Instagram, 晒照片墙
+    - RULE-SET, OpenAI, ChatGPT
+    - RULE-SET, Claude, Claude
+    - RULE-SET, Gemini, Gemini
+    - RULE-SET, Copilot, Copilot
+    - RULE-SET, A_AIGC, 语言模型               # 自定义 AIGC
+    - RULE-SET, AppleMusic, 全球直连
+    - RULE-SET, Spotify, 声田音乐
+    - RULE-SET, YouTubeMusic, 油管音乐
+    - RULE-SET, TikTok, 抖音国际
+    - RULE-SET, Twitch, 推趣直播
+    - RULE-SET, BiliBiliIntl, 哔哩哔哩
+    - RULE-SET, Bilibili, 哔哩哔哩
+    - RULE-SET, YouTube, 油管视频
+    - RULE-SET, AppleTV, 苹果电视
+    - RULE-SET, Netflix, 奈飞视频
+    - RULE-SET, Disney, 迪士尼加
+    - RULE-SET, HBO, 麦克斯斯
+    - RULE-SET, PrimeVideo, 亚马逊逊
+    - RULE-SET, GlobalMedia, 流媒体集
+    - RULE-SET, GoogleFCM, 默认代理
+    - RULE-SET, Cloudflare, 云端防护
+    - RULE-SET, Apple, 苹果服务
+    - RULE-SET, OneDrive, 下载服务
+    - RULE-SET, Microsoft, 微软服务
+    - RULE-SET, GoogleDrive, 下载服务
+    - RULE-SET, Google, 谷歌服务
+    - RULE-SET, GameDownload, 下载服务
+    - RULE-SET, Steam, 游戏服务
+    - RULE-SET, Epic, 游戏服务
+    - RULE-SET, Origin, 游戏服务
+    - RULE-SET, Sony, 游戏服务
+    - RULE-SET, Nintendo, 游戏服务
+    - RULE-SET, Xbox, 游戏服务
+    - RULE-SET, Game, 游戏服务
+    - RULE-SET, Proxy, 默认代理
+    - RULE-SET, Global, 默认代理
+    - RULE-SET, TeamViewer, 全球直连
+    - RULE-SET, Tencent, 全球直连
+    - RULE-SET, Cloudflarecn, 全球直连
+    - RULE-SET, WeChat, 全球直连
+    - RULE-SET, Download, 全球直连
+    - RULE-SET, GameDownloadCN, 全球直连
+    - RULE-SET, PrivateTracker, 全球直连
+    - RULE-SET, SteamCN, 全球直连
+    - RULE-SET, China, 全球直连
+    - RULE-SET, ChinaMedia, 全球直连
+    - RULE-SET, ChinaIPs, 全球直连
+    - GEOIP, CN, 全球直连
+    # - RULE-SET, geolocation-!cn, 漏网之鱼
+    - MATCH, 漏网之鱼
+
+# 远程规则集锚点
+  # anchor_rule_providers_classical_mrs: &anchor_rule_providers_classical_mrs {type: http, behavior: classical, interval: 86400, format: mrs}     # 经典规则集配置_mrs
+  anchor_rule_providers_classical_text: &anchor_rule_providers_classical_text {type: http, behavior: classical, interval: 86400, format: text}  # 经典规则集配置_text，即“.list”
+  anchor_rule_providers_classical_yaml: &anchor_rule_providers_classical_yaml {type: http, behavior: classical, interval: 86400, format: yaml}  # 经典规则集配置_yaml
+
+  # anchor_rule_providers_domain_mrs: &anchor_rule_providers_domain_mrs {type: http, behavior: domain, interval: 86400, format: mrs}              # 域名规则集配置_mrs
+  anchor_rule_providers_domain_text: &anchor_rule_providers_domain_text {type: http, behavior: domain, interval: 86400, format: text}           # 域名规则集配置_text，即“.list”
+  # anchor_rule_providers_domain_yaml: &anchor_rule_providers_domain_yaml {type: http, behavior: domain, interval: 86400, format: yaml}           # 域名规则集配置_yaml
+
+  # anchor_rule_providers_ipcidr_mrs: &anchor_rule_providers_ipcidr_mrs {type: http, behavior: ipcidr, interval: 86400, format: mrs}              # IP-CIDR 规则集配置_mrs
+  anchor_rule_providers_ipcidr_text: &anchor_rule_providers_ipcidr_text {type: http, behavior: ipcidr, interval: 86400, format: text}           # IP-CIDR 规则集配置_text，即“.list”
+  # anchor_rule_providers_ipcidr_yaml: &anchor_rule_providers_ipcidr_yaml {type: http, behavior: ipcidr, interval: 86400, format: yaml}           # IP-CIDR 规则集配置_yaml
+
+# 远程规则集
+  rule-providers: # 全球直连
+    Lan:
+      <<: *anchor_rule_providers_classical_yaml
+      url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Lan/Lan_No_Resolve.yaml
+      path: ./rule_providers/Lan.yaml
+    UnBan: # 全球直连
+      <<: *anchor_rule_providers_classical_yaml
+      url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Providers/UnBan.yaml
+      path: ./rule_providers/UnBan.yaml
+    # BanAD: # 全球拦截
+      # <<: *anchor_rule_providers_classical_yaml
+      # url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Providers/BanAD.yaml
+      # path: ./rule_providers/BanAD.yaml
+    # BanProgramAD: # 全球拦截
+      # <<: *anchor_rule_providers_classical_yaml
+      # url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Providers/BanProgramAD.yaml
+      # path: ./rule_providers/BanProgramAD.yaml
+    Emby: # 媒体中心
+      <<: *anchor_rule_providers_classical_text
+      url: https://raw.githubusercontent.com/Wo254992/rule-set/refs/heads/main/userEmby.list
+      path: ./rule_providers/Emby.list
+    A_MediaHub: # 媒体中心
+      <<: *anchor_rule_providers_classical_yaml
+      url: https://raw.githubusercontent.com/sunfing/iNg/main/Rules/MediaHub/A_MediaHub.yaml
+      path: ./rule_providers/A_MediaHub.yaml
+    # A_MediaHub*: # 媒体中心*
+      # <<: *anchor_rule_providers_classical_yaml
+      # url: https://raw.githubusercontent.com/sunfing/iNg/main/Rules/MediaHub/A_MediaHub*.yaml
+      # path: ./rule_providers/A_MediaHub*.yaml
+    A_Reject: # 全球拦截
+      <<: *anchor_rule_providers_classical_yaml
+      url: https://raw.githubusercontent.com/sunfing/iNg/main/Rules/Reject/A_Reject.yaml
+      path: ./rule_providers/A_Reject.yaml
+    A_Proxy: # 默认代理
+      <<: *anchor_rule_providers_classical_text
+      url: https://raw.githubusercontent.com/Wo254992/rule-set/refs/heads/main/Proxy.list
+      path: ./rule_providers/A_Proxy.list
+    A_Direct: # 全球直连
+      <<: *anchor_rule_providers_classical_yaml
+      url: https://raw.githubusercontent.com/sunfing/iNg/main/Rules/Direct/A_Direct.yaml
+      path: ./rule_providers/A_Direct.yaml
+    Speedtest: # 速度测试
+      <<: *anchor_rule_providers_classical_yaml
+      url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Speedtest/Speedtest_No_Resolve.yaml
+      path: ./rule_providers/Speedtest.yaml
+    WeChat: # 全球直连
+      <<: *anchor_rule_providers_classical_yaml
+      url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/WeChat/WeChat_No_Resolve.yaml
+      path: ./rule_providers/WeChat.yaml
+    Telegram: # 电报消息
+      <<: *anchor_rule_providers_classical_text
+      url: https://raw.githubusercontent.com/Wo254992/rule-set/refs/heads/main/telegram.list
+      path: ./rule_providers/Telegram.list
+    Discord: # 语音社群
+      <<: *anchor_rule_providers_classical_yaml
+      url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Discord/Discord_No_Resolve.yaml
+      path: ./rule_providers/Discord.yaml
+    AppleNews: # 苹果新闻
+      <<: *anchor_rule_providers_classical_yaml
+      url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/AppleNews/AppleNews_No_Resolve.yaml
+      path: ./rule_providers/AppleNews.yaml
+    Twitter: # 推特推特
+      <<: *anchor_rule_providers_classical_yaml
+      url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Twitter/Twitter_No_Resolve.yaml
+      path: ./rule_providers/Twitter.yaml
+    Instagram: # 晒照片墙
+      <<: *anchor_rule_providers_classical_yaml
+      url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Instagram/Instagram_No_Resolve.yaml
+      path: ./rule_providers/Instagram.yaml
+    OpenAI: # ChatGPT
+      <<: *anchor_rule_providers_classical_yaml
+      url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/OpenAI/OpenAI_No_Resolve.yaml
+      path: ./rule_providers/OpenAI.yaml
+    Claude: # Claude
+      <<: *anchor_rule_providers_classical_yaml
+      url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Claude/Claude_No_Resolve.yaml
+      path: ./rule_providers/Claude.yaml
+    Gemini: # Gemini
+      <<: *anchor_rule_providers_classical_yaml
+      url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Gemini/Gemini_No_Resolve.yaml
+      path: ./rule_providers/Gemini.yaml
+    Copilot: # Copilot
+      <<: *anchor_rule_providers_classical_yaml
+      url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Copilot/Copilot_No_Resolve.yaml
+      path: ./rule_providers/Copilot.yaml
+    A_AIGC: # 语言模型
+      <<: *anchor_rule_providers_classical_yaml
+      url: https://raw.githubusercontent.com/sunfing/iNg/main/Rules/AIGC/A_AIGC.yaml
+      path: ./rule_providers/A_AIGC.yaml
+    AppleMusic: # 全球直连
+      <<: *anchor_rule_providers_classical_yaml
+      url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/AppleMusic/AppleMusic_No_Resolve.yaml
+      path: ./rule_providers/AppleMusic.yaml
+    Spotify: # 声田音乐
+      <<: *anchor_rule_providers_classical_yaml
+      url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Spotify/Spotify_No_Resolve.yaml
+      path: ./rule_providers/Spotify.yaml
+    YouTubeMusic: # 油管音乐
+      <<: *anchor_rule_providers_classical_yaml
+      url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/YouTubeMusic/YouTubeMusic_No_Resolve.yaml
+      path: ./rule_providers/YouTubeMusic.yaml
+    TikTok: # 抖音国际
+      <<: *anchor_rule_providers_classical_yaml
+      url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/TikTok/TikTok_No_Resolve.yaml
+      path: ./rule_providers/TikTok.yaml
+    Twitch: # 推趣直播
+      <<: *anchor_rule_providers_classical_yaml
+      url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Twitch/Twitch_No_Resolve.yaml
+      path: ./rule_providers/Twitch.yaml
+    BiliBiliIntl: # 哔哩哔哩
+      <<: *anchor_rule_providers_classical_yaml
+      url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/BiliBiliIntl/BiliBiliIntl_No_Resolve.yaml
+      path: ./rule_providers/BiliBiliIntl.yaml
+    Bilibili: # 哔哩哔哩
+      <<: *anchor_rule_providers_classical_yaml
+      url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/BiliBili/BiliBili_No_Resolve.yaml
+      path: ./rule_providers/Bilibili.yaml
+    YouTube: # 油管视频
+      <<: *anchor_rule_providers_classical_yaml
+      url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/YouTube/YouTube_No_Resolve.yaml
+      path: ./rule_providers/YouTube.yaml
+    AppleTV: # 苹果电视
+      <<: *anchor_rule_providers_classical_yaml
+      url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/AppleTV/AppleTV_No_Resolve.yaml
+      path: ./rule_providers/AppleTV.yaml
+    Netflix: # 奈飞视频
+      <<: *anchor_rule_providers_classical_yaml
+      url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Netflix/Netflix_Classical_No_Resolve.yaml
+      path: ./rule_providers/Netflix.yaml
+    Disney: # 迪士尼加
+      <<: *anchor_rule_providers_classical_yaml
+      url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Disney/Disney_No_Resolve.yaml
+      path: ./rule_providers/Disney.yaml
+    HBO: # 麦克斯斯
+      <<: *anchor_rule_providers_classical_yaml
+      url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/HBO/HBO_No_Resolve.yaml
+      path: ./rule_providers/HBO.yaml
+    PrimeVideo: # 亚马逊逊
+      <<: *anchor_rule_providers_classical_yaml
+      url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/PrimeVideo/PrimeVideo_No_Resolve.yaml
+      path: ./rule_providers/PrimeVideo.yaml
+    GlobalMedia: # 流媒体集
+      <<: *anchor_rule_providers_classical_yaml
+      url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/GlobalMedia/GlobalMedia_Classical_No_Resolve.yaml
+      path: ./rule_providers/GlobalMedia.yaml
+    ChinaMedia: # 全球直连
+      <<: *anchor_rule_providers_classical_yaml
+      url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/ChinaMedia/ChinaMedia_No_Resolve.yaml
+      path: ./rule_providers/ChinaMedia.yaml
+    GoogleFCM: # 默认代理
+      <<: *anchor_rule_providers_classical_yaml
+      url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/GoogleFCM/GoogleFCM_No_Resolve.yaml
+      path: ./rule_providers/GoogleFCM.yaml
+    Tencent: # 全球直连
+      <<: *anchor_rule_providers_classical_yaml
+      url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Tencent/Tencent_No_Resolve.yaml
+      path: ./rule_providers/Tencent.yaml
+    TeamViewer: # 全球直连
+      <<: *anchor_rule_providers_classical_yaml
+      url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/TeamViewer/TeamViewer_No_Resolve.yaml
+      path: ./rule_providers/TeamViewer.yaml
+    GitHub: # 开源托管
+      <<: *anchor_rule_providers_classical_yaml
+      url: https://raw.githubusercontent.com/Wo254992/rule-set/refs/heads/main/Github.yaml
+      path: ./rule_providers/GitHub.yaml
+    Cloudflarecn: # 全球直连
+      <<: *anchor_rule_providers_classical_yaml
+      url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Cloudflarecn/Cloudflarecn_No_Resolve.yaml
+      path: ./rule_providers/Cloudflarecn.yaml
+    Cloudflare: # 云端防护
+      <<: *anchor_rule_providers_classical_yaml
+      url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Cloudflare/Cloudflare_No_Resolve.yaml
+      path: ./rule_providers/Cloudflare.yaml
+    Apple: # 苹果服务
+      <<: *anchor_rule_providers_classical_yaml
+      url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Apple/Apple_Classical_No_Resolve.yaml
+      path: ./rule_providers/Apple.yaml
+    OneDrive: # 下载服务
+      <<: *anchor_rule_providers_classical_yaml
+      url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/OneDrive/OneDrive_No_Resolve.yaml
+      path: ./rule_providers/OneDrive.yaml
+    Microsoft: # 微软服务
+      <<: *anchor_rule_providers_classical_yaml
+      url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Microsoft/Microsoft_No_Resolve.yaml
+      path: ./rule_providers/Microsoft.yaml
+    GoogleDrive: # 下载服务
+      <<: *anchor_rule_providers_classical_yaml
+      url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/GoogleDrive/GoogleDrive_No_Resolve.yaml
+      path: ./rule_providers/GoogleDrive.yaml
+    Google: # 谷歌服务
+      <<: *anchor_rule_providers_classical_yaml
+      url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Google/Google_No_Resolve.yaml
+      path: ./rule_providers/Google.yaml
+    SteamCN: # 全球直连
+      <<: *anchor_rule_providers_classical_yaml
+      url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/SteamCN/SteamCN_No_Resolve.yaml
+      path: ./rule_providers/SteamCN.yaml
+    GameDownloadCN: # 全球直连
+      <<: *anchor_rule_providers_classical_yaml
+      url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Game/GameDownloadCN/GameDownloadCN_No_Resolve.yaml
+      path: ./rule_providers/GameDownloadCN.yaml
+    GameDownload: # 下载服务
+      <<: *anchor_rule_providers_classical_yaml
+      url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Game/GameDownload/GameDownload_No_Resolve.yaml
+      path: ./rule_providers/GameDownload.yaml
+    Steam: # 游戏服务
+      <<: *anchor_rule_providers_classical_yaml
+      url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Steam/Steam_No_Resolve.yaml
+      path: ./rule_providers/Steam.yaml
+    Epic: # 游戏服务
+      <<: *anchor_rule_providers_classical_yaml
+      url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Epic/Epic_No_Resolve.yaml
+      path: ./rule_providers/Epic.yaml
+    Origin: # 游戏服务
+      <<: *anchor_rule_providers_classical_yaml
+      url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Origin/Origin_No_Resolve.yaml
+      path: ./rule_providers/Origin.yaml
+    Sony: # 游戏服务
+      <<: *anchor_rule_providers_classical_yaml
+      url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Sony/Sony_No_Resolve.yaml
+      path: ./rule_providers/Sony.yaml
+    Nintendo: # 游戏服务
+      <<: *anchor_rule_providers_classical_yaml
+      url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Nintendo/Nintendo_No_Resolve.yaml
+      path: ./rule_providers/Nintendo.yaml
+    Xbox: # 游戏服务
+      <<: *anchor_rule_providers_classical_yaml
+      url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Xbox/Xbox_No_Resolve.yaml
+      path: ./rule_providers/Xbox.yaml
+    Game: # 游戏服务
+      <<: *anchor_rule_providers_classical_yaml
+      url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Game/Game.yaml
+      path: ./rule_providers/Game.yaml
+    Download: # 全球直连
+      <<: *anchor_rule_providers_classical_yaml
+      url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Download/Download_No_Resolve.yaml
+      path: ./rule_providers/Download.yaml
+    PrivateTracker: # 全球直连
+      <<: *anchor_rule_providers_classical_yaml
+      url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/PrivateTracker/PrivateTracker_No_Resolve.yaml
+      path: ./rule_providers/PrivateTracker.yaml
+    Proxy: # 默认代理
+      <<: *anchor_rule_providers_classical_yaml
+      url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Proxy/Proxy_Classical_No_Resolve.yaml
+      path: ./rule_providers/Proxy.yaml
+    Global: # 默认代理
+      <<: *anchor_rule_providers_classical_text
+      url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Global/Global.list
+      path: ./rule_providers/Global.list
+    China: # 全球直连
+      <<: *anchor_rule_providers_classical_yaml
+      url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/China/China_Classical_No_Resolve.yaml
+      path: ./rule_providers/China.yaml
+    ChinaIPs: # 全球直连
+      <<: *anchor_rule_providers_classical_yaml
+      url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/ChinaIPs/ChinaIPs_Classical_No_Resolve.yaml
+      path: ./rule_providers/ChinaIPs.yaml
+    # geolocation-!cn: # 漏网之鱼
+      # <<: *anchor_rule_providers_domain_yaml
+      # url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/geolocation-!cn.yaml
+      # path: ./rule_providers/geolocation-!cn.yaml
