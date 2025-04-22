@@ -222,6 +222,53 @@ dns:
     - https://sm2.doh.pub/dns-query
 
 
+# 策略组锚点
+  # 所有规则集配置
+  anchor_policy_groups_all: &anchor_policy_groups_all
+    type: select
+    proxies: [全球直连, 默认代理, 观影节点, 观影自动, 省流节点, 省流自动, 流媒自动, 港流媒体, 台流媒体, 狮流媒体,  日流媒体,  美流媒体, 香港手动, 台湾手动, 狮城手动,  日本手动,  美国手动, 香港自动, 台湾自动, 狮城自动,  日本自动,  美国自动, 家宽自选, 常用自选, 冷门自选, 节点集合]
+  # 默认规则集配置
+  anchor_policy_groups_default: &anchor_policy_groups_default
+    type: select
+    proxies: [全球直连, 默认代理, 省流节点, 省流自动, 香港手动, 台湾手动, 狮城手动,  日本手动,  美国手动, 香港自动, 台湾自动, 狮城自动,  日本自动,  美国自动, 家宽自选, 常用自选, 冷门自选, 节点集合]
+  # 即时通讯规则集配置
+  anchor_policy_groups_message: &anchor_policy_groups_message
+    type: select
+    proxies: [全球直连, 默认代理, 即时通讯, 省流节点, 省流自动, 香港手动, 台湾手动, 狮城手动,  日本手动,  美国手动, 香港自动, 台湾自动, 狮城自动,  日本自动,  美国自动, 家宽自选, 常用自选, 冷门自选, 节点集合]
+  # 新闻社交规则集配置
+  anchor_policy_groups_newssocialize: &anchor_policy_groups_newssocialize
+    type: select
+    proxies: [全球直连, 默认代理, 新闻社交, 省流节点, 省流自动, 香港手动, 台湾手动, 狮城手动,  日本手动,  美国手动, 香港自动, 台湾自动, 狮城自动,  日本自动,  美国自动, 家宽自选, 常用自选, 冷门自选, 节点集合]
+  # 语言模型规则集配置
+  anchor_policy_groups_aigc: &anchor_policy_groups_aigc
+    type: select
+    proxies: [全球直连, 默认代理, 语言模型, 省流节点, 省流自动, 香港手动, 台湾手动, 狮城手动,  日本手动,  美国手动, 香港自动, 台湾自动, 狮城自动,  日本自动,  美国自动, 家宽自选, 常用自选, 冷门自选, 节点集合]
+  # 媒体中心规则集配置
+  anchor_policy_groups_mediahub: &anchor_policy_groups_mediahub
+    type: select
+    proxies: [全球直连, 默认代理, 观影节点, 观影自动, 省流节点, 省流自动, 流媒自动, 港流媒体, 台流媒体, 狮流媒体,  日流媒体,  美流媒体, 家宽自选, 常用自选, 冷门自选, 节点集合]
+  # 流媒体集规则集配置
+  anchor_policy_groups_streammedia: &anchor_policy_groups_streammedia
+    type: select
+    proxies: [全球直连, 默认代理, 流媒体集, 省流节点, 省流自动, 港流媒体, 台流媒体, 狮流媒体,  日流媒体,  美流媒体, 家宽自选, 常用自选, 冷门自选, 节点集合]
+
+# 节点组锚点
+  # 手动切换规则集配置
+  anchor_node_groups_selector: &anchor_node_groups_selector
+    type: select
+    include-all: true   # 引入所有本地和远程代理集节点，节点顺序按照名称排序
+  # 自动选择规则集配置
+  anchor_node_groups_urltest: &anchor_node_groups_urltest
+    type: url-test
+    url: http://www.gstatic.com/generate_204
+    interval: 300       # 单位为秒，健康检查时间间隔，5 分钟一次
+    tolerance: 20       # 单位为毫秒，节点切换容差，若当前节点的延迟超过了最佳节点延迟加上 tolerance 的值，系统就会尝试切换到另一个延迟更低的节点
+    timeout: 3000       # 单位为毫秒，健康检查超时时间，大于 3 秒判定为失败
+    max-failed-times: 3 # 默认 5 次，超过最大失败次数则触发一次强制健康检查
+    lazy: true          # 默认为 true，未选择到当前策略组时，不进行健康检查和延迟测试
+    disable-udp: false  # 是否禁用该策略组的 UDP
+    include-all: true   # 引入所有本地和远程代理集节点，节点顺序按照名称排序
+    # hidden: true        # 是否隐藏策略组展示，需前端适配
 
 # 代理组
   proxy-groups:
