@@ -21,10 +21,6 @@
     机场四: {<<: *anchor_proxy_providers, url: "订阅链接4"} 
     机场五: {<<: *anchor_proxy_providers, url: "订阅链接5"}
     机场六: {<<: *anchor_proxy_providers, url: "订阅链接6"}
-
-# 用于下载订阅时指定UA
-global-ua: clash.meta
-
 # 全局配置
 port: 7890
 socks-port: 7891
