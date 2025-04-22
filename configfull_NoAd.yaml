@@ -1,94 +1,81 @@
-# 锚点区
-Proxy_first: &Proxy_first {type: select, proxies: [节点选择, 香港自动, 新加坡自动, 日本自动, 台湾自动, 美国自动, 故障转移, 香港节点, 新加坡节点, 日本节点, 台湾节点, 美国节点, 其它节点, 全部节点, 自建/家宽节点, 全球直连]}
-
-Direct_first: &Direct_first {type: select, proxies: [全球直连, 节点选择, 香港自动, 新加坡自动, 日本自动, 台湾自动, 美国自动, 故障转移, 香港节点, 新加坡节点, 日本节点, 台湾节点, 美国节点, 其它节点, 全部节点, 自建/家宽节点]}
-
-Include_all: &Include_all {type: select, proxies: [节点选择, 香港自动, 新加坡自动, 日本自动, 台湾自动, 美国自动, 故障转移, 香港节点, 新加坡节点, 日本节点, 台湾节点, 美国节点, 其它节点, 全部节点, 自建/家宽节点, 全球直连], include-all: true, exclude-filter: "(?i)(🟢 直连)"}
-
-# 机场订阅，Airport_01/02/03名称不能重复,但可修改为自己喜欢的
-# 订阅链接1/2/3是用来写订阅链接的，填入即可
-# 机场名称1/2/3是用来给节点添加备注的，不用记得整行删除
+anchor_proxy_providers:
+  type: http
+  interval: 86400
+  health-check:
+    enable: true
+    url: 'http://www.gstatic.com/generate_204'
+    interval: 300
+    timeout: 3000
+  filter: >-
+    (?i)^(?!.*(email|expire|test|total|traffic|use|used|版本|备用|不推荐|测试|到期|订阅|工单|官方|官网|官址|过期|获取|机场|客服|联系|流量|群|剩余|失联|套餐|网站|网址|下次|学术|已用|邮箱|有效))
 proxy-providers:
-  Airport_01:
-    url: "订阅链接1"
+  机场一:
     type: http
     interval: 86400
     health-check:
       enable: true
-      url: https://edge.microsoft.com/captiveportal/generate_204
+      url: 'http://www.gstatic.com/generate_204'
       interval: 300
-    proxy: "🟢 直连"
-    exclude-filter: "(?i)(拒绝|直连|群|邀请|返利|循环|官网|客服|网站|网址|获取|订阅|流量|到期|机场|下次|版本|官址|备用|过期|已用|联系|邮箱|工单|贩卖|通知|倒卖|防止|国内|地址|频道|无法|说明|使用|提示|特别|访问|支持|教程|关注|更新|作者|加入|USE|USED|TOTAL|EXPIRE|EMAIL|Panel|Channel|Author|traffic)"
-    override:
-      skip-cert-verify: true
-      udp: true
-  Airport_02:
-    url: "订阅链接2"
+      timeout: 3000
+    filter: >-
+      (?i)^(?!.*(email|expire|test|total|traffic|use|used|版本|备用|不推荐|测试|到期|订阅|工单|官方|官网|官址|过期|获取|机场|客服|联系|流量|群|剩余|失联|套餐|网站|网址|下次|学术|已用|邮箱|有效))
+    url: 订阅链接1
+  机场二:
     type: http
     interval: 86400
     health-check:
       enable: true
-      url: https://edge.microsoft.com/captiveportal/generate_204
+      url: 'http://www.gstatic.com/generate_204'
       interval: 300
-    proxy: "🟢 直连"
-    exclude-filter: "(?i)(拒绝|直连|群|邀请|返利|循环|官网|客服|网站|网址|获取|订阅|流量|到期|机场|下次|版本|官址|备用|过期|已用|联系|邮箱|工单|贩卖|通知|倒卖|防止|国内|地址|频道|无法|说明|使用|提示|特别|访问|支持|教程|关注|更新|作者|加入|USE|USED|TOTAL|EXPIRE|EMAIL|Panel|Channel|Author|traffic)"
-    override:
-      skip-cert-verify: true
-      udp: true
-  Airport_03:
-    url: "订阅链接3"
+      timeout: 3000
+    filter: >-
+      (?i)^(?!.*(email|expire|test|total|traffic|use|used|版本|备用|不推荐|测试|到期|订阅|工单|官方|官网|官址|过期|获取|机场|客服|联系|流量|群|剩余|失联|套餐|网站|网址|下次|学术|已用|邮箱|有效))
+    url: 订阅链接2
+  机场三:
     type: http
     interval: 86400
     health-check:
       enable: true
-      url: https://edge.microsoft.com/captiveportal/generate_204
+      url: 'http://www.gstatic.com/generate_204'
       interval: 300
-    proxy: "🟢 直连"
-    exclude-filter: "(?i)(拒绝|直连|群|邀请|返利|循环|官网|客服|网站|网址|获取|订阅|流量|到期|机场|下次|版本|官址|备用|过期|已用|联系|邮箱|工单|贩卖|通知|倒卖|防止|国内|地址|频道|无法|说明|使用|提示|特别|访问|支持|教程|关注|更新|作者|加入|USE|USED|TOTAL|EXPIRE|EMAIL|Panel|Channel|Author|traffic)"
-    override:
-      skip-cert-verify: true
-      udp: true
+      timeout: 3000
+    filter: >-
+      (?i)^(?!.*(email|expire|test|total|traffic|use|used|版本|备用|不推荐|测试|到期|订阅|工单|官方|官网|官址|过期|获取|机场|客服|联系|流量|群|剩余|失联|套餐|网站|网址|下次|学术|已用|邮箱|有效))
+    url: 订阅链接3
+  机场四:
+    type: http
+    interval: 86400
+    health-check:
+      enable: true
+      url: 'http://www.gstatic.com/generate_204'
+      interval: 300
+      timeout: 3000
+    filter: >-
+      (?i)^(?!.*(email|expire|test|total|traffic|use|used|版本|备用|不推荐|测试|到期|订阅|工单|官方|官网|官址|过期|获取|机场|客服|联系|流量|群|剩余|失联|套餐|网站|网址|下次|学术|已用|邮箱|有效))
+    url: 订阅链接4
+  机场五:
+    type: http
+    interval: 86400
+    health-check:
+      enable: true
+      url: 'http://www.gstatic.com/generate_204'
+      interval: 300
+      timeout: 3000
+    filter: >-
+      (?i)^(?!.*(email|expire|test|total|traffic|use|used|版本|备用|不推荐|测试|到期|订阅|工单|官方|官网|官址|过期|获取|机场|客服|联系|流量|群|剩余|失联|套餐|网站|网址|下次|学术|已用|邮箱|有效))
+    url: 订阅链接5
 
-  Airport_04:
-    url: "订阅链接4"
+  机场六:
     type: http
     interval: 86400
     health-check:
       enable: true
-      url: https://edge.microsoft.com/captiveportal/generate_204
+      url: 'http://www.gstatic.com/generate_204'
       interval: 300
-    proxy: "🟢 直连"
-    exclude-filter: "(?i)(拒绝|直连|群|邀请|返利|循环|官网|客服|网站|网址|获取|订阅|流量|到期|机场|下次|版本|官址|备用|过期|已用|联系|邮箱|工单|贩卖|通知|倒卖|防止|国内|地址|频道|无法|说明|使用|提示|特别|访问|支持|教程|关注|更新|作者|加入|USE|USED|TOTAL|EXPIRE|EMAIL|Panel|Channel|Author|traffic)"
-    override:
-      skip-cert-verify: true
-      udp: true
-  Airport_05:
-    url: "订阅链接5"
-    type: http
-    interval: 86400
-    health-check:
-      enable: true
-      url: https://edge.microsoft.com/captiveportal/generate_204
-      interval: 300
-    proxy: "🟢 直连"
-    exclude-filter: "(?i)(拒绝|直连|群|邀请|返利|循环|官网|客服|网站|网址|获取|订阅|流量|到期|机场|下次|版本|官址|备用|过期|已用|联系|邮箱|工单|贩卖|通知|倒卖|防止|国内|地址|频道|无法|说明|使用|提示|特别|访问|支持|教程|关注|更新|作者|加入|USE|USED|TOTAL|EXPIRE|EMAIL|Panel|Channel|Author|traffic)"
-    override:
-      skip-cert-verify: true
-      udp: true
-
-  Airport_06:
-    url: "订阅链接6"
-    type: http
-    interval: 86400
-    health-check:
-      enable: true
-      url: https://edge.microsoft.com/captiveportal/generate_204
-      interval: 300
-    proxy: "🟢 直连"
-    exclude-filter: "(?i)(拒绝|直连|群|邀请|返利|循环|官网|客服|网站|网址|获取|订阅|流量|到期|机场|下次|版本|官址|备用|过期|已用|联系|邮箱|工单|贩卖|通知|倒卖|防止|国内|地址|频道|无法|说明|使用|提示|特别|访问|支持|教程|关注|更新|作者|加入|USE|USED|TOTAL|EXPIRE|EMAIL|Panel|Channel|Author|traffic)"
-    override:
-      skip-cert-verify: true
-      udp: true
+      timeout: 3000
+    filter: >-
+      (?i)^(?!.*(email|expire|test|total|traffic|use|used|版本|备用|不推荐|测试|到期|订阅|工单|官方|官网|官址|过期|获取|机场|客服|联系|流量|群|剩余|失联|套餐|网站|网址|下次|学术|已用|邮箱|有效))
+    url: 订阅链接6
 
 # 用于下载订阅时指定UA
 global-ua: clash.meta
