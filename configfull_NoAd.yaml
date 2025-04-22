@@ -114,95 +114,79 @@ keep-alive-interval: 30
 profile:
   store-selected: true
   store-fake-ip: false
+# 嗅探模块
 sniffer:
   enable: true
+  force-dns-mapping: true
+  parse-pure-ip: true
+  override-destination: true
   sniff:
     HTTP:
-      ports:
-        - 80
-        - 8080-8880
-      override-destination: true
+      ports: [80, 8080-8880]
     TLS:
-      ports:
-        - 443
-        - 8443
+      ports: [443, 8443]
     QUIC:
-      ports:
-        - 443
-        - 8443
+      ports: [443, 8443]
   force-domain:
-    - '*.v2ex.com'
+    - "+.v2ex.com"
   skip-domain:
-    - Mijia Cloud
-    - dlg.io.mi.com
-    - '*.push.apple.com'
-    - '*.apple.com'
-    - '*.wechat.com'
-    - '*.qpic.cn'
-    - '*.qq.com'
-    - '*.wechatapp.com'
-    - '*.vivox.com'
-    - '*.oray.com'
-    - '*.sunlogin.net'
+    - "Mijia Cloud"
+# —————————
+
+# 网卡模块
 tun:
-  enable: true
-  stack: system
-  mtu: 9000
+  enable: true  #true 开 #false 关 
+  device: Meta
+  stack: gvisor
   dns-hijack:
-    - 'any:53'
-    - 'tcp://any:53'
+    - any:53
+    - tcp://any:53
+  udp-timeout: 300
   auto-route: true
-  auto-redirect: true
+  strict-route: true
+  auto-redirect: false
   auto-detect-interface: true
+  exclude-package:
+    # _____________________# 三星专供 ↓ 范围
+#    - com.samsung.android.messaging
+#    - com.samsung.android.app.telephonyui
+#    - com.samsung.android.dialer
+#    - com.samsung.android.incallui
+#    - com.samsung.android.smartcallprovider
+#    - com.samsung.android.intellivoiceservice
+#    - com.android.settings
+#    - com.qti.qcc
+#    - com.sec.epdg
+#    - com.sec.imsservice # 三星专供 ↑ 范围
+    # 非三星用户不必理会，三星用户需自行取消注释
+    
+# —————————
+
+
+# DNS模块
+# 请勿随意变动！
 dns:
   enable: true
-  listen: '0.0.0.0:1053'
   ipv6: true
-  prefer-h3: true
-  respect-rules: true
+  listen: 0.0.0.0:1053
   enhanced-mode: fake-ip
   fake-ip-range: 172.20.0.1/16
-  fake-ip-filter-mode: blacklist
   fake-ip-filter:
-    - '*.lan'
-    - '*.local'
-    - time.*.com
-    - time.*.gov
-    - time.*.edu.cn
-    - time.*.apple.com
-    - time-ios.apple.com
-    - time1.*.com
-    - time2.*.com
-    - time3.*.com
-    - time4.*.com
-    - time5.*.com
-    - time6.*.com
-    - time7.*.com
-    - ntp.*.com
-    - ntp1.*.com
-    - ntp2.*.com
-    - ntp3.*.com
-    - ntp4.*.com
-    - ntp5.*.com
-    - ntp6.*.com
-    - ntp7.*.com
-    - '*.time.edu.cn'
-    - '*.ntp.org.cn'
-    - '*.pool.ntp.org'
-    - +.services.googleapis.cn
-    - +.xn--ngstr-lra8j.com
-    - +.push.apple.com
-    - 5ddd.com
-    - time1.cloud.tencent.com
-  default-nameserver:
-    - 223.5.5.5
-    - 119.29.29.29
+    - "RULE-SET:China,Lan,GoogleFCM"
+  direct-nameserver:
+    - https://doh.pub/dns-query#🇨🇳 中国大陆
+    - https://dns.alidns.com/dns-query#🇨🇳 中国大陆&h3=true
   proxy-server-nameserver:
-    - 'quic://dns.alidns.com/dns-query'
-    - 'https://sm2.doh.pub/dns-query'
+    - https://doh.pub/dns-query#🇨🇳 中国大陆
+    - https://dns.alidns.com/dns-query#🇨🇳 中国大陆&h3=true
+  nameserver-policy:
+    "RULE-SET:China,Microsoft,Apple":
+       - https://doh.pub/dns-query#🇨🇳 中国大陆
+       - https://dns.alidns.com/dns-query#🇨🇳 中国大陆&h3=true
   nameserver:
-    - 'quic://dns.alidns.com/dns-query'
-    - 'https://sm2.doh.pub/dns-query'
+    - https://dns.google/dns-query#DNS连接&h3=true
+    - https://cloudflare-dns.com/dns-query#DNS连接&h3=true
+# —————————
 anchor_policy_groups_all:
   type: select
   proxies:
