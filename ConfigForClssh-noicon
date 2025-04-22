@@ -1,3 +1,142 @@
+# 订阅频道：https://t.me/i_chl
+# 仓库地址：https://github.com/sunfing/iNg/blob/main/Config/ConfigForClash
+# 本配置文件携带大量的注释，尽可能解释全部代码内容，其余不懂地方建议看官方文档 https://wiki.metacubex.one
+# 初次使用建议详细阅读注释内容并修改必要的内容，如：在“远程代理集”填写订阅链接
+
+# ⚠️⚠️⚠️注意 YAML 文本对缩进非常敏感，若改完后不知道格式是否有误，请务必查看 https://t.me/i_chl/111，并用 YAML 验证器二次检验格式是否有误
+# 远程代理集锚点
+  anchor_proxy_providers: &anchor_proxy_providers
+    type: http
+    interval: 86400 # 单位为秒，定时更新代理列表，24 小时一次
+    health-check:   # 检测代理可用性
+      enable: true
+      url: http://www.gstatic.com/generate_204
+      interval: 300 # 单位为秒，定时健康检查，5 分钟一次
+      timeout: 3000 # 单位为毫秒，健康检查超时时间，大于 3 秒判定为失败
+    filter:         # 常用排除，保留不包含下面关键字的节点
+      (?i)^(?!.*(email|expire|test|total|traffic|use|used|版本|备用|不推荐|测试|到期|订阅|工单|官方|官网|官址|过期|获取|机场|客服|联系|流量|群|剩余|失联|套餐|网站|网址|下次|学术|已用|邮箱|有效))
+
+# 代理集
+  # 远程代理集
+  # 要添加更多远程代理集即机场（名字不能重复）自行复制下面的示例模板粘贴添加，注意去掉机场名字前面的“#”且务必注意缩进量
+  # 四种模板任挑一种批量复制粘贴即可添加多个机场，建议小白无脑选择使用“无文件路径”的模板，注意去掉机场名字前面的“#”且务必注意缩进量
+  proxy-providers:
+    机场一: {<<: *anchor_proxy_providers, url: "订阅链接1"} 
+    机场二: {<<: *anchor_proxy_providers, url: "订阅链接2"} 
+    机场三: {<<: *anchor_proxy_providers, url: "订阅链接3"} 
+    机场四: {<<: *anchor_proxy_providers, url: "订阅链接4"} 
+    机场五: {<<: *anchor_proxy_providers, url: "订阅链接5"} 
+
+  # 本地代理集
+  # 该项可用于远程资源首次下载需要挂梯时（例如：订阅链接域名被墙。一般不需要），可自行添加一个本地代理节点利用该节点下载更新订阅和规则，日常使用可删除或注释本项；亦或是在此添加自建的本地代理节点
+  # proxies:
+    # - { xxx }
+
+# 基础配置
+  port: 7890        # HTTP(S) 代理端口
+  socks-port: 7891  # SOCKS 代理端口
+  mixed-port: 7892  # 混合代理端口，支持 HTTP(S) 和 SOCKS 协议
+  redir-port: 7893  # 透明代理端口，仅代理 TCP 流量，redirect 端口仅限 Linux(Android) 和 macOS 适用
+  tproxy-port: 7894 # 透明代理端口，代理 TCP 和 UDP 流量，tproxy 端口仅限 Linux(Android) 适用
+
+  mode: rule                        # 代理模式
+  log-level: info                   # 日志等级
+  ipv6: false                       # 是否接受 IPv6 流量
+  allow-lan: true                   # 是否允许局域网连接
+  bind-address: "*"                 # 绑定 IP 地址，仅作用于 allow-lan 为 true，“*”表示所有地址
+  unified-delay: false              # 统一延迟，开启时会计算 RTT，以消除连接握手等带来的不同类型节点的延迟差异
+  tcp-concurrent: true              # TCP 并发，TCP 并发请求所有 IP 地址，然后选择延迟最低的一个进行连接
+  disable-keep-alive: false         # 禁用 TCP Keep Alive，false 即启用 Keep-Alive，连接保持开启，允许多个请求复用同一个 TCP 连接
+  find-process-mode: strict         # 进程匹配模式，always 开启，强制匹配所有进程 / strict 默认，由 Clash 判断是否开启 / off 不匹配进程，推荐在路由器上使用此模式
+  global-client-fingerprint: chrome # 全局客户端指纹
+
+  external-controller: 0.0.0.0:9090 # 外部控制
+  external-ui: ui
+  external-ui-url: https://github.com/MetaCubeX/metacubexd/archive/refs/heads/gh-pages.zip  # metacubexd
+  # external-ui-url: https://github.com/Zephyruso/zashboard/releases/latest/download/dist.zip # zashboard
+  secret: dashboard
+
+  geox-url:               # 自定义 GEO 数据库
+    geoip: https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/geoip-lite.dat
+    geosite: https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/geosite.dat
+    mmdb: https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/country-lite.mmdb
+    asn: https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/GeoLite2-ASN.mmdb
+  geo-auto-update: true   # 是否自动更新
+  geo-update-interval: 24 # 单位小时，更新间隔，每天更新
+
+  profile:
+    store-selected: true # 储存策略组选择，以供下次启动时使用
+    store-fake-ip: true  # 储存 fake-ip 映射表，域名再次发生连接时使用原有映射地址
+
+  dns:
+    enable: true
+    ipv6: false
+    listen: 0.0.0.0:1053            # DNS 服务监听
+    enhanced-mode: fake-ip          # DNS 处理模式 fake-ip/redir-host
+    fake-ip-range: 198.18.0.1/16    # fake-ip/tun 模式下的 IP 段
+    fake-ip-filter-mode: blacklist  # 匹配模式 blacklist/whitelist，默认 blacklist 匹配成功则不返回 fake-ip，whitelist 匹配成功返回 fake-ip
+    fake-ip-filter:                 # fake-ip 过滤，blacklist 模式下以下地址不会下发 fake-ip 映射用于连接即使用真实 IP 连接
+      ["geosite:cn", "+.lan", "+.local", "+.localhost", "+.direct", "+.example", "+.invalid", "+.test", "+.home.arpa", "time.*.com", "time.*.gov", "time.*.edu.cn", "time.*.apple.com", "time-ios.apple.com", "time1.*.com", "time2.*.com", "time3.*.com", "time4.*.com", "time5.*.com", "time6.*.com", "time7.*.com", "ntp.*.com", "ntp1.*.com", "ntp2.*.com", "ntp3.*.com", "ntp4.*.com", "ntp5.*.com", "ntp6.*.com", "ntp7.*.com", "+.time.edu.cn", "+.ntp.org.cn", "+.pool.ntp.org", "time1.cloud.tencent.com", "+.msftconnecttest.com", "+.msftncsi.com", "stun.*.*", "stun.*.*.*", "+.stun.*.*", "+.stun.*.*.*", "+.stun.*.*.*.*", "+.stun.*.*.*.*.*"]
+    default-nameserver:       # 只用于解析 nameserver 中域名格式的 DNS 服务器，可使用 UDP/DoT/DoH，只能使用纯 IP 地址
+      - 223.5.5.5
+      - 114.114.114.114
+    # direct-nameserver:        # 用于 direct 出口域名解析的 DNS 服务器，如果不填则遵循 nameserver-policy、nameserver 和 fallback 的配置
+      # - system
+    # nameserver-policy:        # 指定域名查询的解析服务器，可使用 geosite，优先于 nameserver/fallback 查询
+      # geosite:cn, private:     # 一般只开启该项
+        # - https://223.5.5.5/dns-query
+        # - https://120.53.53.53/dns-query
+      # geosite:gfw, geolocation-!cn:
+        # - https://1.1.1.1/dns-query
+        # - https://8.8.8.8/dns-query
+    nameserver:               # 默认域名解析服务器，除 nameserver-policy 指定规则外的所有域名都由 nameserver 解析，默认走代理
+      - 223.5.5.5
+      - 114.114.114.114
+    # respect-rules: true       # DNS 连接遵守路由规则，需配置 proxy-server-nameserver
+    # proxy-server-nameserver:  # 节点域名解析服务器，仅用于解析代理节点的域名，不填则遵循 nameserver-policy、nameserver 和 fallback 的配置
+      # - https://223.5.5.5/dns-query
+      # - https://120.53.53.53/dns-query
+    # fallback:                 # 后备域名解析服务器，一般情况下使用境外 DNS，保证结果可信，配置 fallback 后默认启用 fallback-filter，geoip-code 为 cn
+      # - tls://8.8.4.4
+      # - tls://1.1.1.1
+    # fallback-filter:          # 后备域名解析服务器筛选，满足条件的将使用 fallback 结果或只使用 fallback 解析
+      # geoip: true
+      # geoip-code:cn
+      # geosite:
+        # - gfw
+      # ipcidr:
+        # - 240.0.0.0/4
+      # domain:
+        # - "+.google.com"
+        # - "+.facebook.com"
+        # - "+.youtube.com"
+
+  sniffer:
+    enable: true
+    parse-pure-ip: true         # 对所有未获取到域名的流量进行强制嗅探
+    force-dns-mapping: true     # 对 redir-host 类型识别的流量进行强制嗅探
+    override-destination: true  # 是否使用嗅探结果作为实际访问
+    sniff:
+      HTTP:
+        ports: [80, 8080-8880]
+        override-destination: true
+      TLS:
+        ports: [443, 8443]
+      QUIC:
+        ports: [443, 8443]
+    force-domain:               # 强制进行嗅探的域名
+      - "+.v2ex.com"
+    skip-domain:                # 跳过嗅探的域名
+      - "+.push.apple.com"
+
+  tun:
+    enable: false
+    stack: mixed                # system/gvisor/mixed
+    dns-hijack:
+      - "any:53"
+    auto-route: true            # 自动设置全局路由，可以自动将全局流量路由进入 tun 网卡
+    # auto-redirect: true         # 仅支持 Linux，自动配置 iptables/nftables 以重定向 TCP 连接
+    auto-detect-interface: true # 自动选择流量出口接口，多出口网卡同时连接的设备建议手动指定出口网卡
 
 # 策略组锚点
   # 所有规则集配置
