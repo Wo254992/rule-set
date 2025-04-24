@@ -253,21 +253,9 @@
         <<: *anchor_policy_groups_newssocialize
         icon: https://raw.githubusercontent.com/sunfing/iNg/main/Icons/GeneralIcons/Instagram.png
 
-      - name: ChatGPT
+      - name: 智域导流
         <<: *anchor_policy_groups_aigc
-        icon: https://raw.githubusercontent.com/sunfing/iNg/main/Icons/GeneralIcons/OpenAI1.png
-
-      - name: Claude
-        <<: *anchor_policy_groups_aigc
-        icon: https://raw.githubusercontent.com/sunfing/iNg/main/Icons/GeneralIcons/ClaudeAI.png
-
-      - name: Gemini
-        <<: *anchor_policy_groups_aigc
-        icon: https://raw.githubusercontent.com/sunfing/iNg/main/Icons/GeneralIcons/Gemini.png
-
-      - name: Copilot
-        <<: *anchor_policy_groups_aigc
-        icon: https://raw.githubusercontent.com/sunfing/iNg/main/Icons/GeneralIcons/Copilot.png
+        icon: https://raw.githubusercontent.com/Koolson/Qure/refs/heads/master/IconSet/Color/AI.png
 
       - name: 媒体中心
         <<: *anchor_policy_groups_mediahub
@@ -525,10 +513,7 @@
     - RULE-SET, AppleNews, 苹果新闻
     - RULE-SET, Twitter, 推特推特
     - RULE-SET, Instagram, 晒照片墙
-    - RULE-SET, OpenAI, ChatGPT
-    - RULE-SET, Claude, Claude
-    - RULE-SET, Gemini, Gemini
-    - RULE-SET, Copilot, Copilot
+    - RULE-SET, AI, 智域导流
     - RULE-SET, A_AIGC, 语言模型               # 自定义 AIGC
     - RULE-SET, AppleMusic, 全球直连
     - RULE-SET, Spotify, 声田音乐
@@ -659,22 +644,10 @@
       <<: *anchor_rule_providers_classical_yaml
       url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Instagram/Instagram_No_Resolve.yaml
       path: ./rule_providers/Instagram.yaml
-    OpenAI: # ChatGPT
-      <<: *anchor_rule_providers_classical_yaml
-      url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/OpenAI/OpenAI_No_Resolve.yaml
-      path: ./rule_providers/OpenAI.yaml
-    Claude: # Claude
-      <<: *anchor_rule_providers_classical_yaml
-      url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Claude/Claude_No_Resolve.yaml
-      path: ./rule_providers/Claude.yaml
-    Gemini: # Gemini
-      <<: *anchor_rule_providers_classical_yaml
-      url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Gemini/Gemini_No_Resolve.yaml
-      path: ./rule_providers/Gemini.yaml
-    Copilot: # Copilot
-      <<: *anchor_rule_providers_classical_yaml
-      url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Copilot/Copilot_No_Resolve.yaml
-      path: ./rule_providers/Copilot.yaml
+    AI: # 智域导流
+      <<: *anchor_rule_providers_classical_text
+      url: https://raw.githubusercontent.com/lige47/QuanX-icon-rule/main/rule/openai.list
+      path: ./rule_providers/AI.list
     A_AIGC: # 语言模型
       <<: *anchor_rule_providers_classical_yaml
       url: https://raw.githubusercontent.com/sunfing/iNg/main/Rules/AIGC/A_AIGC.yaml
