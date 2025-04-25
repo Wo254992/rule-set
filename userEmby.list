@@ -457,6 +457,7 @@ DOMAIN-SUFFIX,v1.uhdnow.com
 DOMAIN-SUFFIX,nsfw.oceancloud.asia
 DOMAIN-SUFFIX,jsq.mooguu.xyz
 DOMAIN-SUFFIX,su.viclub.top
+DOMAIN-SUFFIX,gm.yezi.my
 IP-CIDR,193.122.114.13,,no-resolve
 IP-CIDR,188.172.228.49/32,no-resolve
 IP-CIDR,45.142.176.135/32,no-resolve
