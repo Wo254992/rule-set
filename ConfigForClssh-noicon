@@ -27,6 +27,7 @@
     机场四: {<<: *anchor_proxy_providers, url: "订阅链接4"} 
     机场五: {<<: *anchor_proxy_providers, url: "订阅链接5"}
     机场六: {<<: *anchor_proxy_providers, url: "订阅链接6"}
+    机场七: {<<: *anchor_proxy_providers, url: "订阅链接7"}
 
   # 本地代理集
   # 该项可用于远程资源首次下载需要挂梯时（例如：订阅链接域名被墙。一般不需要），可自行添加一个本地代理节点利用该节点下载更新订阅和规则，日常使用可删除或注释本项；亦或是在此添加自建的本地代理节点
