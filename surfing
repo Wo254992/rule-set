@@ -431,14 +431,10 @@ rule-providers:
     path: ./rules/Proxy.mrs
     url: "https://raw.githubusercontent.com/Wo254992/rule-set/refs/heads/main/Proxy_域.mrs"
 
-  Emby_域:
-    <<: *Domain
-    path: ./rules/Emby.mrs
-    url: "https://raw.githubusercontent.com/Wo254992/rule-set/refs/heads/main/Emby_域名.mrs"
-  Emby_IP:
-    <<: *IPCIDR
-    path: ./rules/Emby_IP.mrs
-    url: "https://raw.githubusercontent.com/Wo254992/rule-set/refs/heads/main/embyip_ip.mrs"
+  Emby_IP/域:
+    <<: *Classical
+    path: ./rules/Emby.list
+    url: "https://raw.githubusercontent.com/Wo254992/rule-set/refs/heads/main/userEmby.list"
 
   No-ads-all_域:
     <<: *Domain
@@ -601,8 +597,7 @@ rules:
   - RULE-SET,WebRTC_端/域,WebRTC
   - RULE-SET,No-ads-all_域,广告拦截
 
-  - RULE-SET,Emby_域,Emby
-  - RULE-SET,Emby_IP,Emby
+  - RULE-SET,Emby_IP/域,Emby
 
   - PROCESS-PATH,com.levelinfinite.sgameGlobal,总模式
 
