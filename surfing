@@ -51,6 +51,7 @@ A: &A
   - 4.机场四
   - 5.机场五
   - 6.机场六
+  - 7.机场七
 
 All: &All
   type: url-test
@@ -61,6 +62,7 @@ All: &All
   - 4.机场四
   - 5.机场五
   - 6.机场六
+  - 7.机场七
 
 proxy-providers: # ← 此函数位置请勿变动！此为模块更新时备份恢复订阅变量范围 ↓
   1.机场一:
@@ -90,8 +92,13 @@ proxy-providers: # ← 此函数位置请勿变动！此为模块更新时备份
   
   6.机场六:
     <<: *p
-    path: ./proxies/5.机场六.yaml
+    path: ./proxies/6.机场六.yaml
     url: "订阅链接6"
+
+  7.机场七:
+    <<: *p
+    path: ./proxies/7.机场七.yaml
+    url: "订阅链接7"
 
 # —————————
 
