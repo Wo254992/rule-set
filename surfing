@@ -118,7 +118,7 @@ sniffer:
     HTTP:
       ports: [80, 8080-8880]
     TLS:
-      ports: [443, 8443]
+      ports: [443, 5228, 8443]
     QUIC:
       ports: [443, 8443]
   force-domain:
@@ -631,7 +631,6 @@ rules:
   - RULE-SET,YouTube_域,YouTube
   - RULE-SET,YouTube_IP,YouTube
 
-  - DST-PORT,5228,GoogleFCM
   - DOMAIN-KEYWORD,mtalk.google,GoogleFCM
 
   - RULE-SET,Google_域,Google
