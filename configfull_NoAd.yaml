@@ -17,7 +17,6 @@ proxy-providers:
     proxy: "🟢 直连"
     url: "订阅链接1"
     override:
-      additional-prefix: '[机场名称1]'
       skip-cert-verify: true
       udp: true
   Airport_02:
@@ -25,7 +24,6 @@ proxy-providers:
     proxy: "🟢 直连"
     url: "订阅链接2"
     override:
-      additional-prefix: '[机场名称2]'
       skip-cert-verify: true
       udp: true
   Airport_03:
@@ -33,7 +31,6 @@ proxy-providers:
     proxy: "🟢 直连"
     url: "订阅链接3"
     override:
-      additional-prefix: '[机场名称3]'
       skip-cert-verify: true
       udp: true
   Airport_04:
@@ -41,7 +38,6 @@ proxy-providers:
     proxy: "🟢 直连"
     url: "订阅链接4"
     override:
-      additional-prefix: '[机场名称4]'
       skip-cert-verify: true
       udp: true
   Airport_05:
@@ -49,7 +45,6 @@ proxy-providers:
     proxy: "🟢 直连"
     url: "订阅链接5"
     override:
-      additional-prefix: '[机场名称5]'
       skip-cert-verify: true
       udp: true
   Airport_06:
@@ -57,7 +52,6 @@ proxy-providers:
     proxy: "🟢 直连"
     url: "订阅链接6"
     override:
-      additional-prefix: '[机场名称6]'
       skip-cert-verify: true
       udp: true
   Airport_07:
@@ -65,7 +59,6 @@ proxy-providers:
     proxy: "🟢 直连"
     url: "订阅链接7"
     override:
-      additional-prefix: '[机场名称7]'
       skip-cert-verify: true
       udp: true
 
