@@ -36,6 +36,38 @@ proxy-providers:
       additional-prefix: '[机场名称3]'
       skip-cert-verify: true
       udp: true
+  Airport_04:
+    <<: *PProviders
+    proxy: "🟢 直连"
+    url: "订阅链接4"
+    override:
+      additional-prefix: '[机场名称4]'
+      skip-cert-verify: true
+      udp: true
+  Airport_05:
+    <<: *PProviders
+    proxy: "🟢 直连"
+    url: "订阅链接5"
+    override:
+      additional-prefix: '[机场名称5]'
+      skip-cert-verify: true
+      udp: true
+  Airport_06:
+    <<: *PProviders
+    proxy: "🟢 直连"
+    url: "订阅链接6"
+    override:
+      additional-prefix: '[机场名称6]'
+      skip-cert-verify: true
+      udp: true
+  Airport_07:
+    <<: *PProviders
+    proxy: "🟢 直连"
+    url: "订阅链接7"
+    override:
+      additional-prefix: '[机场名称7]'
+      skip-cert-verify: true
+      udp: true
 
 ##############################################
 
