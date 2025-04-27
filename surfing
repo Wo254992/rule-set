@@ -283,7 +283,7 @@ proxy-groups:
     <<: *proxy_groups
 
   - name: Netflix
-    icon: "https://raw.githubusercontent.com/MoGuangYu/Surfing/refs/heads/rm/Home/icon/Netflix.svg"
+    icon: "https://raw.githubusercontent.com/fmz200/wool_scripts/main/icons/erdongchanyo/Netflix.png"
     <<: *proxy_groups
 
   - name: Google
