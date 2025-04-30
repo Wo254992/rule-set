@@ -12,6 +12,13 @@ geo-auto-update: true
 geo-update-interval: 24
 geox-url:
   asn: "https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/GeoLite2-ASN.mmdb"
+experimental:
+  http-headers:
+    request:
+      - name: "User-Agent"
+        value: "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Mobile Safari/537.36"
+      - name: "Accept-Language"
+        value: "en-US,en;q=0.9"
 unified-delay: true
 tcp-concurrent: true
 log-level: silent
@@ -27,7 +34,16 @@ secret: "" # 面板访问密码，如在公网访问建议设置
 # 1. 修改配置文件保存时，建议重启服务/重载配置.
 # —————————
 
-
+hosts:
+  mtalk.google.com: 2404:6800:4008:c06::bc
+  alt1-mtalk.google.com: 2404:6800:4008:c06::bc
+  alt2-mtalk.google.com: 2404:6800:4008:c06::bc
+  alt3-mtalk.google.com: 2404:6800:4008:c06::bc
+  alt4-mtalk.google.com: 2404:6800:4008:c06::bc
+  alt5-mtalk.google.com: 2404:6800:4008:c06::bc
+  alt6-mtalk.google.com: 2404:6800:4008:c06::bc
+  alt7-mtalk.google.com: 2404:6800:4008:c06::bc
+  alt8-mtalk.google.com: 2404:6800:4008:c06::bc
 # 健康检查
 p: &p
   type: http
@@ -228,7 +244,7 @@ CNproxy_groups: &CNproxy_groups
 # —————————
 proxy-groups:
   - name: 总模式
-    icon: "https://raw.githubusercontent.com/MoGuangYu/Surfing/refs/heads/rm/Home/icon/All.svg"
+    icon: "https://cdn.jsdelivr.net/gh/MoGuangYu/Surfing@rm/Home/icon/All.svg"
     type: select
     proxies:
       - 延迟最低
@@ -244,22 +260,22 @@ proxy-groups:
 # —————————
 
   - name: 订阅更新
-    icon: "https://raw.githubusercontent.com/MoGuangYu/Surfing/refs/heads/rm/Home/icon/Update.svg"
+    icon: "https://cdn.jsdelivr.net/gh/MoGuangYu/Surfing@rm/Home/icon/Update.svg"
     type: select
     proxies:
       - 🇨🇳 中国大陆
       - 总模式
 
   - name: BiliBili
-    icon: "https://raw.githubusercontent.com/MoGuangYu/Surfing/refs/heads/rm/Home/icon/BiliBili.svg"
+    icon: "https://cdn.jsdelivr.net/gh/MoGuangYu/Surfing@rm/Home/icon/BiliBili.svg"
     <<: *CNproxy_groups
 
   - name: Steam
-    icon: "https://raw.githubusercontent.com/MoGuangYu/Surfing/refs/heads/rm/Home/icon/Steam.svg"
+    icon: "https://cdn.jsdelivr.net/gh/MoGuangYu/Surfing@rm/Home/icon/Steam.svg"
     <<: *CNproxy_groups
 
   - name: Apple
-    icon: "https://raw.githubusercontent.com/MoGuangYu/Surfing/refs/heads/rm/Home/icon/Apple.svg"
+    icon: "https://cdn.jsdelivr.net/gh/MoGuangYu/Surfing@rm/Home/icon/Apple.svg"
     <<: *CNproxy_groups
 
   - name: Emby
@@ -267,55 +283,55 @@ proxy-groups:
     <<: *CNproxy_groups
 
   - name: Microsoft
-    icon: "https://raw.githubusercontent.com/MoGuangYu/Surfing/refs/heads/rm/Home/icon/Microsoft.svg"
+    icon: "https://cdn.jsdelivr.net/gh/MoGuangYu/Surfing@rm/Home/icon/Microsoft.svg"
     <<: *CNproxy_groups
 
   - name: Telegram
-    icon: "https://raw.githubusercontent.com/MoGuangYu/Surfing/refs/heads/rm/Home/icon/Telegram.svg"
+    icon: "https://cdn.jsdelivr.net/gh/MoGuangYu/Surfing@rm/Home/icon/Telegram.svg"
     <<: *proxy_groups
 
   - name: Discord
-    icon: "https://raw.githubusercontent.com/MoGuangYu/Surfing/refs/heads/rm/Home/icon/Discord.svg"
+    icon: "https://cdn.jsdelivr.net/gh/MoGuangYu/Surfing@rm/Home/icon/Discord.svg"
     <<: *proxy_groups
 
   - name: Spotify
-    icon: "https://raw.githubusercontent.com/MoGuangYu/Surfing/refs/heads/rm/Home/icon/Spotify.svg"
+    icon: "https://cdn.jsdelivr.net/gh/MoGuangYu/Surfing@rm/Home/icon/Spotify.svg"
     <<: *proxy_groups
 
   - name: TikTok
-    icon: "https://raw.githubusercontent.com/MoGuangYu/Surfing/refs/heads/rm/Home/icon/TikTok.svg"
+    icon: "https://cdn.jsdelivr.net/gh/MoGuangYu/Surfing@rm/Home/icon/TikTok.svg"
     <<: *proxy_groups
 
   - name: YouTube
-    icon: "https://raw.githubusercontent.com/MoGuangYu/Surfing/refs/heads/rm/Home/icon/YouTube.svg"
+    icon: "https://cdn.jsdelivr.net/gh/MoGuangYu/Surfing@rm/Home/icon/YouTube.svg"
     <<: *proxy_groups
 
   - name: Netflix
-    icon: "https://raw.githubusercontent.com/fmz200/wool_scripts/main/icons/erdongchanyo/Netflix.png"
+    icon: "https://cdn.jsdelivr.net/gh/MoGuangYu/Surfing@rm/Home/icon/Netflix.svg"
     <<: *proxy_groups
 
   - name: Google
-    icon: "https://raw.githubusercontent.com/MoGuangYu/Surfing/refs/heads/rm/Home/icon/Google.svg"
+    icon: "https://cdn.jsdelivr.net/gh/MoGuangYu/Surfing@rm/Home/icon/Google.svg"
     <<: *proxy_groups
 
   - name: GoogleFCM
-    icon: "https://raw.githubusercontent.com/MoGuangYu/Surfing/refs/heads/rm/Home/icon/GoogleFCM.svg"
+    icon: "https://cdn.jsdelivr.net/gh/MoGuangYu/Surfing@rm/Home/icon/GoogleFCM.svg"
     <<: *proxy_groups
 
   - name: Facebook
-    icon: "https://raw.githubusercontent.com/MoGuangYu/Surfing/refs/heads/rm/Home/icon/Facebook.svg"
+    icon: "https://cdn.jsdelivr.net/gh/MoGuangYu/Surfing@rm/Home/icon/Facebook.svg"
     <<: *proxy_groups
 
   - name: AI
-    icon: "https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Bot.png"
+    icon: "https://cdn.jsdelivr.net/gh/MoGuangYu/Surfing@rm/Home/icon/OpenAI.svg"
     <<: *proxy_groups
 
   - name: GitHub
-    icon: "https://raw.githubusercontent.com/MoGuangYu/Surfing/refs/heads/rm/Home/icon/GitHub.svg"
+    icon: "https://cdn.jsdelivr.net/gh/MoGuangYu/Surfing@rm/Home/icon/GitHub.svg"
     <<: *proxy_groups
 
   - name: Twitter(X)
-    icon: "https://raw.githubusercontent.com/MoGuangYu/Surfing/refs/heads/rm/Home/icon/Twitter.svg"
+    icon: "https://cdn.jsdelivr.net/gh/MoGuangYu/Surfing@rm/Home/icon/Twitter.svg"
     <<: *proxy_groups
 
   - name: 游戏平台
@@ -327,15 +343,15 @@ proxy-groups:
     <<: *CNproxy_groups
 
   - name: DNS连接
-    icon: "https://raw.githubusercontent.com/MoGuangYu/Surfing/refs/heads/rm/Home/icon/DNS.svg"
+    icon: "https://cdn.jsdelivr.net/gh/MoGuangYu/Surfing@rm/Home/icon/DNS.svg"
     <<: *proxy_groups
 
   - name: 漏网之鱼
-    icon: "https://raw.githubusercontent.com/MoGuangYu/Surfing/refs/heads/rm/Home/icon/HBASE-copy.svg"
+    icon: "https://cdn.jsdelivr.net/gh/MoGuangYu/Surfing@rm/Home/icon/HBASE-copy.svg"
     <<: *proxy_groups
 
   - name: 广告拦截
-    icon: "https://raw.githubusercontent.com/MoGuangYu/Surfing/refs/heads/rm/Home/icon/No-ads-all.svg"
+    icon: "https://cdn.jsdelivr.net/gh/MoGuangYu/Surfing@rm/Home/icon/No-ads-all.svg"
     type: select
     proxies:
       - ⛔️ 拒绝连接
@@ -344,7 +360,7 @@ proxy-groups:
       - PASS #匹配规则 放行
 
   - name: WebRTC
-    icon: "https://raw.githubusercontent.com/MoGuangYu/Surfing/refs/heads/rm/Home/icon/WebRTC.svg"
+    icon: "https://cdn.jsdelivr.net/gh/MoGuangYu/Surfing@rm/Home/icon/WebRTC.svg"
     type: select
     proxies:
       - ⛔️ 拒绝连接
@@ -353,54 +369,54 @@ proxy-groups:
       - PASS
 
   - name: 延迟最低
-    icon: "https://raw.githubusercontent.com/MoGuangYu/Surfing/refs/heads/rm/Home/icon/Return.svg"
+    icon: "https://cdn.jsdelivr.net/gh/MoGuangYu/Surfing@rm/Home/icon/Return.svg"
     type: url-test
     <<: *A
 
   - name: 故障转移
-    icon: "https://raw.githubusercontent.com/MoGuangYu/Surfing/refs/heads/rm/Home/icon/Return.svg"
+    icon: "https://cdn.jsdelivr.net/gh/MoGuangYu/Surfing@rm/Home/icon/Return.svg"
     type: fallback
     <<: *A
 
   - name: 负载均衡
-    icon: "https://raw.githubusercontent.com/MoGuangYu/Surfing/refs/heads/rm/Home/icon/Return.svg"
+    icon: "https://cdn.jsdelivr.net/gh/MoGuangYu/Surfing@rm/Home/icon/Return.svg"
     type: load-balance
     strategy: round-robin
     <<: *A
 
   - name: 香港节点
     type: select
-    icon: "https://raw.githubusercontent.com/Orz-3/mini/master/Color/HK.png"
+    icon: "https://cdn.jsdelivr.net/gh/MoGuangYu/Surfing@rm/Home/icon/HK.svg"
     filter: "^(?=.*(港|HK|hk|Hong Kong|HongKong|hongkong)).*$"
     <<: *A
 
   - name: 台湾节点
     type: select
-    icon: "https://raw.githubusercontent.com/Orz-3/mini/master/Color/TW.png"
+    icon: "https://cdn.jsdelivr.net/gh/MoGuangYu/Surfing@rm/Home/icon/CN.svg"
     filter: "^(?=.*(台|新北|彰化|TW|Taiwan)).*$"
     <<: *A
 
   - name: 日本节点
     type: select
-    icon: "https://raw.githubusercontent.com/Orz-3/mini/master/Color/JP.png"
+    icon: "https://cdn.jsdelivr.net/gh/MoGuangYu/Surfing@rm/Home/icon/JP.svg"
     filter: "^(?=.*(日本|川日|东京|大阪|泉日|埼玉|沪日|深日|[^-]日|JP|Japan)).*$"
     <<: *A
 
   - name: 狮城节点
     type: select
-    icon: "https://raw.githubusercontent.com/Orz-3/mini/master/Color/SG.png"
+    icon: "https://cdn.jsdelivr.net/gh/MoGuangYu/Surfing@rm/Home/icon/Singapore.svg"
     filter: "^(?=.*(新加坡|坡|狮城|SG|Singapore)).*$"
     <<: *A
 
   - name: 美国节点
     type: select
-    icon: "https://raw.githubusercontent.com/Orz-3/mini/master/Color/US.png"
+    icon: "https://cdn.jsdelivr.net/gh/MoGuangYu/Surfing@rm/Home/icon/US.svg"
     filter: "^(?=.*(美|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥|US|United States)).*$"
     <<: *A
 
   - name: 其它地区
     type: select
-    icon: "https://raw.githubusercontent.com/MoGuangYu/Surfing/refs/heads/rm/Home/icon/Globe.svg"
+    icon: "https://cdn.jsdelivr.net/gh/MoGuangYu/Surfing@rm/Home/icon/Globe.svg"
     filter: "^(?!.*(港|HK|hk|Hong Kong|HongKong|hongkong|日本|川日|东京|大阪|泉日|埼玉|沪日|深日|[^-]日|JP|Japan|美|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥|US|United States|台|新北|彰化|TW|Taiwan|新加坡|坡|狮城|SG|Singapore|灾|网易|Netease|套餐|重置|剩余|到期|订阅|群|账户|流量|有效期|时间|官网)).*$"
     <<: *A
 # —————————
