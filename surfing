@@ -279,7 +279,7 @@ proxy-groups:
     <<: *CNproxy_groups
 
   - name: Emby
-    icon: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/icon/color/emby.png"
+    icon: "https://m.riyugo.cn/i/2025/04/30/gr5yoj.png"
     <<: *CNproxy_groups
 
   - name: Microsoft
@@ -335,11 +335,11 @@ proxy-groups:
     <<: *proxy_groups
 
   - name: 游戏平台
-    icon: "https://raw.githubusercontent.com/sunfing/iNg/refs/heads/main/Icons/GeneralIcons/Game.png"
+    icon: "https://m.riyugo.cn/i/2025/04/30/gr8qk2.png"
     <<: *CNproxy_groups
  
   - name: IP归属
-    icon: "https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/ForeignMedia.png"
+    icon: "https://m.riyugo.cn/i/2025/04/30/grcmoa.png"
     <<: *CNproxy_groups
 
   - name: DNS连接
