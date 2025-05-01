@@ -318,10 +318,6 @@ proxy-groups:
     icon: "https://cdn.jsdelivr.net/gh/MoGuangYu/Surfing@rm/Home/icon/GoogleFCM.svg"
     <<: *proxy_groups
 
-  - name: Bahamut
-    icon: "https://cdn.jsdelivr.net/gh/MoGuangYu/Surfing@rm/Home/icon/Discord.svg"
-    <<: *proxy_groups
-
   - name: Facebook
     icon: "https://cdn.jsdelivr.net/gh/MoGuangYu/Surfing@rm/Home/icon/Facebook.svg"
     <<: *proxy_groups
@@ -336,6 +332,10 @@ proxy-groups:
 
   - name: Twitter(X)
     icon: "https://cdn.jsdelivr.net/gh/MoGuangYu/Surfing@rm/Home/icon/Twitter.svg"
+    <<: *proxy_groups
+
+  - name: Bahamut
+    icon: "https://i.miji.bid/2025/05/02/29202f63e73dff154256a886acb5ff85.png"
     <<: *proxy_groups
 
   - name: 游戏平台
