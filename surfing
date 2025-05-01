@@ -318,6 +318,10 @@ proxy-groups:
     icon: "https://cdn.jsdelivr.net/gh/MoGuangYu/Surfing@rm/Home/icon/GoogleFCM.svg"
     <<: *proxy_groups
 
+  - name: Bahamut
+    icon: "https://cdn.jsdelivr.net/gh/MoGuangYu/Surfing@rm/Home/icon/Discord.svg"
+    <<: *proxy_groups
+
   - name: Facebook
     icon: "https://cdn.jsdelivr.net/gh/MoGuangYu/Surfing@rm/Home/icon/Facebook.svg"
     <<: *proxy_groups
@@ -483,6 +487,11 @@ rule-providers:
     <<: *Domain
     path: ./rules/Steam.mrs
     url: "https://raw.githubusercontent.com/MoGuangYu/rule/refs/heads/master/rule/Clash/Steam/Steam_OCD_Domain.mrs"
+
+  Bahamut_域:
+    <<: *Domain
+    path: ./rules/Steam.mrs
+    url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/bahamut.mrs"
 
   TikTok_域:
     <<: *Domain
@@ -654,6 +663,8 @@ rules:
 
   - RULE-SET,YouTube_域,YouTube
   - RULE-SET,YouTube_IP,YouTube
+
+  - RULE-SET,Bahamut_域,Bahamut
 
   - DOMAIN-KEYWORD,mtalk.google,GoogleFCM
 
