@@ -34,16 +34,6 @@ secret: "" # 面板访问密码，如在公网访问建议设置
 # 1. 修改配置文件保存时，建议重启服务/重载配置.
 # —————————
 
-hosts:
-  mtalk.google.com: 2404:6800:4008:c06::bc
-  alt1-mtalk.google.com: 2404:6800:4008:c06::bc
-  alt2-mtalk.google.com: 2404:6800:4008:c06::bc
-  alt3-mtalk.google.com: 2404:6800:4008:c06::bc
-  alt4-mtalk.google.com: 2404:6800:4008:c06::bc
-  alt5-mtalk.google.com: 2404:6800:4008:c06::bc
-  alt6-mtalk.google.com: 2404:6800:4008:c06::bc
-  alt7-mtalk.google.com: 2404:6800:4008:c06::bc
-  alt8-mtalk.google.com: 2404:6800:4008:c06::bc
 # 健康检查
 p: &p
   type: http
@@ -53,9 +43,13 @@ p: &p
     url: https://www.gstatic.com/generate_204
     interval: 300
   proxy: 订阅更新
-  header:
-      User-Agent:
+  header: # 如遇订阅加载不出来请切换ua
+      User-Agent:  # 使用注释法由上到下 默认使用第一个
+        - "clash-verge/v2.2.3"
+        - "ClashMetaForAndroid/2.11.2.Meta"
+        - "ClashforWindows/0.19.23"
         - "clash.meta"
+        - "mihomo"
 # —————————
 
 # 订阅地址相关
@@ -190,7 +184,7 @@ dns:
   enhanced-mode: fake-ip
   fake-ip-range: 172.20.0.1/16
   fake-ip-filter:
-    - "RULE-SET:CN_域,LAN_域,GoogleFCM_域"
+    - "RULE-SET:CN_域,Private_域,GoogleFCM_域"
   direct-nameserver:
     - https://doh.pub/dns-query#🇨🇳 中国大陆
     - https://dns.alidns.com/dns-query#🇨🇳 中国大陆&h3=true
@@ -202,8 +196,16 @@ dns:
        - https://doh.pub/dns-query#🇨🇳 中国大陆
        - https://dns.alidns.com/dns-query#🇨🇳 中国大陆&h3=true
   nameserver:
-    - https://dns.google/dns-query#DNS连接&h3=true
-    - https://cloudflare-dns.com/dns-query#DNS连接&h3=true
+  # Google DNS
+    - https://8.8.8.8/dns-query#DNS连接&h3=true
+    - https://8.8.4.4/dns-query#DNS连接&h3=true
+    - https://[2001:4860:4860::8888]/dns-query#DNS连接&h3=true
+    - https://[2001:4860:4860::8844]/dns-query#DNS连接&h3=true
+  # Cloudflare DNS
+    - https://1.1.1.1/dns-query#DNS连接&h3=true
+    - https://1.0.0.1/dns-query#DNS连接&h3=true
+    - https://[2606:4700:4700::1111]/dns-query#DNS连接&h3=true
+    - https://[2606:4700:4700::1001]/dns-query#DNS连接&h3=true
 # —————————
 
 proxies:
@@ -426,6 +428,8 @@ proxy-groups:
 # —————————
 
 rule-anchor:
+  Local: &Local
+    {type: file, behavior: classical, format: text}
   Classical: &Classical
     {type: http, behavior: classical, format: text, interval: 86400}
   IPCIDR: &IPCIDR
@@ -612,13 +616,13 @@ rule-providers:
     path: ./rules/Twitter_IP.mrs
     url: "https://raw.githubusercontent.com/MoGuangYu/rule/refs/heads/master/rule/Clash/Twitter/Twitter_OCD_IP.mrs"
 
-  LAN_域:
+  Private_域:
     <<: *Domain
     path: ./rules/LAN.mrs
     url: "https://raw.githubusercontent.com/MoGuangYu/rule/refs/heads/master/rule/Clash/Lan/Lan_OCD_Domain.mrs"
-  LAN_IP:
+  Private_IP:
     <<: *IPCIDR
-    path: ./rules/LAN_IP.mrs
+    path: ./rules/Private_IP.mrs
     url: "https://raw.githubusercontent.com/MoGuangYu/rule/refs/heads/master/rule/Clash/Lan/Lan_OCD_IP.mrs"
 # —————————
 rules:
@@ -692,8 +696,8 @@ rules:
 
   - RULE-SET,CN_域,🇨🇳 中国大陆
   - RULE-SET,CN_IP,🇨🇳 中国大陆
-  - RULE-SET,LAN_域,🇨🇳 中国大陆
-  - RULE-SET,LAN_IP,🇨🇳 中国大陆
+  - RULE-SET,Private_域,🇨🇳 中国大陆
+  - RULE-SET,Private_IP,🇨🇳 中国大陆
 
   - RULE-SET,Global_域,总模式
   - RULE-SET,Global_IP,总模式
