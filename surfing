@@ -185,6 +185,7 @@ dns:
   fake-ip-range: 172.20.0.1/16
   fake-ip-filter:
     - "RULE-SET:CN_域,Private_域,GoogleFCM_域"
+    - "+.3gppnetwork.org"
   direct-nameserver:
     - https://doh.pub/dns-query#🇨🇳 中国大陆
     - https://dns.alidns.com/dns-query#🇨🇳 中国大陆&h3=true
