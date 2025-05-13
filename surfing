@@ -460,9 +460,9 @@ rule-providers:
     url: "https://raw.githubusercontent.com/Wo254992/rule-set/refs/heads/main/归属地.mrs"
 
   Proxy_域:
-    <<: *Domain
-    path: ./rules/Proxy.mrs
-    url: "https://raw.githubusercontent.com/Wo254992/rule-set/refs/heads/main/Proxy_域名.mrs"
+    <<: *Classical
+    path: ./rules/Proxy.list
+    url: "https://raw.githubusercontent.com/Wo254992/rule-set/refs/heads/main/Proxy.list"
 
   Emby_IP/域:
     <<: *Classical
