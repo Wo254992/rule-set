@@ -45,6 +45,8 @@ DOMAIN-SUFFIX,nodeseek.com
 DOMAIN-SUFFIX,linux.do
 DOMAIN-SUFFIX,omofun.icu
 DOMAIN-SUFFIX,nmteam.xyz
+DOMAIN-SUFFIX,modules.lsposed.org
 DOMAIN-KEYWORD,sms-activate
+DOMAIN-KEYWORD,lsposed
 IP-CIDR,154.23.185.44/32,no-resolve # SDKDNS
 IP-CIDR,8.219.119.196/32,no-resolve # Claw-SG
