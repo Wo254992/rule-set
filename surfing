@@ -170,29 +170,24 @@ dns:
   enhanced-mode: fake-ip
   fake-ip-range: 172.20.0.1/16
   fake-ip-filter:
-    - "RULE-SET:CN_域,Private_域,GoogleFCM_域"
+    - "RULE-SET:CN_域"
+    - "RULE-SET:Private_域"
+    - "RULE-SET:GoogleFCM_域"
     - "+.3gppnetwork.org"
+    - "+.xtracloud.net"
   direct-nameserver:
-    - https://doh.pub/dns-query#🇨🇳 中国大陆
-    - https://dns.alidns.com/dns-query#🇨🇳 中国大陆&h3=true
+    - https://doh.pub/dns-query#🇨🇳 瓦洛兰大陆&h3=false
+    - https://dns.alidns.com/dns-query#🇨🇳 瓦洛兰大陆&h3=true
   proxy-server-nameserver:
-    - https://doh.pub/dns-query#🇨🇳 中国大陆
-    - https://dns.alidns.com/dns-query#🇨🇳 中国大陆&h3=true
+    - https://doh.pub/dns-query#🇨🇳 瓦洛兰大陆&h3=false
+    - https://dns.alidns.com/dns-query#🇨🇳 瓦洛兰大陆&h3=true
   nameserver-policy:
     "RULE-SET:CN_域,Microsoft_域,Apple_域":
-       - https://doh.pub/dns-query#🇨🇳 中国大陆
-       - https://dns.alidns.com/dns-query#🇨🇳 中国大陆&h3=true
+       - https://doh.pub/dns-query#🇨🇳 瓦洛兰大陆&h3=false
+       - https://dns.alidns.com/dns-query#🇨🇳 瓦洛兰大陆&h3=true
   nameserver:
-  # Google DNS
-    - https://8.8.8.8/dns-query#DNS连接&h3=true
-    - https://8.8.4.4/dns-query#DNS连接&h3=true
-    - https://[2001:4860:4860::8888]/dns-query#DNS连接&h3=true
-    - https://[2001:4860:4860::8844]/dns-query#DNS连接&h3=true
-  # Cloudflare DNS
-    - https://1.1.1.1/dns-query#DNS连接&h3=true
-    - https://1.0.0.1/dns-query#DNS连接&h3=true
-    - https://[2606:4700:4700::1111]/dns-query#DNS连接&h3=true
-    - https://[2606:4700:4700::1001]/dns-query#DNS连接&h3=true
+    - https://dns.google/dns-query#DNS连接&h3=true
+    - https://cloudflare-dns.com/dns-query#DNS连接&h3=true
 # —————————
 
 proxies:
@@ -233,7 +228,7 @@ CNproxy_groups: &CNproxy_groups
 # —————————
 proxy-groups:
   - name: 总模式
-    icon: "https://cdn.jsdelivr.net/gh/MoGuangYu/Surfing@rm/Home/icon/All.svg"
+    icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/All.svg"
     type: select
     proxies:
       - 延迟最低
@@ -249,22 +244,22 @@ proxy-groups:
 # —————————
 
   - name: 订阅更新
-    icon: "https://cdn.jsdelivr.net/gh/MoGuangYu/Surfing@rm/Home/icon/Update.svg"
+    icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/Update.svg"
     type: select
     proxies:
       - 🇨🇳 中国大陆
       - 总模式
 
   - name: BiliBili
-    icon: "https://cdn.jsdelivr.net/gh/MoGuangYu/Surfing@rm/Home/icon/BiliBili.svg"
+    icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/BiliBili.svg"
     <<: *CNproxy_groups
 
   - name: Steam
-    icon: "https://cdn.jsdelivr.net/gh/MoGuangYu/Surfing@rm/Home/icon/Steam.svg"
+    icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/Steam.svg"
     <<: *CNproxy_groups
 
   - name: Apple
-    icon: "https://cdn.jsdelivr.net/gh/MoGuangYu/Surfing@rm/Home/icon/Apple.svg"
+    icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/Apple.svg"
     <<: *CNproxy_groups
 
   - name: Emby
@@ -272,55 +267,55 @@ proxy-groups:
     <<: *CNproxy_groups
 
   - name: Microsoft
-    icon: "https://cdn.jsdelivr.net/gh/MoGuangYu/Surfing@rm/Home/icon/Microsoft.svg"
+    icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/Microsoft.svg"
     <<: *CNproxy_groups
 
   - name: Telegram
-    icon: "https://cdn.jsdelivr.net/gh/MoGuangYu/Surfing@rm/Home/icon/Telegram.svg"
+    icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/Telegram.svg"
     <<: *proxy_groups
 
   - name: Discord
-    icon: "https://cdn.jsdelivr.net/gh/MoGuangYu/Surfing@rm/Home/icon/Discord.svg"
+    icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/Discord.svg"
     <<: *proxy_groups
 
   - name: Spotify
-    icon: "https://cdn.jsdelivr.net/gh/MoGuangYu/Surfing@rm/Home/icon/Spotify.svg"
+    icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/Spotify.svg"
     <<: *proxy_groups
 
   - name: TikTok
-    icon: "https://cdn.jsdelivr.net/gh/MoGuangYu/Surfing@rm/Home/icon/TikTok.svg"
+    icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/TikTok.svg"
     <<: *proxy_groups
 
   - name: YouTube
-    icon: "https://cdn.jsdelivr.net/gh/MoGuangYu/Surfing@rm/Home/icon/YouTube.svg"
+    icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/YouTube.svg"
     <<: *proxy_groups
 
   - name: Netflix
-    icon: "https://cdn.jsdelivr.net/gh/MoGuangYu/Surfing@rm/Home/icon/Netflix.svg"
+    icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/Netflix.svg"
     <<: *proxy_groups
 
   - name: Google
-    icon: "https://cdn.jsdelivr.net/gh/MoGuangYu/Surfing@rm/Home/icon/Google.svg"
+    icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/Google.svg"
     <<: *proxy_groups
 
   - name: GoogleFCM
-    icon: "https://cdn.jsdelivr.net/gh/MoGuangYu/Surfing@rm/Home/icon/GoogleFCM.svg"
+    icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/GoogleFCM.svg"
     <<: *proxy_groups
 
   - name: Facebook
-    icon: "https://cdn.jsdelivr.net/gh/MoGuangYu/Surfing@rm/Home/icon/Facebook.svg"
+    icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/Facebook.svg"
     <<: *proxy_groups
 
   - name: AI
-    icon: "https://cdn.jsdelivr.net/gh/MoGuangYu/Surfing@rm/Home/icon/OpenAI.svg"
+    icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/OpenAI.svg"
     <<: *proxy_groups
 
   - name: GitHub
-    icon: "https://cdn.jsdelivr.net/gh/MoGuangYu/Surfing@rm/Home/icon/GitHub.svg"
+    icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/GitHub.svg"
     <<: *proxy_groups
 
   - name: Twitter(X)
-    icon: "https://cdn.jsdelivr.net/gh/MoGuangYu/Surfing@rm/Home/icon/Twitter.svg"
+    icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/Twitter.svg"
     <<: *proxy_groups
 
   - name: Bahamut
@@ -336,15 +331,15 @@ proxy-groups:
     <<: *CNproxy_groups
 
   - name: DNS连接
-    icon: "https://cdn.jsdelivr.net/gh/MoGuangYu/Surfing@rm/Home/icon/DNS.svg"
+    icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/DNS.svg"
     <<: *proxy_groups
 
   - name: 漏网之鱼
-    icon: "https://cdn.jsdelivr.net/gh/MoGuangYu/Surfing@rm/Home/icon/HBASE-copy.svg"
+    icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/HBASE-copy.svg"
     <<: *proxy_groups
 
   - name: 广告拦截
-    icon: "https://cdn.jsdelivr.net/gh/MoGuangYu/Surfing@rm/Home/icon/No-ads-all.svg"
+    icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/No-ads-all.svg"
     type: select
     proxies:
       - ⛔️ 拒绝连接
@@ -353,7 +348,7 @@ proxy-groups:
       - PASS #匹配规则 放行
 
   - name: WebRTC
-    icon: "https://cdn.jsdelivr.net/gh/MoGuangYu/Surfing@rm/Home/icon/WebRTC.svg"
+    icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/WebRTC.svg"
     type: select
     proxies:
       - ⛔️ 拒绝连接
@@ -362,7 +357,7 @@ proxy-groups:
       - PASS
 
   - name: 延迟最低
-    icon: "https://cdn.jsdelivr.net/gh/MoGuangYu/Surfing@rm/Home/icon/Return.svg"
+    icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/Return.svg"
     type: url-test
     <<: *A
 
@@ -372,46 +367,54 @@ proxy-groups:
     <<: *A
 
   - name: 负载均衡
-    icon: "https://cdn.jsdelivr.net/gh/MoGuangYu/Surfing@rm/Home/icon/Return.svg"
+    icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/Return.svg"
     type: load-balance
     strategy: round-robin
     <<: *A
 
   - name: 香港节点
     type: select
-    icon: "https://cdn.jsdelivr.net/gh/MoGuangYu/Surfing@rm/Home/icon/HK.svg"
+    icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/HK.svg"
     filter: "^(?=.*(港|HK|hk|Hong Kong|HongKong|hongkong)).*$"
     <<: *A
 
   - name: 台湾节点
     type: select
-    icon: "https://cdn.jsdelivr.net/gh/MoGuangYu/Surfing@rm/Home/icon/CN.svg"
+    icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/CN.svg"
     filter: "^(?=.*(台|新北|彰化|TW|Taiwan)).*$"
     <<: *A
 
   - name: 日本节点
     type: select
-    icon: "https://cdn.jsdelivr.net/gh/MoGuangYu/Surfing@rm/Home/icon/JP.svg"
+    icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/JP.svg"
     filter: "^(?=.*(日本|川日|东京|大阪|泉日|埼玉|沪日|深日|[^-]日|JP|Japan)).*$"
     <<: *A
 
   - name: 狮城节点
     type: select
-    icon: "https://cdn.jsdelivr.net/gh/MoGuangYu/Surfing@rm/Home/icon/Singapore.svg"
+    icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/Singapore.svg"
     filter: "^(?=.*(新加坡|坡|狮城|SG|Singapore)).*$"
     <<: *A
 
   - name: 美国节点
     type: select
-    icon: "https://cdn.jsdelivr.net/gh/MoGuangYu/Surfing@rm/Home/icon/US.svg"
+    icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/US.svg"
     filter: "^(?=.*(美|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥|US|United States)).*$"
     <<: *A
 
   - name: 其它地区
     type: select
-    icon: "https://cdn.jsdelivr.net/gh/MoGuangYu/Surfing@rm/Home/icon/Globe.svg"
+    icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/Globe.svg"
     filter: "^(?!.*(港|HK|hk|Hong Kong|HongKong|hongkong|日本|川日|东京|大阪|泉日|埼玉|沪日|深日|[^-]日|JP|Japan|美|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥|US|United States|台|新北|彰化|TW|Taiwan|新加坡|坡|狮城|SG|Singapore|灾|网易|Netease|套餐|重置|剩余|到期|订阅|群|账户|流量|有效期|时间|官网)).*$"
     <<: *A
+
+  - name: CNTEST
+    icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/Meter.svg"
+    type: select
+    url: https://www.gstatic.com/generate_204
+    interval: 86400
+    proxies:
+      - 🇨🇳 中国大陆
 # —————————
 
 rule-anchor:
