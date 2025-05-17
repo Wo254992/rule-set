@@ -26,7 +26,7 @@ find-process-mode: always
 global-client-fingerprint: chrome
 external-controller: 0.0.0.0:9090
 external-ui-url: "https://github.com/Zephyruso/zashboard/releases/latest/download/dist.zip"
-external-ui: /data/adb/box_bll/panel/Zash/
+external-ui: "./Web/Zash/"
 secret: "" # 面板访问密码，如在公网访问建议设置
 # —————————
 # ==== Tips
