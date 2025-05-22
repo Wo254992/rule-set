@@ -263,7 +263,7 @@ proxy-groups:
     <<: *CNproxy_groups
 
   - name: Emby
-    icon: "https://m.riyugo.cn/i/2025/04/30/gr5yoj.png"
+    icon: "https://raw.githubusercontent.com/s0lnce/mofish-icon/refs/heads/main/mihomo/glass/corner/emby.png"
     <<: *CNproxy_groups
 
   - name: Microsoft
@@ -323,11 +323,11 @@ proxy-groups:
     <<: *proxy_groups
 
   - name: 游戏平台
-    icon: "https://m.riyugo.cn/i/2025/04/30/gr8qk2.png"
+    icon: "https://raw.githubusercontent.com/s0lnce/mofish-icon/refs/heads/main/mihomo/glass/corner/game.png"
     <<: *CNproxy_groups
 
   - name: IP归属
-    icon: "https://m.riyugo.cn/i/2025/04/30/grcmoa.png"
+    icon: "https://raw.githubusercontent.com/s0lnce/mofish-icon/refs/heads/main/mihomo/glass/corner/all.png"
     <<: *CNproxy_groups
 
   - name: DNS连接
