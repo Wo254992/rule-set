@@ -46,6 +46,8 @@ DOMAIN-SUFFIX,linux.do
 DOMAIN-SUFFIX,omofun.icu
 DOMAIN-SUFFIX,nmteam.xyz
 DOMAIN-SUFFIX,modules.lsposed.org
+DOMAIN-SUFFIX,mr.chilledmelon.com
+DOMAIN-SUFFIX,mzlpin.chilledmelon.com
 DOMAIN-KEYWORD,sms-activate
 DOMAIN-KEYWORD,lsposed
 IP-CIDR,154.23.185.44/32,no-resolve # SDKDNS
