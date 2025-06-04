@@ -453,6 +453,11 @@ rule-providers:
     path: ./rules/Proxy.list
     url: "https://raw.githubusercontent.com/Wo254992/rule-set/refs/heads/main/Proxy.list"
 
+  Direct_IP/域:
+    <<: *Classical
+    path: ./rules/Direct.list
+    url: "https://raw.githubusercontent.com/Wo254992/rule-set/refs/heads/main/Direct.list"
+
   Emby_IP/域:
     <<: *Classical
     path: ./rules/Emby.list
@@ -618,6 +623,8 @@ rule-providers:
 rules:
   - DST-PORT,53,🌐 DNS_Hijack
   - DST-PORT,853,DNS连接
+
+  - RULE-SET,Direct_IP/域,🇨🇳 中国大陆
 
   - RULE-SET,Proxy_域,总模式
 
