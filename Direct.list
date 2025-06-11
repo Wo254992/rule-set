@@ -5,5 +5,7 @@ DOMAIN-SUFFIX,115cdn.de
 DOMAIN-SUFFIX,567650.xyz
 DOMAIN-SUFFIX,sb.mobai.sbs
 DOMAIN-SUFFIX,sharon.mobai.sbs
+DOMAIN-SUFFIX,cdn.ryplay11.com
+IP-CIDR,49.67.72.95/32,no-resolve
 IP-CIDR,101.132.152.113/32,no-resolve
 IP-CIDR,185.218.6.109/32,no-resolve
