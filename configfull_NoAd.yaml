@@ -47,20 +47,6 @@ proxy-providers:
     override:
       skip-cert-verify: true
       udp: true
-  Airport_06:
-    <<: *PProviders
-    proxy: "🟢 直连"
-    url: "订阅链接6"
-    override:
-      skip-cert-verify: true
-      udp: true
-  Airport_07:
-    <<: *PProviders
-    proxy: "🟢 直连"
-    url: "订阅链接7"
-    override:
-      skip-cert-verify: true
-      udp: true
 
 ##############################################
 
