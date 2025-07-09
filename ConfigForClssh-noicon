@@ -613,7 +613,7 @@
       path: ./rule_providers/A_Proxy.list
     Direct: # 全球直连
       <<: *anchor_rule_providers_classical_text
-      url: https://github.com/Wo254992/rule-set/blob/main/Direct.list
+      url: https://raw.githubusercontent.com/Wo254992/rule-set/refs/heads/main/Direct.list
       path: ./rule_providers/Direct.list
     Speedtest: # 速度测试
       <<: *anchor_rule_providers_classical_yaml
