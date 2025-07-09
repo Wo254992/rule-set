@@ -495,6 +495,7 @@
   # “A_”开头的规则个性化较强，请按照自身需求更改/删除，如果使用这些规则时发现不满足个人需求可加入频道关联群组提出需求
   rules:
     - IP-CIDR, 198.18.0.1/16, REJECT, no-resolve # 防止 fake-ip 模式下网络回环
+    - RULE-SET, Direct, 全球直连
     - RULE-SET, Lan, 全球直连
     - RULE-SET, UnBan, 全球直连
     # - RULE-SET, BanAD, 全球拦截
@@ -504,7 +505,6 @@
     # - RULE-SET, A_MediaHub*, 媒体中心*         # Emby/Jellyfin
     - RULE-SET, A_Reject, 全球拦截             # 自定义拦截
     - RULE-SET, A_Proxy, 默认代理              # 自定义代理
-    - RULE-SET, Direct, 全球直连             # 自定义直连
     - RULE-SET, Speedtest, 速度测试
     - RULE-SET, GitHub, 开源托管
     - RULE-SET, Telegram, 电报消息
