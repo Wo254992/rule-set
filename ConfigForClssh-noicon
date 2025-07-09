@@ -504,7 +504,7 @@
     # - RULE-SET, A_MediaHub*, 媒体中心*         # Emby/Jellyfin
     - RULE-SET, A_Reject, 全球拦截             # 自定义拦截
     - RULE-SET, A_Proxy, 默认代理              # 自定义代理
-    - RULE-SET, A_Direct, 全球直连             # 自定义直连
+    - RULE-SET, Direct, 全球直连             # 自定义直连
     - RULE-SET, Speedtest, 速度测试
     - RULE-SET, GitHub, 开源托管
     - RULE-SET, Telegram, 电报消息
@@ -611,10 +611,10 @@
       <<: *anchor_rule_providers_classical_text
       url: https://raw.githubusercontent.com/Wo254992/rule-set/refs/heads/main/Proxy.list
       path: ./rule_providers/A_Proxy.list
-    A_Proxy: # 默认代理
+    Direct: # 全球直连
       <<: *anchor_rule_providers_classical_text
       url: https://github.com/Wo254992/rule-set/blob/main/Direct.list
-      path: ./rule_providers/A_Proxy.list
+      path: ./rule_providers/Direct.list
     Speedtest: # 速度测试
       <<: *anchor_rule_providers_classical_yaml
       url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Speedtest/Speedtest_No_Resolve.yaml
