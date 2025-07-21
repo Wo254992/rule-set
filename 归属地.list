@@ -14,7 +14,5 @@ DOMAIN-SUFFIX,szextshort.weixin.qq.com
 DOMAIN-SUFFIX,api.ippzone.com
 #最右
 DOMAIN-SUFFIX,api.izuiyou.com
-#哔哩哔哩改IP+解锁港澳台
-DOMAIN-SUFFIX,api.bilibili.com
-DOMAIN-SUFFIX,biliapi.net
-DOMAIN-SUFFIX,upos-hz-mirrorakam.akamaized.net
+#虎扑
+PROCESS-NAME,com.hupu.games
