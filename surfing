@@ -444,9 +444,9 @@ rule-providers:
     url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/cn.mrs"
 
   归属地_域:
-    <<: *Domain
-    path: ./rules/归属地.mrs
-    url: "https://raw.githubusercontent.com/Wo254992/rule-set/refs/heads/main/归属地.mrs"
+    <<: *Classical
+    path: ./rules/归属地.list
+    url: "https://raw.githubusercontent.com/Wo254992/rule-set/refs/heads/main/归属地.list"
 
   Proxy_域:
     <<: *Classical
