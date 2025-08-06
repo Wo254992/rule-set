@@ -57,20 +57,12 @@ A: &A
   use:
   - 1.机场一
   - 2.机场二
-  - 3.机场三
-  - 4.机场四
-  - 5.机场五
-  - 6.机场六
 
 All: &All
   type: url-test
   use:
   - 1.机场一
   - 2.机场二
-  - 3.机场三
-  - 4.机场四
-  - 5.机场五
-  - 6.机场六
 
 proxy-providers: # ← 此函数位置请勿变动！此为模块更新时备份恢复订阅变量范围 ↓
   1.机场一:
@@ -82,26 +74,6 @@ proxy-providers: # ← 此函数位置请勿变动！此为模块更新时备份
     <<: *p
     path: ./proxies/2.机场二.yaml
     url: "订阅链接2"
-
-  3.机场三:
-    <<: *p
-    path: ./proxies/3.机场三.yaml
-    url: "订阅链接3"
-
-  4.机场四:
-    <<: *p
-    path: ./proxies/4.机场四.yaml
-    url: "订阅链接4"
-
-  5.机场五:
-    <<: *p
-    path: ./proxies/5.机场五.yaml
-    url: "订阅链接5"
-
-  6.机场六:
-    <<: *p
-    path: ./proxies/6.机场六.yaml
-    url: "订阅链接6"
 
 
 # —————————
