@@ -181,7 +181,7 @@ proxy-groups:
   - {name: 哔哩哔哩, type: select, <<: *Direct_first, icon: "https://pub-8feead0908f649a8b94397f152fb9cba.r2.dev/bilibili.png"}
   - {name: 哔哩东南亚, type: select, proxies: [节点选择, 新加坡节点, 全部节点, 自建/家宽节点, 全球直连], icon: "https://pub-8feead0908f649a8b94397f152fb9cba.r2.dev/bilibilit.png"}
   - {name: 巴哈姆特, type: select, proxies: [台湾节点], icon: "https://pub-8feead0908f649a8b94397f152fb9cba.r2.dev/bahamut.png"}
-  - {name: IP归属地, <<: *Proxy_first, icon: "https://raw.githubusercontent.com/Wo254992/rule-set/refs/heads/main/归属地.list"}
+  - {name: IP归属, <<: *Proxy_first, icon: "https://raw.githubusercontent.com/s0lnce/mofish-icon/refs/heads/main/mihomo/glass/corner/all.png"}
   - {name: Spotify, <<: *Proxy_first, icon: "https://pub-8feead0908f649a8b94397f152fb9cba.r2.dev/spotify.png"}
   - {name: 国内媒体, type: select, <<: *Direct_first, icon: "https://pub-8feead0908f649a8b94397f152fb9cba.r2.dev/Chinese_media.png"}
   - {name: Global-TV,type: select, <<: *Include_all, icon: "https://pub-8feead0908f649a8b94397f152fb9cba.r2.dev/global_tv.png"}
@@ -220,7 +220,7 @@ proxy-groups:
 rules:
   - RULE-SET,wechat_domain,全球直连
   - RULE-SET,direct,全球直连
-  - RULE-SET,ipcodr,IP归属地
+  - RULE-SET,ipcodr,IP归属
   - RULE-SET,wechat_asn,全球直连,no-resolve
   - RULE-SET,speedtest_domain,Speedtest
   - RULE-SET,Cloudflare_domain,节点选择
