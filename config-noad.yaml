@@ -221,6 +221,12 @@ rules:
   - RULE-SET,wechat_domain,全球直连
   - RULE-SET,direct,全球直连
   - RULE-SET,ipcodr,IP归属
+  - PROCESS-PATH,com.ss.android.ugc.aweme,IP归属
+  - PROCESS-PATH,com.hupu.games,IP归属
+  - PROCESS-PATH,com.smile.gifmaker,IP归属
+  - PROCESS-PATH,com.sina.weibo,IP归属
+  - PROCESS-PATH,com.xingin.xhs,IP归属
+  - PROCESS-PATH,com.tencent.gamehelper.pg,IP归属
   - RULE-SET,wechat_asn,全球直连,no-resolve
   - RULE-SET,speedtest_domain,Speedtest
   - RULE-SET,Cloudflare_domain,节点选择
