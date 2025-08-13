@@ -19,3 +19,5 @@ PROCESS-NAME,com.hupu.games
 DOMAIN-KEYWORD,hupu
 DOMAIN-KEYWORD,hoopchina
 IP-CIDR,8.149.241.96/32,no-resolve
+#贴吧
+DOMAIN-KEYWORD,tieba
