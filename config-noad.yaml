@@ -30,6 +30,14 @@ proxy-providers:
       additional-prefix: '[机场名称2]'
       skip-cert-verify: true
       udp: true
+  Airport_02:
+    <<: *PProviders
+    proxy: "🟢 直连"
+    url: "订阅链接3"
+    override:
+      additional-prefix: '[机场名称3]'
+      skip-cert-verify: true
+      udp: true
 
 ##############################################
 
