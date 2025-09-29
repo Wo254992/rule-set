@@ -9,6 +9,7 @@ DOMAIN-SUFFIX,sharon.mobai.sbs
 DOMAIN-SUFFIX,cdn.ryplay11.com
 DOMAIN-SUFFIX,sptv.ii00.cc
 IP-CIDR,46.232.105.149/32,no-resolve
+IP-CIDR,117.72.165.47/32,no-resolve
 IP-CIDR,36.50.226.72/32,no-resolve
 IP-CIDR,49.67.72.95/32,no-resolve
 IP-CIDR,101.132.152.113/32,no-resolve
