@@ -79,21 +79,21 @@ proxy-providers: # ← 此函数位置请勿变动！此为模块更新时备份
     override:
       additional-prefix: "Main："
     path: ./proxies/1.主要地址.yaml
-    url: "此处引入您的Clash订阅链接地址"
+    url: "订阅链接1"
 
   2.备用地址:
     <<: *p
     override:
       additional-prefix: "Minor："
     path: ./proxies/2.备用地址.yaml
-    url: "此处引入您的Clash订阅链接地址"
+    url: "订阅链接2"
 
   3.额外地址:
     <<: *p
     override:
       additional-prefix: "Additi："
     path: ./proxies/3.额外地址.yaml
-    url: "此处引入您的Clash订阅链接地址"
+    url: "订阅链接3"
 
 # —————————
 
