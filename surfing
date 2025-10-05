@@ -24,7 +24,7 @@ tcp-concurrent: true
 log-level: silent
 find-process-mode: always
 global-client-fingerprint: chrome
-external-controller: 0.0.0.0:9090
+external-controller: 0.0.0.0:9090 # 切勿修改端口会影响状态栏磁贴
 external-ui-url: "https://github.com/Zephyruso/zashboard/releases/latest/download/dist.zip"
 external-ui: "./Web/Zash/"
 secret: "" # 面板访问密码，如在公网访问建议设置
@@ -33,6 +33,7 @@ secret: "" # 面板访问密码，如在公网访问建议设置
 
 # 1. 修改配置文件保存时，建议重启服务/重载配置.
 # —————————
+
 
 # 健康检查
 p: &p
@@ -54,27 +55,45 @@ p: &p
 
 # 订阅地址相关
 A: &A
+  filter: "^(?!.*(套餐|重置|剩余|到期|订阅|群|账户|流量|有效期|时间|官网|失联|余额)).*$"
   use:
-  - 1.机场一
-  - 2.机场二
+  - 1.主要地址
+  - 2.备用地址
+  - 3.额外地址
 
 All: &All
-  type: url-test
+  type: smart
+  policy-priority: "香港:1.4;HK:1.4;美国:1.0;US:1.0;新加坡:1.2;SG:1.2"
+  uselightgbm: true
+  collectdata: true
+  strategy: sticky-sessions
+  include-all: true
   use:
-  - 1.机场一
-  - 2.机场二
+  - 1.主要地址
+  - 2.备用地址
+  - 3.额外地址
 
 proxy-providers: # ← 此函数位置请勿变动！此为模块更新时备份恢复订阅变量范围 ↓
-  1.机场一:
+  1.主要地址: # 如遇订阅加载不出来，请尝试切换ua
     <<: *p
-    path: ./proxies/1.机场一.yaml
-    url: "订阅链接1"
+    override:
+      additional-prefix: "Main："
+    path: ./proxies/1.主要地址.yaml
+    url: "此处引入您的Clash订阅链接地址"
 
-  2.机场二:
+  2.备用地址:
     <<: *p
-    path: ./proxies/2.机场二.yaml
-    url: "订阅链接2"
+    override:
+      additional-prefix: "Minor："
+    path: ./proxies/2.备用地址.yaml
+    url: "此处引入您的Clash订阅链接地址"
 
+  3.额外地址:
+    <<: *p
+    override:
+      additional-prefix: "Additi："
+    path: ./proxies/3.额外地址.yaml
+    url: "此处引入您的Clash订阅链接地址"
 
 # —————————
 
@@ -99,13 +118,13 @@ sniffer:
       ports: [443, 8443]
   force-domain:
     - "+.v2ex.com"
-  skip-domain:
+  skip-domain: # 如遇需内部通信的应用请放行该域名
     - "Mijia Cloud"
 # —————————
 
 # 网卡模块
 tun:
-  enable: true  #true 开 #false 关 
+  enable: true
   device: Meta
   stack: gvisor
   dns-hijack:
@@ -117,6 +136,8 @@ tun:
   auto-redirect: false
   auto-detect-interface: true
   exclude-package:
+    - com.tencent.mm
+    - com.tencent.mobileqq
     # _____________________# 三星专供 ↓ 范围
 #    - com.samsung.android.messaging
 #    - com.samsung.android.app.telephonyui
@@ -129,7 +150,6 @@ tun:
 #    - com.sec.epdg
 #    - com.sec.imsservice # 三星专供 ↑ 范围
     # 非三星用户不必理会，三星用户需自行取消注释
-
 # —————————
 
 
@@ -142,28 +162,28 @@ dns:
   enhanced-mode: fake-ip
   fake-ip-range: 172.20.0.1/16
   fake-ip-filter:
-    - "RULE-SET:CN_域"
     - "RULE-SET:Private_域"
     - "RULE-SET:GoogleFCM_域"
     - "+.3gppnetwork.org"
     - "+.xtracloud.net"
+    - "+.market.xiaomi.com"
   direct-nameserver:
-    - https://doh.pub/dns-query#🇨🇳 中国大陆&h3=false
-    - https://dns.alidns.com/dns-query#🇨🇳 中国大陆&h3=true
+    - https://doh.pub/dns-query#🇨🇳 直连·Chinese&h3=false
+    - https://dns.alidns.com/dns-query#🇨🇳 直连·Chinese&h3=true
   proxy-server-nameserver:
-    - https://doh.pub/dns-query#🇨🇳 中国大陆&h3=false
-    - https://dns.alidns.com/dns-query#🇨🇳 中国大陆&h3=true
+    - https://doh.pub/dns-query#🇨🇳 直连·Chinese&h3=false
+    - https://dns.alidns.com/dns-query#🇨🇳 直连·Chinese&h3=true
   nameserver-policy:
     "RULE-SET:CN_域,Microsoft_域,Apple_域":
-       - https://doh.pub/dns-query#🇨🇳 中国大陆&h3=false
-       - https://dns.alidns.com/dns-query#🇨🇳 中国大陆&h3=true
+       - https://doh.pub/dns-query#🇨🇳 直连·Chinese&h3=false
+       - https://dns.alidns.com/dns-query#🇨🇳 直连·Chinese&h3=true
   nameserver:
     - https://dns.google/dns-query#DNS连接&h3=true
     - https://cloudflare-dns.com/dns-query#DNS连接&h3=true
 # —————————
 
 proxies:
-  - {name: 🇨🇳 中国大陆, type: direct, udp: true}
+  - {name: 🇨🇳 直连·Chinese, type: direct, udp: true}
   - {name: ⛔️ 拒绝连接, type: reject}
   - {name: 🌐 DNS_Hijack, type: dns}
 
@@ -172,55 +192,64 @@ proxy_groups: &proxy_groups
     proxies:
       - 总模式
       - ⛔️ 拒绝连接
-      - 延迟最低
-      - 故障转移
-      - 负载均衡
-      - 香港节点
-      - 台湾节点
-      - 狮城节点
-      - 日本节点
-      - 美国节点
-      - 其它地区
-      - 🇨🇳 中国大陆
+      - 传统·延迟最低
+      - 传统·故障转移
+      - 传统·负载均衡
+      - 智能·香港节点
+      - 智能·中国台湾
+      - 智能·狮城节点
+      - 智能·日本节点
+      - 智能·美国节点
+      - 智能·其它地区
+      - 🇨🇳 直连·Chinese
+    <<: *A
 CNproxy_groups: &CNproxy_groups
     type: select
     proxies:
-      - 🇨🇳 中国大陆
+      - 🇨🇳 直连·Chinese
       - ⛔️ 拒绝连接
       - 总模式
-      - 延迟最低
-      - 故障转移
-      - 负载均衡
-      - 香港节点
-      - 台湾节点
-      - 狮城节点
-      - 日本节点
-      - 美国节点
-      - 其它地区
+      - 传统·延迟最低
+      - 传统·故障转移
+      - 传统·负载均衡
+      - 智能·香港节点
+      - 智能·中国台湾
+      - 智能·狮城节点
+      - 智能·日本节点
+      - 智能·美国节点
+      - 智能·其它地区
+    <<: *A
 # —————————
 proxy-groups:
   - name: 总模式
     icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/All.svg"
     type: select
     proxies:
-      - 延迟最低
-      - 故障转移
-      - 负载均衡
-      - 香港节点
-      - 台湾节点
-      - 狮城节点
-      - 日本节点
-      - 美国节点
-      - 其它地区
-      - 🇨🇳 中国大陆
-# —————————
+      - 传统·延迟最低
+      - 智能策略 / ALL
+      - 传统·负载均衡
+      - 智能·香港节点
+      - 智能·中国台湾
+      - 智能·狮城节点
+      - 智能·日本节点
+      - 智能·美国节点
+      - 智能·其它地区
+      - 🇨🇳 直连·Chinese
 
   - name: 订阅更新
     icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/Update.svg"
     type: select
     proxies:
-      - 🇨🇳 中国大陆
+      - 🇨🇳 直连·Chinese
       - 总模式
+
+  - name: 试管基地
+    icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/XiaoHongShu.svg"
+    <<: *CNproxy_groups
+
+  - name: 抖音
+    icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/DouYin.svg"
+    <<: *CNproxy_groups
 
   - name: BiliBili
     icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/BiliBili.svg"
@@ -232,10 +261,6 @@ proxy-groups:
 
   - name: Apple
     icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/Apple.svg"
-    <<: *CNproxy_groups
-
-  - name: Emby
-    icon: "https://raw.githubusercontent.com/s0lnce/mofish-icon/refs/heads/main/mihomo/glass/corner/emby.png"
     <<: *CNproxy_groups
 
   - name: Microsoft
@@ -278,7 +303,7 @@ proxy-groups:
     icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/Facebook.svg"
     <<: *proxy_groups
 
-  - name: AI
+  - name: OpenAI
     icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/OpenAI.svg"
     <<: *proxy_groups
 
@@ -289,18 +314,6 @@ proxy-groups:
   - name: Twitter(X)
     icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/Twitter.svg"
     <<: *proxy_groups
-
-  - name: Bahamut
-    icon: "https://i.miji.bid/2025/05/02/29202f63e73dff154256a886acb5ff85.png"
-    <<: *proxy_groups
-
-  - name: 游戏平台
-    icon: "https://raw.githubusercontent.com/s0lnce/mofish-icon/refs/heads/main/mihomo/glass/corner/game.png"
-    <<: *CNproxy_groups
-
-  - name: IP归属
-    icon: "https://raw.githubusercontent.com/s0lnce/mofish-icon/refs/heads/main/mihomo/glass/corner/all.png"
-    <<: *CNproxy_groups
 
   - name: DNS连接
     icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/DNS.svg"
@@ -317,7 +330,7 @@ proxy-groups:
       - ⛔️ 拒绝连接
       - 🌐 DNS_Hijack
       - REJECT-DROP
-      - PASS #匹配规则 放行
+      - PASS
 
   - name: WebRTC
     icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/WebRTC.svg"
@@ -328,65 +341,61 @@ proxy-groups:
       - REJECT-DROP
       - PASS
 
-  - name: 延迟最低
+  - name: 白名单出站
+    icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/User.svg"
+    <<: *CNproxy_groups
+
+  - name: 传统·延迟最低
     icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/Return.svg"
     type: url-test
     <<: *A
 
-  - name: 故障转移
+  - name: 传统·故障转移
     icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/Return.svg"
     type: fallback
     <<: *A
 
-  - name: 负载均衡
+  - name: 传统·负载均衡
     icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/Return.svg"
     type: load-balance
     strategy: round-robin
     <<: *A
 
-  - name: 香港节点
-    type: select
+  - name: 智能策略 / ALL
+    icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/Ai.svg"
+    filter: "^(?!.*(套餐|重置|剩余|到期|订阅|群|账户|流量|有效期|时间|官网|失联|余额|拒绝|DNS|Ch)).*$"
+    <<: *All
+
+  - name: 智能·香港节点
     icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/HK.svg"
     filter: "^(?=.*(港|HK|hk|Hong Kong|HongKong|hongkong)).*$"
-    <<: *A
+    <<: *All
 
-  - name: 台湾节点
-    type: select
+  - name: 智能·中国台湾
     icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/CN.svg"
     filter: "^(?=.*(台|新北|彰化|TW|Taiwan)).*$"
-    <<: *A
+    <<: *All
 
-  - name: 日本节点
-    type: select
+  - name: 智能·日本节点
     icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/JP.svg"
     filter: "^(?=.*(日本|川日|东京|大阪|泉日|埼玉|沪日|深日|[^-]日|JP|Japan)).*$"
-    <<: *A
+    <<: *All
 
-  - name: 狮城节点
-    type: select
-    icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/Singapore.svg"
-    filter: "^(?=.*(新加坡|坡|狮城|SG|Singapore)).*$"
-    <<: *A
-
-  - name: 美国节点
-    type: select
+  - name: 智能·美国节点
     icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/US.svg"
     filter: "^(?=.*(美|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥|US|United States)).*$"
-    <<: *A
+    <<: *All
 
-  - name: 其它地区
-    type: select
+  - name: 智能·狮城节点
+    icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/Singapore.svg"
+    filter: "^(?=.*(新加坡|坡|狮城|SG|Singapore)).*$"
+    <<: *All
+
+  - name: 智能·其它地区
     icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/Globe.svg"
-    filter: "^(?!.*(港|HK|hk|Hong Kong|HongKong|hongkong|日本|川日|东京|大阪|泉日|埼玉|沪日|深日|[^-]日|JP|Japan|美|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥|US|United States|台|新北|彰化|TW|Taiwan|新加坡|坡|狮城|SG|Singapore|灾|网易|Netease|套餐|重置|剩余|到期|订阅|群|账户|流量|有效期|时间|官网)).*$"
-    <<: *A
+    filter: "^(?!.*(港|HK|hk|Hong Kong|HongKong|hongkong|日本|川日|东京|大阪|泉日|埼玉|沪日|深日|[^-]日|JP|Japan|美|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥|US|United States|台|新北|彰化|TW|Taiwan|新加坡|坡|狮城|SG|Singapore|灾|网易|Netease|套餐|重置|剩余|到期|订阅|群|账户|流量|有效期|时间|官网|拒绝|DNS|Ch)).*$"
+    <<: *All
 
-  - name: CNTEST
-    icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/Meter.svg"
-    type: select
-    url: https://www.gstatic.com/generate_204
-    interval: 86400
-    proxies:
-      - 🇨🇳 中国大陆
 # —————————
 
 rule-anchor:
@@ -398,278 +407,243 @@ rule-anchor:
     {type: http, behavior: ipcidr, format: mrs, interval: 86400}
   Domain: &Domain
     {type: http, behavior: domain, format: mrs, interval: 86400}
+
 # —————————
 
+
+# 部分规则上游为https://github.com/blackmatrix7/ios_rule_script
+# Github Actions 每日自动同步跟随更新
 rule-providers:
+  自定义出站: # 主要用于广告误杀自定义放行
+    <<: *Local
+    path: ./etc/自定义规则.list # 请按路径新建文件及建立你需要的规则
+
   WebRTC_端/域:
     <<: *Classical
     path: ./rules/WebRTC.list
-    url: "https://raw.githubusercontent.com/GitMetaio/Surfing/refs/heads/rm/Home/rules/WebRTC.list"
+    url: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/rules/WebRTC.list"
 
   CN_IP:
     <<: *IPCIDR
     path: ./rules/CN_IP.mrs
-    url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geoip/cn.mrs"
+    url: "https://cdn.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geoip/cn.mrs"
   CN_域:
     <<: *Domain
     path: ./rules/CN_域.mrs
-    url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/cn.mrs"
-
-  归属地_域:
-    <<: *Classical
-    path: ./rules/归属地.list
-    url: "https://raw.githubusercontent.com/Wo254992/rule-set/refs/heads/main/归属地.list"
-
-  Proxy_域:
-    <<: *Classical
-    path: ./rules/Proxy.list
-    url: "https://raw.githubusercontent.com/Wo254992/rule-set/refs/heads/main/Proxy.list"
-
-  Direct_IP/域:
-    <<: *Classical
-    path: ./rules/Direct.list
-    url: "https://raw.githubusercontent.com/Wo254992/rule-set/refs/heads/main/Direct.list"
-
-  Emby_IP/域:
-    <<: *Classical
-    path: ./rules/Emby.list
-    url: "https://raw.githubusercontent.com/Wo254992/rule-set/refs/heads/main/userEmby.list"
+    url: "https://cdn.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/cn.mrs"
 
   No-ads-all_域:
     <<: *Domain
     path: ./rules/No-ads-all.mrs
     url: "https://anti-ad.net/mihomo.mrs"
 
+  XiaoHongShu_域:
+    <<: *Domain
+    path: ./rules/XiaoHongShu.mrs
+    url: "https://cdn.jsdelivr.net/gh/GitMetaio/rule@master/rule/Clash/XiaoHongShu/XiaoHongShu_OCD_Domain.mrs"
+
+  DouYin_域:
+    <<: *Domain
+    path: ./rules/DouYin.mrs
+    url: "https://cdn.jsdelivr.net/gh/GitMetaio/rule@master/rule/Clash/DouYin/DouYin_OCD_Domain.mrs"
+
   BiliBili_域:
     <<: *Domain
     path: ./rules/BiliBili.mrs
-    url: "https://raw.githubusercontent.com/GitMetaio/rule/refs/heads/master/rule/Clash/BiliBili/BiliBili_OCD_Domain.mrs"
+    url: "https://cdn.jsdelivr.net/gh/GitMetaio/rule@master/rule/Clash/BiliBili/BiliBili_OCD_Domain.mrs"
   BiliBili_IP:
     <<: *IPCIDR
     path: ./rules/BiliBili_IP.mrs
-    url: "https://raw.githubusercontent.com/GitMetaio/rule/refs/heads/master/rule/Clash/BiliBili/BiliBili_OCD_IP.mrs"
-
-  游戏平台_域:
-    <<: *Domain
-    path: ./rules/游戏平台.mrs
-    url: "https://raw.githubusercontent.com/Wo254992/rule-set/refs/heads/main/游戏平台.mrs"
+    url: "https://cdn.jsdelivr.net/gh/GitMetaio/rule@master/rule/Clash/BiliBili/BiliBili_OCD_IP.mrs"
 
   Steam_域:
     <<: *Domain
     path: ./rules/Steam.mrs
-    url: "https://raw.githubusercontent.com/GitMetaio/rule/refs/heads/master/rule/Clash/Steam/Steam_OCD_Domain.mrs"
-
-  Bahamut_域:
-    <<: *Domain
-    path: ./rules/Steam.mrs
-    url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/bahamut.mrs"
+    url: "https://cdn.jsdelivr.net/gh/GitMetaio/rule@master/rule/Clash/Steam/Steam_OCD_Domain.mrs"
 
   TikTok_域:
     <<: *Domain
     path: ./rules/TikTok.mrs
-    url: "https://raw.githubusercontent.com/GitMetaio/rule/refs/heads/master/rule/Clash/TikTok/TikTok_OCD_Domain.mrs"
+    url: "https://cdn.jsdelivr.net/gh/GitMetaio/rule@master/rule/Clash/TikTok/TikTok_OCD_Domain.mrs"
 
   Spotify_域:
     <<: *Domain
     path: ./rules/Spotify.mrs
-    url: "https://raw.githubusercontent.com/GitMetaio/rule/refs/heads/master/rule/Clash/Spotify/Spotify_OCD_Domain.mrs"
+    url: "https://cdn.jsdelivr.net/gh/GitMetaio/rule@master/rule/Clash/Spotify/Spotify_OCD_Domain.mrs"
   Spotify_IP:
     <<: *IPCIDR
     path: ./rules/Spotify_IP.mrs
-    url: "https://raw.githubusercontent.com/GitMetaio/rule/refs/heads/master/rule/Clash/Spotify/Spotify_OCD_IP.mrs"
+    url: "https://cdn.jsdelivr.net/gh/GitMetaio/rule@master/rule/Clash/Spotify/Spotify_OCD_IP.mrs"
 
   Facebook_域:
     <<: *Domain
     path: ./rules/Facebook.mrs
-    url: "https://raw.githubusercontent.com/GitMetaio/rule/refs/heads/master/rule/Clash/Facebook/Facebook_OCD_Domain.mrs"
+    url: "https://cdn.jsdelivr.net/gh/GitMetaio/rule@master/rule/Clash/Facebook/Facebook_OCD_Domain.mrs"
   Facebook_IP:
     <<: *IPCIDR
     path: ./rules/Facebook_IP.mrs
-    url: "https://raw.githubusercontent.com/GitMetaio/rule/refs/heads/master/rule/Clash/Facebook/Facebook_OCD_IP.mrs"
+    url: "https://cdn.jsdelivr.net/gh/GitMetaio/rule@master/rule/Clash/Facebook/Facebook_OCD_IP.mrs"
 
   Telegram_域:
     <<: *Domain
     path: ./rules/Telegram.mrs
-    url: "https://raw.githubusercontent.com/GitMetaio/rule/refs/heads/master/rule/Clash/Telegram/Telegram_OCD_Domain.mrs"
+    url: "https://cdn.jsdelivr.net/gh/GitMetaio/rule@master/rule/Clash/Telegram/Telegram_OCD_Domain.mrs"
   Telegram_IP:
     <<: *IPCIDR
     path: ./rules/Telegram_IP.mrs
-    url: "https://raw.githubusercontent.com/GitMetaio/rule/refs/heads/master/rule/Clash/Telegram/Telegram_OCD_IP.mrs"
+    url: "https://cdn.jsdelivr.net/gh/GitMetaio/rule@master/rule/Clash/Telegram/Telegram_OCD_IP.mrs"
 
   YouTube_域:
     <<: *Domain
     path: ./rules/YouTube.mrs
-    url: "https://raw.githubusercontent.com/GitMetaio/rule/refs/heads/master/rule/Clash/YouTube/YouTube_OCD_Domain.mrs"
+    url: "https://cdn.jsdelivr.net/gh/GitMetaio/rule@master/rule/Clash/YouTube/YouTube_OCD_Domain.mrs"
   YouTube_IP:
     <<: *IPCIDR
     path: ./rules/YouTube_IP.mrs
-    url: "https://raw.githubusercontent.com/GitMetaio/rule/refs/heads/master/rule/Clash/YouTube/YouTube_OCD_IP.mrs"
+    url: "https://cdn.jsdelivr.net/gh/GitMetaio/rule@master/rule/Clash/YouTube/YouTube_OCD_IP.mrs"
 
   Google_域:
     <<: *Domain
     path: ./rules/Google.mrs
-    url: "https://raw.githubusercontent.com/GitMetaio/rule/refs/heads/master/rule/Clash/Google/Google_OCD_Domain.mrs"
+    url: "https://cdn.jsdelivr.net/gh/GitMetaio/rule@master/rule/Clash/Google/Google_OCD_Domain.mrs"
   Google_IP:
     <<: *IPCIDR
     path: ./rules/Google_IP.mrs
-    url: "https://raw.githubusercontent.com/GitMetaio/rule/refs/heads/master/rule/Clash/Google/Google_OCD_IP.mrs"
+    url: "https://cdn.jsdelivr.net/gh/GitMetaio/rule@master/rule/Clash/Google/Google_OCD_IP.mrs"
 
   GoogleFCM_域:
     <<: *Domain
     path: ./rules/GoogleFCM.mrs
-    url: "https://raw.githubusercontent.com/GitMetaio/rule/refs/heads/master/rule/Clash/GoogleFCM/GoogleFCM_OCD_Domain.mrs"
+    url: "https://cdn.jsdelivr.net/gh/GitMetaio/rule@master/rule/Clash/GoogleFCM/GoogleFCM_OCD_Domain.mrs"
   GoogleFCM_IP:
     <<: *IPCIDR
     path: ./rules/GoogleFCM_IP.mrs
-    url: "https://raw.githubusercontent.com/GitMetaio/rule/refs/heads/master/rule/Clash/GoogleFCM/GoogleFCM_OCD_IP.mrs"
+    url: "https://cdn.jsdelivr.net/gh/GitMetaio/rule@master/rule/Clash/GoogleFCM/GoogleFCM_OCD_IP.mrs"
 
   Microsoft_域:
     <<: *Domain
     path: ./rules/Microsoft.mrs
-    url: "https://raw.githubusercontent.com/GitMetaio/rule/refs/heads/master/rule/Clash/Microsoft/Microsoft_OCD_Domain.mrs"
+    url: "https://cdn.jsdelivr.net/gh/GitMetaio/rule@master/rule/Clash/Microsoft/Microsoft_OCD_Domain.mrs"
 
   Apple_域:
     <<: *Domain
     path: ./rules/Apple.mrs
-    url: "https://raw.githubusercontent.com/GitMetaio/rule/refs/heads/master/rule/Clash/Apple/Apple_OCD_Domain.mrs"
+    url: "https://cdn.jsdelivr.net/gh/GitMetaio/rule@master/rule/Clash/Apple/Apple_OCD_Domain.mrs"
   Apple_IP:
     <<: *IPCIDR
     path: ./rules/Apple_IP.mrs
-    url: "https://raw.githubusercontent.com/GitMetaio/rule/refs/heads/master/rule/Clash/Apple/Apple_OCD_IP.mrs"
+    url: "https://cdn.jsdelivr.net/gh/GitMetaio/rule@master/rule/Clash/Apple/Apple_OCD_IP.mrs"
 
-  AI_域:
+  OpenAI_域:
     <<: *Domain
-    path: ./rules/AI.mrs
-    url: "https://github.com/DustinWin/ruleset_geodata/releases/download/mihomo-ruleset/ai.mrs"
+    path: ./rules/OpenAI.mrs
+    url: "https://cdn.jsdelivr.net/gh/GitMetaio/rule@master/rule/Clash/OpenAI/OpenAI_OCD_Domain.mrs"
   OpenAI_IP:
     <<: *IPCIDR
     path: ./rules/OpenAI_IP.mrs
-    url: "https://raw.githubusercontent.com/GitMetaio/rule/refs/heads/master/rule/Clash/OpenAI/OpenAI_OCD_IP.mrs"
+    url: "https://cdn.jsdelivr.net/gh/GitMetaio/rule@master/rule/Clash/OpenAI/OpenAI_OCD_IP.mrs"
 
   Netflix_域:
     <<: *Domain
     path: ./rules/Netflix.mrs
-    url: "https://raw.githubusercontent.com/GitMetaio/rule/refs/heads/master/rule/Clash/Netflix/Netflix_OCD_Domain.mrs"
+    url: "https://cdn.jsdelivr.net/gh/GitMetaio/rule@master/rule/Clash/Netflix/Netflix_OCD_Domain.mrs"
   Netflix_IP:
     <<: *IPCIDR
     path: ./rules/Netflix_IP.mrs
-    url: "https://raw.githubusercontent.com/GitMetaio/rule/refs/heads/master/rule/Clash/Netflix/Netflix_OCD_IP.mrs"
+    url: "https://cdn.jsdelivr.net/gh/GitMetaio/rule@master/rule/Clash/Netflix/Netflix_OCD_IP.mrs"
 
   Discord_域:
     <<: *Domain
     path: ./rules/Discord.mrs
-    url: "https://raw.githubusercontent.com/GitMetaio/rule/refs/heads/master/rule/Clash/Discord/Discord_OCD_Domain.mrs"
+    url: "https://cdn.jsdelivr.net/gh/GitMetaio/rule@master/rule/Clash/Discord/Discord_OCD_Domain.mrs"
 
   GitHub_域:
     <<: *Domain
     path: ./rules/GitHub.mrs
-    url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/github.mrs"
-
-  Global_域:
-    <<: *Domain
-    path: ./rules/Global.mrs
-    url: "https://raw.githubusercontent.com/Wo254992/rule-set/refs/heads/main/Global.mrs"
-  Global_IP:
-    <<: *IPCIDR
-    path: ./rules/Global_IP.mrs
-    url: "https://raw.githubusercontent.com/Wo254992/rule-set/refs/heads/main/Global_IP_ip.mrs"
+    url: "https://cdn.jsdelivr.net/gh/GitMetaio/rule@master/rule/Clash/GitHub/GitHub_OCD_Domain.mrs"
 
   Twitter_域:
     <<: *Domain
     path: ./rules/Twitter.mrs
-    url: "https://raw.githubusercontent.com/GitMetaio/rule/refs/heads/master/rule/Clash/Twitter/Twitter_OCD_Domain.mrs"
+    url: "https://cdn.jsdelivr.net/gh/GitMetaio/rule@master/rule/Clash/Twitter/Twitter_OCD_Domain.mrs"
   Twitter_IP:
     <<: *IPCIDR
     path: ./rules/Twitter_IP.mrs
-    url: "https://raw.githubusercontent.com/GitMetaio/rule/refs/heads/master/rule/Clash/Twitter/Twitter_OCD_IP.mrs"
+    url: "https://cdn.jsdelivr.net/gh/GitMetaio/rule@master/rule/Clash/Twitter/Twitter_OCD_IP.mrs"
 
   Private_域:
     <<: *Domain
     path: ./rules/LAN.mrs
-    url: "https://raw.githubusercontent.com/GitMetaio/rule/refs/heads/master/rule/Clash/Lan/Lan_OCD_Domain.mrs"
+    url: "https://cdn.jsdelivr.net/gh/GitMetaio/rule@master/rule/Clash/Lan/Lan_OCD_Domain.mrs"
   Private_IP:
     <<: *IPCIDR
     path: ./rules/Private_IP.mrs
-    url: "https://raw.githubusercontent.com/GitMetaio/rule/refs/heads/master/rule/Clash/Lan/Lan_OCD_IP.mrs"
+    url: "https://cdn.jsdelivr.net/gh/GitMetaio/rule@master/rule/Clash/Lan/Lan_OCD_IP.mrs"
 # —————————
+
 rules:
   - DST-PORT,53,🌐 DNS_Hijack
   - DST-PORT,853,DNS连接
 
-  - RULE-SET,Direct_IP/域,🇨🇳 中国大陆
-
-  - RULE-SET,Proxy_域,总模式
+  - RULE-SET,自定义出站,白名单出站
 
   - RULE-SET,WebRTC_端/域,WebRTC
   - RULE-SET,No-ads-all_域,广告拦截
 
-  - RULE-SET,Emby_IP/域,Emby
+  - PROCESS-PATH,com.ss.android.ugc.aweme,抖音
+  - RULE-SET,DouYin_域,抖音
 
-  - PROCESS-PATH,com.levelinfinite.sgameGlobal,总模式
-
-  - PROCESS-PATH,com.ss.android.ugc.aweme,IP归属
-  - PROCESS-PATH,com.smile.gifmaker,IP归属
-  - PROCESS-PATH,com.sina.weibo,IP归属
-  - PROCESS-PATH,com.xingin.xhs,IP归属
-  - PROCESS-PATH,com.tencent.gamehelper.pg,IP归属
-  - RULE-SET,归属地_域,IP归属
+  - PROCESS-PATH,com.xingin.xhs,试管基地
+  - RULE-SET,XiaoHongShu_域,试管基地
 
   - PROCESS-PATH,tv.danmaku.bili,BiliBili
   - RULE-SET,BiliBili_域,BiliBili
-  - RULE-SET,BiliBili_IP,BiliBili
+  - RULE-SET,BiliBili_IP,BiliBili,no-resolve
 
   - RULE-SET,Steam_域,Steam
-
-  - RULE-SET,游戏平台_域,游戏平台
 
   - RULE-SET,GitHub_域,GitHub
 
   - RULE-SET,Discord_域,Discord
 
-  - RULE-SET,Telegram_域,Telegram
-  - RULE-SET,Telegram_IP,Telegram
-
   - RULE-SET,TikTok_域,TikTok
 
   - RULE-SET,Twitter_域,Twitter(X)
-  - RULE-SET,Twitter_IP,Twitter(X)
+  - RULE-SET,Twitter_IP,Twitter(X),no-resolve
 
   - RULE-SET,YouTube_域,YouTube
-  - RULE-SET,YouTube_IP,YouTube
-
-  - RULE-SET,Bahamut_域,Bahamut
+  - RULE-SET,YouTube_IP,YouTube,no-resolve
 
   - DOMAIN-KEYWORD,mtalk.google,GoogleFCM
 
   - RULE-SET,Google_域,Google
-  - RULE-SET,Google_IP,Google
+  - RULE-SET,Google_IP,Google,no-resolve
 
   - RULE-SET,Netflix_域,Netflix
-  - RULE-SET,Netflix_IP,Netflix
+  - RULE-SET,Netflix_IP,Netflix,no-resolve
 
   - RULE-SET,Spotify_域,Spotify
-  - RULE-SET,Spotify_IP,Spotify
+  - RULE-SET,Spotify_IP,Spotify,no-resolve
 
   - RULE-SET,Facebook_域,Facebook
-  - RULE-SET,Facebook_IP,Facebook
+  - RULE-SET,Facebook_IP,Facebook,no-resolve
 
-  - RULE-SET,AI_域,AI
-  - RULE-SET,OpenAI_IP,AI
+  - RULE-SET,OpenAI_域,OpenAI
+  - RULE-SET,OpenAI_IP,OpenAI,no-resolve
 
   - RULE-SET,Apple_域,Apple
-  - RULE-SET,Apple_IP,Apple
+  - RULE-SET,Apple_IP,Apple,no-resolve
 
   - RULE-SET,Microsoft_域,Microsoft
 
-  - DOMAIN,browserleaks.com,漏网之鱼
+  - RULE-SET,Telegram_域,Telegram
+  - RULE-SET,Telegram_IP,Telegram,no-resolve
 
-  - RULE-SET,CN_域,🇨🇳 中国大陆
-  - RULE-SET,CN_IP,🇨🇳 中国大陆
-  - RULE-SET,Private_域,🇨🇳 中国大陆
-  - RULE-SET,Private_IP,🇨🇳 中国大陆
+  - RULE-SET,Private_域,🇨🇳 直连·Chinese
+  - RULE-SET,Private_IP,🇨🇳 直连·Chinese,no-resolve
 
-  - RULE-SET,Global_域,总模式
-  - RULE-SET,Global_IP,总模式
+  - RULE-SET,CN_域,🇨🇳 直连·Chinese
+  - RULE-SET,CN_IP,🇨🇳 直连·Chinese
 
   - MATCH,漏网之鱼
 # —————————
