@@ -271,6 +271,10 @@ proxy-groups:
     icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/Telegram.svg"
     <<: *proxy_groups
 
+  - name: Emby
+    icon: "https://pub-8feead0908f649a8b94397f152fb9cba.r2.dev/emby.png"
+    <<: *proxy_groups
+
   - name: Discord
     icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/Discord.svg"
     <<: *proxy_groups
@@ -422,6 +426,16 @@ rule-providers:
     <<: *Classical
     path: ./rules/WebRTC.list
     url: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/rules/WebRTC.list"
+
+  direct_域:
+    <<: *Classical
+    path: ./rules/direct_域.list
+    url: "https://raw.githubusercontent.com/Wo254992/rule-set/refs/heads/main/Direct.list"
+
+  Emby_域:
+    <<: *Classical
+    path: ./rules/Emby_域.list
+    url: "https://raw.githubusercontent.com/Wo254992/rule-set/refs/heads/main/userEmby.list"
 
   CN_IP:
     <<: *IPCIDR
@@ -585,7 +599,11 @@ rules:
   - DST-PORT,53,🌐 DNS_Hijack
   - DST-PORT,853,DNS连接
 
+  - RULE-SET,direct_域,🇨🇳 直连·Chinese
+
   - RULE-SET,自定义出站,白名单出站
+  
+  - RULE-SET,Emby_域,Emby
 
   - RULE-SET,WebRTC_端/域,WebRTC
   - RULE-SET,No-ads-all_域,广告拦截
