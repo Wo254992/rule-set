@@ -346,8 +346,7 @@ generate_config() {
       # Telegram 通知配置
       - WATCHTOWER_NOTIFICATIONS=shoutrrr
       - WATCHTOWER_NOTIFICATION_URL=${NOTIFICATION_URL}
-      - WATCHTOWER_NOTIFICATION_REPORT=true
-      - WATCHTOWER_NOTIFICATION_TEMPLATE={{range .}}📦 *{{.Name}}* 更新完成\n服务器: ${SERVER_IDENTITY}\n镜像: {{.ImageName}}\n状态: {{.State}}\n时间: {{.Time}}\n{{end}}"
+      - WATCHTOWER_NOTIFICATION_REPORT=true"
     fi
     
     # 生成 docker-compose.yml
