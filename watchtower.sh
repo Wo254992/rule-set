@@ -296,6 +296,7 @@ generate_config() {
       # 网络代理配置
       - HTTP_PROXY=${PROXY_URL}
       - HTTPS_PROXY=${PROXY_URL}"
+      - NO_PROXY=ghcr.io,docker.io,registry-1.docker.io"
     fi
 
     # 通知配置
