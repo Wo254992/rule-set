@@ -229,7 +229,7 @@ create_monitor_script() {
 #!/bin/sh
 
 echo "正在安装依赖..."
-apk add --no-cache curl docker-cli coreutils grep sed >/dev/null 2>&1
+apk add --no-cache curl docker-cli coreutils grep sed tzdata >/dev/null 2>&1
 
 TELEGRAM_API="https://api.telegram.org/bot${BOT_TOKEN}/sendMessage"
 
