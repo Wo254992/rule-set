@@ -1,7 +1,7 @@
 #!/bin/bash
 # Docker 容器监控 - 一键部署脚本（最终版）
 # 功能: 监控容器更新，发送中文 Telegram 通知
-# 版本: 2.4 (支持自定义服务器名称前缀)
+# 版本: 2.5 (修复批量更新漏通知问题; 优化版本号显示)
 
 # --- 颜色定义 ---
 set -e
@@ -22,9 +22,9 @@ show_banner() {
 cat << "EOF"
 ╔════════════════════════════════════════════════════╗
 ║                                                    ║
-║   Docker 容器监控部署脚本 v2.4                     ║
+║   Docker 容器监控部署脚本 v2.5                     ║
 ║   Watchtower + Telegram 中文通知                   ║
-║   支持多服务器名称区分                             ║
+║   支持批量更新通知 / 精准版本号                    ║
 ║                                                    ║
 ╚════════════════════════════════════════════════════╝
 EOF
@@ -53,7 +53,7 @@ check_requirements() {
     print_success "系统要求检查通过"
 }
 
-# --- 获取用户输入 (★★★ 修复点 ★★★) ---
+# --- 获取用户输入 ---
 get_user_input() {
     print_info "开始配置..."
     echo ""
@@ -61,12 +61,7 @@ get_user_input() {
     echo "1️⃣  配置 Telegram Bot"
     echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
     echo ""
-    echo "📌 如何获取 Bot Token:"
-    echo "   1. 在 Telegram 搜索 @BotFather"
-    echo "   2. 发送 /newbot 创建机器人"
-    echo "   3. 获取 Token (格式: 123456:ABC-DEF...)"
-    echo ""
-
+    
     while true; do
         read -p "请输入 Bot Token: " BOT_TOKEN
         if [ -n "$BOT_TOKEN" ]; then
@@ -76,11 +71,6 @@ get_user_input() {
     done
 
     echo ""
-    echo "📌 如何获取 Chat ID:"
-    echo "   1. 在 Telegram 搜索 @userinfobot"
-    echo "   2. 发送任意消息获取你的 ID"
-    echo ""
-
     while true; do
         read -p "请输入 Chat ID: " CHAT_ID
         if [ -n "$CHAT_ID" ]; then
@@ -138,12 +128,11 @@ get_user_input() {
 
     echo ""
     echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
-    echo "3️⃣  配置服务器 (★★★ 新增功能 ★★★)"
+    echo "3️⃣  配置服务器"
     echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
     echo ""
     
     read -p "请输入服务器名称 (可选, 用于区分通知来源): " SERVER_NAME
-    # 如果不为空，格式化一下
     if [ -n "$SERVER_NAME" ]; then
         print_info "通知将带上 [${SERVER_NAME}] 前缀"
     else
@@ -158,23 +147,12 @@ get_user_input() {
 
     read -p "安装目录 (默认: $HOME/watchtower): " INSTALL_DIR
     INSTALL_DIR=${INSTALL_DIR:-$HOME/watchtower}
-    
-    # 简单的路径检查
-    Verify_INSTALL_DIR=$(grep -qF "$INSTALL_DIR" /proc/mounts && echo "true" || echo "false")
-    if [ "$Verify_INSTALL_DIR" = "true" ]; then
-        print_warning "警告: $INSTALL_DIR 似乎位于一个独立的挂载点上。"
-        read -p "如果这是 Docker-in-Docker 或 远程NFS，可能会导致问题。是否继续? (y/n, 默认: y): " continue_install
-        if [[ ! $continue_install =~ ^[Yy]$ ]] && [ -n "$continue_install" ]; then
-            print_error "安装已中止。"
-            exit 1
-        fi
-    fi
 
     echo ""
     print_success "配置完成"
 }
 
-# --- 创建 docker-compose.yml (★★★ 修复点 ★★★) ---
+# --- 创建 docker-compose.yml ---
 create_docker_compose() {
     print_info "创建 docker-compose.yml..."
     mkdir -p "$INSTALL_DIR"
@@ -236,7 +214,6 @@ EOF
       - TZ=Asia/Shanghai
       - BOT_TOKEN=${BOT_TOKEN}
       - CHAT_ID=${CHAT_ID}
-      # ★★★ 新增 SERVER_NAME 环境变量 ★★★
       - SERVER_NAME=${SERVER_NAME}
     command: sh /monitor.sh
     labels:
@@ -245,9 +222,9 @@ EOF
     print_success "配置文件已创建"
 }
 
-# --- 创建 monitor.sh (★★★ 修复点 ★★★) ---
+# --- 创建 monitor.sh (★★★ 核心修复 ★★★) ---
 create_monitor_script() {
-    print_info "创建监控脚本 (v2.4)..."
+    print_info "创建监控脚本 (v2.5)..."
     cat > "$INSTALL_DIR/monitor.sh" << 'MONITOR_SCRIPT'
 #!/bin/sh
 
@@ -256,35 +233,42 @@ apk add --no-cache curl docker-cli coreutils grep sed >/dev/null 2>&1
 
 TELEGRAM_API="https://api.telegram.org/bot${BOT_TOKEN}/sendMessage"
 
-# ★★★ 修复点 v2.4: 定义服务器名称标签 ★★★
+# v2.4: 定义服务器名称标签
 if [ -n "$SERVER_NAME" ]; then
-    # 如果 SERVER_NAME 不为空, 则创建标签 (HTML加粗)
     SERVER_TAG="<b>[${SERVER_NAME}]</b> "
 else
-    # 否则标签为空
     SERVER_TAG=""
 fi
 
 send_telegram() {
     # 发送时自动带上标签
-    # $1 是传入的消息体
     curl -s -X POST "$TELEGRAM_API" \
     -H "Content-Type: application/json" \
     -d "{\"chat_id\":\"${CHAT_ID}\",\"text\":\"${SERVER_TAG}$1\",\"parse_mode\":\"HTML\"}" >/dev/null 2>&1
 }
 
 get_time() { date '+%Y-%m-%d %H:%M:%S'; }
-get_version() { echo "$1" | grep -oE ':[^:]+$' | sed 's/://' || echo "latest"; }
 get_image_name() { echo "$1" | sed 's/:.*$//'; }
 
+# v2.5: 格式化版本号 (tag + id)
+format_version() {
+    local img_tag="$1"  # e.g., "image:tag"
+    local img_id="$2"   # e.g., "sha256:1234567890abcdef..."
+    
+    local tag=$(echo "$img_tag" | grep -oE ':[^:]+$' | sed 's/://' || echo "latest")
+    local id_short=$(echo "$img_id" | sed 's/sha256://' | head -c 12 || echo "unknown")
+    
+    echo "$tag ($id_short)"
+}
+
 echo "=========================================="
-echo "Docker 容器监控通知服务 v2.4"
+echo "Docker 容器监控通知服务 v2.5"
 echo "服务器: ${SERVER_NAME:-N/A}"
 echo "启动时间: $(get_time)"
 echo "=========================================="
 echo ""
 
-# 修复点 v2.3: 增加等待 watchtower 启动的逻辑
+# v2.3: 增加等待 watchtower 启动的逻辑
 echo "正在等待 watchtower 容器完全启动..."
 while true; do
     if docker inspect -f '{{.State.Running}}' watchtower 2>/dev/null | grep -q "true"; then
@@ -296,108 +280,134 @@ while true; do
     fi
 done
 
-# 修复点 v2.3: 仅在成功锁定日志后才发送启动通知
+# v2.3: 仅在成功锁定日志后才发送启动通知
 echo "服务已稳定，正在发送启动通知..."
-# ★★★ 修复点 v2.4: 此处调用 send_telegram 时已自动带上前缀 ★★★
 send_telegram "🚀 <b>容器监控服务已启动</b>
 🕐 时间: $(get_time)
 📊 状态: 正在监控容器更新"
 
 echo "开始监控 Watchtower 日志..."
 
-current_updating_image=""
-current_container_name=""
-old_image=""
+# ★★★ v2.5: 批量更新修复 ★★★
+# 用于存储会话期间所有被停止的容器信息
+# 使用 | 作为分隔符
+SESSION_CONTAINERS=""
+SESSION_OLD_TAGS=""
+SESSION_OLD_IDS=""
 
 # 监控 watchtower 日志
 docker logs -f --tail 0 watchtower 2>&1 | while IFS= read -r line; do
     echo "[$(date '+%H:%M:%S')] $line"
 
-    # 1. 发现新镜像
-    if echo "$line" | grep -q "Found new"; then
-        new_image=$(echo "$line" | grep -oE '[a-zA-Z0-9_.\-/]+:[a-zA-Z0-9_.\-]+' | grep -v "^[0-9][0-9]:[0-9][0-9]$" | head -n1)
-        if [ -n "$new_image" ]; then
-            current_updating_image="$new_image"
-            echo "  → 发现新镜像: $new_image"
-        fi
-    fi
-
-    # 2. 停止旧容器 (获取容器名和旧镜像)
+    # 1. 捕获停止的容器 (批量更新的核心)
+    # 此时容器还未被删除, 立即抓取它的旧镜像信息
     if echo "$line" | grep -q "Stopping /"; then
-        container_name=$(echo "$line" | grep -oP '(?<=Stopping /)[a-zA-Z0-9_.\-]+' | head -n1)
+        container_name=$(echo "$line" | grep -oP '(?<=Stopping /)[a-zA-Z0_.\-]+' | head -n1)
         if [ -n "$container_name" ]; then
-            current_container_name="$container_name"
-            old_image=$(docker inspect --format='{{.Config.Image}}' "$container_name" 2>/dev/null || echo "")
-            echo "  → 停止容器: $container_name"
-            echo "  → 旧镜像: $old_image"
+            echo "  → 捕获到停止: $container_name"
+            # v2.5: 抓取旧镜像的 标签 和 完整ID
+            old_image_tag=$(docker inspect --format='{{.Config.Image}}' "$container_name" 2>/dev/null || echo "unknown:tag")
+            old_image_id=$(docker inspect --format='{{.Image}}' "$container_name" 2>/dev/null || echo "sha256:unknown")
+            
+            # v2.5: 将信息追加到会话列表中
+            SESSION_CONTAINERS="${SESSION_CONTAINERS}${container_name}|"
+            SESSION_OLD_TAGS="${SESSION_OLD_TAGS}${old_image_tag}|"
+            SESSION_OLD_IDS="${SESSION_OLD_IDS}${old_image_id}|"
+            
+            echo "  → 已暂存旧信息: $old_image_tag ($old_image_id)"
         fi
     fi
     
-    # 3. 创建新容器 (备用)
-    if echo "$line" | grep -q "Creating /"; then
-        container_name=$(echo "$line" | grep -oP '(?<=Creating /)[a-zA-Z0-9_.\-]+' | head -n1)
-        if [ -n "$container_name" ] && [ -z "$current_container_name" ]; then
-            current_container_name="$container_name"
-            echo "  → 创建容器: $container_name"
-        fi
-    fi
-
-    # 4. 会话完成 (判断成功/失败)
+    # 2. 会话完成 (触发所有通知)
     if echo "$line" | grep -q "Session done"; then
         updated=$(echo "$line" | grep -oP '(?<=Updated=)[0-9]+')
-        failed=$(echo "$line" | grep -oP '(?<=Failed=)[0-9]+')
         
-        if [ "$updated" -gt 0 ] && [ -n "$current_container_name" ]; then
-            echo "  → 检查容器状态..."
-            sleep 5 # 等待容器启动
+        # 仅在有更新时处理
+        if [ "$updated" -gt 0 ] && [ -n "$SESSION_CONTAINERS" ]; then
+            echo "  → 会话完成, 发现 ${updated} 处更新, 开始处理暂存列表..."
             
-            status=$(docker inspect -f '{{.State.Running}}' "$current_container_name" 2>/dev/null || echo "false")
-            new_image=$(docker inspect --format='{{.Config.Image}}' "$current_container_name" 2>/dev/null || echo "$current_updating_image")
+            # 复制列表, 防止循环时被修改
+            containers_to_process="$SESSION_CONTAINERS"
+            old_tags_to_process="$SESSION_OLD_TAGS"
+            old_ids_to_process="$SESSION_OLD_IDS"
             
-            old_ver=$(get_version "$old_image")
-            new_ver=$(get_version "$new_image")
-            img_name=$(get_image_name "$new_image")
-            time=$(get_time)
+            # 重置会话, 准备下次
+            SESSION_CONTAINERS=""
+            SESSION_OLD_TAGS=""
+            SESSION_OLD_IDS=""
             
-            if [ "$status" = "true" ]; then
-                send_telegram "🎉 <b>容器更新成功</b>
-📦 容器: $current_container_name
+            # 设置分隔符
+            OLD_IFS=$IFS
+            IFS='|'
+            
+            i=1
+            # 循环处理所有被停止过的容器
+            for container_name in $containers_to_process; do
+                # (分隔符会导致最后有一个空元素, 跳过)
+                [ -z "$container_name" ] && continue
+                
+                echo "  → 正在处理: $container_name (第 $i 个)"
+                
+                # 从列表中按索引提取旧信息
+                old_tag_full=$(echo "$old_tags_to_process" | cut -d'|' -f$i)
+                old_id_full=$(echo "$old_ids_to_process" | cut -d'|' -f$i)
+                
+                echo "    旧标签: $old_tag_full"
+                echo "    旧 ID: $old_id_full"
+                
+                # 检查新容器状态
+                echo "  → 检查新容器 $container_name 状态..."
+                sleep 3 # 等待容器启动
+                
+                status=$(docker inspect -f '{{.State.Running}}' "$container_name" 2>/dev/null || echo "false")
+                new_tag_full=$(docker inspect --format='{{.Config.Image}}' "$container_name" 2>/dev/null || echo "unknown:tag")
+                new_id_full=$(docker inspect --format='{{.Image}}' "$container_name" 2>/dev/null || echo "sha256:unknown")
+                
+                # 格式化版本号 (v2.5)
+                img_name=$(get_image_name "$new_tag_full")
+                old_ver_str=$(format_version "$old_tag_full" "$old_id_full")
+                new_ver_str=$(format_version "$new_tag_full" "$new_id_full")
+                time=$(get_time)
+                
+                if [ "$status" = "true" ]; then
+                    send_telegram "🎉 <b>容器更新成功</b>
+📦 容器: $container_name
 🏷️ 镜像: $img_name
-📌 旧版本: $old_ver
-🆕 新版本: $new_ver
+📌 旧版本: $old_ver_str
+🆕 新版本: $new_ver_str
 🕐 时间: $time
 ✅ 容器已成功更新并正常运行"
-                echo "  ✓ 已发送更新成功通知"
-            else
-                send_telegram "❌ <b>容器启动失败</b>
-📦 容器: $current_container_name
+                    echo "  ✓ 已发送 $container_name 更新成功通知"
+                else
+                    send_telegram "❌ <b>容器启动失败</b>
+📦 容器: $container_name
 🏷️ 镜像: $img_name
-🆕 版本: $new_ver
+🆕 版本: $new_ver_str (旧: $old_ver_str)
 🕐 时间: $time
 ⚠️ 更新后无法启动
-💡 检查: docker logs $current_container_name"
-                echo "  ✓ 已发送启动失败通知"
-            fi
+💡 检查: docker logs $container_name"
+                    echo "  ✓ 已发送 $container_name 启动失败通知"
+                fi
+                
+                i=$((i+1))
+            done # 结束循环
             
-            current_updating_image=""
-            current_container_name=""
-            old_image=""
+            IFS=$OLD_IFS # 恢复 IFS
+            echo "  → 暂存列表处理完毕"
         fi
     fi
 
-    # 5. 捕获错误
+    # 3. 捕获严重错误 (此逻辑保留, 作为备用)
     if echo "$line" | grep -qiE "level=error|level=fatal"; then
-        if [ -n "$current_container_name" ]; then
-            error=$(echo "$line" | sed 's/.*msg="\([^"]*\)".*/\1/' | head -c 150) # 尝试提取错误
+        # 尝试从错误中提取容器名 (可能不准)
+        container_name=$(echo "$line" | grep -oP 'container \K[a-zA-Z0-9_.\-]+' | head -n1)
+        if [ -n "$container_name" ]; then
+            error=$(echo "$line" | sed 's/.*msg="\([^"]*\)".*/\1/' | head -c 150)
             send_telegram "❌ <b>容器更新失败</b>
-📦 容器: $current_container_name
+📦 容器: $container_name (可能)
 ⚠️ 错误: $error
 🕐 时间: $(get_time)"
             echo "  ✓ 已发送更新失败通知"
-            
-            current_updating_image=""
-            current_container_name=""
-            old_image=""
         fi
     fi
 done
@@ -465,7 +475,7 @@ start_service() {
     docker stop watchtower &>/dev/null || true
     docker rm watchtower &>/dev/null || true
     
-    print_info "正在启动新服务 (v2.4)..."
+    print_info "正在启动新服务 (v2.5)..."
     
     # 自动检测 compose 命令
     COMPOSE_CMD=""
@@ -510,7 +520,6 @@ show_completion() {
     echo "   ./manage.sh status    # 查看状态"
     echo ""
     echo "📝 提示:"
-    echo "   • 仅在容器更新成功/失败时发送通知"
     echo "   • 检查间隔: $((POLL_INTERVAL / 60)) 分钟"
     echo ""
     echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
