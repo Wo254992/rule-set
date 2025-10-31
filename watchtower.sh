@@ -1,7 +1,7 @@
 #!/bin/bash
-# Docker 容器监控 - 一键部署脚本（优化版）
+# Docker 容器监控 - 一键部署脚本（修复版）
 # 功能: 监控容器更新，发送中文 Telegram 通知
-# 版本: 3.1 (优化版 - 改进交互体验)
+# 版本: 3.1.1 (修复版 - 解决 local 变量作用域问题)
 
 # --- 颜色定义 ---
 set -e
@@ -23,9 +23,9 @@ show_banner() {
 cat << "EOF"
 ╔════════════════════════════════════════════════════╗
 ║                                                    ║
-║   Docker 容器监控部署脚本 v3.1 优化版             ║
+║   Docker 容器监控部署脚本 v3.1.1 修复版           ║
 ║   Watchtower + Telegram 中文通知                   ║
-║   新增: 交互式管理 / 容器选择列表                 ║
+║   修复: local 变量作用域问题                       ║
 ║                                                    ║
 ╚════════════════════════════════════════════════════╝
 EOF
@@ -365,7 +365,7 @@ EOF
     print_success "配置文件已创建"
 }
 
-# --- 创建 monitor.sh ---
+# --- 创建 monitor.sh (修复版) ---
 create_monitor_script() {
     print_info "创建监控脚本..."
     cat > "$INSTALL_DIR/monitor.sh" << 'MONITOR_SCRIPT'
@@ -381,21 +381,19 @@ STATE_FILE="/data/container_state.db"
 mkdir -p /data
 
 if [ -n "$SERVER_NAME" ]; then
-    # 注意：SERVER_TAG 会自动加在消息最前面，例如 [云电脑V2]
     SERVER_TAG="<b>[${SERVER_NAME}]</b> "
 else
     SERVER_TAG=""
 fi
 
 send_telegram() {
-    local message="$1"
-    local max_retries=3
-    local retry=0
-    local wait_time=5
+    message="$1"
+    max_retries=3
+    retry=0
+    wait_time=5
 
-    # 使用 --data-urlencode 可以更安全地处理消息中的特殊字符
     while [ $retry -lt $max_retries ]; do
-        local http_code=$(curl -s -o /dev/null -w "%{http_code}" -X POST "$TELEGRAM_API" \
+        http_code=$(curl -s -o /dev/null -w "%{http_code}" -X POST "$TELEGRAM_API" \
             --data-urlencode "chat_id=${CHAT_ID}" \
             --data-urlencode "text=${SERVER_TAG}${message}" \
             --data-urlencode "parse_mode=HTML" \
@@ -421,39 +419,38 @@ send_telegram() {
 get_time() { date '+%Y-%m-%d %H:%M:%S'; }
 get_image_name() { echo "$1" | sed 's/:.*$//'; }
 
-# 新增一个函数，专门用于获取简短的 Image ID
 get_short_id() {
     echo "$1" | sed 's/sha256://' | head -c 12 || echo "unknown"
 }
 
 format_version() {
-    local img_tag="$1"
-    local img_id="$2"
+    img_tag="$1"
+    img_id="$2"
 
-    local tag=$(echo "$img_tag" | grep -oE ':[^:]+$' | sed 's/://' || echo "latest")
-    local id_short=$(get_short_id "$img_id")
+    tag=$(echo "$img_tag" | grep -oE ':[^:]+$' | sed 's/://' || echo "latest")
+    id_short=$(get_short_id "$img_id")
 
     echo "$tag ($id_short)"
 }
 
 save_container_state() {
-    local container="$1"
-    local image_tag="$2"
-    local image_id="$3"
+    container="$1"
+    image_tag="$2"
+    image_id="$3"
 
     echo "$container|$image_tag|$image_id|$(date +%s)" >> "$STATE_FILE"
     echo "  → 已保存 $container 的状态到数据库"
 }
 
 get_container_state() {
-    local container="$1"
+    container="$1"
 
     if [ ! -f "$STATE_FILE" ]; then
         echo "unknown:tag|sha256:unknown"
         return
     fi
 
-    local state=$(grep "^${container}|" "$STATE_FILE" | tail -n 1)
+    state=$(grep "^${container}|" "$STATE_FILE" | tail -n 1)
     if [ -z "$state" ]; then
         echo "unknown:tag|sha256:unknown"
         return
@@ -463,13 +460,13 @@ get_container_state() {
 }
 
 rollback_container() {
-    local container="$1"
-    local old_tag="$2"
-    local old_id="$3"
+    container="$1"
+    old_tag="$2"
+    old_id="$3"
 
     echo "  → 正在执行回滚操作..."
 
-    local config=$(docker inspect "$container" 2>/dev/null)
+    config=$(docker inspect "$container" 2>/dev/null)
     if [ -z "$config" ]; then
         echo "  ✗ 无法获取容器配置，回滚失败"
         return 1
@@ -494,8 +491,8 @@ cleanup_old_states() {
         return
     fi
 
-    local cutoff_time=$(date -d '7 days ago' +%s 2>/dev/null || date -v-7d +%s 2>/dev/null || echo 0)
-    local temp_file="${STATE_FILE}.tmp"
+    cutoff_time=$(date -d '7 days ago' +%s 2>/dev/null || date -v-7d +%s 2>/dev/null || echo 0)
+    temp_file="${STATE_FILE}.tmp"
 
     while IFS='|' read -r container image_tag image_id timestamp; do
         if [ "$timestamp" -ge "$cutoff_time" ]; then
@@ -506,8 +503,86 @@ cleanup_old_states() {
     mv "$temp_file" "$STATE_FILE" 2>/dev/null || true
 }
 
+# 新增函数：处理单个容器的更新通知
+process_container_update() {
+    container_name="$1"
+    old_tag_full="$2"
+    old_id_full="$3"
+
+    sleep 5
+
+    status=$(docker inspect -f '{{.State.Running}}' "$container_name" 2>/dev/null || echo "false")
+    new_tag_full=$(docker inspect --format='{{.Config.Image}}' "$container_name" 2>/dev/null || echo "unknown:tag")
+    new_id_full=$(docker inspect --format='{{.Image}}' "$container_name" 2>/dev/null || echo "sha256:unknown")
+
+    save_container_state "$container_name" "$new_tag_full" "$new_id_full"
+
+    img_name=$(get_image_name "$new_tag_full")
+    old_id_short=$(get_short_id "$old_id_full")
+    new_id_short=$(get_short_id "$new_id_full")
+    time=$(get_time)
+
+    if [ "$status" = "true" ]; then
+        success_message="✨ <b>容器更新成功</b>
+
+━━━━━━━━━━━━━━━━━━━━
+📦 <b>容器名称</b>
+   <code>${container_name}</code>
+
+🎯 <b>镜像信息</b>
+   <code>${img_name}</code>
+
+🔄 <b>版本变更</b>
+   <code>${old_id_short}</code>  ➜  <code>${new_id_short}</code>
+
+⏰ <b>更新时间</b>
+   <code>${time}</code>
+━━━━━━━━━━━━━━━━━━━━
+
+✅ 容器已成功启动并运行正常"
+
+        send_telegram "$success_message"
+    else
+        rollback_msg=""
+        if [ "$ENABLE_ROLLBACK" = "true" ]; then
+            if rollback_container "$container_name" "$old_tag_full" "$old_id_full"; then
+                rollback_msg="
+🔄 已尝试自动回滚到旧版本"
+            else
+                rollback_msg="
+⚠️ 自动回滚失败，请手动处理"
+            fi
+        fi
+
+        old_ver_str=$(format_version "$old_tag_full" "$old_id_full")
+        new_ver_str=$(format_version "$new_tag_full" "$new_id_full")
+        
+        failure_message="❌ <b>容器启动失败</b>
+
+━━━━━━━━━━━━━━━━━━━━
+📦 <b>容器名称</b>
+   <code>${container_name}</code>
+
+🎯 <b>镜像信息</b>
+   <code>${img_name}</code>
+
+🔄 <b>版本变更</b>
+   旧: ${old_ver_str}
+   新: ${new_ver_str}
+
+⏰ <b>更新时间</b>
+   <code>${time}</code>
+━━━━━━━━━━━━━━━━━━━━
+
+⚠️ 更新后无法启动${rollback_msg}
+💡 检查: <code>docker logs ${container_name}</code>"
+
+        send_telegram "$failure_message"
+    fi
+}
+
 echo "=========================================="
-echo "Docker 容器监控通知服务 v3.1"
+echo "Docker 容器监控通知服务 v3.1.1"
 echo "服务器: ${SERVER_NAME:-N/A}"
 echo "启动时间: $(get_time)"
 echo "回滚功能: ${ENABLE_ROLLBACK:-false}"
@@ -538,7 +613,7 @@ for container in $(docker ps --format '{{.Names}}'); do
 done
 echo "初始化完成，已记录 $(docker ps --format '{{.Names}}' | wc -l) 个容器状态"
 
-send_telegram "🚀 <b>容器监控服务已启动</b> (v3.1)
+send_telegram "🚀 <b>容器监控服务已启动</b> (v3.1.1)
 🕐 时间: $(get_time)
 📊 状态: 正在监控容器更新
 🔄 回滚: ${ENABLE_ROLLBACK:-禁用}
@@ -578,6 +653,7 @@ docker logs -f --tail 0 watchtower 2>&1 | while IFS= read -r line; do
         if [ "$updated" -gt 0 ] && [ -n "$SESSION_CONTAINERS" ]; then
             echo "  → 会话完成, 发现 ${updated} 处更新"
 
+            # 使用后台进程处理通知，避免阻塞主循环
             (
                 IFS='|'
                 i=1
@@ -587,71 +663,12 @@ docker logs -f --tail 0 watchtower 2>&1 | while IFS= read -r line; do
                     old_tag_full=$(echo "$SESSION_OLD_TAGS" | cut -d'|' -f$i)
                     old_id_full=$(echo "$SESSION_OLD_IDS" | cut -d'|' -f$i)
 
-                    sleep 5
-
-                    status=$(docker inspect -f '{{.State.Running}}' "$container_name" 2>/dev/null || echo "false")
-                    new_tag_full=$(docker inspect --format='{{.Config.Image}}' "$container_name" 2>/dev/null || echo "unknown:tag")
-                    new_id_full=$(docker inspect --format='{{.Image}}' "$container_name" 2>/dev/null || echo "sha256:unknown")
-
-                    save_container_state "$container_name" "$new_tag_full" "$new_id_full"
-
-                    img_name=$(get_image_name "$new_tag_full")
-                    # 获取新旧版本的简短 ID
-                    old_id_short=$(get_short_id "$old_id_full")
-                    new_id_short=$(get_short_id "$new_id_full")
-                    time=$(get_time)
-
-                    if [ "$status" = "true" ]; then
-                        # -- START: 这是主要修改区域 --
-                        # 构造新的消息格式
-                        # 注意：[服务器名称] 是由 SERVER_TAG 自动添加的
-                        local success_message="✨ <b>容器更新成功</b>
-
-━━━━━━━━━━━━━━━━━━━━
-📦 <b>容器名称</b>
-   <code>${container_name}</code>
-
-🎯 <b>镜像信息</b>
-   <code>${img_name}</code>
-
-🔄 <b>版本变更</b>
-   <code>${old_id_short}</code>  ➜  <code>${new_id_short}</code>
-
-⏰ <b>更新时间</b>
-   <code>${time}</code>
-━━━━━━━━━━━━━━━━━━━━
-
-✅ 容器已成功启动并运行正常"
-
-                        send_telegram "${success_message}"
-                        # -- END: 修改区域结束 --
-                    else
-                        local rollback_msg=""
-                        if [ "$ENABLE_ROLLBACK" = "true" ]; then
-                            if rollback_container "$container_name" "$old_tag_full" "$old_id_full"; then
-                                rollback_msg="
-🔄 已尝试自动回滚到旧版本"
-                            else
-                                rollback_msg="
-⚠️ 自动回滚失败，请手动处理"
-                            fi
-                        fi
-
-                        # 为了统一，也更新一下失败消息的格式
-                        old_ver_str=$(format_version "$old_tag_full" "$old_id_full")
-                        new_ver_str=$(format_version "$new_tag_full" "$new_id_full")
-                        send_telegram "❌ <b>容器启动失败</b>
-📦 容器: <code>${container_name}</code>
-🏷️ 镜像: <code>${img_name}</code>
-🆕 版本: ${new_ver_str} (旧: ${old_ver_str})
-🕐 时间: ${time}
-⚠️ 更新后无法启动${rollback_msg}
-💡 检查: <code>docker logs ${container_name}</code>"
-                    fi
+                    # 调用处理函数
+                    process_container_update "$container_name" "$old_tag_full" "$old_id_full"
 
                     i=$((i+1))
                 done
-            )
+            ) &
 
             SESSION_CONTAINERS=""
             SESSION_OLD_TAGS=""
@@ -659,17 +676,18 @@ docker logs -f --tail 0 watchtower 2>&1 | while IFS= read -r line; do
         fi
     fi
 
+    # 修复错误检测部分 - 移除对 $updated 的依赖
     if echo "$line" | grep -qiE "level=error|level=fatal|Error response from daemon"; then
-        if [ "$updated" = "0" ] || [ -z "$updated" ]; then
-            container_name=$(echo "$line" | sed -n 's/.*container[=: ]\+\([a-zA-Z0-9_.\-]\+\).*/\1/p' | head -n1)
-            error=$(echo "$line" | sed 's/.*msg="\([^"]*\)".*/\1/' | head -c 200)
+        # 提取容器名称和错误信息
+        container_name=$(echo "$line" | sed -n 's/.*container[=: ]\+\([a-zA-Z0-9_.\-]\+\).*/\1/p' | head -n1)
+        error=$(echo "$line" | sed 's/.*msg="\([^"]*\)".*/\1/' | head -c 200)
 
-            if [ -n "$container_name" ]; then
-                send_telegram "⚠️ <b>Watchtower 错误</b>
+        # 只有当能提取到容器名称时才发送通知
+        if [ -n "$container_name" ] && [ "$container_name" != "watchtower" ] && [ "$container_name" != "watchtower-notifier" ]; then
+            send_telegram "⚠️ <b>Watchtower 错误</b>
 📦 容器: $container_name
 🔴 错误: $error
 🕐 时间: $(get_time)"
-            fi
         fi
     fi
 done
@@ -682,23 +700,18 @@ MONITOR_SCRIPT
 create_global_manage_script() {
     print_info "创建全局管理快捷方式..."
 
-    # 创建全局脚本
     cat > "$INSTALL_DIR/manage-global.sh" << GLOBAL_SCRIPT
 #!/bin/bash
-# 全局管理脚本 - 可在任意目录调用
 cd "$INSTALL_DIR" && ./manage.sh "\$@"
 GLOBAL_SCRIPT
     chmod +x "$INSTALL_DIR/manage-global.sh"
 
-    # 尝试创建符号链接
-    local link_created=false
+    link_created=false
 
-    # 尝试 /usr/local/bin (需要 sudo)
     if [ -w "/usr/local/bin" ]; then
         ln -sf "$INSTALL_DIR/manage-global.sh" "/usr/local/bin/manage" 2>/dev/null && link_created=true
     fi
 
-    # 如果失败，提供手动设置方法
     if [ "$link_created" = false ]; then
         print_warning "无法自动创建全局命令，请手动设置："
         echo ""
@@ -721,7 +734,6 @@ create_management_script() {
 #!/bin/bash
 cd "$(dirname "$0")"
 
-# 颜色定义
 RED='\033[0;31m'
 GREEN='\033[0;32m'
 YELLOW='\033[1;33m'
@@ -729,7 +741,6 @@ BLUE='\033[0;34m'
 CYAN='\033[0;36m'
 NC='\033[0m'
 
-# 自动检测 compose 命令
 if docker compose version &>/dev/null; then
     COMPOSE_CMD="docker compose"
 elif command -v docker-compose &>/dev/null; then
@@ -739,13 +750,12 @@ else
     exit 1
 fi
 
-# 显示菜单
 show_menu() {
     clear
     cat << "EOF"
 ╔════════════════════════════════════════════════════╗
 ║                                                    ║
-║       Docker 容器监控 - 管理菜单 v3.1              ║
+║       Docker 容器监控 - 管理菜单 v3.1.1            ║
 ║                                                    ║
 ╚════════════════════════════════════════════════════╝
 EOF
@@ -776,7 +786,6 @@ EOF
     echo "════════════════════════════════════════════════════"
 }
 
-# 执行操作
 execute_action() {
     case $1 in
         1)
@@ -898,7 +907,7 @@ execute_action() {
                 echo ""
                 echo "═══ 状态数据库 ═══"
                 if [ -f data/container_state.db ]; then
-                    local count=$(wc -l < data/container_state.db 2>/dev/null || echo 0)
+                    count=$(wc -l < data/container_state.db 2>/dev/null || echo 0)
                     echo "记录数: $count"
                 else
                     echo "状态数据库: 未初始化"
@@ -955,9 +964,7 @@ execute_action() {
     esac
 }
 
-# 主循环
 main() {
-    # 如果有命令行参数，直接执行
     if [ $# -gt 0 ]; then
         case "$1" in
             start)   execute_action 1 ;;
@@ -989,7 +996,6 @@ main() {
         exit 0
     fi
     
-    # 交互式菜单模式
     while true; do
         show_menu
         read -p "请选择操作 [0-14]: " choice
@@ -1044,7 +1050,7 @@ show_completion() {
     echo ""
     echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
     echo ""
-    print_success "🎉 部署完成！v3.1 优化版"
+    print_success "🎉 部署完成！v3.1.1 修复版"
     echo ""
     echo "📁 安装目录: $INSTALL_DIR"
     echo ""
@@ -1070,13 +1076,11 @@ show_completion() {
     echo "   ./manage.sh health     # 健康检查"
     echo "   ./manage.sh config     # 查看配置"
     echo ""
-    echo "✨ v3.1 优化特性:"
-    echo "   • 🎯 交互式容器选择 (支持多选)"
-    echo "   • 📋 清晰的管理菜单"
-    echo "   • 🔄 通知重试机制"
-    echo "   • 💾 容器状态跟踪"
-    echo "   • 🔙 自动回滚功能"
-    echo "   • 🏥 健康检查"
+    echo "✨ v3.1.1 修复内容:"
+    echo "   • 🐛 修复 local 变量作用域问题"
+    echo "   • 🔧 优化通知处理流程"
+    echo "   • 📝 改进错误日志过滤"
+    echo "   • ⚡ 使用后台进程处理通知"
     echo ""
     echo "📝 监控配置:"
     echo "   • 检查间隔: $((POLL_INTERVAL / 60)) 分钟"
@@ -1093,7 +1097,6 @@ show_completion() {
     echo "   • 数据库文件位于: $INSTALL_DIR/data/"
     echo "   • 使用 ./manage.sh 可进入交互式管理界面"
     echo "   • 使用 ./manage.sh edit 可修改监控容器列表"
-    echo "   • 或直接运行: manage (需添加到 PATH 或创建别名)"
     echo ""
     echo "💡 快捷命令设置 (可选):"
     echo "   echo 'alias manage=\"$INSTALL_DIR/manage.sh\"' >> ~/.bashrc"
@@ -1119,7 +1122,6 @@ main() {
     start_service
     show_completion
 
-    # 询问是否设置全局命令
     echo ""
     read -p "是否现在设置全局 'manage' 命令? (y/n, 默认: y): " setup_global
     setup_global=${setup_global:-y}
@@ -1128,7 +1130,6 @@ main() {
         echo ""
         print_info "正在设置全局命令..."
 
-        # 检测 shell 类型
         if [ -n "$BASH_VERSION" ]; then
             RC_FILE="$HOME/.bashrc"
         elif [ -n "$ZSH_VERSION" ]; then
@@ -1137,7 +1138,6 @@ main() {
             RC_FILE="$HOME/.profile"
         fi
 
-        # 检查是否已存在别名
         if grep -q "alias manage=" "$RC_FILE" 2>/dev/null; then
             print_warning "别名已存在，跳过添加"
         else
