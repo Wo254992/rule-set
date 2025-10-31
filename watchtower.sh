@@ -57,10 +57,10 @@ check_requirements() {
 # --- 列出所有运行中的容器供选择 ---
 select_containers() {
     print_info "获取运行中的容器列表..."
-    
+
     # 获取所有运行中的容器（排除即将创建的监控容器）
     local containers=($(docker ps --format '{{.Names}}' | grep -v "^watchtower" || true))
-    
+
     if [ ${#containers[@]} -eq 0 ]; then
         print_warning "当前没有运行中的容器"
         echo ""
@@ -71,12 +71,12 @@ select_containers() {
         CONTAINER_NAMES=""
         return
     fi
-    
+
     echo ""
     echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
     echo "发现以下容器 (共 ${#containers[@]} 个):"
     echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
-    
+
     local index=1
     for container in "${containers[@]}"; do
         # 获取容器镜像和状态
@@ -85,7 +85,7 @@ select_containers() {
         printf "${CYAN}%2d)${NC} %-25s ${YELLOW}[%s]${NC} %s\n" "$index" "$container" "$status" "$image"
         ((index++))
     done
-    
+
     echo ""
     echo "请选择要监控的容器 (支持多选):"
     echo "  • 输入编号，多个用空格分隔 (例如: 1 3 5)"
@@ -93,13 +93,13 @@ select_containers() {
     echo "  • 输入容器名称 (例如: nginx mysql)"
     echo ""
     read -p "请选择: " selection
-    
+
     if [[ "$selection" == "all" ]]; then
         CONTAINER_NAMES=""
         print_info "已选择监控所有容器"
         return
     fi
-    
+
     # 解析选择
     local selected_containers=()
     for item in $selection; do
@@ -119,12 +119,12 @@ select_containers() {
             fi
         fi
     done
-    
+
     if [ ${#selected_containers[@]} -eq 0 ]; then
         print_error "未选择任何有效容器"
         exit 1
     fi
-    
+
     CONTAINER_NAMES="${selected_containers[*]}"
     echo ""
     print_success "已选择 ${#selected_containers[@]} 个容器:"
@@ -381,6 +381,7 @@ STATE_FILE="/data/container_state.db"
 mkdir -p /data
 
 if [ -n "$SERVER_NAME" ]; then
+    # 注意：SERVER_TAG 会自动加在消息最前面，例如 [云电脑V2]
     SERVER_TAG="<b>[${SERVER_NAME}]</b> "
 else
     SERVER_TAG=""
@@ -391,18 +392,20 @@ send_telegram() {
     local max_retries=3
     local retry=0
     local wait_time=5
-    
+
+    # 使用 --data-urlencode 可以更安全地处理消息中的特殊字符
     while [ $retry -lt $max_retries ]; do
         local http_code=$(curl -s -o /dev/null -w "%{http_code}" -X POST "$TELEGRAM_API" \
-            -H "Content-Type: application/json" \
-            -d "{\"chat_id\":\"${CHAT_ID}\",\"text\":\"${SERVER_TAG}${message}\",\"parse_mode\":\"HTML\"}" \
+            --data-urlencode "chat_id=${CHAT_ID}" \
+            --data-urlencode "text=${SERVER_TAG}${message}" \
+            --data-urlencode "parse_mode=HTML" \
             --connect-timeout 10 --max-time 30)
-        
+
         if [ "$http_code" = "200" ]; then
             echo "  ✓ Telegram 通知发送成功"
             return 0
         fi
-        
+
         retry=$((retry + 1))
         if [ $retry -lt $max_retries ]; then
             echo "  ✗ 通知发送失败 (HTTP $http_code), ${wait_time}秒后重试 ($retry/$max_retries)..."
@@ -410,7 +413,7 @@ send_telegram() {
             wait_time=$((wait_time * 2))
         fi
     done
-    
+
     echo "  ✗ Telegram 通知最终失败 (已重试 $max_retries 次)" >&2
     return 1
 }
@@ -418,13 +421,18 @@ send_telegram() {
 get_time() { date '+%Y-%m-%d %H:%M:%S'; }
 get_image_name() { echo "$1" | sed 's/:.*$//'; }
 
+# 新增一个函数，专门用于获取简短的 Image ID
+get_short_id() {
+    echo "$1" | sed 's/sha256://' | head -c 12 || echo "unknown"
+}
+
 format_version() {
     local img_tag="$1"
     local img_id="$2"
-    
+
     local tag=$(echo "$img_tag" | grep -oE ':[^:]+$' | sed 's/://' || echo "latest")
-    local id_short=$(echo "$img_id" | sed 's/sha256://' | head -c 12 || echo "unknown")
-    
+    local id_short=$(get_short_id "$img_id")
+
     echo "$tag ($id_short)"
 }
 
@@ -432,25 +440,25 @@ save_container_state() {
     local container="$1"
     local image_tag="$2"
     local image_id="$3"
-    
+
     echo "$container|$image_tag|$image_id|$(date +%s)" >> "$STATE_FILE"
     echo "  → 已保存 $container 的状态到数据库"
 }
 
 get_container_state() {
     local container="$1"
-    
+
     if [ ! -f "$STATE_FILE" ]; then
         echo "unknown:tag|sha256:unknown"
         return
     fi
-    
+
     local state=$(grep "^${container}|" "$STATE_FILE" | tail -n 1)
     if [ -z "$state" ]; then
         echo "unknown:tag|sha256:unknown"
         return
     fi
-    
+
     echo "$state" | cut -d'|' -f2,3
 }
 
@@ -458,25 +466,25 @@ rollback_container() {
     local container="$1"
     local old_tag="$2"
     local old_id="$3"
-    
+
     echo "  → 正在执行回滚操作..."
-    
+
     local config=$(docker inspect "$container" 2>/dev/null)
     if [ -z "$config" ]; then
         echo "  ✗ 无法获取容器配置，回滚失败"
         return 1
     fi
-    
+
     docker stop "$container" >/dev/null 2>&1 || true
     docker rm "$container" >/dev/null 2>&1 || true
-    
+
     echo "  → 尝试使用旧镜像 $old_id 重启容器..."
-    
+
     docker tag "$old_id" "${old_tag}-rollback" 2>/dev/null || {
         echo "  ✗ 旧镜像不存在，无法回滚"
         return 1
     }
-    
+
     echo "  ✓ 回滚操作已触发，请手动检查容器状态"
     return 0
 }
@@ -485,16 +493,16 @@ cleanup_old_states() {
     if [ ! -f "$STATE_FILE" ]; then
         return
     fi
-    
+
     local cutoff_time=$(date -d '7 days ago' +%s 2>/dev/null || date -v-7d +%s 2>/dev/null || echo 0)
     local temp_file="${STATE_FILE}.tmp"
-    
+
     while IFS='|' read -r container image_tag image_id timestamp; do
         if [ "$timestamp" -ge "$cutoff_time" ]; then
             echo "$container|$image_tag|$image_id|$timestamp" >> "$temp_file"
         fi
     done < "$STATE_FILE"
-    
+
     mv "$temp_file" "$STATE_FILE" 2>/dev/null || true
 }
 
@@ -512,7 +520,7 @@ echo "正在等待 watchtower 容器完全启动..."
 while true; do
     if docker inspect -f '{{.State.Running}}' watchtower 2>/dev/null | grep -q "true"; then
         echo "Watchtower 已启动，准备监控日志"
-        break 
+        break
     else
         sleep 2
     fi
@@ -523,7 +531,7 @@ for container in $(docker ps --format '{{.Names}}'); do
     if [ "$container" = "watchtower" ] || [ "$container" = "watchtower-notifier" ]; then
         continue
     fi
-    
+
     image_tag=$(docker inspect --format='{{.Config.Image}}' "$container" 2>/dev/null || echo "unknown:tag")
     image_id=$(docker inspect --format='{{.Image}}' "$container" 2>/dev/null || echo "sha256:unknown")
     save_container_state "$container" "$image_tag" "$image_id"
@@ -551,55 +559,72 @@ docker logs -f --tail 0 watchtower 2>&1 | while IFS= read -r line; do
         container_name=$(echo "$line" | sed -n 's/.*Stopping \/\([^ ]*\).*/\1/p' | head -n1)
         if [ -n "$container_name" ]; then
             echo "  → 捕获到停止: $container_name"
-            
+
             old_state=$(get_container_state "$container_name")
             old_image_tag=$(echo "$old_state" | cut -d'|' -f1)
             old_image_id=$(echo "$old_state" | cut -d'|' -f2)
-            
+
             SESSION_CONTAINERS="${SESSION_CONTAINERS}${container_name}|"
             SESSION_OLD_TAGS="${SESSION_OLD_TAGS}${old_image_tag}|"
             SESSION_OLD_IDS="${SESSION_OLD_IDS}${old_image_id}|"
-            
+
             echo "  → 已暂存旧信息: $old_image_tag ($old_image_id)"
         fi
     fi
-    
+
     if echo "$line" | grep -q "Session done"; then
         updated=$(echo "$line" | grep -oP '(?<=Updated=)[0-9]+' || echo "0")
-        
+
         if [ "$updated" -gt 0 ] && [ -n "$SESSION_CONTAINERS" ]; then
             echo "  → 会话完成, 发现 ${updated} 处更新"
-            
+
             (
                 IFS='|'
                 i=1
                 for container_name in $SESSION_CONTAINERS; do
                     [ -z "$container_name" ] && continue
-                    
+
                     old_tag_full=$(echo "$SESSION_OLD_TAGS" | cut -d'|' -f$i)
                     old_id_full=$(echo "$SESSION_OLD_IDS" | cut -d'|' -f$i)
-                    
+
                     sleep 5
-                    
+
                     status=$(docker inspect -f '{{.State.Running}}' "$container_name" 2>/dev/null || echo "false")
                     new_tag_full=$(docker inspect --format='{{.Config.Image}}' "$container_name" 2>/dev/null || echo "unknown:tag")
                     new_id_full=$(docker inspect --format='{{.Image}}' "$container_name" 2>/dev/null || echo "sha256:unknown")
-                    
+
                     save_container_state "$container_name" "$new_tag_full" "$new_id_full"
-                    
+
                     img_name=$(get_image_name "$new_tag_full")
-                    old_ver_str=$(format_version "$old_tag_full" "$old_id_full")
-                    new_ver_str=$(format_version "$new_tag_full" "$new_id_full")
+                    # 获取新旧版本的简短 ID
+                    old_id_short=$(get_short_id "$old_id_full")
+                    new_id_short=$(get_short_id "$new_id_full")
                     time=$(get_time)
-                    
+
                     if [ "$status" = "true" ]; then
-                        send_telegram "🎉 <b>容器更新成功</b>
-📦 容器: $container_name
-🏷️ 镜像: $img_name
-📌 旧版本: $old_ver_str
-🆕 新版本: $new_ver_str
-🕐 时间: $time
-✅ 容器已成功更新并正常运行"
+                        # -- START: 这是主要修改区域 --
+                        # 构造新的消息格式
+                        # 注意：[服务器名称] 是由 SERVER_TAG 自动添加的
+                        local success_message="✨ <b>容器更新成功</b>
+
+━━━━━━━━━━━━━━━━━━━━
+📦 <b>容器名称</b>
+   <code>${container_name}</code>
+
+🎯 <b>镜像信息</b>
+   <code>${img_name}</code>
+
+🔄 <b>版本变更</b>
+   <code>${old_id_short}</code>  ➜  <code>${new_id_short}</code>
+
+⏰ <b>更新时间</b>
+   <code>${time}</code>
+━━━━━━━━━━━━━━━━━━━━
+
+✅ 容器已成功启动并运行正常"
+
+                        send_telegram "${success_message}"
+                        # -- END: 修改区域结束 --
                     else
                         local rollback_msg=""
                         if [ "$ENABLE_ROLLBACK" = "true" ]; then
@@ -611,20 +636,23 @@ docker logs -f --tail 0 watchtower 2>&1 | while IFS= read -r line; do
 ⚠️ 自动回滚失败，请手动处理"
                             fi
                         fi
-                        
+
+                        # 为了统一，也更新一下失败消息的格式
+                        old_ver_str=$(format_version "$old_tag_full" "$old_id_full")
+                        new_ver_str=$(format_version "$new_tag_full" "$new_id_full")
                         send_telegram "❌ <b>容器启动失败</b>
-📦 容器: $container_name
-🏷️ 镜像: $img_name
-🆕 版本: $new_ver_str (旧: $old_ver_str)
-🕐 时间: $time
+📦 容器: <code>${container_name}</code>
+🏷️ 镜像: <code>${img_name}</code>
+🆕 版本: ${new_ver_str} (旧: ${old_ver_str})
+🕐 时间: ${time}
 ⚠️ 更新后无法启动${rollback_msg}
-💡 检查: docker logs $container_name"
+💡 检查: <code>docker logs ${container_name}</code>"
                     fi
-                    
+
                     i=$((i+1))
                 done
             )
-            
+
             SESSION_CONTAINERS=""
             SESSION_OLD_TAGS=""
             SESSION_OLD_IDS=""
@@ -635,7 +663,7 @@ docker logs -f --tail 0 watchtower 2>&1 | while IFS= read -r line; do
         if [ "$updated" = "0" ] || [ -z "$updated" ]; then
             container_name=$(echo "$line" | sed -n 's/.*container[=: ]\+\([a-zA-Z0-9_.\-]\+\).*/\1/p' | head -n1)
             error=$(echo "$line" | sed 's/.*msg="\([^"]*\)".*/\1/' | head -c 200)
-            
+
             if [ -n "$container_name" ]; then
                 send_telegram "⚠️ <b>Watchtower 错误</b>
 📦 容器: $container_name
@@ -653,7 +681,7 @@ MONITOR_SCRIPT
 # --- 创建全局管理脚本 ---
 create_global_manage_script() {
     print_info "创建全局管理快捷方式..."
-    
+
     # 创建全局脚本
     cat > "$INSTALL_DIR/manage-global.sh" << GLOBAL_SCRIPT
 #!/bin/bash
@@ -661,15 +689,15 @@ create_global_manage_script() {
 cd "$INSTALL_DIR" && ./manage.sh "\$@"
 GLOBAL_SCRIPT
     chmod +x "$INSTALL_DIR/manage-global.sh"
-    
+
     # 尝试创建符号链接
     local link_created=false
-    
+
     # 尝试 /usr/local/bin (需要 sudo)
     if [ -w "/usr/local/bin" ]; then
         ln -sf "$INSTALL_DIR/manage-global.sh" "/usr/local/bin/manage" 2>/dev/null && link_created=true
     fi
-    
+
     # 如果失败，提供手动设置方法
     if [ "$link_created" = false ]; then
         print_warning "无法自动创建全局命令，请手动设置："
@@ -1002,7 +1030,7 @@ start_service() {
     if $COMPOSE_CMD up -d; then
         print_success "服务启动成功"
         sleep 3
-        
+
         print_info "检查服务状态..."
         $COMPOSE_CMD ps
     else
@@ -1090,16 +1118,16 @@ main() {
     create_management_script
     start_service
     show_completion
-    
+
     # 询问是否设置全局命令
     echo ""
     read -p "是否现在设置全局 'manage' 命令? (y/n, 默认: y): " setup_global
     setup_global=${setup_global:-y}
-    
+
     if [[ "$setup_global" =~ ^[Yy]$ ]]; then
         echo ""
         print_info "正在设置全局命令..."
-        
+
         # 检测 shell 类型
         if [ -n "$BASH_VERSION" ]; then
             RC_FILE="$HOME/.bashrc"
@@ -1108,7 +1136,7 @@ main() {
         else
             RC_FILE="$HOME/.profile"
         fi
-        
+
         # 检查是否已存在别名
         if grep -q "alias manage=" "$RC_FILE" 2>/dev/null; then
             print_warning "别名已存在，跳过添加"
@@ -1118,7 +1146,7 @@ main() {
             echo "alias manage='$INSTALL_DIR/manage.sh'" >> "$RC_FILE"
             print_success "已添加别名到 $RC_FILE"
         fi
-        
+
         echo ""
         print_success "✅ 设置完成！请运行以下命令激活："
         echo ""
