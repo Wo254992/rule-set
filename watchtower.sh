@@ -394,20 +394,45 @@ send_telegram() {
     wait_time=5
 
     while [ $retry -lt $max_retries ]; do
-        http_code=$(curl -s -o /dev/null -w "%{http_code}" -X POST "$TELEGRAM_API" \
+        # 发送请求并保存完整响应
+        response=$(curl -s -w "\n%{http_code}" -X POST "$TELEGRAM_API" \
             --data-urlencode "chat_id=${CHAT_ID}" \
             --data-urlencode "text=${SERVER_TAG}${message}" \
             --data-urlencode "parse_mode=HTML" \
-            --connect-timeout 10 --max-time 30)
-
-        if [ "$http_code" = "200" ]; then
-            echo "  ✓ Telegram 通知发送成功"
-            return 0
+            --connect-timeout 10 --max-time 30 2>&1)
+        
+        curl_exit_code=$?
+        
+        # 分离响应体和状态码
+        http_code=$(echo "$response" | tail -n1)
+        body=$(echo "$response" | sed '$d')
+        
+        # 检查 curl 是否执行成功
+        if [ $curl_exit_code -ne 0 ]; then
+            echo "  ✗ Curl 执行失败 (退出码: $curl_exit_code)" >&2
+        elif [ "$http_code" = "200" ]; then
+            # 检查 Telegram API 返回的 ok 字段
+            if echo "$body" | grep -q '"ok":true'; then
+                echo "  ✓ Telegram 通知发送成功"
+                return 0
+            else
+                # 提取错误描述
+                error_desc=$(echo "$body" | sed -n 's/.*"description":"\([^"]*\)".*/\1/p')
+                echo "  ✗ Telegram API 错误: ${error_desc:-未知错误}" >&2
+                
+                # 某些错误不应重试
+                if echo "$error_desc" | grep -qiE "chat not found|bot was blocked|user is deactivated"; then
+                    echo "  ✗ 致命错误，停止重试" >&2
+                    return 1
+                fi
+            fi
+        else
+            echo "  ✗ HTTP 请求失败 (状态码: $http_code)" >&2
         fi
 
         retry=$((retry + 1))
         if [ $retry -lt $max_retries ]; then
-            echo "  ✗ 通知发送失败 (HTTP $http_code), ${wait_time}秒后重试 ($retry/$max_retries)..."
+            echo "  ↻ ${wait_time}秒后重试 ($retry/$max_retries)..." >&2
             sleep $wait_time
             wait_time=$((wait_time * 2))
         fi
@@ -427,6 +452,7 @@ get_short_id() {
 # 检测 danmu-api 容器的版本
 get_danmu_version() {
     container_name="$1"
+    check_running="${2:-true}"
     
     # 只处理 danmu-api 相关容器
     if ! echo "$container_name" | grep -qE "danmu-api|danmu_api"; then
@@ -434,21 +460,30 @@ get_danmu_version() {
         return
     fi
     
-    # 尝试从 GitHub 获取版本 (增加重试和更好的错误处理)
     version=""
-    for i in 1 2; do
-        version=$(timeout 10 curl -s -f --retry 2 \
-            "https://raw.githubusercontent.com/Wo254992/danmu_api/main/danmu_api/configs/globals.js" 2>/dev/null | \
-            grep -m 1 "VERSION:" | sed -E "s/.*VERSION: '([^']+)'.*/\1/" 2>/dev/null || echo "")
-        
-        [ -n "$version" ] && break
-        [ $i -eq 1 ] && sleep 2
-    done
     
-    # 如果 GitHub 失败,尝试从容器内部读取 (如果容器正在运行)
+    # 如果需要检查运行状态，等待容器完全启动
+    if [ "$check_running" = "true" ]; then
+        for i in $(seq 1 30); do
+            if docker exec "$container_name" test -f /app/danmu_api/configs/globals.js 2>/dev/null; then
+                break
+            fi
+            sleep 1
+        done
+    fi
+    
+    # 方法 1: 优先从运行中的容器内部读取
+    version=$(docker exec "$container_name" cat /app/danmu_api/configs/globals.js 2>/dev/null | \
+              grep -m 1 "VERSION:" | sed -E "s/.*VERSION: '([^']+)'.*/\1/" 2>/dev/null || echo "")
+    
+    # 方法 2: 如果容器内部读取失败，尝试从镜像层读取
     if [ -z "$version" ]; then
-        version=$(docker exec "$container_name" cat /app/danmu_api/configs/globals.js 2>/dev/null | \
-                  grep -m 1 "VERSION:" | sed -E "s/.*VERSION: '([^']+)'.*/\1/" 2>/dev/null || echo "")
+        image_id=$(docker inspect --format='{{.Image}}' "$container_name" 2>/dev/null)
+        if [ -n "$image_id" ] && [ "$image_id" != "sha256:unknown" ]; then
+            version=$(docker run --rm --entrypoint cat "$image_id" \
+                      /app/danmu_api/configs/globals.js 2>/dev/null | \
+                      grep -m 1 "VERSION:" | sed -E "s/.*VERSION: '([^']+)'.*/\1/" 2>/dev/null || echo "")
+        fi
     fi
     
     echo "$version"
@@ -585,14 +620,46 @@ process_container_update() {
     old_id_full="$3"
     old_version_info="$4"
 
+    echo "  → 等待容器 $container_name 更新完成..."
     sleep 5
+
+    # 等待容器启动（最多等待60秒）
+    echo "  → 检查容器启动状态..."
+    for i in $(seq 1 60); do
+        status=$(docker inspect -f '{{.State.Running}}' "$container_name" 2>/dev/null || echo "false")
+        if [ "$status" = "true" ]; then
+            echo "  → 容器已启动，等待服务就绪..."
+            sleep 5
+            break
+        fi
+        sleep 1
+    done
 
     status=$(docker inspect -f '{{.State.Running}}' "$container_name" 2>/dev/null || echo "false")
     new_tag_full=$(docker inspect --format='{{.Config.Image}}' "$container_name" 2>/dev/null || echo "unknown:tag")
     new_id_full=$(docker inspect --format='{{.Image}}' "$container_name" 2>/dev/null || echo "sha256:unknown")
 
-    # 获取新版本信息（如果是 danmu-api）
-    new_version_info=$(get_danmu_version "$container_name")
+    # 获取新版本信息
+    new_version_info=""
+    if echo "$container_name" | grep -qE "danmu-api|danmu_api"; then
+        if [ "$status" = "true" ]; then
+            echo "  → 正在读取 danmu-api 版本信息..."
+            new_version_info=$(get_danmu_version "$container_name" "true")
+            
+            # 如果第一次读取失败，重试一次
+            if [ -z "$new_version_info" ]; then
+                echo "  → 首次读取失败，5秒后重试..."
+                sleep 5
+                new_version_info=$(get_danmu_version "$container_name" "true")
+            fi
+            
+            if [ -n "$new_version_info" ]; then
+                echo "  → 检测到版本: v${new_version_info}"
+            else
+                echo "  → 警告: 无法读取版本号，将使用镜像标签"
+            fi
+        fi
+    fi
     
     save_container_state "$container_name" "$new_tag_full" "$new_id_full" "$new_version_info"
 
@@ -603,7 +670,7 @@ process_container_update() {
     old_ver_display=$(format_version "$old_tag_full" "$old_id_full" "$container_name")
     new_ver_display=$(format_version "$new_tag_full" "$new_id_full" "$container_name")
     
-    # 对于 danmu-api，如果有真实版本号，优先显示
+    # 对于 danmu-api，优先使用真实版本号
     if [ -n "$old_version_info" ] || [ -n "$new_version_info" ]; then
         old_id_short=$(get_short_id "$old_id_full")
         new_id_short=$(get_short_id "$new_id_full")
@@ -637,6 +704,7 @@ process_container_update() {
 
 ✅ 容器已成功启动并运行正常"
 
+        echo "  → 发送成功通知到 Telegram..."
         send_telegram "$success_message"
     else
         rollback_msg=""
@@ -670,6 +738,7 @@ process_container_update() {
 ⚠️ 更新后无法启动${rollback_msg}
 💡 检查: <code>docker logs ${container_name}</code>"
 
+        echo "  → 发送失败通知到 Telegram..."
         send_telegram "$failure_message"
     fi
 }
@@ -703,12 +772,20 @@ for container in $(docker ps --format '{{.Names}}'); do
     image_tag=$(docker inspect --format='{{.Config.Image}}' "$container" 2>/dev/null || echo "unknown:tag")
     image_id=$(docker inspect --format='{{.Image}}' "$container" 2>/dev/null || echo "sha256:unknown")
     
-    # 如果是 danmu-api,获取版本信息
-    version_info=$(get_danmu_version "$container")
+    # 如果是 danmu-api，获取版本信息（不需要等待，容器已在运行）
+    version_info=$(get_danmu_version "$container" "false")
+    
+    if [ -n "$version_info" ]; then
+        echo "  → 已保存 $container 的状态到数据库 (版本: v${version_info})"
+    else
+        echo "  → 已保存 $container 的状态到数据库"
+    fi
     
     save_container_state "$container" "$image_tag" "$image_id" "$version_info"
 done
-echo "初始化完成,已记录 $(docker ps --format '{{.Names}}' | wc -l) 个容器状态"
+
+container_count=$(docker ps --format '{{.Names}}' | grep -vE '^watchtower|^watchtower-notifier$' | wc -l)
+echo "初始化完成，已记录 ${container_count} 个容器状态"
 
 # 等待 watchtower 完全启动
 sleep 3
@@ -777,6 +854,10 @@ SESSION_OLD_VERSIONS=""
 
 trap 'echo "收到退出信号，正在清理..."; exit 0' INT TERM
 
+# 修复: 添加唯一标识，避免多实例冲突
+INSTANCE_ID="$$_$(date +%s)"
+echo "  → 实例 ID: $INSTANCE_ID"
+
 docker logs -f --tail 0 watchtower 2>&1 | while IFS= read -r line; do
     echo "[$(date '+%H:%M:%S')] $line"
 
@@ -809,8 +890,13 @@ docker logs -f --tail 0 watchtower 2>&1 | while IFS= read -r line; do
         if [ "$updated" -gt 0 ] && [ -n "$SESSION_CONTAINERS" ]; then
             echo "  → 会话完成, 发现 ${updated} 处更新"
 
-            # 使用后台进程处理通知，避免阻塞主循环
-            (
+            # 修复: 使用文件锁避免多实例重复处理
+            LOCK_FILE="/tmp/watchtower-update-$(date +%s).lock"
+            
+            if mkdir "$LOCK_FILE" 2>/dev/null; then
+                echo "  → 已获取处理锁，开始发送通知..."
+                
+                # 改为同步执行，确保通知发送完成
                 IFS='|'
                 i=1
                 for container_name in $SESSION_CONTAINERS; do
@@ -820,12 +906,18 @@ docker logs -f --tail 0 watchtower 2>&1 | while IFS= read -r line; do
                     old_id_full=$(echo "$SESSION_OLD_IDS" | cut -d'|' -f$i)
                     old_ver_info=$(echo "$SESSION_OLD_VERSIONS" | cut -d'|' -f$i)
 
-                    # 调用处理函数
+                    echo "  → 处理容器: $container_name"
                     process_container_update "$container_name" "$old_tag_full" "$old_id_full" "$old_ver_info"
 
                     i=$((i+1))
                 done
-            ) &
+                
+                # 释放锁
+                rmdir "$LOCK_FILE" 2>/dev/null || true
+                echo "  → 所有通知已发送完成"
+            else
+                echo "  → 其他实例正在处理，跳过（避免重复通知）"
+            fi
 
             SESSION_CONTAINERS=""
             SESSION_OLD_TAGS=""
@@ -834,17 +926,17 @@ docker logs -f --tail 0 watchtower 2>&1 | while IFS= read -r line; do
         fi
     fi
 
-    # 改进: 只在真正的严重错误时发送通知,避免误报
+    # 改进: 只在真正的严重错误时发送通知，避免误报
     if echo "$line" | grep -qiE "level=error|level=fatal"; then
-    # 排除一些常见的非关键错误
+        # 排除一些常见的非关键错误
         if echo "$line" | grep -qiE "Skipping|Already up to date|No new images"; then
             continue
         fi
-    
+        
         container_name=$(echo "$line" | sed -n 's/.*container[=: ]\+\([a-zA-Z0-9_.\-]\+\).*/\1/p' | head -n1)
         error=$(echo "$line" | sed 's/.*msg="\([^"]*\)".*/\1/' | head -c 200)
-    
-    # 如果提取不到错误信息,使用整行
+        
+        # 如果提取不到错误信息，使用整行
         [ -z "$error" ] && error=$(echo "$line" | head -c 200)
 
         if [ -n "$container_name" ] && [ "$container_name" != "watchtower" ] && [ "$container_name" != "watchtower-notifier" ]; then
@@ -855,8 +947,8 @@ docker logs -f --tail 0 watchtower 2>&1 | while IFS= read -r line; do
 🔴 <b>错误</b>: <code>$error</code>
 🕐 <b>时间</b>: <code>$(get_time)</code>
 ━━━━━━━━━━━━━━━━━━━━"
-    fi
-fi
+        fi
+    fi  # ← 修复：添加了缺失的 fi
 done
 MONITOR_SCRIPT
     chmod +x "$INSTALL_DIR/monitor.sh"
