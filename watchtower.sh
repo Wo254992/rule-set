@@ -515,13 +515,11 @@ save_container_state() {
     image_id="$3"
     version_info="$4"
 
-    # 如果提供了版本信息（danmu-api），一起保存
     if [ -n "$version_info" ]; then
         echo "$container|$image_tag|$image_id|$version_info|$(date +%s)" >> "$STATE_FILE"
     else
         echo "$container|$image_tag|$image_id||$(date +%s)" >> "$STATE_FILE"
     fi
-    echo "  → 已保存 $container 的状态到数据库"
 }
 
 get_container_state() {
@@ -772,16 +770,15 @@ for container in $(docker ps --format '{{.Names}}'); do
     image_tag=$(docker inspect --format='{{.Config.Image}}' "$container" 2>/dev/null || echo "unknown:tag")
     image_id=$(docker inspect --format='{{.Image}}' "$container" 2>/dev/null || echo "sha256:unknown")
     
-    # 如果是 danmu-api，获取版本信息（不需要等待，容器已在运行）
     version_info=$(get_danmu_version "$container" "false")
+    
+    save_container_state "$container" "$image_tag" "$image_id" "$version_info"
     
     if [ -n "$version_info" ]; then
         echo "  → 已保存 $container 的状态到数据库 (版本: v${version_info})"
     else
         echo "  → 已保存 $container 的状态到数据库"
     fi
-    
-    save_container_state "$container" "$image_tag" "$image_id" "$version_info"
 done
 
 container_count=$(docker ps --format '{{.Names}}' | grep -vE '^watchtower|^watchtower-notifier$' | wc -l)
@@ -890,29 +887,30 @@ docker logs -f --tail 0 watchtower 2>&1 | while IFS= read -r line; do
         if [ "$updated" -gt 0 ] && [ -n "$SESSION_CONTAINERS" ]; then
             echo "  → 会话完成, 发现 ${updated} 处更新"
 
-            # 修复: 使用文件锁避免多实例重复处理
             LOCK_FILE="/tmp/watchtower-update-$(date +%s).lock"
             
             if mkdir "$LOCK_FILE" 2>/dev/null; then
                 echo "  → 已获取处理锁，开始发送通知..."
                 
-                # 改为同步执行，确保通知发送完成
+                OLD_IFS="$IFS"
                 IFS='|'
-                i=1
+                
+                container_index=1
                 for container_name in $SESSION_CONTAINERS; do
                     [ -z "$container_name" ] && continue
 
-                    old_tag_full=$(echo "$SESSION_OLD_TAGS" | cut -d'|' -f$i)
-                    old_id_full=$(echo "$SESSION_OLD_IDS" | cut -d'|' -f$i)
-                    old_ver_info=$(echo "$SESSION_OLD_VERSIONS" | cut -d'|' -f$i)
+                    old_tag_full=$(echo "$SESSION_OLD_TAGS" | cut -d'|' -f${container_index})
+                    old_id_full=$(echo "$SESSION_OLD_IDS" | cut -d'|' -f${container_index})
+                    old_ver_info=$(echo "$SESSION_OLD_VERSIONS" | cut -d'|' -f${container_index})
 
                     echo "  → 处理容器: $container_name"
                     process_container_update "$container_name" "$old_tag_full" "$old_id_full" "$old_ver_info"
 
-                    i=$((i+1))
+                    container_index=$((container_index + 1))
                 done
                 
-                # 释放锁
+                IFS="$OLD_IFS"
+                
                 rmdir "$LOCK_FILE" 2>/dev/null || true
                 echo "  → 所有通知已发送完成"
             else
