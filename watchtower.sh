@@ -689,14 +689,47 @@ for container in $(docker ps --format '{{.Names}}'); do
     image_tag=$(docker inspect --format='{{.Config.Image}}' "$container" 2>/dev/null || echo "unknown:tag")
     image_id=$(docker inspect --format='{{.Image}}' "$container" 2>/dev/null || echo "sha256:unknown")
     
-    # 如果是 danmu-api，获取版本信息
+    # 如果是 danmu-api,获取版本信息
     version_info=$(get_danmu_version "$container")
     
     save_container_state "$container" "$image_tag" "$image_id" "$version_info"
 done
-echo "初始化完成，已记录 $(docker ps --format '{{.Names}}' | wc -l) 个容器状态"
+echo "初始化完成,已记录 $(docker ps --format '{{.Names}}' | wc -l) 个容器状态"
 
-container_count=$(docker ps --format '{{.Names}}' | grep -v "watchtower" | wc -l)
+# 等待 watchtower 完全启动
+sleep 3
+
+# 直接从容器进程参数获取监控列表
+monitored_containers=$(docker exec watchtower ps aux 2>/dev/null | \
+    grep "watchtower" | \
+    grep -v "grep" | \
+    sed 's/.*watchtower//' | \
+    tr ' ' '\n' | \
+    grep -v "^$" | \
+    grep -v "^--" | \
+    tail -n +2 || true)
+
+# 如果上面的方法失败,尝试从 Args 获取
+if [ -z "$monitored_containers" ]; then
+    monitored_containers=$(docker container inspect watchtower --format='{{range .Args}}{{println .}}{{end}}' 2>/dev/null | \
+        grep -v "^--" | \
+        grep -v "^$" || true)
+fi
+
+if [ -n "$monitored_containers" ]; then
+    # 有指定容器
+    container_count=$(echo "$monitored_containers" | wc -l)
+    monitor_list="<b>监控容器列表:</b>"
+    for c in $monitored_containers; do
+        monitor_list="$monitor_list
+   • <code>$c</code>"
+    done
+else
+    # 监控所有容器
+    container_count=$(docker ps --format '{{.Names}}' | grep -vE "^watchtower$|^watchtower-notifier$" | wc -l)
+    monitor_list="<b>监控范围:</b> 全部容器"
+fi
+
 startup_message="🚀 <b>监控服务启动成功</b>
 
 ━━━━━━━━━━━━━━━━━━━━
@@ -706,6 +739,8 @@ startup_message="🚀 <b>监控服务启动成功</b>
 🎯 <b>监控状态</b>
    容器数: <code>${container_count}</code>
    状态库: <code>已初始化</code>
+
+${monitor_list}
 
 🔄 <b>功能配置</b>
    自动回滚: <code>${ENABLE_ROLLBACK:-禁用}</code>
