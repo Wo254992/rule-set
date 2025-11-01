@@ -434,15 +434,24 @@ get_danmu_version() {
         return
     fi
     
-    # 尝试从 GitHub 获取版本
-    version=$(timeout 10 curl -s "https://raw.githubusercontent.com/Wo254992/danmu_api/main/danmu_api/configs/globals.js" 2>/dev/null | \
-              grep "VERSION:" | sed -E "s/.*VERSION: '(.*)'.*/\1/" 2>/dev/null || echo "")
+    # 尝试从 GitHub 获取版本 (增加重试和更好的错误处理)
+    version=""
+    for i in 1 2; do
+        version=$(timeout 10 curl -s -f --retry 2 \
+            "https://raw.githubusercontent.com/Wo254992/danmu_api/main/danmu_api/configs/globals.js" 2>/dev/null | \
+            grep -m 1 "VERSION:" | sed -E "s/.*VERSION: '([^']+)'.*/\1/" 2>/dev/null || echo "")
+        
+        [ -n "$version" ] && break
+        [ $i -eq 1 ] && sleep 2
+    done
     
-    if [ -n "$version" ]; then
-        echo "$version"
-    else
-        echo ""
+    # 如果 GitHub 失败,尝试从容器内部读取 (如果容器正在运行)
+    if [ -z "$version" ]; then
+        version=$(docker exec "$container_name" cat /app/danmu_api/configs/globals.js 2>/dev/null | \
+                  grep -m 1 "VERSION:" | sed -E "s/.*VERSION: '([^']+)'.*/\1/" 2>/dev/null || echo "")
     fi
+    
+    echo "$version"
 }
 
 format_version() {
@@ -541,22 +550,27 @@ cleanup_old_states() {
     cutoff_time=$(date -d '7 days ago' +%s 2>/dev/null || date -v-7d +%s 2>/dev/null || echo 0)
     temp_file="${STATE_FILE}.tmp"
 
-    # 修复：使用 grep . 过滤掉空行，防止 read 读到空值
+    # 修复: 直接读取文件,在循环内部过滤空行和无效数据
     if [ -s "$STATE_FILE" ]; then
-        grep . "$STATE_FILE" | while IFS='|' read -r container image_tag image_id version_info timestamp; do
-            # 修复：检查 timestamp 是否为非空且为数字，防止 'out of range'
+        while IFS='|' read -r container image_tag image_id version_info timestamp; do
+            # 跳过空行
+            [ -z "$container" ] && continue
+            
+            # 检查 timestamp 是否有效
             if [ -n "$timestamp" ] && [ "$timestamp" -ge 0 ] 2>/dev/null; then
                 if [ "$timestamp" -ge "$cutoff_time" ]; then
                     echo "$container|$image_tag|$image_id|$version_info|$timestamp"
                 fi
             fi
-        done > "$temp_file"
+        done < "$STATE_FILE" > "$temp_file"
     else
-        # 如果源文件为空，则创建一个空的临时文件
         : > "$temp_file"
     fi
 
-    mv "$temp_file" "$STATE_FILE" 2>/dev/null || true
+    # 确保临时文件被成功创建后再替换
+    if [ -f "$temp_file" ]; then
+        mv "$temp_file" "$STATE_FILE" 2>/dev/null || true
+    fi
 }
 #
 # ==================================================================
@@ -820,20 +834,29 @@ docker logs -f --tail 0 watchtower 2>&1 | while IFS= read -r line; do
         fi
     fi
 
-    # 修复错误检测部分 - 移除对 $updated 的依赖
-    if echo "$line" | grep -qiE "level=error|level=fatal|Error response from daemon"; then
-        # 提取容器名称和错误信息
+    # 改进: 只在真正的严重错误时发送通知,避免误报
+    if echo "$line" | grep -qiE "level=error|level=fatal"; then
+    # 排除一些常见的非关键错误
+        if echo "$line" | grep -qiE "Skipping|Already up to date|No new images"; then
+            continue
+        fi
+    
         container_name=$(echo "$line" | sed -n 's/.*container[=: ]\+\([a-zA-Z0-9_.\-]\+\).*/\1/p' | head -n1)
         error=$(echo "$line" | sed 's/.*msg="\([^"]*\)".*/\1/' | head -c 200)
+    
+    # 如果提取不到错误信息,使用整行
+        [ -z "$error" ] && error=$(echo "$line" | head -c 200)
 
-        # 只有当能提取到容器名称时才发送通知
         if [ -n "$container_name" ] && [ "$container_name" != "watchtower" ] && [ "$container_name" != "watchtower-notifier" ]; then
             send_telegram "⚠️ <b>Watchtower 错误</b>
-📦 容器: $container_name
-🔴 错误: $error
-🕐 时间: $(get_time)"
-        fi
+
+━━━━━━━━━━━━━━━━━━━━
+📦 <b>容器</b>: <code>$container_name</code>
+🔴 <b>错误</b>: <code>$error</code>
+🕐 <b>时间</b>: <code>$(get_time)</code>
+━━━━━━━━━━━━━━━━━━━━"
     fi
+fi
 done
 MONITOR_SCRIPT
     chmod +x "$INSTALL_DIR/monitor.sh"
