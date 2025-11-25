@@ -466,6 +466,9 @@ DOMAIN-SUFFIX,blog.tencentx.de
 DOMAIN-SUFFIX,ch.feiyue.lol
 DOMAIN-SUFFIX,emby-b.nubebelle.vip
 DOMAIN-SUFFIX,lite.cn2gias.uk
+DOMAIN-SUFFIX,speedtest-visa.gegeselect.hk
+DOMAIN-SUFFIX,speedtest-better.apple-cdn.net
+DOMAIN-KAYWORD,speedtest
 IP-CIDR,193.122.114.13/32,no-resolve
 IP-CIDR,188.172.228.65/32,no-resolve
 IP-CIDR,188.172.228.49/32,no-resolve
