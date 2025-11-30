@@ -578,9 +578,9 @@ rules:
 
   - RULE-SET,自定义规则,特殊地址
   
-  - RULE-SET,direct_域,🌐 本机·本地直连
-  
   - RULE-SET,Emby_域,Emby
+
+  - RULE-SET,direct_域,🌐 本机·本地直连
 
   - RULE-SET,WebRTC_端/域,WebRTC
   - RULE-SET,No-ads-all_域,广告拦截
