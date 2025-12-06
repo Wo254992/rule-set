@@ -1,25 +1,26 @@
 # —————————
-# OpenClash 优化配置文件 (基于 Meta/Mihomo 内核)
-# 优化时间：2025
+# OpenClash 优化配置文件 (已修复 GoogleFCM 报错)
+# 核心优化：System 堆栈、标准 Fake-IP、DNS 防泄漏
 # —————————
 
 # ==== 基础设置 ====
 mixed-port: 7890
 redir-port: 7891
 tproxy-port: 1536
-ipv6: true # 如果你的宽带没有 IPv6 或不稳定，建议改为 false
-allow-lan: true
+ipv6: true
 mode: Rule
+allow-lan: true
 log-level: info
 unified-delay: true
 tcp-concurrent: true # 开启 TCP 并发，降低延迟
 
-# 路由器专用优化：关闭进程匹配，因为路由器无法获取局域网设备的进程名
+# 路由器专用优化：关闭进程匹配 (路由器无法获取设备进程，开启只会浪费 CPU)
 find-process-mode: off 
 global-client-fingerprint: chrome
 
-# 外部控制 (OpenClash 会自动管理此项，保持默认即可)
+# 外部控制
 external-controller: 0.0.0.0:9090
+external-ui-url: "https://github.com/Zephyruso/zashboard/releases/latest/download/dist.zip"
 external-ui: "./Web/Zash/"
 secret: "" 
 
@@ -34,7 +35,6 @@ geox-url:
   mmdb: "https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/country.mmdb"
   asn: "https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/GeoLite2-ASN.mmdb"
 
-# 实验性功能 (保持你的 UA 伪装设置)
 experimental:
   http-headers:
     request:
@@ -43,88 +43,27 @@ experimental:
       - name: "Accept-Language"
         value: "en-US,en;q=0.9"
 
-# 状态记忆
-profile:
-  store-selected: true
-  store-fake-ip: true
+# —————————
+# ==== 锚点定义 (放在前面以便引用) ====
 
-# ==== 嗅探模块 ====
-sniffer:
-  enable: true
-  parse-pure-ip: true
-  force-dns-mapping: true
-  override-destination: true
-  sniff:
-    HTTP:
-      ports: [80, 8080-8880]
-      override-destination: true
-    TLS:
-      ports: [443, 8443]
-    QUIC:
-      ports: [443, 8443]
-  force-domain:
-    - "+"
-  skip-domain:
-    - "Mijia Cloud"
-    - "+.push.apple.com"
-    - "+.apple.com"
-
-# ==== 网卡/Tun 模式 ====
-tun:
-  enable: true
-  device: Meta
-  # 路由器建议使用 system 堆栈以获得最佳性能，如果报错则改回 gvisor
-  stack: system 
-  dns-hijack:
-    - any:53
-    - tcp://any:53
-  auto-route: true
-  strict-route: true
-  auto-detect-interface: true
-  mtu: 9000 # 巨型帧优化，视网络环境而定，通常 1500 或 9000
-
-# ==== DNS 模块 (核心优化) ====
-dns:
-  enable: true
-  ipv6: true
-  listen: 0.0.0.0:1053
-  enhanced-mode: fake-ip
-  fake-ip-range: 198.18.0.1/16 # 使用标准 Fake-IP 保留段
-  respect-rules: true # DNS 解析遵循规则顺序，防止 DNS 泄露
-  fake-ip-filter:
-    - "*"
-    - "+.lan"
-    - "+.local"
-    - "+.msftconnecttest.com"
-    - "+.msftncsi.com"
-  
-  # 默认 DNS (国外)
-  nameserver:
-    - https://dns.google/dns-query
-    - https://cloudflare-dns.com/dns-query
-  
-  # 指定域名解析 (国内)
-  nameserver-policy:
-    "geosite:cn,private":
-      - https://doh.pub/dns-query
-      - https://dns.alidns.com/dns-query
-
-# ==== 锚点与订阅 ====
 # 健康检查锚点
 p: &p
   type: http
-  interval: 3600 # 检查间隔不需要太频繁，节省资源
+  interval: 86400
   health-check:
     enable: true
     url: https://www.gstatic.com/generate_204
     interval: 300
-    timeout: 5000
-    lazy: true # 懒惰模式，没人使用节点时不测速
-  header:
-      User-Agent:
+  proxy: 订阅更新
+  header: 
+      User-Agent: 
+        - "clash-verge/v2.2.3"
+        - "ClashMetaForAndroid/2.11.2.Meta"
+        - "ClashforWindows/0.19.23"
         - "clash.meta"
+        - "mihomo"
 
-# 策略组通用锚点
+# 策略组通用筛选锚点
 A: &A
   filter: "^(?!.*(套餐|重置|剩余|到期|订阅|群|账户|流量|有效期|时间|官网|失联|余额|回国)).*$"
   use:
@@ -132,9 +71,10 @@ A: &A
   - 2.备用地址
   - 3.额外地址
 
-# 代理集合 (Proxy Providers)
-proxy-providers: # ← 此函数位置请勿变动！此为模块更新时备份恢复订阅变量范围 ↓
-  1.主要地址: # 如遇订阅加载不出来，请尝试切换ua
+# —————————
+# ==== 代理集合 (严格保留原格式) ====
+proxy-providers: 
+  1.主要地址: 
     <<: *p
     override:
       additional-prefix: "Main："
@@ -155,29 +95,95 @@ proxy-providers: # ← 此函数位置请勿变动！此为模块更新时备份
     path: ./proxies/3.额外地址.yaml
     url: "订阅链接3"
 
-# 预定义代理
+# —————————
+
+# 节点记忆
+profile:
+  store-selected: true
+  store-fake-ip: true
+
+# 嗅探模块
+sniffer:
+  enable: true
+  force-dns-mapping: true
+  parse-pure-ip: true
+  override-destination: true
+  sniff:
+    HTTP:
+      ports: [80, 8080-8880]
+    TLS:
+      ports: [443, 5228, 8443]
+    QUIC:
+      ports: [443, 8443]
+  force-domain:
+    - "+"
+  skip-domain: 
+    - "Mijia Cloud"
+    - "+.push.apple.com"
+
+# 网卡模块 (深度优化)
+tun:
+  enable: true
+  device: Meta
+  stack: system # 性能更强，如遇报错请改回 gvisor
+  dns-hijack:
+    - any:53
+    - tcp://any:53
+  udp-timeout: 300
+  auto-route: true
+  strict-route: true
+  auto-redirect: false
+  auto-detect-interface: true
+  exclude-package:
+   # - com.tencent.mm
+
+# DNS模块
+dns:
+  enable: true
+  ipv6: true
+  listen: 0.0.0.0:1053
+  enhanced-mode: fake-ip
+  fake-ip-range: 198.18.0.1/16 # 使用国际标准保留段
+  respect-rules: true # 关键优化：DNS解析遵循分流规则
+  fake-ip-filter:
+    - "*"
+    - "+.lan"
+    - "+.local"
+    - "+.market.xiaomi.com"
+  nameserver:
+    - https://dns.google/dns-query
+    - https://cloudflare-dns.com/dns-query
+  nameserver-policy:
+    "geosite:cn,private":
+       - https://doh.pub/dns-query
+       - https://dns.alidns.com/dns-query
+
+# —————————
+
 proxies:
   - {name: 🌐 本机·本地直连, type: direct, udp: true}
   - {name: ⛔️ 禁止·拒绝连接, type: reject}
   - {name: 🌐 DNS_Hijack, type: dns}
 
-# 策略组通用配置
+# 策略组通用模板
 proxy_groups: &proxy_groups
     type: select
     proxies:
       - 总模式
       - ALL·延迟最低
       - ALL·负载均衡
-      - ALL·香港地区
-      - ALL·日本地区
-      - ALL·美国地区
-      - ALL·狮城地区
+      - ALL·故障转移
       - ALL·中国台湾
+      - ALL·香港地区
+      - ALL·美国地区
+      - ALL·日本地区
+      - ALL·狮城地区
       - ALL·其它地区
+      - ⛔️ 禁止·拒绝连接
       - 🌐 本机·本地直连
     <<: *A
 
-# ==== 策略组 (Proxy Groups) ====
+# ==== 策略组 ====
 proxy-groups:
   - name: 总模式
     icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/All.svg"
@@ -185,11 +191,12 @@ proxy-groups:
     proxies:
       - ALL·延迟最低
       - ALL·负载均衡
-      - ALL·香港地区  
+      - ALL·故障转移
       - ALL·日本地区
+      - ALL·中国台湾
+      - ALL·香港地区  
       - ALL·美国地区
       - ALL·狮城地区
-      - ALL·中国台湾
       - ALL·其它地区
       - 🌐 本机·本地直连
 
@@ -197,10 +204,9 @@ proxy-groups:
     icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/Update.svg"
     type: select
     proxies:
-      - 总模式
       - 🌐 本机·本地直连
+      - 总模式
 
-  # --- 应用策略组 ---
   - name: 小红书
     icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/XiaoHongShu.svg"
     <<: *proxy_groups
@@ -257,6 +263,16 @@ proxy-groups:
     icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/Google.svg"
     <<: *proxy_groups
 
+  # ↓↓↓ 之前缺失导致报错的组 ↓↓↓
+  - name: GoogleFCM
+    icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/GoogleFCM.svg"
+    <<: *proxy_groups
+  # ↑↑↑ 已修复 ↑↑↑
+
+  - name: Facebook
+    icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/Facebook.svg"
+    <<: *proxy_groups
+
   - name: OpenAI
     icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/OpenAI.svg"
     <<: *proxy_groups
@@ -283,7 +299,8 @@ proxy-groups:
     proxies:
       - REJECT
       - PASS
-      - 🌐 本机·本地直连
+      - ⛔️ 禁止·拒绝连接
+      - 🌐 DNS_Hijack
 
   - name: WebRTC
     icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/WebRTC.svg"
@@ -291,56 +308,78 @@ proxy-groups:
     proxies:
       - REJECT
       - PASS
+      - ⛔️ 禁止·拒绝连接
+      - 🌐 DNS_Hijack
 
-  # --- 地区/功能 自动策略组 ---
   - name: ALL·延迟最低
     icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/Return.svg"
     type: url-test
-    tolerance: 50
-    interval: 300
     <<: *A
 
   - name: ALL·负载均衡
     icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/Return.svg"
     type: load-balance
-    strategy: consistent-hashing
+    strategy: round-robin
+    <<: *A
+
+  - name: ALL·故障转移
+    icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/Return.svg"
+    type: fallback
     <<: *A
 
   - name: ALL·日本地区
     icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/JP.svg"
     type: select
     filter: "(?i)日本|川日|东京|大阪|泉日|埼玉|沪日|深日|JP|Japan"
-    <<: *A
+    use:
+    - 1.主要地址
+    - 2.备用地址
+    - 3.额外地址
 
   - name: ALL·中国台湾
     icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/CN.svg"
     type: select
     filter: "(?i)台|新北|彰化|TW|Taiwan|taipei"
-    <<: *A
+    use:
+    - 1.主要地址
+    - 2.备用地址
+    - 3.额外地址
 
   - name: ALL·香港地区
     icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/HK.svg"
     type: select
     filter: "(?i)港|HK|Hong Kong|HongKong"
-    <<: *A
+    use:
+    - 1.主要地址
+    - 2.备用地址
+    - 3.额外地址
 
   - name: ALL·美国地区
     icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/US.svg"
     type: select
     filter: "(?i)美|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥|US|United States"
-    <<: *A
+    use:
+    - 1.主要地址
+    - 2.备用地址
+    - 3.额外地址
 
   - name: ALL·狮城地区
     icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/Singapore.svg"
     type: select
     filter: "(?i)新加坡|坡|狮城|SG|Singapore"
-    <<: *A
+    use:
+    - 1.主要地址
+    - 2.备用地址
+    - 3.额外地址
 
   - name: ALL·其它地区
     icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/Globe.svg"
     type: select
     filter: "^(?!.*(港|HK|hk|Hong Kong|HongKong|hongkong|日本|川日|东京|大阪|泉日|埼玉|沪日|深日|[^-]日|JP|Japan|美|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥|US|United States|台|新北|彰化|TW|Taiwan|新加坡|坡|狮城|SG|Singapore|灾|网易|Netease|套餐|重置|剩余|到期|订阅|群|账户|流量|有效期|时间|官网|拒绝|DNS|Ch|网址|售|防失)).*$"
-    <<: *A
+    use:
+    - 1.主要地址
+    - 2.备用地址
+    - 3.额外地址
 
   - name: 特殊地址
     icon: "https://cdn.jsdelivr.net/gh/MoGuangYu/Surfing@rm/Home/icon/User.svg"
@@ -351,7 +390,8 @@ proxy-groups:
       - 🌐 本机·本地直连
       - ⛔️ 禁止·拒绝连接
 
-# ==== 规则集 (Rule Providers) ====
+# —————————
+
 rule-anchor:
   Local: &Local
     {type: file, behavior: classical, format: text}
@@ -382,7 +422,6 @@ rule-providers:
     path: ./rules/Emby_域.list
     url: "https://raw.githubusercontent.com/Wo254992/rule-set/refs/heads/main/userEmby.list"
 
-  # CN 规则改用 meta-rules-dat 官方源，更稳定
   CN_IP:
     <<: *IPCIDR
     path: ./rules/CN_IP.mrs
@@ -397,7 +436,6 @@ rule-providers:
     path: ./rules/No-ads-all.mrs
     url: "https://anti-ad.net/mihomo.mrs"
 
-  # 以下为应用规则，保持不变
   XiaoHongShu_域:
     <<: *Domain
     path: ./rules/XiaoHongShu.mrs
@@ -541,32 +579,30 @@ rule-providers:
     path: ./rules/Private_IP.mrs
     url: "https://cdn.jsdelivr.net/gh/GitMetaio/rule@master/rule/Clash/Lan/Lan_OCD_IP.mrs"
 
-# ==== 规则列表 (Rules) ====
+# —————————
+# 规则部分
 rules:
-  # 1. 核心网络规则
   - DST-PORT,53,🌐 DNS_Hijack
   - DST-PORT,853,DNS连接
 
-  # 2. 直连规则优先 (提高国内访问速度)
   - RULE-SET,Private_域,🌐 本机·本地直连
   - RULE-SET,Private_IP,🌐 本机·本地直连,no-resolve
   - RULE-SET,direct_域,🌐 本机·本地直连
   - RULE-SET,CN_域,🌐 本机·本地直连
   - RULE-SET,CN_IP,🌐 本机·本地直连
 
-  # 3. 广告与隐私拦截
+  - RULE-SET,自定义规则,特殊地址
+  - RULE-SET,Emby_域,Emby
   - RULE-SET,WebRTC_端/域,WebRTC
   - RULE-SET,No-ads-all_域,广告拦截
-  
-  # 4. 自定义规则 (放行误杀等)
-  - RULE-SET,自定义规则,特殊地址
 
-  # 5. 具体应用分流
-  - RULE-SET,Emby_域,Emby
-
+  - PROCESS-NAME,com.ss.android.ugc.aweme,抖音
   - RULE-SET,DouYin_域,抖音
+
+  - PROCESS-NAME,com.xingin.xhs,小红书
   - RULE-SET,XiaoHongShu_域,小红书
-  
+
+  - PROCESS-NAME,tv.danmaku.bili,BiliBili
   - RULE-SET,BiliBili_域,BiliBili
   - RULE-SET,BiliBili_IP,BiliBili,no-resolve
 
@@ -607,5 +643,4 @@ rules:
   - RULE-SET,Telegram_域,Telegram
   - RULE-SET,Telegram_IP,Telegram,no-resolve
 
-  # 6. 兜底规则 (最后匹配)
   - MATCH,漏网之鱼
