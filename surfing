@@ -11,8 +11,8 @@ ipv6: true
 mode: Rule
 allow-lan: true
 bind-address: "*"
-disable-keep-alive: false # 改为 false 提升性能
-geodata-mode: true # 改为 true 使用更高效的 geodata
+disable-keep-alive: false
+geodata-mode: true
 geo-auto-update: true
 geo-update-interval: 24
 geox-url:
@@ -34,8 +34,8 @@ experimental:
 unified-delay: true
 tcp-concurrent: true
 keep-alive-interval: 30
-log-level: info # 改为 info 便于排查问题，稳定后可改回 silent
-find-process-mode: strict # 改为 strict 更精确
+log-level: info
+find-process-mode: always
 global-client-fingerprint: chrome
 geodata-loader: standard
 
@@ -43,7 +43,7 @@ geodata-loader: standard
 external-controller: 0.0.0.0:9090
 external-ui-url: "https://github.com/MetaCubeX/metacubexd/archive/refs/heads/gh-pages.zip"
 external-ui: "./ui"
-secret: "" # 建议设置密码保护
+secret: ""
 
 # ==================== 节点记忆 ====================
 profile:
@@ -76,7 +76,7 @@ sniffer:
 tun:
   enable: true
   device: utun
-  stack: mixed # mixed 模式兼容性最好
+  stack: mixed
   dns-hijack:
     - any:53
     - tcp://any:53
@@ -663,7 +663,7 @@ rule-providers:
 rules:
   # DNS 劫持
   - DST-PORT,53,🌐 DNS劫持
-  - DST-PORT,853,DNS连接
+  - DST-PORT,853,🌐 DNS连接
 
   # 自定义规则（优先级最高）
   - RULE-SET,自定义规则,📍 特殊地址
