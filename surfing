@@ -60,6 +60,7 @@ A: &A
   - 1.主要地址
   - 2.备用地址
   - 3.额外地址
+  - 4.自定义地址
 
 All: &All
   type: url-test
@@ -67,6 +68,7 @@ All: &All
   - 1.主要地址
   - 2.备用地址
   - 3.额外地址
+  - 4.自定义地址
 
 proxy-providers: # ← 此函数位置请勿变动！此为模块更新时备份恢复订阅变量范围 ↓
   1.主要地址: # 如遇订阅加载不出来，请尝试切换ua
@@ -348,6 +350,7 @@ proxy-groups:
     - 1.主要地址
     - 2.备用地址
     - 3.额外地址
+    - 4.自定义地址
 
   - name: ALL·中国台湾
     icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/CN.svg"
@@ -357,6 +360,7 @@ proxy-groups:
     - 1.主要地址
     - 2.备用地址
     - 3.额外地址
+    - 4.自定义地址
 
   - name: ALL·香港地区
     icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/HK.svg"
@@ -366,6 +370,7 @@ proxy-groups:
     - 1.主要地址
     - 2.备用地址
     - 3.额外地址
+    - 4.自定义地址
 
   - name: ALL·美国地区
     icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/US.svg"
@@ -375,6 +380,7 @@ proxy-groups:
     - 1.主要地址
     - 2.备用地址
     - 3.额外地址
+    - 4.自定义地址
 
   - name: ALL·狮城地区
     icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/Singapore.svg"
@@ -384,6 +390,7 @@ proxy-groups:
     - 1.主要地址
     - 2.备用地址
     - 3.额外地址
+    - 4.自定义地址
 
   - name: ALL·其它地区
     icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/Globe.svg"
@@ -393,6 +400,7 @@ proxy-groups:
     - 1.主要地址
     - 2.备用地址
     - 3.额外地址
+    - 4.自定义地址
 
   - name: 特殊地址
     icon: "https://cdn.jsdelivr.net/gh/MoGuangYu/Surfing@rm/Home/icon/User.svg"
