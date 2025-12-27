@@ -243,6 +243,10 @@ proxy-groups:
     icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/BiliBili.svg"
     <<: *proxy_groups
 
+  - name: 巴哈姆特
+    icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/Globe.svg"
+    <<: *proxy_groups
+
   - name: Steam
     icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/Steam.svg"
     <<: *proxy_groups
@@ -486,6 +490,11 @@ rule-providers:
     path: ./rules/BiliBili_IP.mrs
     url: "https://cdn.jsdelivr.net/gh/GitMetaio/rule@master/rule/Clash/BiliBili/BiliBili_OCD_IP.mrs"
 
+  Bahamut_域:
+    <<: *Domain
+    path: ./rules/Bahamut.mrs
+    url: "https://cdn.jsdelivr.net/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/Bahamut/Bahamut_OCD_Domain.mrs"
+
   Steam_域:
     <<: *Domain
     path: ./rules/Steam.mrs
@@ -633,6 +642,8 @@ rules:
   - PROCESS-NAME,tv.danmaku.bili,BiliBili
   - RULE-SET,BiliBili_域,BiliBili
   - RULE-SET,BiliBili_IP,BiliBili,no-resolve
+
+  - RULE-SET,Bahamut_域,巴哈姆特
 
   - RULE-SET,Steam_域,Steam
 
