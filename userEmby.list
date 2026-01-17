@@ -475,7 +475,7 @@ DOMAIN,speedtest-visa.gegeselect.hk
 DOMAIN-SUFFIX,apple-cdn.net
 DOMAIN-SUFFIX,gegeselect.hk
 DOMAIN-SUFFIX,115cdn.de
-DOMAIN-SUFFIX,server2.cn2gias.uk
+DOMAIN-SUFFIX,cn2gias.uk
 DOMAIN-KAYWORD,speedtest
 IP-CIDR,193.122.114.13/32,no-resolve
 IP-CIDR,188.172.228.65/32,no-resolve
