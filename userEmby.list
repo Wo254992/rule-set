@@ -191,7 +191,6 @@ DOMAIN-SUFFIX,freetz.top
 
 # Mulgore(莫高雷)
 DOMAIN-SUFFIX,mulgore.net
-DOMAIN-SUFFIX,gmn.chuangzuoli.com
 
 # MdssCloud
 DOMAIN-SUFFIX,emby.mdss.cloud
@@ -476,6 +475,7 @@ DOMAIN-SUFFIX,src-emby.istyboe.top
 DOMAIN-SUFFIX,lite.cn2gias.uk
 DOMAIN,speedtest-better.apple-cdn.net
 DOMAIN,speedtest-visa.gegeselect.hk
+DOMAIN-SUFFIX,gmn.chuangzuoli.com
 DOMAIN-SUFFIX,apple-cdn.net
 DOMAIN-SUFFIX,gegeselect.hk
 DOMAIN-SUFFIX,115cdn.de
