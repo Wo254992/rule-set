@@ -352,7 +352,6 @@ proxy-groups:
     - 1.主要地址
     - 2.备用地址
     - 3.额外地址
-    - 4.自定义地址
 
   - name: ALL·中国台湾
     icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/CN.svg"
@@ -362,7 +361,6 @@ proxy-groups:
     - 1.主要地址
     - 2.备用地址
     - 3.额外地址
-    - 4.自定义地址
 
   - name: ALL·香港地区
     icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/HK.svg"
@@ -372,7 +370,6 @@ proxy-groups:
     - 1.主要地址
     - 2.备用地址
     - 3.额外地址
-    - 4.自定义地址
 
   - name: ALL·美国地区
     icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/US.svg"
@@ -382,7 +379,6 @@ proxy-groups:
     - 1.主要地址
     - 2.备用地址
     - 3.额外地址
-    - 4.自定义地址
 
   - name: ALL·狮城地区
     icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/Singapore.svg"
@@ -392,7 +388,6 @@ proxy-groups:
     - 1.主要地址
     - 2.备用地址
     - 3.额外地址
-    - 4.自定义地址
 
   - name: ALL·其它地区
     icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/Globe.svg"
@@ -402,7 +397,6 @@ proxy-groups:
     - 1.主要地址
     - 2.备用地址
     - 3.额外地址
-    - 4.自定义地址
 
   - name: 特殊地址
     icon: "https://cdn.jsdelivr.net/gh/MoGuangYu/Surfing@rm/Home/icon/User.svg"
