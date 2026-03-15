@@ -476,9 +476,9 @@ rule-providers:
     url: "https://cdn.jsdelivr.net/gh/GitMetaio/rule@master/rule/Clash/BiliBili/BiliBili_OCD_IP.mrs"
 
   Bahamut_域:
-    <<: *Domain
-    path: ./rules/Bahamut.mrs
-    url: "https://cdn.jsdelivr.net/gh/peiyingyao/Rule-for-OCD@master/rule/Clash/Bahamut/Bahamut_OCD_Domain.mrs"
+    <<: *Classical
+    path: ./rules/Bahamut.list
+    url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Bahamut/Bahamut.list"
 
   Steam_域:
     <<: *Domain
