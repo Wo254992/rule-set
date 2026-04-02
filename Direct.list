@@ -41,7 +41,7 @@ DOMAIN-SUFFIX,api.qwdjapp.com
 DOMAIN-SUFFIX,hinetiw0k.starvm.top
 IP-CIDR,154.219.103.23/32,no-resolve
 IP-CIDR,154.222.27.10/32,no-resolve
-IP-CIDR,154.219.103.166,,no-resolve
+IP-CIDR,154.219.103.166,no-resolve
 IP-CIDR,103.40.14.59/32,no-resolve
 IP-CIDR,160.202.46.241/32,no-resolve
 IP-CIDR,154.222.26.14/32,no-resolve
