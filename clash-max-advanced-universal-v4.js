@@ -1,4 +1,4 @@
-// Sub-Store 高级通用覆写 v4（无自定义直连 / 分组格式修复）
+// Sub-Store 高级通用覆写（无自定义直连 / 分组格式修复）
 // 兼容普通文件 operator(input) 与 Mihomo 配置 main(config) 两种执行路径。
 // 功能：三订阅 Provider、台湾/其他节点组、Emby 分组与 Emby 规则。
 
