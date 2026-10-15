@@ -302,6 +302,12 @@ proxy-groups:
     icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/Twitter.svg"
     <<: *proxy_groups
 
+  - name: 自定义
+    icon: "https://cdn.jsdelivr.net/gh/MoGuangYu/Surfing@rm/Home/icon/User.svg"
+    type: select
+    url: https://www.baidu.com/favicon.ico
+    <<: *proxy_groups
+
   - name: DNS连接
     icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/DNS.svg"
     <<: *proxy_groups
@@ -397,15 +403,6 @@ proxy-groups:
     - 1.主要地址
     - 2.备用地址
     - 3.额外地址
-
-  - name: 特殊地址
-    icon: "https://cdn.jsdelivr.net/gh/MoGuangYu/Surfing@rm/Home/icon/User.svg"
-    type: select
-    url: https://www.baidu.com/favicon.ico
-    interval: 86400
-    proxies:
-      - 🌐 本机·本地直连
-      - ⛔️ 禁止·拒绝连接
 
 # —————————
 
@@ -612,7 +609,7 @@ rules:
 
   - RULE-SET,direct_域,🌐 本机·本地直连
 
-  - RULE-SET,自定义规则,总模式
+  - RULE-SET,自定义规则,自定义
 
   - RULE-SET,Emby_域,Emby
 
