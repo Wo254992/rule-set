@@ -424,8 +424,9 @@ rule-anchor:
 # Github Actions 每日自动同步跟随更新
 rule-providers:
   自定义规则: # 主要用于广告误杀自定义放行
-    <<: *Local
-    path: ./etc/自定义规则.list # 请按路径新建文件及建立你需要的规则
+    <<: *Classical
+    path: ./rules/direct_域.list
+    url: "https://raw.githubusercontent.com/Wo254992/rule-set/refs/heads/main/Direct.list"
 
   WebRTC_端/域:
     <<: *Classical
