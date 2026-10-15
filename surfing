@@ -425,8 +425,8 @@ rule-anchor:
 rule-providers:
   自定义规则: # 主要用于广告误杀自定义放行
     <<: *Classical
-    path: ./rules/direct_域.list
-    url: "https://raw.githubusercontent.com/Wo254992/rule-set/refs/heads/main/Direct.list"
+    path: ./rules/Proxy_域.list
+    url: "https://raw.githubusercontent.com/Wo254992/rule-set/refs/heads/main/Proxy.list"
 
   WebRTC_端/域:
     <<: *Classical
