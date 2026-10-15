@@ -612,7 +612,7 @@ rules:
 
   - RULE-SET,direct_域,🌐 本机·本地直连
 
-  - RULE-SET,自定义规则,特殊地址
+  - RULE-SET,自定义规则,总模式
 
   - RULE-SET,Emby_域,Emby
 
