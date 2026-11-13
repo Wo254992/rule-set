@@ -489,6 +489,7 @@ DOMAIN-SUFFIX,emby.9527.new.tg
 DOMAIN-SUFFIX,httpdown.guangyacdn.com
 DOMAIN-SUFFIX,cflocal.xxlb.net
 DOMAIN-SUFFIX,cn2gias.uk
+DOMAIN-SUFFIX,speedtest-babybus.apple-cdn.net
 DOMAIN-SUFFIX,okemby.org
 DOMAIN-KAYWORD,speedtest
 IP-CIDR,193.122.114.13/32,no-resolve
