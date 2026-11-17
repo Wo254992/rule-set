@@ -1,6 +1,6 @@
-// Sub-Store 高级通用覆写（自定义直连 / 可刷新规则提供者）
+// Sub-Store 高级通用覆写（Direct 规则 / 可刷新规则提供者）
 // 兼容普通文件 operator(input) 与 Mihomo 配置 main(config) 两种执行路径。
-// 功能：三订阅 Provider、台湾/其他节点组、Emby 与自定义直连分组及规则。
+// 功能：三订阅 Provider、台湾/其他节点组、Emby 与 Direct 规则。
 
 const SUBSCRIPTIONS = [
   {
@@ -45,9 +45,6 @@ const OTHER_ICON =
   "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/Globe.svg";
 const EMBY_ICON =
   "https://pub-8feead0908f649a8b94397f152fb9cba.r2.dev/emby.png";
-const CUSTOM_DIRECT_GROUP = "自定义直连";
-const CUSTOM_DIRECT_ICON =
-  "https://raw.githubusercontent.com/sunfing/iNg/refs/heads/main/Icons/GeneralIcons/Direct.png";
 
 const EMBY_RULE_URL =
   "https://raw.githubusercontent.com/Wo254992/rule-set/main/userEmby.list";
@@ -205,45 +202,6 @@ function buildEmbyGroup(existingEmby) {
   return group;
 }
 
-function buildCustomDirectGroup(existingCustomDirect) {
-  const group = {
-    ...expandMerge(existingCustomDirect),
-    name: CUSTOM_DIRECT_GROUP,
-    type: "select",
-    proxies: [
-      "DIRECT",
-      "Proxy",
-      TAIWAN_GROUP,
-      "🇭🇰 香港节点",
-      "🇸🇬 新加坡节点",
-      "🇯🇵 日本节点",
-      "🇺🇸 美国节点",
-      "🇰🇷 韩国节点",
-      OTHER_GROUP,
-    ],
-    icon: CUSTOM_DIRECT_ICON,
-  };
-
-  for (const key of [
-    "use",
-    "filter",
-    "exclude-filter",
-    "include-filter",
-    "include-all",
-    "include-all-providers",
-    "url",
-    "interval",
-    "lazy",
-    "timeout",
-    "max-failed-times",
-    "disable-udp",
-    "hidden",
-  ]) {
-    delete group[key];
-  }
-  return group;
-}
-
 function configureGroups(config) {
   let groups = Array.isArray(config["proxy-groups"])
     ? config["proxy-groups"].map(expandMerge)
@@ -252,9 +210,6 @@ function configureGroups(config) {
   const existingTaiwan = groups.find((group) => group.name === TAIWAN_GROUP);
   const existingOther = groups.find((group) => group.name === OTHER_GROUP);
   const existingEmby = groups.find((group) => group.name === "Emby");
-  const existingCustomDirect = groups.find(
-    (group) => group.name === CUSTOM_DIRECT_GROUP,
-  );
   const hongKongGroup = groups.find(
     (group) => group.name === "🇭🇰 香港节点",
   );
@@ -264,7 +219,7 @@ function configureGroups(config) {
       group.name !== TAIWAN_GROUP &&
       group.name !== OTHER_GROUP &&
       group.name !== "Emby" &&
-      group.name !== CUSTOM_DIRECT_GROUP,
+      group.name !== "自定义直连",
   );
 
   groups = groups.map((group) => {
@@ -306,14 +261,8 @@ function configureGroups(config) {
   );
 
   const emby = buildEmbyGroup(existingEmby);
-  const customDirect = buildCustomDirectGroup(existingCustomDirect);
   const telegramIndex = groups.findIndex((group) => group.name === "Telegram");
-  groups.splice(
-    telegramIndex === -1 ? groups.length : telegramIndex + 1,
-    0,
-    customDirect,
-    emby,
-  );
+  groups.splice(telegramIndex === -1 ? groups.length : telegramIndex + 1, 0, emby);
 
   config["proxy-groups"] = groups;
 }
@@ -352,7 +301,7 @@ function configureRuleProvidersAndRules(config) {
   config["rule-providers"] = providers;
 
   const managedRules = [
-    `RULE-SET,CustomDirect,${CUSTOM_DIRECT_GROUP}`,
+    "RULE-SET,CustomDirect,DIRECT",
     "RULE-SET,Emby,Emby",
   ];
   const rules = (Array.isArray(config.rules) ? config.rules : []).filter(
