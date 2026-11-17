@@ -493,7 +493,7 @@ DOMAIN-SUFFIX,cn2gias.uk
 DOMAIN-SUFFIX,media.micu.hk
 DOMAIN-SUFFIX,speedtest-babybus.apple-cdn.net
 DOMAIN-SUFFIX,okemby.org
-DOMAIN-KAYWORD,speedtest
+DOMAIN-KEYWORD,speedtest
 IP-CIDR,193.122.114.13/32,no-resolve
 IP-CIDR,188.172.228.65/32,no-resolve
 IP-CIDR,188.172.228.49/32,no-resolve

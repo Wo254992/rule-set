@@ -1,6 +1,6 @@
-// Sub-Store 高级通用覆写（无自定义直连 / 分组格式修复）
+// Sub-Store 高级通用覆写（自定义直连 / 可刷新规则提供者）
 // 兼容普通文件 operator(input) 与 Mihomo 配置 main(config) 两种执行路径。
-// 功能：三订阅 Provider、台湾/其他节点组、Emby 分组与 Emby 规则。
+// 功能：三订阅 Provider、台湾/其他节点组、Emby 与自定义直连分组及规则。
 
 const SUBSCRIPTIONS = [
   {
@@ -45,40 +45,14 @@ const OTHER_ICON =
   "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/Globe.svg";
 const EMBY_ICON =
   "https://pub-8feead0908f649a8b94397f152fb9cba.r2.dev/emby.png";
+const CUSTOM_DIRECT_GROUP = "自定义直连";
+const CUSTOM_DIRECT_ICON =
+  "https://raw.githubusercontent.com/sunfing/iNg/refs/heads/main/Icons/GeneralIcons/Direct.png";
 
 const EMBY_RULE_URL =
   "https://raw.githubusercontent.com/Wo254992/rule-set/main/userEmby.list";
-const EMBY_FALLBACK_YAML_URL =
-  "https://raw.githubusercontent.com/Wo254992/rule-set/main/Emby.yaml";
-
-const CLASSICAL_RULE_TYPES = new Set([
-  "DOMAIN",
-  "DOMAIN-SUFFIX",
-  "DOMAIN-KEYWORD",
-  "DOMAIN-REGEX",
-  "GEOSITE",
-  "IP-CIDR",
-  "IP-CIDR6",
-  "IP-SUFFIX",
-  "GEOIP",
-  "IP-ASN",
-  "SRC-IP-CIDR",
-  "SRC-IP-CIDR6",
-  "SRC-PORT",
-  "DST-PORT",
-  "IN-PORT",
-  "PROCESS-NAME",
-  "PROCESS-NAME-REGEX",
-  "PROCESS-PATH",
-  "PROCESS-PATH-REGEX",
-  "NETWORK",
-  "NETWORK-TYPE",
-  "DSCP",
-  "UID",
-  "IN-TYPE",
-  "IN-NAME",
-  "IN-USER",
-]);
+const CUSTOM_DIRECT_RULE_URL =
+  "https://raw.githubusercontent.com/Wo254992/rule-set/main/Direct.list";
 
 function expandMerge(obj) {
   if (!obj || typeof obj !== "object" || Array.isArray(obj)) return {};
@@ -231,6 +205,45 @@ function buildEmbyGroup(existingEmby) {
   return group;
 }
 
+function buildCustomDirectGroup(existingCustomDirect) {
+  const group = {
+    ...expandMerge(existingCustomDirect),
+    name: CUSTOM_DIRECT_GROUP,
+    type: "select",
+    proxies: [
+      "DIRECT",
+      "Proxy",
+      TAIWAN_GROUP,
+      "🇭🇰 香港节点",
+      "🇸🇬 新加坡节点",
+      "🇯🇵 日本节点",
+      "🇺🇸 美国节点",
+      "🇰🇷 韩国节点",
+      OTHER_GROUP,
+    ],
+    icon: CUSTOM_DIRECT_ICON,
+  };
+
+  for (const key of [
+    "use",
+    "filter",
+    "exclude-filter",
+    "include-filter",
+    "include-all",
+    "include-all-providers",
+    "url",
+    "interval",
+    "lazy",
+    "timeout",
+    "max-failed-times",
+    "disable-udp",
+    "hidden",
+  ]) {
+    delete group[key];
+  }
+  return group;
+}
+
 function configureGroups(config) {
   let groups = Array.isArray(config["proxy-groups"])
     ? config["proxy-groups"].map(expandMerge)
@@ -239,6 +252,9 @@ function configureGroups(config) {
   const existingTaiwan = groups.find((group) => group.name === TAIWAN_GROUP);
   const existingOther = groups.find((group) => group.name === OTHER_GROUP);
   const existingEmby = groups.find((group) => group.name === "Emby");
+  const existingCustomDirect = groups.find(
+    (group) => group.name === CUSTOM_DIRECT_GROUP,
+  );
   const hongKongGroup = groups.find(
     (group) => group.name === "🇭🇰 香港节点",
   );
@@ -247,7 +263,8 @@ function configureGroups(config) {
     (group) =>
       group.name !== TAIWAN_GROUP &&
       group.name !== OTHER_GROUP &&
-      group.name !== "Emby",
+      group.name !== "Emby" &&
+      group.name !== CUSTOM_DIRECT_GROUP,
   );
 
   groups = groups.map((group) => {
@@ -289,95 +306,16 @@ function configureGroups(config) {
   );
 
   const emby = buildEmbyGroup(existingEmby);
+  const customDirect = buildCustomDirectGroup(existingCustomDirect);
   const telegramIndex = groups.findIndex((group) => group.name === "Telegram");
-  groups.splice(telegramIndex === -1 ? groups.length : telegramIndex + 1, 0, emby);
+  groups.splice(
+    telegramIndex === -1 ? groups.length : telegramIndex + 1,
+    0,
+    customDirect,
+    emby,
+  );
 
   config["proxy-groups"] = groups;
-}
-
-function parseClassicalRules(text, sourceName) {
-  const rules = [];
-  const seen = new Set();
-
-  for (const rawLine of String(text || "").split(/\r?\n/)) {
-    let line = rawLine.trim();
-    if (!line || line.startsWith("#")) continue;
-
-    // 修复旧 userEmby.list 中已确认的拼写错误。
-    line = line.replace(/^DOMAIN-KAYWORD,/i, "DOMAIN-KEYWORD,");
-
-    const type = line.split(",", 1)[0].toUpperCase();
-    if (!CLASSICAL_RULE_TYPES.has(type)) {
-      throw new Error(`${sourceName} 含不支持的规则类型: ${type}`);
-    }
-    if (line.indexOf(",") === -1) {
-      throw new Error(`${sourceName} 含格式不完整的规则`);
-    }
-
-    if (!seen.has(line)) {
-      seen.add(line);
-      rules.push(line);
-    }
-  }
-
-  if (!rules.length) throw new Error(`${sourceName} 没有有效规则`);
-  return rules;
-}
-
-function getCachedRules(cacheKey) {
-  try {
-    if (typeof scriptResourceCache === "undefined") return null;
-    const cached = scriptResourceCache.get(cacheKey);
-    return Array.isArray(cached) && cached.length ? cached : null;
-  } catch (_) {
-    return null;
-  }
-}
-
-function setCachedRules(cacheKey, rules) {
-  try {
-    if (typeof scriptResourceCache !== "undefined") {
-      scriptResourceCache.set(cacheKey, rules, 7 * 24 * 60 * 60 * 1000);
-    }
-  } catch (_) {}
-}
-
-async function fetchText(url) {
-  if (
-    typeof $substore === "undefined" ||
-    !$substore.http ||
-    typeof $substore.http.get !== "function"
-  ) {
-    throw new Error("当前脚本环境没有 Sub-Store HTTP API");
-  }
-
-  const response = await $substore.http.get({
-    url,
-    headers: { "user-agent": "Sub-Store Mihomo Override" },
-    timeout: 15000,
-  });
-  const status = Number(response && (response.statusCode || response.status));
-  if (status && (status < 200 || status >= 300)) {
-    throw new Error(`规则源返回 HTTP ${status}`);
-  }
-  const body = response && response.body;
-  if (typeof body !== "string" || !body.trim()) {
-    throw new Error("规则源返回空内容");
-  }
-  return body;
-}
-
-async function loadRulePayload(url, sourceName, cacheKey) {
-  try {
-    const rules = parseClassicalRules(await fetchText(url), sourceName);
-    setCachedRules(cacheKey, rules);
-    return rules;
-  } catch (error) {
-    const cached = getCachedRules(cacheKey);
-    if (cached) return cached;
-    console.log(`[Clash_Max 覆写] ${sourceName} 拉取失败，使用兼容回退`);
-    return null;
-  }
 }
 
 function buildHttpRuleProvider({ url, path, format }) {
@@ -392,13 +330,7 @@ function buildHttpRuleProvider({ url, path, format }) {
   };
 }
 
-async function configureRuleProvidersAndRules(config) {
-  const embyPayload = await loadRulePayload(
-    EMBY_RULE_URL,
-    "Emby 规则",
-    "clash-max:emby:v1",
-  );
-
+function configureRuleProvidersAndRules(config) {
   const providers =
     config["rule-providers"] &&
     typeof config["rule-providers"] === "object" &&
@@ -406,25 +338,21 @@ async function configureRuleProvidersAndRules(config) {
       ? config["rule-providers"]
       : {};
 
-  // 清理上一版脚本可能已经写入的自定义直连 Provider。
-  delete providers.CustomDirect;
-
-  providers.Emby = embyPayload
-    ? {
-        type: "inline",
-        behavior: "classical",
-        payload: embyPayload,
-      }
-    : buildHttpRuleProvider({
-        url: EMBY_FALLBACK_YAML_URL,
-        path: "./RuleSet/Emby.yaml",
-        format: "yaml",
-      });
+  providers.Emby = buildHttpRuleProvider({
+    url: EMBY_RULE_URL,
+    path: "./RuleSet/Emby.list",
+    format: "text",
+  });
+  providers.CustomDirect = buildHttpRuleProvider({
+    url: CUSTOM_DIRECT_RULE_URL,
+    path: "./RuleSet/CustomDirect.list",
+    format: "text",
+  });
 
   config["rule-providers"] = providers;
 
   const managedRules = [
-    "DOMAIN-KEYWORD,speedtest,Emby",
+    `RULE-SET,CustomDirect,${CUSTOM_DIRECT_GROUP}`,
     "RULE-SET,Emby,Emby",
   ];
   const rules = (Array.isArray(config.rules) ? config.rules : []).filter(
@@ -449,7 +377,7 @@ async function transformConfig(config) {
 
   configureSubscriptions(config);
   configureGroups(config);
-  await configureRuleProvidersAndRules(config);
+  configureRuleProvidersAndRules(config);
   return config;
 }
 
